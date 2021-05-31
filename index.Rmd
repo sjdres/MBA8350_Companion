@@ -1,9 +1,47 @@
 --- 
-title: "Test Book"
-author: "S.Dressler"
+title: 'MBA 8350: Analyzing and Leveraging Data <br> The Course Companion'
+author: "Scott Dressler"
 date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
 site: bookdown::bookdown_site
+documentclass: book
+link-citations: yes
+description: This is a course companion for MBA 8350.
 ---
 
-# Down the rabbit-hole
+#  {.unlisted .unnumbered}
+
+```{r, echo = FALSE, fig.align='center'}
+library(jpeg)
+library(knitr)
+include_graphics("images/VU17BLUE3.jpg")
+```
+
+# Preface {-}
+
+> "In ancient times they had no statistics so they had to fall back on lies."
+>
+> --- Stephen Leacock
+
+## About this book... {-}
+
+This course companion is a collection of lecture notes I have compiled over my years of teaching *Analyzing and Leveraging Data* (MBA 8350). I have custom made this material to ensure that all of the relevant topics of the course is included within these pages so we **DO NOT** need an additional textbook.
+
+The purpose of this course companion is to accomplish three goals.
+
+1. Introduce you to the foundational theory and application of statistical methods
+
+2. Introduce you to a cutting-edge software language for statistical computing and data visualization (R)
+
+3. Do away with the need for a formal textbook
+
+While there are certain chapters devoted solely to the second goal, new tricks on how to use R will be scattered throughout the chapters whenever we apply a new statistical method. By the end of the course, we will be not only have a clear understanding of statistical methods but have the working knowledge of an extremely powerful software language with which to apply it! 
+
+## Acknowledgements {-}
+
+This course companion would not be possible without the many students I have had the pleasure of teaching statistics to at VSB. Their questions, comments, and corrections to previous editions of these notes have made a significant contribution to what this product is. I am not going to call this a *final* product, because I hope my current and future students will continue to help me improve this.
+
+This course companion was also made possible thanks to a Villanova School of Business 2021 Teaching Innovation Grant.
 
