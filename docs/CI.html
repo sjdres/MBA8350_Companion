@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Confidence Intervals | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Confidence Intervals | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Confidence Intervals | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="CLT.html"/>
+<link rel="next" href="HT.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-big-picture-of-statistics"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-vocabulary-of-statistics"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#descriptive-measures"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Data.html"><a href="Data.html#sampling-distributions"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="Data.html"><a href="Data.html#sampling-bias---two-examples"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Data.html"><a href="Data.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Data.html"><a href="Data.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Data.html"><a href="Data.html#sampling-methods"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Data.html"><a href="Data.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Data.html"><a href="Data.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Data.html"><a href="Data.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Data.html"><a href="Data.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Data.html"><a href="Data.html#sampling-in-practice"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="Data.html"><a href="Data.html#sampling-and-sampling-distributions"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="Data.html"><a href="Data.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="R.html"><a href="R.html#the-r-project-for-statistical-computing"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="R.html"><a href="R.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="R.html"><a href="R.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="R.html"><a href="R.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="R.html"><a href="R.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="R.html"><a href="R.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="R.html"><a href="R.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="R.html"><a href="R.html#coding-basics"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="R.html"><a href="R.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="R.html"><a href="R.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="R.html"><a href="R.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="R.html"><a href="R.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="R.html"><a href="R.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="R.html"><a href="R.html#data-visualization"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="R.html"><a href="R.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="R.html"><a href="R.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="R.html"><a href="R.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="R.html"><a href="R.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="CLT.html"><a href="CLT.html#the-clt-formally"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="CLT.html"><a href="CLT.html#application-1-a-sampling-distribution-with-a-known-population"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="CLT.html"><a href="CLT.html#application-2-a-sampling-distribution-with-an-unknown-population"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="CLT.html"><a href="CLT.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="CLT.html"><a href="CLT.html#the-punchline-1"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="CI.html"><a href="CI.html#a-refresher-on-probability"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="CI.html"><a href="CI.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="CI.html"><a href="CI.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="CI.html"><a href="CI.html#deriving-a-confidence-interval"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="CI.html"><a href="CI.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="CI.html"><a href="CI.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="CI.html"><a href="CI.html#what-to-do-when-we-do-not-know-sigma"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="CI.html"><a href="CI.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="CI.html"><a href="CI.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="CI.html"><a href="CI.html#determining-sample-size"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="CI.html"><a href="CI.html#concluding-applications"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="CI.html"><a href="CI.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="CI.html"><a href="CI.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="HT.html"><a href="HT.html#anatomy-of-a-hypothesis-test"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="HT.html"><a href="HT.html#two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="HT.html"><a href="HT.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="HT.html"><a href="HT.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="HT.html"><a href="HT.html#two-sided-vs-one-sided-test"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="HT.html"><a href="HT.html#conducting-a-hypothesis-test-when-sigma-is-unknown"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="HT.html"><a href="HT.html#appendix-a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="HT.html"><a href="HT.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="HT.html"><a href="HT.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="SLR.html"><a href="SLR.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="SLR.html"><a href="SLR.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="SLR.html"><a href="SLR.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="SLR.html"><a href="SLR.html#application-predicting-house-price-based-on-house-size"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="SLR.html"><a href="SLR.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="SLR.html"><a href="SLR.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="SLR.html"><a href="SLR.html#decomposition-of-variance"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="SLR.html"><a href="SLR.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="SLR.html"><a href="SLR.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="SLR.html"><a href="SLR.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="SLR.html"><a href="SLR.html#assumptions-of-the-linear-regression-model"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="SLR.html"><a href="SLR.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="SLR.html"><a href="SLR.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="SLR.html"><a href="SLR.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="SLR.html"><a href="SLR.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="SLR.html"><a href="SLR.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MLR.html"><a href="MLR.html#application-explaining-house-price-in-a-multiple-regression"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MLR.html"><a href="MLR.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MLR.html"><a href="MLR.html#adjusted-r2"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MLR.html"><a href="MLR.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="MLR.html"><a href="MLR.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="MLR.html"><a href="MLR.html#qualitative-dummy-variables"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="MLR.html"><a href="MLR.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="MLR.html"><a href="MLR.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="MLR.html"><a href="MLR.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="MLR.html"><a href="MLR.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="MLR.html"><a href="MLR.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="MLR.html"><a href="MLR.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="MLR.html"><a href="MLR.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="MLR.html"><a href="MLR.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Advanced.html"><a href="Advanced.html#nonlinear-models"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Advanced.html"><a href="Advanced.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Advanced.html"><a href="Advanced.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Advanced.html"><a href="Advanced.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Advanced.html"><a href="Advanced.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="Advanced.html"><a href="Advanced.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="Advanced.html"><a href="Advanced.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="Advanced.html"><a href="Advanced.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Advanced.html"><a href="Advanced.html#collinearity"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="Advanced.html"><a href="Advanced.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="Advanced.html"><a href="Advanced.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="Advanced.html"><a href="Advanced.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="Advanced.html"><a href="Advanced.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="Advanced.html"><a href="Advanced.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="Advanced.html"><a href="Advanced.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Advanced.html"><a href="Advanced.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="Advanced.html"><a href="Advanced.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="Advanced.html"><a href="Advanced.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="Advanced.html"><a href="Advanced.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="CI" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Confidence Intervals</h1>
+<p>With the concept of the Central Limit Theorem (CLT) under our belts, we can begin to discuss our first application of statistical inference. The main concept is that when a statistician discusses <em>confidence</em>, they are actually saying how likely something is going to happen. In other words, 95% confidence in a statement means that something is going to happen 95 out of 100 replications. We only get one shot (not 100 replications), so it is the likelihood that it’s going to happen in this one shot.</p>
+<p>So in order for us to get into statistical inference, we need to have a refresher on probability. Thanks to the CLT, our probability calculations are going to come from the normal probability distribution.</p>
+<div id="a-refresher-on-probability" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> A Refresher on Probability</h2>
+<p>Suppose I give you a random variable <span class="math inline">\((X)\)</span> and tell you that this random variable comprises a normal distribution with an <em>arbitrary</em> mean equal to <span class="math inline">\(\mu\)</span> and an <em>arbitrary</em> standard deviation equal to <span class="math inline">\(\sigma\)</span>. We can denote this generally as <span class="math inline">\(X \sim N(\mu,\sigma)\)</span> and we can draw this generally as</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This picture is the normal probability density of this random variable. It is very much like a histogram, only we can consider a continuum of possible numbers (i.e., unlimited number of histogram bins). A normal probability density has several useful properties.</p>
+<ol style="list-style-type: decimal">
+<li><p>It is centered at the mean. It is a <strong>symmetric</strong> distribution with 50% of the probability being on either side of the mean.</p></li>
+<li><p>Like all probability distributions, it must add up to 1 (or 100%). This is like saying that the probability of reaching into a hat full of numbers and pulling out a number between positive and negative infinity is equal to 100%.</p></li>
+<li><p>A normal distribution has the nice property that approximately 95% of the density area is between two standard deviation above and below the mean. This is the shaded area in the above figure. It roughly states that if you reached into a bowl full of numbers that comprised this distribution, then you have a 95% chance of pulling out a number between <span class="math inline">\(\mu-2\sigma\)</span> and <span class="math inline">\(\mu+2\sigma\)</span>.</p></li>
+</ol>
+<p>This is very useful, but for our purposes we need to take this arbitrary normal distribution and transform it into a <strong>standard normal distribution</strong>. We do this by applying what is known as a Z-transformation:</p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
+<p>The figure below illustrates how this transformation changes an otherwise arbitrary normal distribution. The top figure is the arbitrary random variable with a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\sigma\)</span> <span class="math inline">\((X \sim N(\mu,\sigma))\)</span>. The second figure shows what happens to the distribution when we subtract the mean from every number in the distribution. This effectively shifts the distribution such that it is now centered around zero, so we now have a normally distributed random variable with a mean of zero and a standard deviation of <span class="math inline">\(\sigma\)</span> <span class="math inline">\((X-\mu \sim N(0,\sigma))\)</span>. The third figure shows what happens when we divide every number in the distribution by <span class="math inline">\(\sigma\)</span>. Recall that <span class="math inline">\(\sigma\)</span> is a positive number that can be greater or less than one. If you divide a number by a number less than one then the number gets bigger. If you divide a number by a number greater than one then the number gets smaller. This means that dividing every number by <span class="math inline">\(\sigma\)</span> will either increase or decrease the dispersion of values such that the standard deviation is equal to one. A normally distributed random variable with a mean of zero and a standard deviation is said to be a standard normal random variable <span class="math inline">\((Z \sim N(0,1))\)</span>.</p>
+<p>Note that this transformation shifts the distribution, but <strong>does not</strong> change its properties. This was done on purpose to get you to see that a standard normal transformation shifts the mean and alters the dispersion, but does not change the facts that the distribution is still symmetric, still adds to one, and still has the property that 95% of the probability area is between 2 standard deviations to the right and left of the mean.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-55-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><em>What does this transformation do?</em> It takes a normally distributed random variable with arbitrary <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, and transforms the distribution into one with mean 0 and standard deviation 1.</p>
+<p><em>Why is this useful?</em> It can easily be used for numerical probability calculations - but this isn’t as useful nowadays since we have computers. However, this transformation will be essential to put the normal distribution on the same level as other distributions we will soon encounter.</p>
+<div id="application-1" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Application 1</h3>
+<p>Suppose there exists a bowl of numbered cards.
+The numbers on these cards comprises a normal distribution where the mean value is 5, and the standard deviation is 3.
+<span class="math display">\[X \sim N(5,3)\]</span></p>
+<p>We now have everything we need to calculate the probability of any outcome from this data-generating process. For example, suppose we wanted to determine the probability of reaching into this bowl and picking a number between 2 and 3. In probability terms:</p>
+<p><span class="math display">\[Pr(2 \leq x \leq 3)\]</span></p>
+<ol style="list-style-type: decimal">
+<li>First we perform a standard normal transformation <span class="math inline">\(Z=\frac{X-\mu}{\sigma}=\frac{X-5}{3}\)</span>, so our probability question gets transformed as well:</li>
+</ol>
+<p><span class="math display">\[Pr(2 \leq x \leq 3)=Pr\left(\frac{2-5}{3} \leq \frac{x-5}{3} \leq \frac{3-5}{3}\right)\]</span></p>
+<p>This delivers the same probability question, only in standard normal terms:</p>
+<p><span class="math display">\[Pr(2 \leq x \leq 3)=Pr\left(-1 \leq z \leq -\frac{2}{3}\right)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Next we illustrate exactly what this probability question looks like in our distribution. In other words, indicate what <em>slice</em> of the distribution answers the probability question. This slice is illustrated in the figure below by shading in the probability area of the distribution between -1 and <span class="math inline">\(-\frac{2}{3}\)</span>.</li>
+</ol>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Finally, we calculate the probability in R. Now this is where the illustration above will help get us organized, because we can exploit the distributional properties of symmetry and the distribution summing to one. This is important because we can use R to calculate the same number in several different ways. All of these routes to the answer are acceptable, so we will go through them all here.</li>
+</ol>
+<p>First thing to do is introduce you to the R command “pnorm”</p>
+<pre><code>pnorm(q, mean = 0, sd = 1, lower.tail = TRUE)</code></pre>
+<p>The command requires a number (<em>quantity</em>) for the variable q. It will then use a normal distribution with a mean of 0 and a standard error of 1 (<em>by default</em>) and calculate the area to the <strong>left of the number q</strong>. Note that this is the default action which is given by “lower.tail = TRUE”. If you want to turn off this default action, then you need to set “lower.tail = FALSE” and the command will calculate the area to the <strong>right of the number q</strong>. For example, we can calculate <span class="math inline">\(Pr(z\leq-1)\)</span> or the area to the left of -1.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="CI.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1586553</code></pre>
+<p>We could also calculate <span class="math inline">\(Pr(z\geq-1)\)</span> or the area to the right of -1.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="CI.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8413447</code></pre>
+<p>These two probability areas sum to 1 (as they should), and are illustrated below. The left figure illustrates that 15.9% of the area under the distribution is to the left of -1, so you have a 15.9% chance of picking a number less than or equal to -1. Conversely, the right figure illustrates that 84.1% of the area under the distribution is to the right of -1, so you have a 84.1% chance of picking a number greater than or equal to -1.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now that we know how R likes to calculate probabilities, we can use it to determine <span class="math inline">\(Pr(-1 \leq z \leq -\frac{2}{3})\)</span> which is the gray slice of the distribution in the previous figure.</p>
+<ol style="list-style-type: decimal">
+<li>Using the <em>default</em> setting: suppose you want to calculate all of the probabilities using the default setting of calculating areas to the left. The gray slice of the distribution is then the difference between the area to the left of <span class="math inline">\(-\frac{2}{3}\)</span> and the area to the left of -1.</li>
+</ol>
+<p><span class="math display">\[Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=Pr\left(z \leq -\frac{2}{3}\right) - Pr\left(z \leq -1\right)\]</span></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="CI.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.09383728</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Removing the <em>default</em> setting. If you want to calculate probabilities from the right (which might come in handy), then the same slice of the distribution is then the difference between the area to the right of <span class="math inline">\(-1\)</span> and the area to the right of <span class="math inline">\(-\frac{2}{3}\)</span>.</li>
+</ol>
+<p><span class="math display">\[Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=Pr(z \geq -1) - Pr\left(z \geq -\frac{2}{3}\right)\]</span></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="CI.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 0.09383728</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Exploiting that the area sums to 1. Yet another way to arrive at the same answer is to calculate the area to the left of <span class="math inline">\(-1\)</span>, the area to the right of <span class="math inline">\(-\frac{2}{3}\)</span>, and arrive at the slice by subtracting these areas from 1.</li>
+</ol>
+<p><span class="math display">\[Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=1 - Pr(z \leq -1) - Pr\left(z \geq -\frac{2}{3}\right)\]</span></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="CI.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 0.09383728</code></pre>
+<p>As you can see, each procedure delivers the same answer - you have a 9.4% chance of picking a number from a standard normal distribution between -1 and <span class="math inline">\(-\frac{2}{3}\)</span>.</p>
+<p>Note that this is the same answer to the original question (before we transformed the distribution). The take away from this exercise is that there are plenty of straightforward ways of calculating probabilities in R, and we will be making a fair amount of use of them.</p>
+<p><span class="math display">\[Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=0.094\]</span></p>
+</div>
+<div id="application-2" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Application 2</h3>
+<p>Let us look deeper into our dice example. In particular, if I were to roll two fair dice a <span class="math inline">\(n\)</span> number of times and calculated the average, what range of values should I expect to see?</p>
+<p>Recall that the distribution of the population has a mean of 7 and a standard deviation of 2.45. This means that for <span class="math inline">\(n \geq 30\)</span>, the <em>sampling distribution</em> is normal and given by</p>
+<p><span class="math display">\[\bar{X} \sim N \left( 7, \; \frac{2.45}{\sqrt{n}} \right)\]</span></p>
+<p>Recall that in this (rare) example, we <em>know</em> the population parameters. Therefore, we can build a range where we expect sample averages to reside.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="CI.html#cb83-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb83-2"><a href="CI.html#cb83-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(X)</span>
+<span id="cb83-3"><a href="CI.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="CI.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Average Values&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb83-5"><a href="CI.html#cb83-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">main =</span>  <span class="fu">TeX</span>(<span class="st">&#39;$X </span><span class="sc">\\</span><span class="st">sim N(7,2.45 / </span><span class="sc">\\</span><span class="st">sqrt{n})&#39;</span>))</span>
+<span id="cb83-6"><a href="CI.html#cb83-6" aria-hidden="true" tabindex="-1"></a>xtick<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb83-7"><a href="CI.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb83-8"><a href="CI.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb83-9"><a href="CI.html#cb83-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">TeX</span>(<span class="st">&#39;$7-1.96</span><span class="sc">\\</span><span class="st">frac{2.45}{</span><span class="sc">\\</span><span class="st">sqrt{n}}$&#39;</span>),<span class="dv">7</span>, </span>
+<span id="cb83-10"><a href="CI.html#cb83-10" aria-hidden="true" tabindex="-1"></a>                <span class="fu">TeX</span>(<span class="st">&#39;$7+1.96</span><span class="sc">\\</span><span class="st">frac{2.45}{</span><span class="sc">\\</span><span class="st">sqrt{n}}$&#39;</span>)), </span>
+<span id="cb83-11"><a href="CI.html#cb83-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-12"><a href="CI.html#cb83-12" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> X <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">&amp;</span> X <span class="sc">&lt;=</span> <span class="dv">2</span></span>
+<span id="cb83-13"><a href="CI.html#cb83-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X, Y)</span>
+<span id="cb83-14"><a href="CI.html#cb83-14" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,X[i],<span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">0</span>,Y[i],<span class="dv">0</span>), <span class="at">col=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>So if we collected a sample on <span class="math inline">\(n=100\)</span>, meaning we rolled two dice 100 times, recorded the total each time, and calculated the mean value, then…</p>
+<p><span class="math display">\[Pr(7-1.96 \frac{2.45}{\sqrt{100}} \leq \bar{X} \leq 7-1.96 \frac{2.45}{\sqrt{100}}) = 0.95\]</span></p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="CI.html#cb84-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb84-2"><a href="CI.html#cb84-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb84-3"><a href="CI.html#cb84-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="dv">7</span></span>
+<span id="cb84-4"><a href="CI.html#cb84-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fl">2.45</span></span>
+<span id="cb84-5"><a href="CI.html#cb84-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-6"><a href="CI.html#cb84-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">LFT =</span> mu <span class="sc">-</span> Z <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 7.480191</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="CI.html#cb86-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">RHT =</span> mu <span class="sc">+</span> Z <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 6.519809</code></pre>
+<p><span class="math display">\[Pr(6.52 \leq \bar{X} \leq 7.48) = 0.95\]</span></p>
+<p>This means that with 95% confidence, your single outcome from your <em>experiment</em> will be within 6.52 and 7.48 if the die you are rolling are in fact fair.</p>
+<p>As stated earlier, this example is rare because we know the population parameters. When we don’t, we reverse engineer the probability statement so we can take what we know (the sample statistics) and use them to say something about what we don’t. This is known as a confidence interval.</p>
+<p>Further note - I used a new R command above called <em>qnorm</em>. This gets described further below.</p>
+</div>
+</div>
+<div id="deriving-a-confidence-interval" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Deriving a Confidence Interval</h2>
+<p>Recall when we randomly draw a sample from a sampling distribution and use it to calculate a sample mean <span class="math inline">\((\bar{X})\)</span>, we essentially state that a sample mean is random variable. Since the CLT states that the sampling distribution is a normal distribution, then this further states that the sample mean is a normally distributed random variable with a mean of <span class="math inline">\(\mu\)</span> and a standard deviation of <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>.</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\]</span></p>
+<p>We can apply our standardization trick so we have</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{(\sigma/\sqrt{n})}\]</span></p>
+<p>Suppose we have a sample of size <span class="math inline">\(n\)</span>, calculated a sample mean <span class="math inline">\(\bar{X}\)</span>, and that we <em>know</em> the population standard deviation <span class="math inline">\(\sigma\)</span> (more on this later). If we know these values, then we can use the standard normal distribution as well as the normalization above to draw statistical inference on the population parameter <span class="math inline">\(\mu\)</span>.</p>
+<p><em>What can we say about</em> <span class="math inline">\(\mu\)</span>?</p>
+<ul>
+<li><p>Since our sample has the same characteristics as the population, we would like to say <span class="math inline">\(\mu = \bar{X}\)</span> (i.e., <span class="math inline">\(Z=0\)</span>), but this is not likely. Recall the dice example discussed earlier, while 7 (the population mean) is the most likely average of a sample, there is a larger likelihood of a sample average <em>close</em> to, but not exactly equal to the population mean.</p></li>
+<li><p>Since <span class="math inline">\(\bar{X}\)</span> is a single draw from a normal distribution, we can construct a <em>probabilistic</em> range around <span class="math inline">\(\mu\)</span>. This range requires an arbitrary level of confidence <span class="math inline">\((1-\alpha)\)</span> - which provides bounds for the Z distribution (i.e., it gives us the area under the curve).</p></li>
+</ul>
+<p>We therefore start with a probabilistic statement using a standard normal distribution:</p>
+<p><span class="math display">\[Pr\left(-Z \leq \frac{\bar{X}-\mu}{(\sigma/\sqrt{n})} \leq Z\right)=1-\alpha\]</span></p>
+<p>This states (in general terms) that the probability of realizing a value of <span class="math inline">\(\frac{\bar{X}-\mu}{(\sigma/\sqrt{n})}\)</span> drawn from a standard normal distributed random variable to be between the values -Z and Z is equal to <span class="math inline">\(1-\alpha\)</span>. To put this into context, suppose I set <span class="math inline">\(\alpha=0.05\)</span> so <span class="math inline">\(1-\alpha=0.95\)</span> implies that I am looking for something that will occur with 95% probability. Recall the normal distribution has the nice property that 95% of the probability space is approximately between two standard deviations above and below the mean. By approximately, I mean it is actually 1.96 and not 2. (This explains the 1.96 used in the dice application above.)</p>
+<p>Finding these numbers requires another R command: qnorm.</p>
+<pre><code>qnorm(p, mean = 0, sd = 1, lower.tail = TRUE)</code></pre>
+<p>Just like how pnorm takes a quantity and returns a probability, qnorm takes a probability and returns a quantity.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="CI.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="CI.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<p><span class="math display">\[Pr\left(-1.96 \leq \frac{\bar{X}-\mu}{(\sigma/\sqrt{n})} \leq 1.96\right)=0.95\]</span></p>
+<p>Now back to our statement for a general <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(Z\)</span>:</p>
+<p><span class="math display">\[Pr\left(-Z \leq \frac{\bar{X}-\mu}{(\sigma/\sqrt{n})} \leq Z\right)=1-\alpha\]</span></p>
+<p>Given that the only thing we <strong>do not</strong> know is the population parameter <span class="math inline">\(\mu\)</span>, we can rearrange the inequalities inside the probability statement to deliver a probabilistic range where we think this parameter will reside.</p>
+<p><span class="math display">\[Pr\left(-Z \leq \frac{\bar{X}-\mu}{(\sigma/\sqrt{n})} \leq Z\right)=1-\alpha\]</span></p>
+<p><span class="math display">\[Pr\left(-Z\frac{\sigma}{\sqrt{n}} \leq \bar{X}-\mu \leq Z\frac{\sigma}{\sqrt{n}}\right)=1-\alpha\]</span></p>
+<p><span class="math display">\[Pr\left(-\bar{X}-Z\frac{\sigma}{\sqrt{n}} \leq -\mu \leq -\bar{X}+Z\frac{\sigma}{\sqrt{n}}\right)=1-\alpha\]</span></p>
+<p><span class="math display">\[Pr\left(\bar{X}-Z\frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X}+Z\frac{\sigma}{\sqrt{n}}\right)=1-\alpha\]</span></p>
+<p>This statement is a <strong>confidence interval</strong>, which can be written concisely as</p>
+<p><span class="math display">\[\bar{X}-Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X}+Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\bar{X} \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>It explicitly states that given the characteristics of the sample <span class="math inline">\((\bar{X},n,\sigma)\)</span> and an arbitrary level of confidence that gives us the probability limits from the standard normal distribution <span class="math inline">\((Z_{\frac{\sigma}{2}})\)</span>, then we can build a range of values where we can state with <span class="math inline">\((1-\alpha)*100%\)</span> confidence that the population parameter resides within.</p>
+<p>Welcome to statistical inference!</p>
+<div id="application-3" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Application 3</h3>
+<p>A paper manufacturer produces paper expected to have a mean length of 11 inches, and a known standard deviation of 0.02 inch. A sample of 100 sheets is selected to determine if the production process is still adhering to this length. If it isn’t, then the machine needs to go through the costs of being taken off line and recalibrated. The sample was calculated to have a average value of 10.998 inches.</p>
+<p><span class="math display">\[\bar{X} = 10.998, \quad n = 100, \quad \sigma = 0.02\]</span></p>
+<p>Construct a 95% confidence interval around the average length of a sheet of paper in the population.</p>
+<ol style="list-style-type: decimal">
+<li>Since we want 95% confidence, then we know that <span class="math inline">\(\alpha = 0.05\)</span> and we need the critical values from a standard normal distribution such that 95% of the probability distribution is between them. These critical values were calculated previously to -1.959964 and 1.959964 and are illustrated below. Note that since the shaded region is 95% of the <em>central</em> area of the distribution, we are chopping of 5% of the <em>total</em> area from both tails combined. That means 2.5% is chopped off of each tail.</li>
+</ol>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Now using the <em>positive</em> critical Z value in our confidence interval equation, we have:</li>
+</ol>
+<p><span class="math display">\[\bar{X} \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[10.998 \pm 1.96\frac{0.02}{\sqrt{100}}\]</span></p>
+<p>Using R for the calculations:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="CI.html#cb93-1" aria-hidden="true" tabindex="-1"></a>Xbar <span class="ot">=</span> <span class="fl">10.998</span></span>
+<span id="cb93-2"><a href="CI.html#cb93-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb93-3"><a href="CI.html#cb93-3" aria-hidden="true" tabindex="-1"></a>Sig <span class="ot">=</span> <span class="fl">0.02</span></span>
+<span id="cb93-4"><a href="CI.html#cb93-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb93-5"><a href="CI.html#cb93-5" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="sc">-</span><span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb93-6"><a href="CI.html#cb93-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 10.99408</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="CI.html#cb95-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 11.00192</code></pre>
+<p><span class="math display">\[ 10.99408 \leq \mu \leq 11.00192 \]</span></p>
+<p>Conclusion: I am 95% confident that the mean paper length in the population is somewhere between 10.99408 and 11.00192 inches.</p>
+<p>Note that any value within this range is equally likely!</p>
+</div>
+<div id="what-if-we-want-to-change-confidence" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> What if we want to change confidence?</h3>
+<p>If we want to increase the confidence of our statement to 99% or lower it 90%, then we change <span class="math inline">\(\alpha\)</span> and calculate a new critical Z value. Everything else stays the same.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="CI.html#cb97-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.01</span> <span class="co"># increase confidence to 99%</span></span>
+<span id="cb97-2"><a href="CI.html#cb97-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="sc">-</span><span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb97-3"><a href="CI.html#cb97-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 10.99285</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="CI.html#cb99-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 11.00315</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="CI.html#cb101-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.10</span> <span class="co"># decrease confidence to 90%</span></span>
+<span id="cb101-2"><a href="CI.html#cb101-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="sc">-</span><span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb101-3"><a href="CI.html#cb101-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 10.99471</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="CI.html#cb103-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> Z <span class="sc">*</span> Sig <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 11.00129</code></pre>
+<p>What happens to the size of the confidence interval when we increase our <em>confidence</em>?</p>
+</div>
+</div>
+<div id="what-to-do-when-we-do-not-know-sigma" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> What to do when we do not know <span class="math inline">\(\sigma\)</span></h2>
+<p>In most instances, if we don’t know anything about the population parameter <span class="math inline">\(\mu\)</span> then we don’t know anything about any of the other parameters (like <span class="math inline">\(\sigma\)</span>). In this case, we are forced to use our best guess of <span class="math inline">\(\sigma\)</span>. Since we are assuming that our sample has the same characteristics of the population, then our best guess for <span class="math inline">\(\sigma\)</span> is the sample standard deviation <span class="math inline">\(S\)</span>.</p>
+<p>Put plainly, we substitute the statistic (<span class="math inline">\(S\)</span>) for the population parameter (<span class="math inline">\(\sigma\)</span>). Because <span class="math inline">\(S\)</span> is an estimate of <span class="math inline">\(\sigma\)</span>, this will slightly change our probability distribution. In particular, If <span class="math inline">\(\bar{X}\)</span> is normally distributed as per the CLT, then a standardization using <span class="math inline">\(S\)</span> instead of <span class="math inline">\(\sigma\)</span> is said to have a t distribution with <span class="math inline">\(n-1\)</span> degrees of freedom</p>
+<p><span class="math display">\[t=\frac{\bar{X}-\mu}{(S/\sqrt{n})}\]</span></p>
+<p>Note that this looks almost exactly like our Z transformation, only with <span class="math inline">\(S\)</span> replaced for <span class="math inline">\(\sigma\)</span>. However, this statistic is said to be drawn from a distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. We mentioned degrees of freedom before, and we stated that we lose a degree of freedom when we build statistics on top of each other. In other words, we lose a degree of freedom for every statistic we use to calculate another statistic. Consider the standard deviation equation needed to calculate <span class="math inline">\(S\)</span>.</p>
+<p><span class="math display">\[S = \sqrt{\frac{1}{n-1} \sum_{i=1}^n(X_i-\bar{X})^2}\]</span></p>
+<p>The equation states that the sample mean <span class="math inline">\((\bar{X})\)</span> is used to calculate the sample standard deviation. This means one statistic is used to calculate a subsequent statistic… and that is why we lose one degree of freedom.</p>
+<div id="t-distribution-versus-z-distribution" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> t distribution versus Z distribution…</h3>
+<p>A t distribution and Z distribution have very much in common: they are both symmetric, both centered at a mean of 0, and both sum to one (because they are both probability distributions). The main difference is that a t-distribution has <em>fatter tails</em> than a Z distribution, and the fatness of the tails depends on the degrees of freedom (which in turn depends on the sample size).</p>
+<p>The figure below compares the standard normal (Z) distribution with several t distributions that differ in degrees of freedom. Notice that tail thickness of the t distributions are inversely related to sample size. As the the degrees of freedom get larger (i.e., the larger the sample size), the closer the t distribution gets to the Z distribution. This is because as n gets larger, <span class="math inline">\(S\)</span> becomes a better estimate of <span class="math inline">\(\sigma\)</span>.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[\bar{X}-Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X}+Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[\bar{X}-t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}} \leq \mu \leq \bar{X}+t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}}\]</span></p>
+<p>In a nutshell, the only difference encountered when not knowing <span class="math inline">\(\sigma\)</span> is that we have a slightly different probability distribution (which requires knowing the degrees of freedom and uses a different R command). The new R commands are <code>qt</code> and <code>pt</code> which requires degrees of freedom but otherwise has all of the same properties of <code>qnorm</code> and <code>pnorm</code> discussed above.</p>
+<pre><code>pt(q, df, lower.tail = TRUE)
+qt(p, df, lower.tail = TRUE)</code></pre>
+</div>
+<div id="application-4" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Application 4</h3>
+<p>Suppose you manage a call center and just received a call from Quality Control asking for the <em>average call length</em> at your facility. They are asking for the average call length in the population, so the best you can do is provide a confidence interval around this population parameter. You select a random sample of 50 calls from your facility and calculate a sample average of 5.8 minutes and a <strong>sample standard deviation</strong> of 2.815 minutes.</p>
+<p><span class="math display">\[\bar{X}=5.8, \quad n=50, \quad S=2.815\]</span></p>
+<p>Calculate a 95% confidence interval around the population average call length.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="CI.html#cb106-1" aria-hidden="true" tabindex="-1"></a>Xbar <span class="ot">=</span> <span class="fl">5.8</span></span>
+<span id="cb106-2"><a href="CI.html#cb106-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb106-3"><a href="CI.html#cb106-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> n<span class="dv">-1</span></span>
+<span id="cb106-4"><a href="CI.html#cb106-4" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="fl">2.815</span></span>
+<span id="cb106-5"><a href="CI.html#cb106-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb106-6"><a href="CI.html#cb106-6" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="sc">-</span><span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>,df) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb106-7"><a href="CI.html#cb106-7" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 4.999986</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="CI.html#cb108-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 6.600014</code></pre>
+<p><em>With 95% confidence, the population average call length is between 5 minutes and 6.6 minutes.</em></p>
+<p>As before, if we want to change our level of confidence then we change <span class="math inline">\(\alpha\)</span> and recalculate the t statistic. Notice that the relationship remains that a lower confidence level delivers a narrower confidence interval.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="CI.html#cb110-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.01</span> <span class="co"># increase confidence to 99%</span></span>
+<span id="cb110-2"><a href="CI.html#cb110-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="sc">-</span><span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>,df) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb110-3"><a href="CI.html#cb110-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 4.733108</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="CI.html#cb112-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 6.866892</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="CI.html#cb114-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.10</span> <span class="co"># decrease confidence to 90%</span></span>
+<span id="cb114-2"><a href="CI.html#cb114-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="sc">-</span><span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>,df) <span class="co"># The &#39;-&#39; sign gives the positive value!</span></span>
+<span id="cb114-3"><a href="CI.html#cb114-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 5.132563</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="CI.html#cb116-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 6.467437</code></pre>
+</div>
+</div>
+<div id="determining-sample-size" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Determining Sample Size</h2>
+<p>It was previously stated that the sample size should always be as big as possible in order to deliver the most <em>precise</em> conclusions. This isn’t always a satisfactory answer, because collecting observation might be possible (but costly).</p>
+<p>How big should n be?</p>
+<p>Selecting an appropriate sample size could be determined by many constraints</p>
+<ul>
+<li><p>budget, time, … (things that cannot really be dealt with statistically)</p></li>
+<li><p><em>acceptable</em> sampling error (we can deal with this)</p></li>
+</ul>
+<p>Recall our confidence interval equation:</p>
+<p><span class="math display">\[\bar{X}-Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X}+Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\bar{X} \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>The term <span class="math inline">\(Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\)</span> is one-half the width of the confidence interval. This is called the <em>sampling error</em> (or <em>margin of error</em>).</p>
+<p><span class="math display">\[e = \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>In our previous exercises, we were given a sample size <span class="math inline">\((n)\)</span> and used our calculations to determine the width of the confidence interval <span class="math inline">\((2e)\)</span>. If we instead wanted to fix the margin of error, then we can let the above identify determine how big our sample size needs to be.</p>
+<p><span class="math display">\[n = \left( \frac{Z_{\frac{\alpha}{2}}\sigma}{e}\right)^2\]</span></p>
+<p>Going back to our call center example, suppose that quality control demanded a 95% confidence interval with a 15 second (0.25 minute) margin of error. This means that the 95% confidence interval can only be 0.5 minutes wide. How many calls need to be in the sample?</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="CI.html#cb118-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb118-2"><a href="CI.html#cb118-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="sc">-</span><span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb118-3"><a href="CI.html#cb118-3" aria-hidden="true" tabindex="-1"></a>Xbar <span class="ot">=</span> <span class="fl">5.8</span></span>
+<span id="cb118-4"><a href="CI.html#cb118-4" aria-hidden="true" tabindex="-1"></a>Sig <span class="ot">=</span> <span class="fl">2.815</span></span>
+<span id="cb118-5"><a href="CI.html#cb118-5" aria-hidden="true" tabindex="-1"></a>e <span class="ot">=</span> <span class="fl">0.25</span></span>
+<span id="cb118-6"><a href="CI.html#cb118-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="CI.html#cb118-7" aria-hidden="true" tabindex="-1"></a>(<span class="at">n =</span> (Z<span class="sc">*</span>Sig<span class="sc">/</span>e)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 487.0493</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="CI.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Round up since you can have a fraction of an observation</span></span>
+<span id="cb120-2"><a href="CI.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(n)</span></code></pre></div>
+<pre><code>## [1] 488</code></pre>
+<p>Our analysis indicates that if you want this particular a margin of error, then you will need to collect a sample of 488 calls.</p>
+<p>You might have noticed that we did something a bit incorrect in the last exercise. What we did was specify a Z distribution and called the sample standard deviation <span class="math inline">\(\sigma\)</span>. Note that only in these sort of applications that determine a sample size is this permissible. The reason is because a sample standard deviation obviously depends on the sample in question. We therefore need to assume that the standard deviation is fixed when calculating the sample size (even though this isn’t the case). Once you determine a sample size, then you collect a sample, calculate the sample standard deviation, and calculate the appropriate confidence interval. The margin of error should be reasonably close to what was required.</p>
+</div>
+<div id="concluding-applications" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Concluding Applications</h2>
+<div id="light-bulbs-last-time" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Light Bulbs (Last Time)</h3>
+<p>Let’s go back one last time to our light bulb example</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="CI.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;C:/Data/MBA8350/Lightbulb.Rdata&quot;</span>)</span>
+<span id="cb122-2"><a href="CI.html#cb122-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">n =</span> <span class="fu">length</span>(Lifetime))</span></code></pre></div>
+<pre><code>## [1] 60</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="CI.html#cb124-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">Xbar =</span> <span class="fu">mean</span>(Lifetime))</span></code></pre></div>
+<pre><code>## [1] 907.5552</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="CI.html#cb126-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">S =</span> <span class="fu">sd</span>(Lifetime))</span></code></pre></div>
+<pre><code>## [1] 78.96741</code></pre>
+<p>We have the following information from our sample:</p>
+<p><span class="math display">\[\bar{X}=907.6, \quad n = 60, \quad S = 78.967\]</span></p>
+<p>Use the above information to calculate a 95% confidence interval around the population average lifespan of the light bulbs you have left to sell. You can put this on information on the box!</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="CI.html#cb128-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb128-2"><a href="CI.html#cb128-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> n<span class="dv">-1</span></span>
+<span id="cb128-3"><a href="CI.html#cb128-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="sc">-</span><span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>,df)</span>
+<span id="cb128-4"><a href="CI.html#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="CI.html#cb128-5" aria-hidden="true" tabindex="-1"></a>(<span class="at">left =</span> Xbar <span class="sc">-</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 887.1557</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="CI.html#cb130-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">right =</span> Xbar <span class="sc">+</span> t <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 927.9546</code></pre>
+</div>
+<div id="returning-to-the-philadelphia-school-policy-application" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Returning to the Philadelphia School Policy Application</h3>
+<p>Let us return to the Philadelphia school policy example to provide one final discussion of a confidence interval. This application may appear redundant, but it is intended to provide an alternative approach to the confidence interval concept. It has helped students in the past, so it might do some good.</p>
+<p>In early February 2020, the city of Philadelphia considered sending out $100 EBT cards to every student registered in public school due to the school closings brought on by the pandemic.</p>
+<p><em>How much would this policy cost?</em></p>
+<div id="the-frame" class="section level4 unnumbered">
+<h4>The Frame</h4>
+<p>There are 352,272 families in Philadelphia, and the city has records on how many students are registered in public schools.</p>
+<p>However, suppose it is too costly (at this stage) to determine the total number of children registered in public schools. If we knew the average number of children registered per family, we can get an estimate of the cost of the policy.</p>
+<p>Since it is too costly to examine the entire population (at the moment), we draw a single sample and use the sample to calculate sample statistics. Since the sample is randomly drawn from the population, the sample statistics are randomly drawn from a sampling distribution.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="your-sample" class="section level4 unnumbered">
+<h4>Your Sample</h4>
+<p>Once you determine a sample size <span class="math inline">\((n)\)</span>, you get <strong>one random draw</strong> from the appropriate sampling distribution.</p>
+<ul>
+<li><p>The distribution is approximately <em>normal</em></p></li>
+<li><p>The mean is <span class="math inline">\(\mu\)</span></p></li>
+<li><p>The standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span></p></li>
+</ul>
+<p>We use this information and our sample characteristics to say something about the population parameters…</p>
+<p>Suppose you select a sample of <span class="math inline">\(n=100\)</span> families and calculate</p>
+<p><span class="math display">\[Xbar = 1.7\]</span></p>
+<p><span class="math display">\[S = 1.5\]</span></p>
+<p>Since we have an <em>estimate</em> of the population standard deviation from our sample, our sampling distribution is now a t distribution with <span class="math inline">\(n-1 = 99\)</span> degrees of freedom.</p>
+<p><span class="math display">\[ t = \frac{\bar{X}-\mu}{S/\sqrt{n}}=\frac{1.7-\mu}{1.5/\sqrt{100}}\]</span></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="what-we-know" class="section level4 unnumbered">
+<h4>What we know…</h4>
+<ul>
+<li><p>CLT: the true population average is the central point of our sampling distribution</p></li>
+<li><p>We can choose an <em>arbitrary</em> level of confidence <span class="math inline">\((1-\alpha)\)</span> to limit where we think our statistic from a single draw will fall.</p></li>
+</ul>
+<p><span class="math display">\[Pr(-t^* \leq \frac{1.7-\mu}{1.5/\sqrt{100}} \leq t^*) = 1-\alpha\]</span></p>
+<p>Suppose we want 95% confidence <span class="math inline">\((\alpha = 0.05)\)</span></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="CI.html#cb132-1" aria-hidden="true" tabindex="-1"></a>(tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>,<span class="dv">99</span>))</span></code></pre></div>
+<pre><code>## [1] -1.984217</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="what-we-dont-know" class="section level4 unnumbered">
+<h4>What we DON’T know…</h4>
+<ul>
+<li><p>We don’t know the numerical value of <span class="math inline">\(\mu\)</span>…</p></li>
+<li><p>We don’t know where our value of <span class="math inline">\(\bar{X}\)</span> falls in relation to <span class="math inline">\(\mu\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\bar{X}=\mu\)</span>?</p></li>
+<li><p><span class="math inline">\(\bar{X}&gt;\mu\)</span>?</p></li>
+<li><p><span class="math inline">\(\bar{X}&lt;\mu\)</span>?</p></li>
+</ul></li>
+</ul>
+<p>The fact that we don’t know where <span class="math inline">\(\bar{X}\)</span> is in relation to <span class="math inline">\(\mu\)</span> is why we end up with an <em>interval</em> around where we think the population parameter resides.</p>
+<p><span class="math display">\[Pr(\bar{X}-t^* \frac{S}{\sqrt{n}} \leq \mu \leq \bar{X}+t^* \frac{S}{\sqrt{n}}) = 1-\alpha\]</span></p>
+<p><span class="math display">\[Pr(1.7-1.98 \frac{1.5}{\sqrt{100}} \leq \mu \leq 1.7+1.98 \frac{1.5}{\sqrt{100}}) = 0.95\]</span></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="CI.html#cb134-1" aria-hidden="true" tabindex="-1"></a>Xbar <span class="ot">=</span> <span class="fl">1.7</span>; S <span class="ot">=</span> <span class="fl">1.5</span>; n <span class="ot">=</span> <span class="dv">100</span>; AL <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb134-2"><a href="CI.html#cb134-2" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">qt</span>(AL<span class="sc">/</span><span class="dv">2</span>,n<span class="dv">-1</span>)</span>
+<span id="cb134-3"><a href="CI.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="CI.html#cb134-4" aria-hidden="true" tabindex="-1"></a>(LFT <span class="ot">&lt;-</span> Xbar <span class="sc">-</span> tcrit <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 1.402367</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="CI.html#cb136-1" aria-hidden="true" tabindex="-1"></a>(RHT <span class="ot">&lt;-</span> Xbar <span class="sc">+</span> tcrit <span class="sc">*</span> S <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 1.997633</code></pre>
+<p><span class="math display">\[Pr(1.40 \leq \mu \leq 2.00) = 0.95\]</span></p>
+<p>With 95% confidence, the average number of children per family is between 1.4 and 2.</p>
+<p><em>Total cost is between…</em></p>
+<p><span class="math display">\[1.4 * \$100 * 352,272 = \$49,318,080\]</span></p>
+<p>and</p>
+<p><span class="math display">\[2 * \$100 * 352,272 = \$70,454,400\]</span></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="CLT.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="HT.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/05-CI.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/05-CI.Rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

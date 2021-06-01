@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 The Central Limit Theorem | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 The Central Limit Theorem | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 The Central Limit Theorem | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="R.html"/>
+<link rel="next" href="CI.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-big-picture-of-statistics"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-vocabulary-of-statistics"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#descriptive-measures"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Data.html"><a href="Data.html#sampling-distributions"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="Data.html"><a href="Data.html#sampling-bias---two-examples"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Data.html"><a href="Data.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Data.html"><a href="Data.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Data.html"><a href="Data.html#sampling-methods"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Data.html"><a href="Data.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Data.html"><a href="Data.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Data.html"><a href="Data.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Data.html"><a href="Data.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Data.html"><a href="Data.html#sampling-in-practice"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="Data.html"><a href="Data.html#sampling-and-sampling-distributions"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="Data.html"><a href="Data.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="R.html"><a href="R.html#the-r-project-for-statistical-computing"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="R.html"><a href="R.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="R.html"><a href="R.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="R.html"><a href="R.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="R.html"><a href="R.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="R.html"><a href="R.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="R.html"><a href="R.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="R.html"><a href="R.html#coding-basics"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="R.html"><a href="R.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="R.html"><a href="R.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="R.html"><a href="R.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="R.html"><a href="R.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="R.html"><a href="R.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="R.html"><a href="R.html#data-visualization"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="R.html"><a href="R.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="R.html"><a href="R.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="R.html"><a href="R.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="R.html"><a href="R.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="CLT.html"><a href="CLT.html#the-clt-formally"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="CLT.html"><a href="CLT.html#application-1-a-sampling-distribution-with-a-known-population"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="CLT.html"><a href="CLT.html#application-2-a-sampling-distribution-with-an-unknown-population"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="CLT.html"><a href="CLT.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="CLT.html"><a href="CLT.html#the-punchline-1"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="CI.html"><a href="CI.html#a-refresher-on-probability"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="CI.html"><a href="CI.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="CI.html"><a href="CI.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="CI.html"><a href="CI.html#deriving-a-confidence-interval"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="CI.html"><a href="CI.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="CI.html"><a href="CI.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="CI.html"><a href="CI.html#what-to-do-when-we-do-not-know-sigma"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="CI.html"><a href="CI.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="CI.html"><a href="CI.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="CI.html"><a href="CI.html#determining-sample-size"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="CI.html"><a href="CI.html#concluding-applications"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="CI.html"><a href="CI.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="CI.html"><a href="CI.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="HT.html"><a href="HT.html#anatomy-of-a-hypothesis-test"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="HT.html"><a href="HT.html#two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="HT.html"><a href="HT.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="HT.html"><a href="HT.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="HT.html"><a href="HT.html#two-sided-vs-one-sided-test"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="HT.html"><a href="HT.html#conducting-a-hypothesis-test-when-sigma-is-unknown"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="HT.html"><a href="HT.html#appendix-a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="HT.html"><a href="HT.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="HT.html"><a href="HT.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="SLR.html"><a href="SLR.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="SLR.html"><a href="SLR.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="SLR.html"><a href="SLR.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="SLR.html"><a href="SLR.html#application-predicting-house-price-based-on-house-size"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="SLR.html"><a href="SLR.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="SLR.html"><a href="SLR.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="SLR.html"><a href="SLR.html#decomposition-of-variance"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="SLR.html"><a href="SLR.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="SLR.html"><a href="SLR.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="SLR.html"><a href="SLR.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="SLR.html"><a href="SLR.html#assumptions-of-the-linear-regression-model"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="SLR.html"><a href="SLR.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="SLR.html"><a href="SLR.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="SLR.html"><a href="SLR.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="SLR.html"><a href="SLR.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="SLR.html"><a href="SLR.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MLR.html"><a href="MLR.html#application-explaining-house-price-in-a-multiple-regression"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MLR.html"><a href="MLR.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MLR.html"><a href="MLR.html#adjusted-r2"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MLR.html"><a href="MLR.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="MLR.html"><a href="MLR.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="MLR.html"><a href="MLR.html#qualitative-dummy-variables"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="MLR.html"><a href="MLR.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="MLR.html"><a href="MLR.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="MLR.html"><a href="MLR.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="MLR.html"><a href="MLR.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="MLR.html"><a href="MLR.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="MLR.html"><a href="MLR.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="MLR.html"><a href="MLR.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="MLR.html"><a href="MLR.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Advanced.html"><a href="Advanced.html#nonlinear-models"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Advanced.html"><a href="Advanced.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Advanced.html"><a href="Advanced.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Advanced.html"><a href="Advanced.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Advanced.html"><a href="Advanced.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="Advanced.html"><a href="Advanced.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="Advanced.html"><a href="Advanced.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="Advanced.html"><a href="Advanced.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Advanced.html"><a href="Advanced.html#collinearity"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="Advanced.html"><a href="Advanced.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="Advanced.html"><a href="Advanced.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="Advanced.html"><a href="Advanced.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="Advanced.html"><a href="Advanced.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="Advanced.html"><a href="Advanced.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="Advanced.html"><a href="Advanced.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Advanced.html"><a href="Advanced.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="Advanced.html"><a href="Advanced.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="Advanced.html"><a href="Advanced.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="Advanced.html"><a href="Advanced.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="CLT" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> The Central Limit Theorem</h1>
+<p>The <strong>Central Limit Theorem</strong> (henceforth, CLT) is one of the most important conceptual parts of inferential statistics. It is the essential reason why we can make educated guesses regarding the parameters of a population using information on the statistics of a sample. The CLT will going on in the background of every subsequent chapter of this course companion. Doing statistics without fully understanding the CLT is simple going through the motions. You will not be able to fully appreciate inferential statistics without knowing what is really going on beneath the hood.</p>
+<div id="the-clt-formally" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> The CLT (Formally)</h2>
+<p>Recall the concept of sampling distribution from chapter 2. For every randomly selected sample (i.e., a subset of the population), you can calculate a sample mean. If you were to repeatedly collect random samples and record their sample means, then you would be able to construct a <em>sampling distribution</em> of the sample mean values. Looking at the frequency of values (i.e., a frequency distribution) would give you an idea of where you think the next mean value from the next sample you would randomly draw. The statistical properties of this sampling distribution is where the educated guessing is coming from.</p>
+<p>So here is the CLT formally…</p>
+<blockquote>
+<p>The central limit theorem states that if you have a population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> and take sufficiently large random samples of size <span class="math inline">\(n\)</span> from the population with replacement, then the distribution of the sample means will be approximately normally distributed.</p>
+</blockquote>
+<p>There are some finer details to note.</p>
+<ul>
+<li><p>Given the population parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, the resulting sampling distribution will be a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma / \sqrt{n}\)</span>.</p></li>
+<li><p>This will hold true regardless of whether or not the source population is normal, provided the sample size is sufficiently large (usually <span class="math inline">\(n &gt; 30\)</span>).</p></li>
+<li><p>If the population distribution is normal, then the theorem holds true even for samples smaller than 30.</p></li>
+<li><p>This means that we can use the normal probability model to quantify uncertainty when making inferences about a population mean based on the sample mean.</p></li>
+</ul>
+<p>Now, the CLT can be proven - but I think it might be better to illustrate the CLT with a couple of examples.</p>
+</div>
+<div id="application-1-a-sampling-distribution-with-a-known-population" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Application 1: A Sampling Distribution with a Known Population</h2>
+<p>The first application presents sampling distributions for a random process where we know the underlying process of the population: The rolling of two die.</p>
+<p>Suppose you worked for a gaming commission and placed in charge of making sure the dice at a casino were fair. <strong>We know</strong> that the (population) average roll of 2 fair die is 7 while the standard deviation is 2.45.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>It wouldn’t be fair for you to test a set of dice for fairness by rolling them once because there is a large probability of rolling a number other than 7. In particular, there are 36 possible outcomes of rolling two die and only 6 of those outcomes equal 7. This means that although 7 is the highest probability single outcome, there is a much higher probability of rolling a number other than 7 (<em>ever play craps?</em>).</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-46-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The figure above is essentially the population distribution of rolling two die. The average (mean) value is 7, the range of possible outcomes are between 2 and 12, and the standard deviation is a number that represents the dispersion of individual values around the mean. If you were to roll two die, then the outcome of that roll is conceptually a draw from this distribution.</p>
+<p>Since we don’t want to wrongfully accuse the casino of cheating, we need to roll the dice a few times to get an idea of what the average roll value is. If it is fair dice, then we know it will roll a 7 on average - but that means we would need to roll the dice an <em>infinite</em> amount of times to achieve this. To be realistic, lets settle on a number of rolls to be generally given by <span class="math inline">\(n\)</span>. If we choose <span class="math inline">\(n=5\)</span>, then that means we roll the dice 5 times, record the roll each time, and then record the average. This is a sample average of a sample of size 5. We could do this for <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=30\)</span>, <span class="math inline">\(n=300\)</span>, etc.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-47-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p>The figure is illustrating four potential <em>sampling distributions</em>. For example, if you were to collect a sample of 5 rolls, then you would technically be drawing a sample average from the distribution in the upper left. On the other hand, if you decide to roll the dice 300 times, then you are technically drawing a sample average from the distribution in the lower-right.</p>
+<p>There are two main takeaways from the above illustration.</p>
+<ol style="list-style-type: decimal">
+<li><p>Sampling distributions <em>appear</em> to approximate normal distributions. The normal distribution is the classic <em>bell-curve</em> distribution that tends to mysteriously show up in empirical analyses. The CLT is the reason why. Note that even though the original distribution didn’t look like a normal distribution at all, you still can construct sampling distributions that appear normal. This holds regardless of the initial population distribution (check out the video about rabbits and dragons on the course website if you don’t believe me).</p></li>
+<li><p>Sampling distributions become <em>more</em> normal and have a lower standard deviation when the sample size gets bigger. Notice that as the sample size goes up, the distributions become narrower. This means that when there is a big sample size there is a very low probability that your going to see sample averages near 2 or 12. This should make sense: If you roll two dice 300 times and take the average, there is no way you are going to record a sample average of 2 unless you roll a 2 300 times in a row. As the sample size increases, the <em>extreme</em> events start getting diluted. This reduces the standard deviation of the sampling distribution.</p></li>
+<li><p>The sampling distributions (for <span class="math inline">\(n \geq 30\)</span>) are distributed normal with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma / \sqrt{n}\)</span>. Technically this means that your random sample will produce a random outcome (a sample mean) which we denote <span class="math inline">\(\bar{X}\)</span>.</p></li>
+</ol>
+<p><span class="math display">\[ \bar{X} \sim N \left( \mu, \frac{\sigma}{\sqrt{n}} \right) \]</span></p>
+<p>You can see these two properties in the four sampling distributions illustrated above. All four sampling distributions are centered around 7, which is the population mean. As sample size gets larger, the sampling distributions get <em>narrower</em> around the population mean. This illustrates why a larger sample has a better shot at becoming a better representation of the population.</p>
+</div>
+<div id="application-2-a-sampling-distribution-with-an-unknown-population" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Application 2: A Sampling Distribution with an Unknown Population</h2>
+<p>In most applications, we will not be as lucky as in the first application and we will know nothing about the underlying population. The beauty of the CLT is that this doesn’t matter. We can still apply the CLT to set the stage for statistical inference.</p>
+<p>In light of school closings back in 2020, the city of Philadelphia considered sending out $100 EBT cards to every student registered in public school.</p>
+<p>A key question at the beginning of considering this policy is how much would this policy cost?</p>
+<ul>
+<li><p>There are 352,272 families in Philadelphia, and the city has records on how many students are registered in public schools.</p>
+<ul>
+<li>Suppose it is too costly (at the initial stage) to determine the total number of children.</li>
+</ul></li>
+<li><p>If we knew the average number of children registered per family, we can get an estimate of the cost of the policy.</p></li>
+</ul>
+<p>Suppose we are <em>omniscient</em>…</p>
+<ul>
+<li>The <strong>POPULATION</strong> average number of children per family is…
+<span class="math display">\[\mu = 1.5\]</span>
+<span class="math display">\[\sigma = 1.38\]</span></li>
+</ul>
+<p><strong>NOTE:</strong> We do not know these population parameters. I am simply stating them here so we can refer to them later for verification. In reality, we will <strong>never</strong> know these population parameters. That’s why we need inferential statistics.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="the-sample" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> The Sample</h3>
+<ul>
+<li><p>Since it is too costly to examine the entire population (at the initial stage), we draw a single sample.</p></li>
+<li><p>We use the sample to calculate sample statistics</p></li>
+<li><p>Since the sample is randomly drawn from the population, the sample statistics are randomly drawn from a sampling distribution.</p></li>
+</ul>
+<p>The characteristics of the sampling distribution depends on the sample size <span class="math inline">\(n\)</span>.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-49-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The figures above show sampling distributions of various sample sizes. Note that all of these distributions are centered around the same number (of 1.5), and the dispersion around the mean is getting small as <span class="math inline">\(n\)</span> is getting larger. In other words, the standard deviation <span class="math inline">\(\sigma / \sqrt{n}\)</span> is getting smaller and <span class="math inline">\(n\)</span> is getting larger.</p>
+</div>
+</div>
+<div id="the-punchline-1" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> The Punchline</h2>
+<p>Once you determine a sample size <span class="math inline">\((n)\)</span>, you get <strong>one random draw</strong> from the appropriate sampling distribution.</p>
+<ul>
+<li><p>The distribution is approximately <em>normal</em></p></li>
+<li><p>The mean is <span class="math inline">\(\mu\)</span></p></li>
+<li><p>The standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span></p></li>
+</ul>
+<p>What does this buy us? The answer is <em>everything</em> if we want to apply any form of <em>confidence</em> (i.e., stating a probability of occurring).</p>
+<p>The reason is that the normal distribution has a lot of useful properties.</p>
+<ol style="list-style-type: decimal">
+<li><p>The distribution is symmetric. The shape of the distribution to the right of the mean is identical to the shape of the distribution to the left of the mean.</p></li>
+<li><p>Approximately 95% of all possible outcomes are within 2 standard deviations of the mean.</p></li>
+</ol>
+<p>Two illustrate these two properties, consider the generic normal distribution illustrated below. You can easily see the symmetry of the distribution, while the shaded area represents 95% of the distribution. In probability terms, 95% of the area of the probability distribution means that there is a 95% chance of drawing a value within this range.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>So what does this really buy us? Consider the application above about the Philadelphia policy where we would have in reality have no idea what the population parameters <span class="math inline">\((\mu,\;\sigma)\)</span> are, or what the population distribution even looks like. However, the CLT says that if we decide on a sample size <span class="math inline">\(n\)</span>, then we will draw from a sampling distribution that is a normal distribution with mean <span class="math inline">\(mu\)</span> and standard deviation <span class="math inline">\(\sigma / \sqrt{n}\)</span>.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>So what we know is that once we draw a random sample and construct a sample mean, we can say with 95% confidence that that sample mean was drawn from the shaded region of the above distribution. We know what the sample mean value is because we just calculated it. What we don’t know is what <span class="math inline">\(/mu\)</span> is. However, we can construct a probabilistic range (a <em>confidence interval</em>) around where we think this population parameter lies. This is where we are going next.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>The mean of a single dice throw is 3.5,
+<span class="math display">\[ 3.5 = (1 + 2 + 3 + 4 + 5 + 6) / 6\]</span>
+and the expected value of two independent dice is the sum of expected values of each die. Standard deviation can be calculated using this mean value and the formula presented earlier.<a href="CLT.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="R.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CI.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/04-CLT.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/04-CLT.Rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

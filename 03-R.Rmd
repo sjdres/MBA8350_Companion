@@ -1,0 +1,316 @@
+# Getting Started with R {#R}
+
+```{r setup3, include=FALSE}
+knitr::opts_chunk$set(fig.align='center')
+```
+
+```{r, echo = FALSE, fig.align='center', out.width="40%"}
+library(knitr)
+library(png)
+include_graphics("images/Rlogo.png")
+```
+
+This chapter is designed to get R on your machine (Section 1), introduce you to some basic commands for data and variable manipulation (Section 2), and introduce you to some introductory data visualization (Section 3). We will also be using a companion software called Rstudio which will make our interaction with R much more pleasant. After the basics are covered in this chapter, we will be learning R commands as they become needed in the subsequent chapters. By the end of the course, you should have a pretty solid understanding of working your way around R.
+
+Let's get started!
+
+## The R Project for Statistical Computing
+
+R is an open source (i.e. *free*) programming language and software environment for statistical computing. The R language is widely used among statisticians and data analysis. As of July 2020, R ranks 8th in the TIOBE index, a measure of popularity of programming languages.
+
+In addition to using R, we will also be using RStudio. RStudio is an integrated development environment (IDE) for R. The desktop version of R studio is also free, and comes with many useful features. In fact, the document you are reading was formatted in R studio.
+
+This section will walk you through downloading, installing, and preparing R and RStudio for our purposes.
+
+**Note:** this section is intended for installing R and Rstudio on either a PC or a Mac. For those of you using Chromebooks (which uses a Linux operating system), you will not be able to install these programs unless you partition your hard drive to run purely in Linux. If you don't know what that means, then I don't suggest you go down that route. However, you are still in luck because Rstudio also offers a free cloud-based version of R that will serve the purpose of this course. You can sign up here: https://www.rstudio.com/products/cloud/. 
+
+**Another Note:** For those of you that have PCs or Macs and simply *do not* wish to download and install R and Rstudio, you are welcome to sign up to the Rstudio cloud as well. This will also be handy if you have a pesky work computer with a rigid fire wall. However, you should note that the cloud version of R and Rstudio can only be accessed if you have an internet connection. 
+
+**A Final Note:** The cloud-based version of Rstudio is relatively new and going through changes. As of the writing of this chapter, they are discussing discontinuing the *free* version and switching over to a fee-based scenario. They are also limiting the computation time for the free version, and this may be a constraint for us. I therefore ask that you contact me to discuss things if you are planning on taking the cloud route.   
+
+## Downloading and installing R
+
+The first step to get R onto your machine is to go to the website, download the correct version of R, and install. 
+
+The website is https://www.r-project.org/.
+
+### Choosing a *Mirror*
+
+Since R is open source, there are many different servers around the world where you can download it. You are welcome to choose any mirror you wish, but you may want to be sure that you know the national language of whichever country you select. I was boring and simply chose a mirror in Pittsburgh because it was closest to my location. 
+
+### Download and install the correct version
+
+R is available for PCs, Macs, and Linux systems. You will most likely want one of the first two options. Be sure to choose the option in the top box that offers  *Precompiled binary distributions*.
+
+**For Macs:** 
+
+* Click on the "Download R for (Mac) OS X" link at the top of the page.
+
+* Click on the file containing the latest version of R under "Files."
+
+* Save the .pkg file, double-click it to open, and follow the installation instructions.
+
+**For PCs:**
+
+* Click on the "Download R for Windows" link at the top of the page.  
+
+* Click on the "install R for the first time" link at the top of the page.
+
+* Click "Download R for Windows" and save the executable file somewhere on your computer. Run the .exe file and follow the installation instructions.
+
+Once this is complete, you will never need to actually open R. We will using RStudio to communicate with R.
+
+### Downloading and installing RStudio
+
+While R is open source, RStudio is a company that sells versions of its IDE. In short, it is an easy-to-use interface that makes working with R easier. We will be using the free version of RStudio Desktop which is available here:
+
+https://rstudio.com/products/rstudio/download/
+
+**For Macs:**
+
+* Click on "Download RStudio Desktop."
+
+* Click on the version recommended for your system, or the latest Mac version, save the .dmg file on your computer 
+
+* Double-click it to open, and then drag and drop it to your applications folder.
+
+**For PCs:**
+
+* Click on "Download RStudio Desktop."
+
+* Click on the version recommended for your system, or the latest Windows version, and save the executable file.  
+
+* Run the .exe file and follow the installation instructions. 
+
+### Taking Stock
+
+If done correctly, you should now be able to open Rstudio and see a screen that looks like this:
+
+```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "Welcome to R!"}
+library(knitr)
+library(jpeg)
+include_graphics("images/Screenshot1.png")
+```
+
+The window on the left is your *Console* which is exactly what you would see if you opened up R instead of Rstudio.^[Note that we will never open R by itself, because it is easier to communicate with R through Rstudio.] The window on the upper-right is your *Global Environment*. It will show you all of the data sets, variables, and result objects that are in R and available to you. Note that it is currently empty because we haven't done anything yet. The window on your bottom-right has several useful tabs that let us look at our folder directory (as shown) as well as any figures we generate and R packages at our disposal. 
+
+This is the default mode of Rstudio. You can input commands into the console right at the ">" and R will execute them line by line. This is fine if you wish to execute one single command, but it becomes tedious if we have a series of commands we need to execute before we arrive at our desired result. We can therefore alter this default mode by adding R-scripts.
+
+```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "An R-script!"}
+include_graphics("images/Screenshot2.png")
+```
+
+Clicking on the green plus in the upper left of the screen will give you the option of opening an R-script. An R-script window will now appear and take up half of what was once our console space. An R-script is really nothing more than a text file. We can type several commands in sequence without running them line by line (which would need to do if we typed them into the console). Once the commands are typed out, we can highlight them all and hit that run button on top. The commands get sent to the console and your off...
+
+```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "Running Commands from R-scripts!"}
+include_graphics("images/Screenshot3.png")
+```
+
+The picture above is just a quick example of what an R-script can do. Line 3 tells R to plot all of the variables in a dataset called *mtcars*. Highlighting that line and hitting the run button sends the command to the console below, and the plot figure shows up in the Plots window. That's that!
+
+### Installing *Packages*
+
+R is essentially a super-powered calculator. In order for it to be able to do some of the sophisticated things we will be doing in the course, we need to install source code called *packages*.
+
+Whenever you need a package, all you need to do is type:
+
+```
+install.packages("name of package")
+```
+
+Once this is done, the package is installed in your version of R and you will never need to install it again. You will need to *unpack* the packages each time you want to use them by calling a *library* command, but we will get to that later.
+
+The first R-script you will run as part of your first assignment is called *Install_Packages.R*. The executable portion of the code looks like this:
+
+```
+install.packages( c("AER", "car", "dplyr", 
+"fastDummies", "readxl", "xtable", "vars",
+"WDI", "xts", "zoo", "wooldridge") )
+```
+This is a simple command that asks R to download 11 packages and install them. Download and import the R-script, highlight the portion above, and hit the *Run* tab at the top of the upper-left window of RStudio. A bunch of notifications will appear on the R console (lower-left window) while the list of packages will be downloaded from the mirror site you selected earlier and installed. This can take some time (about 30 mins) depending on your internet connection, so it is advised to do this when you can leave your computer alone for awhile.
+
+## Coding Basics
+
+Now that your software is ready to go, this section introduces you to how R likes to be talked to. Note that the chapters are full of commands that you will need to learn when the time comes. In the meantime, here are just a few general pointers.
+
+R is what is known as a line command computing language - meaning that it doesn't need to compile code prior to execution. That being said, try the following command at the prompt (>):
+
+```{r}
+12 + 4
+```
+
+See? Just a big calculator.
+
+### Assigning Objects
+
+We declare variable names and other data objects by *assigning* things names. For example, we can repeat the calculation above by first assigning some variables the same numbers:
+
+```{r}
+BIG <- 12
+SMALL <- 4
+(TOTAL <- BIG + SMALL)
+```
+Notice that all of these variable names should now be in your global environment (upper-right window). The reason why 16 was returned on the console is because we put the last command in parentheses. That is the *print to screen* command.
+
+You might be asking why R simply doesn't use an equal sign in stead of the assign sign. Well, the answer is that we will later on be assigning names to output objects that contain much more than a single number. Things like regression output is technically *assigned* a name, so we are simple being consistent.
+
+### Listing, Adding, and Removing
+
+We can list all objects in our global environment using the list command: ls()
+
+```{r}
+ls()
+```
+As we already showed, we can add new variables by simply assigning names to our calculations.
+
+```{r}
+TOTAL.SQUARED <- TOTAL^2
+```
+
+If you ever wanted to remove some variables from your global environment, you can use the remove command: rm(*name of variable*)
+
+```{r}
+rm(TOTAL.SQUARED)
+```
+
+### Loading Data
+
+R can handle data that is in almost any format imaginable. The main data format we will consider in this class is a trusty old MS Excel file. There are two ways to load data...
+
+**1. The Direct Way**
+
+Once you locate a data file on your computer, you can direct R to import the file and assign it any name you want. The example below imports a dataset of automobile sales called AUTO_SA.xlsx and names it *CARDATA*.
+
+```{r}
+library(readxl)
+CARDATA <- read_excel("data/AUTO_SA.xlsx")
+```
+
+The term *"data/AUTO_SA.xlsx"* is the exact location on my computer for this data file. It is recommended that you put all of you data files somewhere easy to access. Like a single folder directly on your C drive.
+
+**2. The Indirect (but easy) Way**
+
+You can also import data directly into R through Rstudio.
+
+1. Use the files tab (bottom-right window) and locate the data file you want to import.
+
+2. Left-click on file and select *Import Dataset...*
+
+3. The import window opens and previews your data.
+
+4. If everything looks good, hit *Import* and your done.
+
+Note that the import window in step 3 has a *code preview* section which is actually writing the code needed to import the dataset. It will look exactly like what your code would need to look like in order to import data the direct way. You can refer to that for future reference.
+
+### Manipulating Data
+
+You should now have a dataset named *CARDATA* imported into your global environment. You can examine the names of the variables inside the dataset using the list command - only this time we reference the name of the dataset.
+
+```{r}
+ls(CARDATA)
+```
+
+When referencing a variable within a dataset, you must reference both so R knows where to get it. The syntax is:
+
+Dataset$Variable
+
+For example, if we want to reference the variable *AUTOSALE* we need to state that it is in the CARDATA dataset.
+
+CARDATA$AUTOSALE
+
+We can now manipulate and store variables within the dataset by creating variables for what ever we need. For example, we can create a variable for real autosales by dividing autosales by the consumer price index (CPI).
+
+```{r}
+CARDATA$RSALES <- CARDATA$AUTOSALE / CARDATA$CPI
+ls(CARDATA)
+```
+
+### Subsetting Data
+
+Sometimes our dataset will contain more information than we need. You should see a little Excel looking icon to the left of the name CARDATA up in the global environment window. If you click on it, you should see the following:
+
+```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "A Dataset in R"}
+include_graphics("images/Screenshot4.png")
+```
+
+Thinking of the data set as a matrix with 341 rows and 7 columns will help us understand the code needed to select specific portions of this data.
+
+Note that the variable MONTH cycles from 1 to 12 indicating the months of the year. Suppose we only want to analyze the 12th month of each year (i.e., December). We can do this by creating a new dataset that keeps only the rows associated with the 12 month.
+
+```{r}
+CARDATA2 <- CARDATA[CARDATA$MONTH==12,]
+```
+
+What the above code does is treat the dataset CARDATA as a matrix and lists it as [rows,columns]. The rows instruction is to only keep rows where the month is 12. The columns instruction is left blank, because we want to keep all columns.
+
+## Data Visualization
+
+R is absolutely brilliant when it comes to data visualization, and this section will only scratch the surface. We will go over some basic data visualizations using the built-in features of R. There are a lot of resources out there that covers a separate R package called ggplot. It's a handy package, but knowing the features discussed here will be sufficient for our course as well as give you some background that will help you push ggplot farther (if need be).
+
+### Histograms
+
+A histogram breaks the data into bins (or breaks) and shows the frequency distribution of these bins. We will use this to consider probability distributions, but it also helps us get an idea of the distributional properties of any variable.
+
+Let us continue to analyze the real sales data we created above:
+
+```{r}
+hist(CARDATA$RSALES)
+```
+
+We can fancy this up by changing the title (main), labels (xlab), number of bins (breaks), and color (col). We will do this one at a time by creating a 2 by 2 set of figures using the par(mfrow=c(2,2)) command. This command *partitions* the plot window into a 2x2 series of subplots.
+
+```{r}
+par(mfrow=c(2,2))
+hist(CARDATA$RSALES,main = "Real Auto Sales")
+hist(CARDATA$RSALES,main = "Real Auto Sales",
+     xlab = "Real Sales")
+hist(CARDATA$RSALES,main = "Real Auto Sales",
+     xlab = "Real Sales",
+     breaks = 40)
+hist(CARDATA$RSALES,main = "Real Auto Sales",
+     xlab = "Real Sales",
+     breaks = 40,
+     col = "pink")
+```
+
+### Line, bar, and Scatter Plots
+
+The plot command can visualize the relationship between two variables or just one variable in order. The barplot command is similar to a single-variable plot.
+
+We can look at the nominal sales data in a line plot by specifying the type of plot as "l". A barplot delivers the same information, but just looks different.
+
+```{r}
+par(mfrow=c(2,1))
+plot(CARDATA$AUTOSALE, type = "l")
+barplot(CARDATA$AUTOSALE)
+```
+
+We can look at relationships using the default values of the plot command.
+
+```{r}
+plot(CARDATA$CPI,CARDATA$AUTOSALE)
+```
+
+You will see plenty of these plots throughout these notes, and they will get increasingly more sophisticated with titles, colors, etc.
+
+### Boxplots
+
+Box Plot illustrate - the minimum, the 25th, 50th (median), 75th percentiles and the maximum. It is useful for visualizing the spread of the data.
+
+```{r}
+boxplot(CARDATA$AUTOSALE)
+```
+
+We can also examine these five numbers within groups according to some other variable. Lets look at this breakdown of auto sales per month of the year.
+
+```{r}
+boxplot(CARDATA$AUTOSALE~CARDATA$MONTH)
+```
+
+### Much more out there
+
+While this basically covers most of the plots we will need for the course, there is a ton more out there. The interested reader can consult a *free* book on the matter.
+
+https://rkabacoff.github.io/datavis/
+
+However deep you want to go, I hope you have seen that data visualization in R is a heck of a lot easier than in Excel.^[For example, a histogram in MS Excel takes about 20 minutes for me to create for each one!]

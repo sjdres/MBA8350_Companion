@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Simple Linear Regression | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Simple Linear Regression | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Simple Linear Regression | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="HT.html"/>
+<link rel="next" href="MLR.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-big-picture-of-statistics"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-vocabulary-of-statistics"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#descriptive-measures"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Data.html"><a href="Data.html#sampling-distributions"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="Data.html"><a href="Data.html#sampling-bias---two-examples"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="Data.html"><a href="Data.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Data.html"><a href="Data.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Data.html"><a href="Data.html#sampling-methods"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="Data.html"><a href="Data.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="Data.html"><a href="Data.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="Data.html"><a href="Data.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Data.html"><a href="Data.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="Data.html"><a href="Data.html#sampling-in-practice"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="Data.html"><a href="Data.html#sampling-and-sampling-distributions"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="Data.html"><a href="Data.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="R.html"><a href="R.html#the-r-project-for-statistical-computing"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="R.html"><a href="R.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="R.html"><a href="R.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="R.html"><a href="R.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="R.html"><a href="R.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="R.html"><a href="R.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="R.html"><a href="R.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="R.html"><a href="R.html#coding-basics"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="R.html"><a href="R.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="R.html"><a href="R.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="R.html"><a href="R.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="R.html"><a href="R.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="R.html"><a href="R.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="R.html"><a href="R.html#data-visualization"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="R.html"><a href="R.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="R.html"><a href="R.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="R.html"><a href="R.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="R.html"><a href="R.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="CLT.html"><a href="CLT.html#the-clt-formally"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="CLT.html"><a href="CLT.html#application-1-a-sampling-distribution-with-a-known-population"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="CLT.html"><a href="CLT.html#application-2-a-sampling-distribution-with-an-unknown-population"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="CLT.html"><a href="CLT.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="CLT.html"><a href="CLT.html#the-punchline-1"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="CI.html"><a href="CI.html#a-refresher-on-probability"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="CI.html"><a href="CI.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="CI.html"><a href="CI.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="CI.html"><a href="CI.html#deriving-a-confidence-interval"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="CI.html"><a href="CI.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="CI.html"><a href="CI.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="CI.html"><a href="CI.html#what-to-do-when-we-do-not-know-sigma"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="CI.html"><a href="CI.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="CI.html"><a href="CI.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="CI.html"><a href="CI.html#determining-sample-size"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="CI.html"><a href="CI.html#concluding-applications"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="CI.html"><a href="CI.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="CI.html"><a href="CI.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="HT.html"><a href="HT.html#anatomy-of-a-hypothesis-test"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="HT.html"><a href="HT.html#two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="HT.html"><a href="HT.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="HT.html"><a href="HT.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="HT.html"><a href="HT.html#two-sided-vs-one-sided-test"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="HT.html"><a href="HT.html#conducting-a-hypothesis-test-when-sigma-is-unknown"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="HT.html"><a href="HT.html#appendix-a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="HT.html"><a href="HT.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="HT.html"><a href="HT.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="SLR.html"><a href="SLR.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="SLR.html"><a href="SLR.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="SLR.html"><a href="SLR.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="SLR.html"><a href="SLR.html#application-predicting-house-price-based-on-house-size"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="SLR.html"><a href="SLR.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="SLR.html"><a href="SLR.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="SLR.html"><a href="SLR.html#decomposition-of-variance"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="SLR.html"><a href="SLR.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="SLR.html"><a href="SLR.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="SLR.html"><a href="SLR.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="SLR.html"><a href="SLR.html#assumptions-of-the-linear-regression-model"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="SLR.html"><a href="SLR.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="SLR.html"><a href="SLR.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="SLR.html"><a href="SLR.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="SLR.html"><a href="SLR.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="SLR.html"><a href="SLR.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="SLR.html"><a href="SLR.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="MLR.html"><a href="MLR.html#application-explaining-house-price-in-a-multiple-regression"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="MLR.html"><a href="MLR.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="MLR.html"><a href="MLR.html#adjusted-r2"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="MLR.html"><a href="MLR.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="MLR.html"><a href="MLR.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="MLR.html"><a href="MLR.html#qualitative-dummy-variables"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="MLR.html"><a href="MLR.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="MLR.html"><a href="MLR.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="MLR.html"><a href="MLR.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="MLR.html"><a href="MLR.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="MLR.html"><a href="MLR.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="MLR.html"><a href="MLR.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="MLR.html"><a href="MLR.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="MLR.html"><a href="MLR.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Advanced.html"><a href="Advanced.html#nonlinear-models"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Advanced.html"><a href="Advanced.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Advanced.html"><a href="Advanced.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Advanced.html"><a href="Advanced.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Advanced.html"><a href="Advanced.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="Advanced.html"><a href="Advanced.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="Advanced.html"><a href="Advanced.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="Advanced.html"><a href="Advanced.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="Advanced.html"><a href="Advanced.html#collinearity"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="Advanced.html"><a href="Advanced.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="Advanced.html"><a href="Advanced.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="Advanced.html"><a href="Advanced.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="Advanced.html"><a href="Advanced.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="Advanced.html"><a href="Advanced.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="Advanced.html"><a href="Advanced.html#heteroskedasticity"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="Advanced.html"><a href="Advanced.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="Advanced.html"><a href="Advanced.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="Advanced.html"><a href="Advanced.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="Advanced.html"><a href="Advanced.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="SLR" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Simple Linear Regression</h1>
+<p>Suppose you have two homes that are the same in <em>every single way</em> except for house size. Our intuition would suggest that bigger homes should cost more (<em>all else equal</em>) so we would expect that there is a positive relationship between house size and house price. In plain words: <em>bigger homes cost more</em>.</p>
+<p>Saying <em>bigger homes cost more</em> is a <strong>qualitative</strong> statement because all we are saying is that the relationship between house size and house price is positive. What if we want to make a <strong>quantitative</strong> statement? In other words, while we are fairly confident that the actual house price (say, in dollars) will increase for every unit increase in house size (say, an additional square foot) - we want to know exactly what this <em>average-price-per-square-foot</em> is.</p>
+<p>A <strong>Regression</strong> can measure the relationship between the mean value of one variable and corresponding values of other variables. In other words, it is a statistical technique used to explain average movements of one (dependent) variable, as a function of movements in a set of other (independent) variables.</p>
+<p>This chapter will discuss the estimation, interpretation, and statistical inference of a <em>simple</em> linear regression model, which means that we will attempt to explain the movements in a dependent variable by considering <strong>one</strong> independent variable. This is the simplest regression model we can consider in order to understand what is going on under the hood of a regression. The next chapter will extend this analysis to <em>multiple</em> regression models where the only real different is that the number of independent variables exceeds one.</p>
+<div id="a-simple-linear-regression-model" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> A Simple Linear Regression Model</h2>
+<p>A Linear Regression model is simply a line equation.</p>
+<p>The simplest example of a line equation is:</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i\]</span></p>
+<p>The <em>betas</em>, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are called line coefficients.</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> is the <em>constant</em> or <em>intercept term</em></li>
+<li><span class="math inline">\(\beta_1\)</span> is the <em>slope</em> term - it determines the change in Y given a change in X</li>
+</ul>
+<p><span class="math display">\[\beta_1=\frac{Rise}{Run}=\frac{\Delta Y_i}{\Delta X_i}\]</span></p>
+<div id="what-does-a-regression-model-imply" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> What does a regression model imply?</h3>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i\]</span></p>
+<p>When we write down a model like this, we are imposing a huge amount of assumptions on how we believe the world works.</p>
+<p>First, there is the <strong>Direction of causality</strong>. A regression implicitly assumes that changes in the independent variable (X) <em>causes</em> changes in the dependent variable (Y). This is the ONLY direction of causality we can handle, otherwise our analysis would be confounded (<strong>what causes what</strong>) and not useful.</p>
+<p>Second, The equation assumes that information on the independent variable (X) is all the information you need to explain the dependent variable (Y). In other words, if we were to look at pairs of observations of X and Y on a plot, then the above equation assumes that all observations (data points) line up exactly on the regression line.</p>
+<p>This would be great if the observations look like the figure on the left, but not if they look like ones on the right.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It would be extremely rare for the linear model (as detailed above) to account for all there is to know about the dependent variable Y…</p>
+<ol style="list-style-type: decimal">
+<li><p>There might be other independent variables that explain different parts of the dependent variable (i.e., multiple dimensions). <em>(more on this next chapter)</em></p></li>
+<li><p>There might be measurement error in the recording of the variables.</p></li>
+<li><p>There might be an incorrect functional form - meaning that the relationship between the dependent and independent variable might be more sophisticated than a straight line. <em>(more on this next chapter)</em></p></li>
+<li><p>There might be purely random and therefore totally unpredictable variation in the dependent variable.</p></li>
+</ol>
+<p>This last item can be easily dealt with!</p>
+<p>Adding a stochastic error term (<span class="math inline">\(\varepsilon_i\)</span>) to the model will effectively take care of all sources of variation in the dependent variable (Y) that is not explicitly captured by information contained in the independent variable (X).</p>
+</div>
+<div id="the-real-simple-linear-regression-model" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> The <em>REAL</em> Simple Linear Regression Model</h3>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i+\varepsilon_i\]</span></p>
+<p>The Linear Regression Model now explicitly states that the explanation of the dependent variable <span class="math inline">\((Y_i)\)</span> can be broken down into two components:</p>
+<ul>
+<li><p>A <strong>Deterministic</strong> Component: <span class="math inline">\(\beta_0+\beta_1X_i\)</span></p></li>
+<li><p>A <strong>Random / Stochastic / Explainable</strong> Component: <span class="math inline">\(\varepsilon_i\)</span></p></li>
+</ul>
+<p>Lets address these two components in turn.</p>
+<p><strong>The Deterministic Component:</strong></p>
+<p><span class="math display">\[\hat{Y}_i=\beta_0+\beta_1X_i\]</span></p>
+<p>The deterministic component delivers the expected (or <em>average</em>) value of the dependent variable (Y) given a values for the coefficients (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>) and a value of the dependent variable (X).</p>
+<p>Since X is given, it is considered <em>deterministic</em> (i.e., non-stochastic)</p>
+<p>In other words, the deterministic component determines the mean value of Y associated with a particular value of X. This should make sense, because the average value of Y is the best guess.</p>
+<p>Technically speaking, the deterministic component delivers the <em>expected value of Y conditional on a value of X</em> (i.e., a conditional expectation).</p>
+<p><span class="math display">\[\hat{Y}_i=\beta_0+\beta_1X_i=E[Y_i|X_i]\]</span></p>
+<p><strong>The Unexpected (<em>Garbage Can</em>) Component</strong></p>
+<p><span class="math display">\[\varepsilon_i=Y_i-\hat{Y}_i\]</span></p>
+<p>Once we obtain the coefficients, we can compare the observed values of <span class="math inline">\(Y_i\)</span> with the expected value of <span class="math inline">\(Y_i\)</span> conditional on the values of <span class="math inline">\(X_i\)</span>.</p>
+<p>The difference between the true value and the expected value is by definition… <em>unexpected!</em></p>
+<p>This unexpected discrepancy is your <strong>prediction error</strong> - and everything your deterministic component cannot explain is deemed <em>random</em> and <em>unexplainable</em>.</p>
+<p>If a portion of the dependent variable is considered random and unexplainable - then it gets thrown away into the <em>garbage can</em> (<span class="math inline">\(\varepsilon_i\)</span>).</p>
+<p>This is a subtle but crucial part of regression modeling…</p>
+<ul>
+<li><p>Your choice of the independent variable(s) dictate what you believe to be important in explaining the dependent variable.</p></li>
+<li><p>The unimportant (or random) changes in the dependent variable that your independent variables cannot explain end up in the garbage can <em>by design</em>.</p></li>
+<li><p>Therefore, <strong>the researcher</strong> essentially chooses what is important, and what gets thrown away into the garbage can.</p></li>
+</ul>
+<p><strong>YOU are the researcher</strong>, so <strong>YOU</strong> determine what goes into the garbage can!</p>
+</div>
+</div>
+<div id="application-predicting-house-price-based-on-house-size" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Application: Predicting House Price Based on House Size</h2>
+<p>Let’s consider an application where we attempt to explain the price of a house (in thousand US$) by the size of a house (in square feet). We start by establishing the theory and relating it to our statistical terminology.</p>
+<p><strong>The Population Regression Function:</strong></p>
+<p><span class="math display">\[Price_i = \beta_0 + \beta_i Size_i + \varepsilon_i\]</span></p>
+<ul>
+<li><p><span class="math inline">\(Price_i\)</span> is the dependent variable (<span class="math inline">\(Y_i\)</span>)</p></li>
+<li><p><span class="math inline">\(Size_i\)</span> is the independent variable (<span class="math inline">\(X_i\)</span>)</p></li>
+<li><p>The equation above is the true (but unknown), population regression function.</p></li>
+<li><p>The coefficients (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>) are the population regression coefficients!</p>
+<ul>
+<li><p>They are the coefficients you would obtain if you had <em>every</em> possible observation (i.e., the population)</p></li>
+<li><p>This ain’t gonna happen…</p></li>
+</ul></li>
+<li><p>We need to obtain the estimated, sample regression coefficients. To do this, we need to collect a sample of observations.</p></li>
+</ul>
+<p><strong>The Sample</strong></p>
+<p>In order to obtain <em>sample estimates</em> of our regression model above, we must obtain a sample of observations. We collect a (random) sample of size N. This is where the subscript i comes in - indicating that in general, each individual observation can be identified as <span class="math inline">\(i=1,...,N\)</span>. The sample estimates are based on the sample.</p>
+<p>Hypothetically, we can obtain different estimated coefficients for every different sample… but we will address that later.</p>
+<p>To facilitate this application, we will use a data set internal to R, called <em>hprice1</em>.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="SLR.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(hprice1,<span class="at">package=</span><span class="st">&#39;wooldridge&#39;</span>)</span>
+<span id="cb174-2"><a href="SLR.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hprice1)</span></code></pre></div>
+<pre><code>##  [1] &quot;price&quot;    &quot;assess&quot;   &quot;bdrms&quot;    &quot;lotsize&quot;  &quot;sqrft&quot;    &quot;colonial&quot; &quot;lprice&quot;   &quot;lassess&quot;  &quot;llotsize&quot;
+## [10] &quot;lsqrft&quot;</code></pre>
+<p>This data set contains 88 observations of homes where each home has 10 pieces of information called <em>variables</em>. We are only concerned with two variables at the moment - the house price (<em>price</em>) and the house size (<em>sqrft</em>).</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="SLR.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hprice1<span class="sc">$</span>price)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   111.0   230.0   265.5   293.5   326.2   725.0</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="SLR.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hprice1<span class="sc">$</span>sqrft)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1171    1660    1845    2014    2227    3880</code></pre>
+<p>We know that:</p>
+<ol style="list-style-type: decimal">
+<li><p>the average house price is $293,500</p></li>
+<li><p>50% of the observations are between the 1st and 3rd quartiles of $230,000 and $326,200</p></li>
+<li><p>the minimum house price in the sample is $111,000</p></li>
+<li><p>the maximum house price in the sample is $725,000. You can look at the summary output for the size variable and make similar statements.</p></li>
+</ol>
+<p><strong>The Sample Regression Function</strong></p>
+<p>We combine our Population Regression Function (PRF) and our data sample to estimate a <em>Sample Regression Function</em> (SRF).</p>
+<p><span class="math display">\[Price_i=\hat{\beta}_0+\hat{\beta}_1Size_i+e_i\]</span></p>
+<p>The difference between the SRF and the PRF are very important.</p>
+<ol style="list-style-type: decimal">
+<li><p>The PRF coefficients are <em>population parameters</em> while the SRF coefficients are <em>sample statistics</em>. In other words, the SRF coefficients are actual numbers that correspond to our sample, and we use them to draw inference on the things we really want to talk about - the PRF coefficients.</p></li>
+<li><p>The difference between the SRF residual <span class="math inline">\((e_i)\)</span> and the PRF residual <span class="math inline">\((\varepsilon_i)\)</span> is along the same lines as the difference between the SRF and PRF coefficients. The SRF residual contains the unexplained variability of the dependent variable in the sample while the PRF residual theoretically contains the unexplained variability in the population.</p></li>
+</ol>
+<p>We will get into the details about how these regression estimates can be obtained later. Right now, lets just arrive at our estimates and shed light on the big picture.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="SLR.html#cb180-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> hprice1<span class="sc">$</span>price</span>
+<span id="cb180-2"><a href="SLR.html#cb180-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> hprice1<span class="sc">$</span>sqrft</span>
+<span id="cb180-3"><a href="SLR.html#cb180-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-4"><a href="SLR.html#cb180-4" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb180-5"><a href="SLR.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
+<pre><code>## (Intercept)           X 
+##   11.204145    0.140211</code></pre>
+<p>Our regression estimates are <span class="math inline">\(\hat{\beta}_0=11.2\)</span> and <span class="math inline">\(\hat{\beta}_1=0.14\)</span>. This delivers a prediction equation from our SRF as:</p>
+<p><span class="math display">\[\hat{Price}_i=11.2+0.14Size_i\]</span></p>
+<p>Where <span class="math inline">\(\hat{Y}_i=\hat{Price}_i\)</span> is the expected house price conditional on a particular size.</p>
+<p>We can illustrate the results of the regression as follows:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="SLR.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb182-2"><a href="SLR.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X, Y, </span>
+<span id="cb182-3"><a href="SLR.html#cb182-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Size (Sq. Ft.)&quot;</span>,</span>
+<span id="cb182-4"><a href="SLR.html#cb182-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Price (1000$)&quot;</span>)</span>
+<span id="cb182-5"><a href="SLR.html#cb182-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X,<span class="fu">fitted</span>(REG),<span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb182-6"><a href="SLR.html#cb182-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,<span class="fu">residuals</span>(REG),</span>
+<span id="cb182-7"><a href="SLR.html#cb182-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Size (Sq. Ft.)&quot;</span>,</span>
+<span id="cb182-8"><a href="SLR.html#cb182-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</span>
+<span id="cb182-9"><a href="SLR.html#cb182-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-102-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the left figure, the <em>dots</em> are a scatter-plot of the actual observations of house price (Y) and house size (X) while the blue line is our estimated regression which delivers the expected house price for each observation of house size. Note that every time an actual house price is different than the expected value from the regression - then that difference is considered <em>unexpected</em> and ends up in the <em>garbage can</em> (residual). The residual values are in the right figure. Note that the residual values are centered around the zero line - this means that the unexpected component of house price is equal to zero <em>on average</em>.</p>
+<p><strong>Analysis of the SRF</strong></p>
+<p>We can get plenty of mileage out of our estimated SRF.</p>
+<ol style="list-style-type: decimal">
+<li>We can interpret the estimated coefficients (one at a time) to get a sense of how house size influences house price.</li>
+</ol>
+<ul>
+<li><p><span class="math inline">\(\hat{\beta}_0=11.2\)</span> is the estimated intercept term. Mathematically, it is the expected value of the dependent variable conditional on the independent variable being 0 <span class="math inline">\((E[Y_i|X_i=0]=11.2)\)</span>. In the context of this problem, we are saying that the <em>expected price of a house that has 0 square feet in size is 11.2 thousand dollars</em>. If that sounds funny to you… it should. The take away is that an intercept term always has a mathematical interpretation, but it might not always make sense. The key is if an independent value of zero (i.e., <span class="math inline">\(X=0\)</span>) makes sense.</p></li>
+<li><p><span class="math inline">\(\hat{\beta}_1=0.14\)</span> is the estimated slope term. Mathematically, it is the expected change in value of the dependent variable given a unit-increase in the independent variable <span class="math inline">\((\Delta Y_i/\Delta X_i=0.14)\)</span>. In the context of this problem, we are saying that the <em>expected price of a house will increase by 0.14 thousand dollars ($140) for every (square-foot) increase in house size</em>. If you were a realtor, you can now state that somebody looking for a home would be paying $140 per square foot of house size <em>on average</em>.</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>We can use the model for forecasting purposes.</li>
+</ol>
+<p>To illustrate a forecast, suppose you came across a 1,800 square-foot house with a selling price of $250,000. Does this seem like a fair price? In order to answer this question with our estimated results, we simply plug 1800 square-feet as a value for our independent variable and arrive at an expected price conditional on this house size.</p>
+<p><span class="math display">\[\hat{Price}_i=11.2+0.14(1800)=263.6\]</span></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="SLR.html#cb183-1" aria-hidden="true" tabindex="-1"></a>Bhat0 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG)<span class="sc">$</span>coef[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb183-2"><a href="SLR.html#cb183-2" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb183-3"><a href="SLR.html#cb183-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="SLR.html#cb183-4" aria-hidden="true" tabindex="-1"></a>(<span class="at">Yhat =</span> Bhat0 <span class="sc">+</span> Bhat1 <span class="sc">*</span> <span class="dv">1800</span>)</span></code></pre></div>
+<pre><code>## [1] 263.5839</code></pre>
+<p>Our regression forecast states that an 1,800 square-foot house should have an <em>average</em> price of $263,000. Since this is more than the $250,000 of the house in question, then the regression model suggests that this is a fair price.</p>
+<p><strong>Discussion</strong></p>
+<p>While our model appears pretty useful, we must always be mindful of the limitations of our model. Namely, our regression <strong>assumes</strong> that house size is the <strong>only</strong> thing that matters when predicting house price. Our candidate house is more than $10,000 below the average 1,800 square-foot house price in the sample, but this might be due to very relevant things that our model considers <em>unpredictable</em>.</p>
+<ul>
+<li>Is the house located next to the town dump?</li>
+<li>Is the house built on top of an ancient burial ground?</li>
+<li>Does it have a really ugly kitchen?</li>
+<li>Does the roof leak?</li>
+</ul>
+<p>The bottom line is that one should always view our regression estimates within the lens of its limitations. This isn’t to say that the estimates are <em>incorrect</em> or <em>wrong</em>, because they are actually quite useful. However, understanding how far one can take regression results is important.</p>
+</div>
+<div id="ordinary-least-squares-ols" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Ordinary Least Squares (OLS)</h2>
+<p><strong>Ordinary Least Squares</strong> (OLS, for short) is a popular method for estimating the unknown parameters in a linear regression model. OLS chooses the parameters of a linear function by minimizing the sum of the squared differences between the observed dependent variable (values of the variable being observed) in the given data set and those predicted by the linear function.</p>
+<p>To illustrate this, consider a sample of observations and a PRF:</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i+\varepsilon_i\]</span></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Look at the figure and try to imagine the <em>best fitting</em> straight line that goes through all observations in the scatter plot. This line has two features: and intercept term <span class="math inline">\((\hat{\beta}_0)\)</span> and a slope term <span class="math inline">\((\hat{\beta}_1)\)</span>. Which values would you assign?</p>
+<p>We can go about this a little more formally. First, if we had values for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>, then we can determine the residual (error) for each pair of <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_i\)</span>.</p>
+<p><span class="math display">\[e_i = Y_i - (\hat{\beta}_0 + \hat{\beta}_1X_i)\]</span></p>
+<p>We can sum across all observations to get the <em>total error</em></p>
+<p><span class="math display">\[\sum_{i}e_i = \sum_{i}(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)\]</span></p>
+<p>The problem we face now is that error terms can be both positive and negative. That means they will start to wash each other out when we sum them up and we therefore get an incomplete measure of the total error. To prevent the positive and negative error terms from washing each other out, we square each of the terms. This makes the negative errors positive, while the positive errors stay positive.</p>
+<p><span class="math display">\[\sum_{i}e^2_i = \sum_{i}(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)^2\]</span></p>
+<p>Note: this is where the <em>sum of squared errors</em> comes in.</p>
+<p>Notice that this function now states that we can calculate the sum of squared errors for any given values of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>. We can therefore find the <em>best</em> values of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that deliver the <em>lowest</em> sum of squared errors. The line that delivers the lowest squared errors is what we mean by the best line.</p>
+<p><span class="math display">\[min\sum_{i}e^2_i = min_{(\hat{\beta}_0,\hat{\beta}_1)}\sum_{i}(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)^2\]</span></p>
+<p>This function is called an <em>objective function</em>, and we can minimize the sum of squared errors by taking first-order conditions (i.e., the derivative of the objective function with respect to <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_0\)</span>).</p>
+<p><span class="math display">\[\hat{\beta}_1=\frac{\sum_i (X_i-\bar{X})(Y_i-\bar{Y})}{\sum_i(X_i-\bar{X})^2}=\frac{cov(X,Y)}{var(X)}\]</span></p>
+<p><span class="math display">\[\hat{\beta}_0=\bar{Y}-\hat{\beta}_1\bar{X}\]</span></p>
+<p>Where a ‘bar’ term over a variable represents the mean of that variable (i.e., <span class="math inline">\(\bar{X}=\frac{1}{n}\sum_iX_i\)</span>)</p>
+<p>These two equations are important. The first equation states that the slope of the line equation <span class="math inline">\((\hat{\beta}_1)\)</span> is equal to the ratio between the covariance of Y and X and the variance of X. Remember that a covariance measures how two variables systematically move together. If they tend to go up at the same time, then they have a positive covariance. If they tend to go down - a negative covariance. If they do not tend to move together in any systematic way, then they have zero covariance. This systematic movement is precisely what helps determine the slope term. The second equation states that with <span class="math inline">\(\hat{\beta}_1\)</span> determined, we can determine <span class="math inline">\(\hat{\beta}_0\)</span> such that the regression line goes through the means of the dependent and independent variables.</p>
+<p>Lets see what these estimates and the resulting regression line look like.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="SLR.html#cb185-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb185-2"><a href="SLR.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
+<pre><code>## (Intercept)           X 
+##   37.285126   -5.344472</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="SLR.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,</span>
+<span id="cb187-2"><a href="SLR.html#cb187-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight (Tons)&quot;</span>,</span>
+<span id="cb187-3"><a href="SLR.html#cb187-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Fuel Efficiency (MPG)&quot;</span>)</span>
+<span id="cb187-4"><a href="SLR.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X,<span class="fu">fitted</span>(REG),<span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-105-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now you probably imagined a line that looked kinda like this, but we know that this line (with these coefficients) is the absolute best line that minimizes the total difference between the observations (the <em>dots</em>) and the predictions (the <em>line</em>). We can see what this difference looks like by looking at the residuals.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="SLR.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,<span class="fu">residuals</span>(REG),</span>
+<span id="cb188-2"><a href="SLR.html#cb188-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight (Tons)&quot;</span>,</span>
+<span id="cb188-3"><a href="SLR.html#cb188-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</span>
+<span id="cb188-4"><a href="SLR.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Notice that these residual values are distributed both above and below the zero line. If you were to sum them all up - then you get zero ALWAYS. It is what the mathematical problem is designed to do!</p>
+<p><span class="math display">\[\sum_ie_i=0\]</span></p>
+<p>This mathematical outcome is actually important. First, if the residuals or <em>forecast errors</em> sum up to zero, then that means that they have a <em>mean</em> that is also 0 <span class="math inline">\((\bar{e}=0)\)</span>. This means that they are zero <em>on average</em>, so the <em>expected value</em> is zero!</p>
+<p><span class="math display">\[E[e_i]=0\]</span></p>
+<p>If the expected value of the forecast error is zero, then this means that our regression line is correct <em>on average</em>. If we think about it, this is the best we can ask for our of a regression function.</p>
+<div id="b.l.u.e." class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> B.L.U.E.</h3>
+<p>OLS is a powerful estimation method that delivers estimates with the following properties.</p>
+<ol style="list-style-type: decimal">
+<li><p>They are the <strong>BEST</strong> in a minimized mean-squared error sense. We just showed this.</p></li>
+<li><p>They are <strong>LINEAR</strong> insofar as the OLS method can be quickly used when the regression model is a linear equation.</p></li>
+<li><p>They are <strong>UNBIASED</strong> meaning that the sample estimates are true estimates of the population parameters.</p></li>
+</ol>
+<p>Therefore, <strong>BEST</strong>, <strong>LINEAR</strong>, <strong>UNBIASED</strong>, <strong>ESTIMATES</strong> is why the output of an OLS method is said to be <strong>B.L.U.E.</strong></p>
+</div>
+</div>
+<div id="decomposition-of-variance" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Decomposition of Variance</h2>
+<p>Using our regression estimates and sample information, we can construct one of the most popular measures of <em>goodness of fit</em> for a regression. We will construct this measure in pieces.</p>
+<p>First, the <strong>total sum of squares</strong> (or TSS) can be calculated to measure the total variation in the dependent variable:</p>
+<p><span class="math display">\[TSS = \sum^{N}_{i=1}(Y_i - \bar{Y})^2\]</span></p>
+<p>This expression is similar to a variance equation (without averaging), and since the movements in the dependent variable is ultimately what we are after, this measure delivers <em>the total variation in the dependent variable that we would like our model to explain</em>.</p>
+<p>Next, we can use our regression estimates to calculate an <strong>estimated sum or squares</strong> (or ESS) which measures the total variation in the dependent variable that our model <em>actually</em> explained:</p>
+<p><span class="math display">\[ESS = \sum^{N}_{i=1}(\hat{Y}_i - \bar{Y})^2\]</span></p>
+<p>Note that this measure uses our conditional forecasts from our regression model in place of the actual observations of the dependent variable.</p>
+<p><span class="math display">\[\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i\]</span></p>
+<p>Finally, we can use our regression estimates to also calculate a <strong>residual sum or squares</strong> (or RSS) which measures the total variation in the dependent variable that our model <em>cannot</em> explain:</p>
+<p><span class="math display">\[RSS = \sum^{N}_{i=1}(Y_i - \hat{Y}_i)^2 = \sum^{N}_{i=1}e_i^2\]</span></p>
+<p>Note that this is a measure of the variation in the garbage can, and the garage can is where all of the variation in the dependent variable that your model cannot explain ends up.</p>
+<div id="the-r2" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> The <span class="math inline">\(R^2\)</span></h3>
+<p>Our a regression breaks the variation in <span class="math inline">\(Y_i\)</span> (the TSS) into what can be explained (the ESS) and what cannot be explained (the RSS). This essentially means <span class="math inline">\(TSS=ESS+RSS\)</span>. Furthermore, our OLS estimates attempt to maximize the ESS and minimize the RSS. This delivers our first measure of how well our model explains the movements in the dependent variable or <em>goodness of fit</em></p>
+<p><span class="math display">\[R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}\]</span></p>
+<p>This <strong>coefficient of determination</strong> or <span class="math inline">\(R^2\)</span> should be an intuitive measure. First, it is bounded between 0 and 1. If the measure is 0 then the model explains <strong>NOTHING</strong> and all variation is in the garbage can. If the measure is 1 then the model explains <strong>EVERYTHING</strong> and the garbage can is empty. Any number in between is simply the proportion of the variation in the dependent variable explained by the model.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="SLR.html#cb189-1" aria-hidden="true" tabindex="-1"></a>REG3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> hprice1)</span>
+<span id="cb189-2"><a href="SLR.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG3)<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.6207967</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="SLR.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG3))</span></code></pre></div>
+<table style="width:89%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">11.2</td>
+<td align="center">24.74</td>
+<td align="center">0.4528</td>
+<td align="center">0.6518</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>sqrft</strong></td>
+<td align="center">0.1402</td>
+<td align="center">0.01182</td>
+<td align="center">11.87</td>
+<td align="center">8.423e-20</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: price ~ sqrft</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">88</td>
+<td align="center">63.62</td>
+<td align="center">0.6208</td>
+<td align="center">0.6164</td>
+</tr>
+</tbody>
+</table>
+<p>Returning to our house price application above, you can see that our coefficient of determination <span class="math inline">\((R^2)\)</span> is 0.62.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> This states that approximately 62 percent of the variation in the prices of homes in our sample is explained by the size of the house (in square feet), while the remaining 38 percent is <em>unexplained</em> by our model and shoved into the garbage can. That is all it says… no more and no less.</p>
+</div>
+<div id="what-is-a-good-r2" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</h3>
+<p>Is explaining 62 percent of the variation in house prices <em>good</em>? The answer depends on what you want the model to explain. We know that these house size explains a majority of the variation in house prices while <em>all other</em> potential independent variables will explain at most the remaining 38 percent. If you want to explain everything there is to know about house prices, then an <span class="math inline">\(R^2\)</span> of 0.62 leaves something to be desired. If you only care to understand the impact of size, then the <span class="math inline">\(R^2\)</span> tells you how much of the variation in house prices it explains. There really isn’t much more to it than that.</p>
+</div>
+<div id="standard-error-of-the-estimate" class="section level3" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Standard Error of the Estimate</h3>
+<p><span class="math display">\[S_{YX} = \sqrt{\frac{RSS}{n-2}} = \sqrt{\frac{\sum^{N}_{i=1}e_i^2}{n-2}}\]</span></p>
+<p>The standard error of the estimate is much like a standard deviation equation. However, while the standard deviation measures the variability around a mean, the standard error of the estimate measures the variability around the prediction line.</p>
+<p>Note that the denominator of this measure is <span class="math inline">\(n-2\)</span>. The reason that we are <em>averaging</em> the sum of squared errors by <span class="math inline">\(n-2\)</span> is because we lost <strong>two degrees of freedom</strong>. Recall that we lose a degree of freedom whenever we need to estimate something based on other estimates. When we consider how we calculated the residuals in the first place,</p>
+<p><span class="math display">\[ e_i = Y_i - \hat{Y}_i = Y_i - \hat{\beta}_0 - \hat{\beta}_1 \; X_i\]</span></p>
+<p>you will see that we had to estimate <strong>two</strong> line coefficients before we can determine what the prediction error is. That is why we deduct two degrees of freedom.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+</div>
+</div>
+<div id="assumptions-of-the-linear-regression-model" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Assumptions of the Linear Regression Model</h2>
+<p>An empirical regression analysis always begins with a statement of the population regression function (PRF). The PRF explicitly states exactly how you (the researcher) believes the independent variable is related to the dependent variable. One thing to be clear about when stating a PRF is that you are imposing a great deal of assumptions on how the world works. If your assumptions are correct, then the PRF is a reasonable depiction of reality and OLS will uncover accurate estimates of the PRF parameters. If your assumptions are incorrect, then the estimates are highly unreliable and might actually be misleading.</p>
+<p>Verifying the assumptions of a linear regression model is a majority of the work involved with an empirical analysis, and we will be doing this for the rest of the course. Before getting into the details of <em>how</em> to verify the assumptions, we first need to know what they are.</p>
+<p>One should note that these are not assumption of our model, because these assumption are actually imposed on our model. These assumptions are made on the world - at least on the relationship between the dependent and independent variables.</p>
+<p>The main assumptions of a linear regression model that we will focus on are as follows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Linearity: the true relationship (in the world) is in fact linear. This assumption must hold because you are estimating a linear model (hence the assumption is imposed).</p></li>
+<li><p>Independence of Errors: the forecast errors <span class="math inline">\((e_i)\)</span> are not correlated with each other</p></li>
+<li><p>Equal Variance (<em>homoskedasticity</em>): the variance of the error term is constant</p></li>
+<li><p>Normality of Errors: the forecast errors comprise a normal distribution</p></li>
+</ol>
+<div id="linearity" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Linearity</h3>
+<p>If we write down the following PRF:</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1X_{1i}+\varepsilon_i\]</span></p>
+<p>we are explicitly assuming that this accurately captures the real world. In particular,</p>
+<ul>
+<li><p>The relationship between <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_1i\)</span> are in fact linear. This means that the a straight-line (i.e., a constant slope) fits the relationships between the dependent variable and independent variables better than a nonlinear relationship.</p></li>
+<li><p>The error term (i.e., the garbage can) is additive, meaning that the forecast errors are separable from the forecasts.</p></li>
+</ul>
+<p>If these assumptions differ from the relationship that is going on in reality, then our model will suffer from <em>bias</em>. The SRF estimates will not be good representations of the PRF parameters, and they should not be interpreted as such.</p>
+<p>There is an entire section devoted to relaxing the linearity assumption later on, but consider a stark example to illustrate a violation of this assumption. In particular, suppose you consider a simple linear regression model to uncover the relationship between a dependent variable and an independent variable.</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i+\varepsilon_i\]</span></p>
+<p>However, suppose the true relationship (shown in the figure) is clearly nonlinear, and the blue line in the figure is the estimated (linear) SRF. As the line suggests, it is horizontal suggesting that the linear relationship between Y and X is <em>zero</em>. This doesn’t mean that there is no relationship - because there clearly is. However, our assumption of this relationship being linear is incorrect because the results tell us that there is no <em>linear</em> relationship.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-108-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="independence-of-errors" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Independence of Errors</h3>
+<p>Serial correlation exists when an observation of the error term is correlated with past values of itself. This means that the errors are not independent of each other.</p>
+<p><span class="math display">\[\varepsilon_t=\rho \varepsilon_{t-1}+\nu_t\]</span></p>
+<p>If this is the case, the model violates the idea that the errors are completely unpredictable. If we would be able to view our past mistakes and improve upon our predictions - why wouldn’t we?</p>
+</div>
+<div id="equal-variance" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Equal Variance</h3>
+<p>The error term must have a constant variance throughout the range of each independent variable because we will soon see that the confidence we place in our estimates are partially determined by this variance. We are unable to change our confidence in the estimates throughout the analysis - it is one size fits all. Therefore, the size of the errors (i.e., the dispersion in the garbage can) must be constant throughout.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-109-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Suppose you wanted to estimate how much of an additional dollar of income the population would spend on consumption.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> Your data set has 50 household observations from each of three annual income levels: $10,000, $75,000, and $150,000 as well as their annual consumption expenditures. As the figure illustrates, households earning around $10,000 a year all have roughly the same consumption level (because they all save very little). As income levels increase, you see more <em>dispersion</em> in consumption expenditures because more income is paired with more options. Households earning $150,000 annually could choose to save a majority of it or even go into debt (i.e. spend more than $150,000). This data could be used to estimate a regression line (illustrated in black), but you can see that the model looks like it does a poorer and poorer job of predicting consumption expenditures as the income levels increase. This means that the forecast errors are increasing as income levels increase, and this is <em>heteroskedasticity</em>. We will briefly come back to potential solutions to this later in the advanced topics section.</p>
+</div>
+<div id="normality-of-errors" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Normality of Errors</h3>
+<p>We know that OLS will produce forecast errors that have a mean of zero as well as a variance that is as low as possible by finding the <em>best fitting</em> straight line. The assumption that these are now the two moments that can be used to describe a normal distribution comes directly from the Central Limit Theorem and the concept of a sampling distribution. Recall that the <em>population</em> error term is zero on average and has some nonzero variance. A random sample of these error terms should have similar characteristics, as well as comprising a normal distribution.</p>
+</div>
+</div>
+<div id="statistical-inference" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Statistical Inference</h2>
+<p>Once the assumptions of the regression model have been verified, we are able to perform statistical inference. Since we are now dealing with a regression model, not only are we able to calculate confidence intervals and conduct hypothesis tests on the population coefficients, but we are able to perform statistical inference on the forecasts of the model as well.</p>
+<div id="confidence-intervals-around-population-parameters" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Confidence Intervals (around population parameters)</h3>
+<p>Recall our earlier formula for calculating a confidence interval in a single-variable context:</p>
+<p><span class="math display">\[Pr\left(\bar{X}-t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}} \leq \mu \leq \bar{X}+t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}}\right)=1-\alpha\]</span></p>
+<p>We used the CLT to ultimately state that <span class="math inline">\(\bar{X}\)</span> was drawn from a normal distribution with a mean of <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span> (but we only have <span class="math inline">\(S\)</span> which makes this a t distribution). This line of reasoning is <em>very</em> similar to what we have with regression analyses.</p>
+<p>First, <span class="math inline">\(\hat{\beta}\)</span> is an estimate of <span class="math inline">\(\beta\)</span> just like <span class="math inline">\(\bar{X}\)</span> is an estimate of <span class="math inline">\(\mu\)</span>. However, the standard error of the sampling distribution of <span class="math inline">\(\hat{\beta}\)</span> is derived from the standard deviation of the residuals.</p>
+<p><span class="math display">\[S_\beta=\frac{S_{YX}}{\sum{(X_i-\bar{X})^2}}\]</span></p>
+<p>This means that we construct a <em>standardized</em> random variable from a t distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</p>
+<p><span class="math display">\[t=\frac{\hat{\beta}-\beta}{S_\beta}\]</span></p>
+<p>We have already derived a confidence interval before, so we can skip to the punchline.</p>
+<p><span class="math display">\[Pr\left(\hat{\beta}-t_{(\frac{\alpha}{2},df=n-2)}S_\beta \leq \beta \leq \hat{\beta}+t_{(\frac{\alpha}{2},df=n-2)}S_\beta\right)=1-\alpha\]</span></p>
+<p>This is the formula for a confidence interval around the <em>population</em> slope coefficient <span class="math inline">\(\beta\)</span> given the estimate <span class="math inline">\(\hat{beta}\)</span> and the regression characteristics. It can also be written compactly as before.</p>
+<p><span class="math display">\[\hat{\beta} \pm t_{(\frac{\alpha}{2},df=n-2)} S_b\]</span></p>
+<p>Recall our regression explaining differences in house prices give information on house sizes.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="SLR.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG3))</span></code></pre></div>
+<table style="width:89%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">11.2</td>
+<td align="center">24.74</td>
+<td align="center">0.4528</td>
+<td align="center">0.6518</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>sqrft</strong></td>
+<td align="center">0.1402</td>
+<td align="center">0.01182</td>
+<td align="center">11.87</td>
+<td align="center">8.423e-20</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: price ~ sqrft</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">88</td>
+<td align="center">63.62</td>
+<td align="center">0.6208</td>
+<td align="center">0.6164</td>
+</tr>
+</tbody>
+</table>
+<p>The information included in the regression summary is all that is needed for us to construct a 95 percent <span class="math inline">\((\alpha=0.05)\)</span> confidence interval around the <em>population</em> slope coefficient <span class="math inline">\(\beta_1\)</span>.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="SLR.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back out all of the needed information:</span></span>
+<span id="cb193-2"><a href="SLR.html#cb193-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-3"><a href="SLR.html#cb193-3" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb193-4"><a href="SLR.html#cb193-4" aria-hidden="true" tabindex="-1"></a>SBhat1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb193-5"><a href="SLR.html#cb193-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">residuals</span>(REG3))</span>
+<span id="cb193-6"><a href="SLR.html#cb193-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-7"><a href="SLR.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the critical t-distribution values... same as before</span></span>
+<span id="cb193-8"><a href="SLR.html#cb193-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-9"><a href="SLR.html#cb193-9" aria-hidden="true" tabindex="-1"></a>AL <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb193-10"><a href="SLR.html#cb193-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> N<span class="dv">-2</span></span>
+<span id="cb193-11"><a href="SLR.html#cb193-11" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">qt</span>(AL<span class="sc">/</span><span class="dv">2</span>,df)</span>
+<span id="cb193-12"><a href="SLR.html#cb193-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-13"><a href="SLR.html#cb193-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the formula... same as before</span></span>
+<span id="cb193-14"><a href="SLR.html#cb193-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-15"><a href="SLR.html#cb193-15" aria-hidden="true" tabindex="-1"></a>(LEFT <span class="ot">&lt;-</span> Bhat1 <span class="sc">-</span> tcrit <span class="sc">*</span> SBhat1)</span></code></pre></div>
+<pre><code>## [1] 0.1167203</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="SLR.html#cb195-1" aria-hidden="true" tabindex="-1"></a>(RIGHT <span class="ot">&lt;-</span> Bhat1 <span class="sc">+</span> tcrit <span class="sc">*</span> SBhat1)</span></code></pre></div>
+<pre><code>## [1] 0.1637017</code></pre>
+<p><span class="math display">\[Pr(0.1167 \leq \beta_1 \leq 0.1637)=0.95\]</span></p>
+<p>This states that while an increase in house size by one square foot will increase the house price by $140 <span class="math inline">\((\hat{\beta_1})\)</span> on average in the sample, we can also state that an increase in house size by one square foot will increase the house price <em>in the population</em> somewhere between $116.70 and $163.70 with 95% confidence.</p>
+<p>While the code above showed you how to calculate a confidence interval from scratch as we did before, there is an easier (one-line) way in R:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="SLR.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(REG3)</span></code></pre></div>
+<pre><code>##                   2.5 %     97.5 %
+## (Intercept) -37.9825309 60.3908210
+## sqrft         0.1167203  0.1637017</code></pre>
+</div>
+<div id="hypothesis-tests" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Hypothesis Tests</h3>
+<p>We are able to conduct hypothesis tests regarding the values of the population regression coefficients. For example:</p>
+<p><span class="math display">\[H_0:\beta_1 = 0 \quad vs. \quad H_1:\beta_1 \neq 0\]</span></p>
+<p>In the context of our house price application, this null hypothesis states that the population slope between house price and size is zero… meaning that there is <em>no</em> relationship between the two variables.</p>
+<p>Given the null hypothesis above, we follow the remaining steps laid out previously: we calculate a test statistic under the null, calculate a p-value, and conclude.</p>
+<p>The test statistic under the null is given by</p>
+<p><span class="math display">\[t=\frac{\hat{\beta}_1 - \beta_1}{S_{\beta_1}}\]</span></p>
+<p>and this test statistic is drawn from a t distribution with <span class="math inline">\(n-2\)</span> degrees of freedom. Concluding this test is no more difficult that what we’ve done previously.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="SLR.html#cb199-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb199-2"><a href="SLR.html#cb199-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] 11.86555</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="SLR.html#cb201-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 8.423405e-20</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="SLR.html#cb203-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Our results state that we can reject this null hypothesis with approximately 100% confidence, meaning that there is a statistically significant relationship between house prices and house sizes.</p>
+<p>As with the confidence interval exercise above, we actually do not need to conduct hypothesis tests where the null sets the population parameter to zero because R does this automatically. If you look again at columns to the right of the estimated coefficient <span class="math inline">\(\hat{\beta}_1\)</span>, you will see a t value that is exactly what we calculated above and a p value that is essentially zero. This implies that a test with the null hypothesis set to zero is always done for you.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="SLR.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ sqrft, data = hprice1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -117.112  -36.348   -6.503   31.701  235.253 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 11.20415   24.74261   0.453    0.652    
+## sqrft        0.14021    0.01182  11.866   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 63.62 on 86 degrees of freedom
+## Multiple R-squared:  0.6208, Adjusted R-squared:  0.6164 
+## F-statistic: 140.8 on 1 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This isn’t to say that all hypothesis tests are automatically done for you. Suppose a realtor believes that homes sell for $150 per square foot. This delivers the following hypotheses, followed by a test statistic, p-value, and conclusion.</p>
+<p><span class="math display">\[H_0:\beta_1=0.150 \quad vs. \quad H_1:\beta_1\neq0.150\]</span></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="SLR.html#cb207-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="fl">0.150</span></span>
+<span id="cb207-2"><a href="SLR.html#cb207-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] -0.8284098</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="SLR.html#cb209-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>)<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4097316</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="SLR.html#cb211-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 0.5902684</code></pre>
+<p>Our p-value of 0.41 implies that there is a 41% chance of being wrong if we reject the null hypothesis. We therefore do not have evidence that the population slope is different from 0.150… so we do not reject.</p>
+<p>One-sided tests are also like before. Suppose a realtor believes that homes sell <em>more than</em> $160 per square foot. This delivers the following hypotheses, followed by a test statistic, p-value, and conclusion.</p>
+<p><span class="math display">\[H_0:\beta_1\leq0.160 \quad vs. \quad H_1:\beta_1&gt;0.160\]</span></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="SLR.html#cb213-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="fl">0.160</span></span>
+<span id="cb213-2"><a href="SLR.html#cb213-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] -1.674674</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="SLR.html#cb215-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.04881561</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="SLR.html#cb217-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 0.9511844</code></pre>
+<p>Our test concludes that we can reject the null with at most 95.11% confidence.</p>
+</div>
+<div id="confidence-intervals-around-forecasts" class="section level3" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Confidence Intervals (around forecasts)</h3>
+<p>A regression can also build confidence intervals around the conditional expectations (i.e., forecasts) of the dependent variable.</p>
+<p>Suppose you want to use our model to predict the price of a 1000 square foot house. The conditional expectation is calculated by using our regression coefficients, a value of house size of 1000, and setting our forecast error to zero.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="SLR.html#cb219-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb219-2"><a href="SLR.html#cb219-2" aria-hidden="true" tabindex="-1"></a>Bhat0 <span class="ot">=</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb219-3"><a href="SLR.html#cb219-3" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">=</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb219-4"><a href="SLR.html#cb219-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-5"><a href="SLR.html#cb219-5" aria-hidden="true" tabindex="-1"></a>(<span class="at">Yhat =</span> Bhat0 <span class="sc">+</span> Bhat1 <span class="sc">*</span> X)</span></code></pre></div>
+<pre><code>## [1] 151.4151</code></pre>
+<p>Another way calculate this forecast is using the predict command in R. This command creates a new data frame that includes only the value for the independent variable you want to use to make a prediction. The rest is done for you.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="SLR.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,<span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 151.4151</code></pre>
+<p>Our model predicts that a 1,000 square foot house will sell for $151,415 on average. While this is an expected value based on the sample, what is the prediction in the population? We are able to build a confidence interval around this forecast in a number of ways.</p>
+<ul>
+<li><p>A confidence interval for the mean response</p></li>
+<li><p>A confidence interval for an individual response</p></li>
+</ul>
+<div id="the-mean-response-a-confidence-interval" class="section level4" number="7.6.3.1">
+<h4><span class="header-section-number">7.6.3.1</span> The mean response: a confidence interval</h4>
+<p>Suppose you want to build a confidence interval around the mean price for a 1000 square foot house in the population. This is a conditional mean. In other words, we only want the average house price but <em>only</em> for homes with a particular size. This conditional mean is generally given by <span class="math inline">\(\mu_{Y|X=X_i}\)</span> and in this case by <span class="math inline">\(\mu_{Y|X=1000}\)</span>. Building a confidence interval for the mean response is given by</p>
+<p><span class="math display">\[ \hat{Y}_i \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}\]</span>
+or</p>
+<p><span class="math display">\[ \hat{Y}_i - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i} \leq \mu_{Y|X=X_i} \leq \hat{Y}_i + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}\]</span>
+where</p>
+<ul>
+<li><p><span class="math inline">\(\hat{Y}_i\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><span class="math inline">\(S_{YX}\)</span> is the standard error of the estimate (calculated previously)</p></li>
+<li><p><span class="math inline">\(t_{(\frac{\alpha}{2},df=n-2)}\)</span> is the critical t statistic (calculate previously)</p></li>
+<li><p><span class="math inline">\(h_i = \frac{1}{n}+\frac{(X_i - \bar{X})^2}{\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p></li>
+</ul>
+<p>This last variable <span class="math inline">\(h_i\)</span> is what is new to us and increases the size of the confidence interval when the desired value of <span class="math inline">\(X_i\)</span> is farther away from the average value of the observations <span class="math inline">\(\bar{X}\)</span>. This variable can sometimes be difficult to calculate, but R again does it for you. In R, a confidence interval around the population mean is simply called a <em>confidence</em> interval.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="SLR.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,</span>
+<span id="cb223-2"><a href="SLR.html#cb223-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>), </span>
+<span id="cb223-3"><a href="SLR.html#cb223-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>,</span>
+<span id="cb223-4"><a href="SLR.html#cb223-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 151.4151 124.0513 178.7789</code></pre>
+<p><span class="math display">\[Pr(124.05\leq\mu_{Y|X=1000}\leq178.78)=0.95\]</span></p>
+<p>We can now state with 95% confidence that the <em>population mean house price</em> of all 1000 square-foot houses is somewhere between $124,050 and $178,780. Note that the confidence interval around the mean response is centered at our conditional expectation <span class="math inline">\((\hat{Y})\)</span> just like all confidence intervals are centered around its estimate.</p>
+</div>
+<div id="an-individual-response-a-prediction-interval" class="section level4" number="7.6.3.2">
+<h4><span class="header-section-number">7.6.3.2</span> An individual response: a prediction interval</h4>
+<p>Suppose that instead of building a confidence interval around the conditional average in the population, we want to determine the range within which we are confident to draw a <em>single</em> home value. This calculation is almost identical to the mean response above, but with one slight difference.</p>
+<p><span class="math display">\[ \hat{Y}_i \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}\]</span>
+or</p>
+<p><span class="math display">\[ \hat{Y}_i - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=X_i} \leq \hat{Y}_i + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}\]</span>
+where</p>
+<ul>
+<li><p><span class="math inline">\(\hat{Y}_i\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><span class="math inline">\(S_{YX}\)</span> is the standard error of the estimate (calculated previously)</p></li>
+<li><p><span class="math inline">\(t_{(\frac{\alpha}{2},df=n-2)}\)</span> is the critical t statistic (calculate previously)</p></li>
+<li><p><span class="math inline">\(h_i = \frac{1}{n}+\frac{(X_i - \bar{X})^2}{\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p></li>
+</ul>
+<p>The only difference is that we replace <span class="math inline">\(\sqrt{h_i}\)</span> with <span class="math inline">\(\sqrt{1+h_i}\)</span>. Conceptually, we inserted the one in the formula because we are selecting a <em>single</em> home with a specified size out of the population. This is very different from building a confidence interval around a population mean, but in R it is simply the change of one word.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="SLR.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,</span>
+<span id="cb225-2"><a href="SLR.html#cb225-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>), </span>
+<span id="cb225-3"><a href="SLR.html#cb225-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>,</span>
+<span id="cb225-4"><a href="SLR.html#cb225-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 151.4151 22.02204 280.8082</code></pre>
+<p><span class="math display">\[Pr(22.02\leq Y_{X=1000} \leq 280.81)=0.95\]</span></p>
+<p>We can now state with 95% confidence that the <em>a single draw of a house price</em> from the population of all 1000 square-foot houses will be somewhere between $22,020 and $280,810. Note that the prediction interval is also centered at our conditional expectation <span class="math inline">\((\hat{Y})\)</span>, but now the interval is much wider than in the previous calculation. This should make sense, because when you are selecting a single home then you have a positive probability of selecting either very cheap homes or very expensive homes. A mean would wash these extreme values out.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>Note that this number is sometimes called the <em>multiple</em> <span class="math inline">\(R^2\)</span><a href="SLR.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>NOTE: this line of reasoning implies that we will lose more degrees of freedom when we estimate models with more independent variables… later.<a href="SLR.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>In economics this is called the <em>Marginal Propensity to Consume</em> and is an important measure for considering who should and should not get hit with a tax.<a href="SLR.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="HT.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="MLR.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/07-SLR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/07-SLR.Rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

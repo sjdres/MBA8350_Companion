@@ -1,3 +1,13 @@
+body {
+  text-align: justify;
+}
+div.DEF {
+  font-weight: bold;
+  color: blue;
+  padding: 1em 1em 1em 1em;
+  margin-bottom: 10px;
+  background: #f5f5f5 5px center/3em no-repeat;
+}
 p.caption {
   color: #777;
   margin-top: 10px;
