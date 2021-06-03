@@ -1,5 +1,5 @@
 --- 
-title: 'MBA 8350: Analyzing and Leveraging Data <br> The Course Companion'
+title: 'MBA 8350: Course Companion for Analyzing and Leveraging Data'
 author: "Scott Dressler"
 date: "`r Sys.Date()`"
 output:
@@ -8,7 +8,7 @@ output:
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
-description: This is a course companion for MBA 8350.
+description: Course companion for MBA 8350.
 ---
 
 #  {.unlisted .unnumbered}

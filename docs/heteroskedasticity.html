@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.3 Heteroskedasticity | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <title>9.3 Heteroskedasticity | MBA 8350: The Course Companion</title>
   <meta name="description" content="This is a course companion for MBA 8350." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.3 Heteroskedasticity | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:title" content="9.3 Heteroskedasticity | MBA 8350: The Course Companion" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.3 Heteroskedasticity | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta name="twitter:title" content="9.3 Heteroskedasticity | MBA 8350: The Course Companion" />
   
   <meta name="twitter:description" content="This is a course companion for MBA 8350." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-02" />
+<meta name="date" content="2021-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -349,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: The Course Companion</a>
           </h1>
         </div>
 
@@ -403,20 +403,20 @@ unbiased estimators). In other words, OLS is no longer BLUE.</p></li>
 <ol start="3" style="list-style-type: decimal">
 <li>Test the null hypothesis that <span class="math inline">\(a_1 = 0\)</span>. If you reject the null, then you have formal evidence that the variance of the residual term is related to the independent variable.</li>
 </ol>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="heteroskedasticity.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A Park test:</span></span>
-<span id="cb327-2"><a href="heteroskedasticity.html#cb327-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-3"><a href="heteroskedasticity.html#cb327-3" aria-hidden="true" tabindex="-1"></a>EPS <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">residuals</span>(REG)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb327-4"><a href="heteroskedasticity.html#cb327-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-5"><a href="heteroskedasticity.html#cb327-5" aria-hidden="true" tabindex="-1"></a>PARK <span class="ot">&lt;-</span> <span class="fu">lm</span>(EPS <span class="sc">~</span> X)</span>
-<span id="cb327-6"><a href="heteroskedasticity.html#cb327-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-7"><a href="heteroskedasticity.html#cb327-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb327-8"><a href="heteroskedasticity.html#cb327-8" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(PARK)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="heteroskedasticity.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A Park test:</span></span>
+<span id="cb331-2"><a href="heteroskedasticity.html#cb331-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-3"><a href="heteroskedasticity.html#cb331-3" aria-hidden="true" tabindex="-1"></a>EPS <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">residuals</span>(REG)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb331-4"><a href="heteroskedasticity.html#cb331-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-5"><a href="heteroskedasticity.html#cb331-5" aria-hidden="true" tabindex="-1"></a>PARK <span class="ot">&lt;-</span> <span class="fu">lm</span>(EPS <span class="sc">~</span> X)</span>
+<span id="cb331-6"><a href="heteroskedasticity.html#cb331-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-7"><a href="heteroskedasticity.html#cb331-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb331-8"><a href="heteroskedasticity.html#cb331-8" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(PARK)</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.5141596  0.3066471 -1.6767  0.09571 .  
-## X            0.0439269  0.0031743 13.8381  &lt; 2e-16 ***
+## (Intercept) -0.0169517  0.3121295 -0.0543   0.9568    
+## X            0.0417585  0.0032311 12.9239   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The results from the Park test suggest that the variance in the forecast errors of consumption are in fact related to income.</p>
@@ -427,13 +427,13 @@ unbiased estimators). In other words, OLS is no longer BLUE.</p></li>
 <p>First, if we are dealing with impure heteroskedasticity then a <strong>model re-specification</strong> might resolve the issue. If we consider the consumption - income application above, it is fairly well known that including another value such as wealth might help explain dimensions of consumption that income cannot. It might also be better to cast the model in a log-log form so we are looking at percentage changes in income as opposed to absolute changes. Either one of these proposed changes to the model could bring the model closer to a correct specification which could have the added benefit of removing heteroskedasticity.</p>
 <p>Second, if we are dealing with pure heteroskedasticity then the issue will not go away no matter how we specify the model. In this case, there are Heteroskedasticity-corrected standard errors. The specifics of this procedure goes a tad beyond the scope of our class, but it <em>corrects</em> the standard errors of a regression in order to compensate for the negative bias caused by heteroskedasticity. These standard errors can be used for all inference of the model.</p>
 <p>The code below is what is known as a <em>heteroskedasticity correction</em>. It displays the original coefficient estimates from our model, but alters the standard errors to correct for heteroskedasticity.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="heteroskedasticity.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(REG,<span class="at">vcov =</span> hccm)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="heteroskedasticity.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(REG,<span class="at">vcov =</span> hccm)</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.008903   1.201875  0.0074   0.9941    
-## X           1.010389   0.029018 34.8188   &lt;2e-16 ***
+## (Intercept) 0.822721   1.334909  0.6163   0.5386    
+## X           0.979145   0.033147 29.5391   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
@@ -493,7 +493,7 @@ gitbook.start({
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": false
 },
 "fontsettings": {
 "theme": "white",
@@ -502,7 +502,7 @@ gitbook.start({
 },
 "edit": {
 "link": "https://github.com/sjdres/MBA8350_Companion/edit/master/09-Advanced.Rmd",
-"text": "Edit"
+"text": "Suggest an edit"
 },
 "history": {
 "link": null,
@@ -512,7 +512,7 @@ gitbook.start({
 "link": "https://github.com/sjdres/MBA8350_Companion/blob/master/09-Advanced.Rmd",
 "text": null
 },
-"download": ["MBA8350book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

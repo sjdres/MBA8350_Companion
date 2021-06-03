@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.2 Collinearity | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <title>9.2 Collinearity | MBA 8350: The Course Companion</title>
   <meta name="description" content="This is a course companion for MBA 8350." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.2 Collinearity | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:title" content="9.2 Collinearity | MBA 8350: The Course Companion" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.2 Collinearity | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta name="twitter:title" content="9.2 Collinearity | MBA 8350: The Course Companion" />
   
   <meta name="twitter:description" content="This is a course companion for MBA 8350." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-02" />
+<meta name="date" content="2021-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -349,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: The Course Companion</a>
           </h1>
         </div>
 
@@ -482,8 +482,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb320-3"><a href="collinearity.html#cb320-3" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Wins <span class="sc">~</span> League <span class="sc">+</span> ERA <span class="sc">+</span> Runs <span class="sc">+</span> Hits_Allowed <span class="sc">+</span> Walks_Allowed <span class="sc">+</span> Saves <span class="sc">+</span> Errors, <span class="at">data =</span> MULTI2)</span>
 <span id="cb320-4"><a href="collinearity.html#cb320-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb320-5"><a href="collinearity.html#cb320-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use REG object to call vif command:</span></span>
-<span id="cb320-6"><a href="collinearity.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb320-7"><a href="collinearity.html#cb320-7" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(REG)</span></code></pre></div>
+<span id="cb320-6"><a href="collinearity.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:gtools&#39;:
+## 
+##     logit</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="collinearity.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(REG)</span></code></pre></div>
 <pre><code>##        League           ERA          Runs  Hits_Allowed Walks_Allowed         Saves        Errors 
 ##      1.221101     11.026091      1.279997      6.342662      3.342659      1.762577      1.548678</code></pre>
 <p>The output above shows a VIF for each of the independent variables. The largest are for ERA and Hits Allowed, and these are problematic given that they are above our threshold of 5.
@@ -495,7 +501,7 @@ So now that we detected collinearity… what do we do about it?</p>
 <p>First, is the collinearity problem due to the inherent nature of the variables themselves or is it a coincidence with your current sample? If it is coincidence, then the problem might go away if you collected more observations. Note that this might not always work, and sometimes more data isn’t even available. However, it is a easy first pass if feasible.</p>
 <p>Second, one could always <strong>ignore</strong> collinearity and proceed with the analysis. The reason for this is that while collinearity might bias the standard errors of the estimates, the bias might not be that bad. Think of increasing the value of zero by 100 times.</p>
 <p>For example, lets try the ignorance approach with the baseball application above:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="collinearity.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG))</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="collinearity.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG))</span></code></pre></div>
 <table style="width:90%;">
 <colgroup>
 <col width="27%" />
@@ -600,12 +606,12 @@ So now that we detected collinearity… what do we do about it?</p>
 <p>The results suggest that the population coefficients for the variables League, ERA, Hits Allowed, and Errors are all insignificantly different from zero with 95% confidence. Now if they were all significant, then we could possibly ignore any potential collinearity issues because the bias would not be <em>enough</em> for us to see if there was a problem. However, since two of these insignificant variables are ones we already identified as having a collinearity problem, then we a unable to go this route.</p>
 <p>The third option to remove collinearity is to remove independent variables until the correlation structure is removed. The way to proceed down this route is to remove the variables (one-at-a-time) with the highest VIF values until all remaining values have VIF values below 5. The good side of this analysis is that you can now proceed with the main regression knowing that collinearity is not a problem. The bad side is that you might have had to remove variables that you really wanted to have in the regression.</p>
 <p>The VIF values from the baseball analysis suggest that ERA and Hits Allowed are two variables that potentially need to be removed from the analysis due to collinearity. The way to proceed is that if we were to only remove one variable at a time, we will remove the variable with the <em>highest</em> VIF because it is the one that has the most redundant information.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="collinearity.html#cb323-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Wins <span class="sc">~</span> League <span class="sc">+</span> Runs <span class="sc">+</span> Hits_Allowed <span class="sc">+</span> Walks_Allowed <span class="sc">+</span> Saves <span class="sc">+</span> Errors, <span class="at">data =</span> MULTI2)</span>
-<span id="cb323-2"><a href="collinearity.html#cb323-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb323-3"><a href="collinearity.html#cb323-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(REG)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="collinearity.html#cb327-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Wins <span class="sc">~</span> League <span class="sc">+</span> Runs <span class="sc">+</span> Hits_Allowed <span class="sc">+</span> Walks_Allowed <span class="sc">+</span> Saves <span class="sc">+</span> Errors, <span class="at">data =</span> MULTI2)</span>
+<span id="cb327-2"><a href="collinearity.html#cb327-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb327-3"><a href="collinearity.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(REG)</span></code></pre></div>
 <pre><code>##        League          Runs  Hits_Allowed Walks_Allowed         Saves        Errors 
 ##      1.149383      1.279914      1.365583      1.235945      1.665172      1.546465</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="collinearity.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="collinearity.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Wins ~ League + Runs + Hits_Allowed + Walks_Allowed + 
@@ -674,7 +680,7 @@ gitbook.start({
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": false
 },
 "fontsettings": {
 "theme": "white",
@@ -683,7 +689,7 @@ gitbook.start({
 },
 "edit": {
 "link": "https://github.com/sjdres/MBA8350_Companion/edit/master/09-Advanced.Rmd",
-"text": "Edit"
+"text": "Suggest an edit"
 },
 "history": {
 "link": null,
@@ -693,7 +699,7 @@ gitbook.start({
 "link": "https://github.com/sjdres/MBA8350_Companion/blob/master/09-Advanced.Rmd",
 "text": null
 },
-"download": ["MBA8350book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
