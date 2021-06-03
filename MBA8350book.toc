@@ -1,0 +1,166 @@
+\contentsline {chapter}{Preface}{7}{chapter*.3}%
+\contentsline {section}{About this book\ldots {}}{7}{section*.4}%
+\contentsline {section}{Acknowledgements}{7}{section*.5}%
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The ``Big Picture'' of Statistics}{9}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The Vocabulary of Statistics}{12}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Descriptive Measures}{13}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Central Tendency}{14}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Variation}{16}{subsection.1.3.2}%
+\contentsline {subsubsection}{Discussion}{17}{section*.6}%
+\contentsline {subsection}{\numberline {1.3.3}Measures of shape}{18}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Covariance and Correlation}{20}{subsection.1.3.4}%
+\contentsline {subsubsection}{Extended Example:}{21}{section*.7}%
+\contentsline {subsubsection}{The Punchline}{24}{section*.8}%
+\contentsline {chapter}{\numberline {2}Data Collection and Sampling}{25}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sampling Distributions}{25}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Sampling Bias - two examples}{26}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Dewey Defeats Truman?}{26}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}98.6?}{27}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Sampling Methods}{27}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Simple random sampling}{28}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Systematic Sampling}{28}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Stratified Sampling}{29}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Cluster Sampling}{30}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}Sampling in Practice}{31}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Sampling and Sampling Distributions}{32}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}An Application}{32}{subsection.2.5.1}%
+\contentsline {chapter}{\numberline {3}Getting Started with R}{35}{chapter.3}%
+\contentsline {section}{\numberline {3.1}The R Project for Statistical Computing}{35}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Downloading and installing R}{36}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Choosing a \emph {Mirror}}{36}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Download and install the correct version}{36}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Downloading and installing RStudio}{37}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Taking Stock}{37}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Installing \emph {Packages}}{39}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Coding Basics}{40}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Assigning Objects}{40}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Listing, Adding, and Removing}{41}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Loading Data}{41}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Manipulating Data}{42}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Subsetting Data}{42}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Data Visualization}{43}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Histograms}{43}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Line, bar, and Scatter Plots}{45}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Boxplots}{47}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Much more out there}{48}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}The Central Limit Theorem}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}The CLT (Formally)}{49}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Application 1: A Sampling Distribution with a Known Population}{50}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Application 2: A Sampling Distribution with an Unknown Population}{53}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}The Sample}{54}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.4}The Punchline}{56}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Confidence Intervals}{59}{chapter.5}%
+\contentsline {section}{\numberline {5.1}A Refresher on Probability}{59}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Application 1}{63}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Application 2}{66}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Deriving a Confidence Interval}{68}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Application 3}{70}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}What if we want to change confidence?}{72}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}What to do when we do not know \(\mitsigma \)}{72}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}t distribution versus Z distribution\ldots {}}{73}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Application 4}{74}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Determining Sample Size}{75}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Concluding Applications}{77}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Light Bulbs (Last Time)}{77}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Returning to the Philadelphia School Policy Application}{78}{subsection.5.5.2}%
+\contentsline {subsubsection}{The Frame}{78}{section*.9}%
+\contentsline {subsubsection}{Your Sample}{79}{section*.10}%
+\contentsline {subsubsection}{What we know\ldots {}}{80}{section*.11}%
+\contentsline {subsubsection}{What we DON'T know\ldots {}}{81}{section*.12}%
+\contentsline {chapter}{\numberline {6}Hypothesis Tests}{85}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Anatomy of a Hypothesis Test}{86}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Two methods for conducting a hypothesis test (when \(\mitsigma \) is known)}{87}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Rejection Region Method}{88}{subsection.6.2.1}%
+\contentsline {subsubsection}{The Steps of a Hypothesis Test (Rejection Region Method)}{88}{section*.13}%
+\contentsline {subsubsection}{Application 1}{89}{section*.14}%
+\contentsline {subsection}{\numberline {6.2.2}P-value Approach}{93}{subsection.6.2.2}%
+\contentsline {subsubsection}{The definitions of a P-value}{94}{section*.15}%
+\contentsline {section}{\numberline {6.3}Two-sided vs One-sided Test}{95}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Conducting a hypothesis test (when \(\mitsigma \) is unknown)}{97}{section.6.4}%
+\contentsline {subsubsection}{Application 2}{98}{section*.16}%
+\contentsline {section}{\numberline {6.5}Appendix: A note on calculating P-values}{99}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}The Problem}{99}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}How to calculate p-values}{100}{subsection.6.5.2}%
+\contentsline {chapter}{\numberline {7}Simple Linear Regression}{103}{chapter.7}%
+\contentsline {section}{\numberline {7.1}A Simple Linear Regression Model}{103}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}What does a regression model imply?}{104}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}The \emph {REAL} Simple Linear Regression Model}{105}{subsection.7.1.2}%
+\contentsline {subsubsection}{The Deterministic Component}{106}{section*.17}%
+\contentsline {subsubsection}{The Unexpected (\emph {Garbage Can}) Component}{106}{section*.18}%
+\contentsline {section}{\numberline {7.2}Application: Predicting House Price Based on House Size}{107}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Ordinary Least Squares (OLS)}{111}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}B.L.U.E.}{115}{subsection.7.3.1}%
+\contentsline {section}{\numberline {7.4}Decomposition of Variance}{116}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}The \(R^2\)}{117}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}What is a \emph {good} \(R^2\)?}{118}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Standard Error of the Estimate}{118}{subsection.7.4.3}%
+\contentsline {section}{\numberline {7.5}Assumptions of the Linear Regression Model}{118}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Linearity}{119}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Independence of Errors}{120}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}Equal Variance}{121}{subsection.7.5.3}%
+\contentsline {subsection}{\numberline {7.5.4}Normality of Errors}{122}{subsection.7.5.4}%
+\contentsline {section}{\numberline {7.6}Statistical Inference}{122}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Confidence Intervals (around population parameters)}{122}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Hypothesis Tests}{124}{subsection.7.6.2}%
+\contentsline {subsection}{\numberline {7.6.3}Confidence Intervals (around forecasts)}{126}{subsection.7.6.3}%
+\contentsline {subsubsection}{The mean response: a confidence interval}{127}{section*.19}%
+\contentsline {subsubsection}{An individual response: a prediction interval}{128}{section*.20}%
+\contentsline {section}{\numberline {7.7}Up Next\ldots {}}{129}{section.7.7}%
+\contentsline {chapter}{\numberline {8}Multiple Linear Regression}{131}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Application: Explaining house price in a multiple regression}{132}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}The Importance of ``Controls''}{137}{subsection.8.1.1}%
+\contentsline {subsubsection}{1. The independent variables are correlated}{137}{section*.21}%
+\contentsline {subsubsection}{2. ``All Else Equal'' in a Multiple Regression is more than just words}{137}{section*.22}%
+\contentsline {section}{\numberline {8.2}Adjusted \(R^2\)}{138}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Abusing an \(R^2\)}{138}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}An \emph {Adjusted} \(R^2\)}{140}{subsection.8.2.2}%
+\contentsline {subsubsection}{Conclusion: for informal use only!}{140}{section*.23}%
+\contentsline {section}{\numberline {8.3}Qualitative (Dummy) Variables}{140}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Intercept dummy variable}{141}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Slope dummy variable}{144}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}What if there are more than two categories?}{146}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}A Final Application}{148}{subsection.8.3.4}%
+\contentsline {subsubsection}{Make a \emph {Nominal} Series a \emph {Real} Series}{149}{section*.24}%
+\contentsline {subsubsection}{Remove a Trend}{151}{section*.25}%
+\contentsline {subsubsection}{Remove Seasonality}{154}{section*.26}%
+\contentsline {section}{\numberline {8.4}Joint Hypothesis Tests}{157}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Simple Hypothesis Tests}{157}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Simple versus Joint Tests}{158}{subsection.8.4.2}%
+\contentsline {subsubsection}{Application}{159}{section*.27}%
+\contentsline {subsubsection}{Conducting a Joint Hypothesis Test}{161}{section*.28}%
+\contentsline {subsection}{\numberline {8.4.3}Applications}{165}{subsection.8.4.3}%
+\contentsline {subsubsection}{Application 1: A wage application}{165}{section*.29}%
+\contentsline {paragraph}{What can we conclude from this?}{167}{section*.30}%
+\contentsline {subsubsection}{Application 2: Constant Returns to Scale}{168}{section*.31}%
+\contentsline {chapter}{\numberline {9}Advanced Regression Topics}{171}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Nonlinear Models}{171}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Derivatives}{172}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Why consider non-linear relationships?}{172}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Functional Forms}{173}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.4}The Log transformation}{173}{subsection.9.1.4}%
+\contentsline {subsubsection}{The derivative of the log function}{174}{section*.32}%
+\contentsline {subsubsection}{Log-log and Semi-log models}{175}{section*.33}%
+\contentsline {paragraph}{Log-log model}{175}{section*.34}%
+\contentsline {paragraph}{Semi-log models}{176}{section*.35}%
+\contentsline {paragraph}{It isn't ALL OR NOTHING!!!}{177}{section*.36}%
+\contentsline {subsubsection}{Application}{177}{section*.37}%
+\contentsline {subsection}{\numberline {9.1.5}The Quadratic transformation}{178}{subsection.9.1.5}%
+\contentsline {subsubsection}{Application}{179}{section*.38}%
+\contentsline {subsection}{\numberline {9.1.6}The Reciprocal transformation}{182}{subsection.9.1.6}%
+\contentsline {subsubsection}{Application}{183}{section*.39}%
+\contentsline {subsection}{\numberline {9.1.7}Conclusion}{185}{subsection.9.1.7}%
+\contentsline {section}{\numberline {9.2}Collinearity}{186}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}An Application}{187}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}What does Collinearity do to our regression?}{189}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}How to test for Collinearity?}{189}{subsection.9.2.3}%
+\contentsline {subsubsection}{Correlation Coefficients}{189}{section*.40}%
+\contentsline {subsubsection}{Variance Inflation Factors (VIFs)}{190}{section*.41}%
+\contentsline {subsection}{\numberline {9.2.4}An Application:}{191}{subsection.9.2.4}%
+\contentsline {subsection}{\numberline {9.2.5}How do we remove Collinearity?}{192}{subsection.9.2.5}%
+\contentsline {subsubsection}{Sometimes removing collinearity might involve multiple rounds}{194}{section*.42}%
+\contentsline {section}{\numberline {9.3}Heteroskedasticity}{195}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Pure versus Impure Heteroskedasticity}{196}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Consequences of Heteroskedasticity}{196}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Detection}{196}{subsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.3.4}Remedies}{199}{subsection.9.3.4}%

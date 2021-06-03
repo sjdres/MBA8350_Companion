@@ -36,7 +36,8 @@ include_graphics("images/ECONOMIC.png")
 
 A meteorologist wants to predict the path of a hurricane. How confident can we be in her predicted path of the storm?
 
-```{r, echo = FALSE, fig.align='center', out.width="70%", fig.cap = "The _Cone of Uncertainty_"}
+```{r, echo = FALSE, fig.align='center', out.width="70%", fig.cap = "The Cone of Uncertainty"}
+library(png)
 include_graphics("images/FORECASTCONE.png")
 ```
 

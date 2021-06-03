@@ -675,7 +675,7 @@ $$ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=
 
 where
 
-* $\hat{Y}__{X=X_i}$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
+* $\hat{Y}_{X=X_i}$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
 
 * $S_{YX}$ is the standard error of the estimate (calculated previously)
 

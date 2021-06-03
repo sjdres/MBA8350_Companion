@@ -37,7 +37,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={MBA 8350: Analyzing and Leveraging Data   The Course Companion},
+  pdftitle={MBA 8350: Course Companion for Analyzing and Leveraging Data},
   pdfauthor={Scott Dressler},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -116,9 +116,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{MBA 8350: Analyzing and Leveraging Data The Course Companion}
+\title{MBA 8350: Course Companion for Analyzing and Leveraging Data}
 \author{Scott Dressler}
-\date{2021-06-02}
+\date{2021-06-03}
 
 \begin{document}
 \maketitle
@@ -212,14 +212,14 @@ An economist wants to forecast the future state of output in the economy. What v
 
 A meteorologist wants to predict the path of a hurricane. How confident can we be in her predicted path of the storm?
 
-\textbackslash begin\{figure\}
+\begin{figure}
 
-\{\centering \includegraphics[width=0.7\linewidth]{images/FORECASTCONE}
+{\centering \includegraphics[width=0.7\linewidth]{images/FORECASTCONE} 
 
-\}
+}
 
-\textbackslash caption\{The \emph{Cone of Uncertainty}\}\label{fig:unnamed-chunk-5}
-\textbackslash end\{figure\}
+\caption{The Cone of Uncertainty}\label{fig:unnamed-chunk-5}
+\end{figure}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4211,7 +4211,7 @@ where
 
 \begin{itemize}
 \item
-  \(\hat{Y}__{X=X_i}\) is the expectation of the dependent variable conditional on the desired value of \(X_i\).
+  \(\hat{Y}_{X=X_i}\) is the expectation of the dependent variable conditional on the desired value of \(X_i\).
 \item
   \(S_{YX}\) is the standard error of the estimate (calculated previously)
 \item
@@ -4521,7 +4521,7 @@ What we are seeing is that the more variables you add the higher the \(R^2\) is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6723625
+## [1] 0.6730072
 \end{verbatim}
 
 The exercise above adds a completely random variable as a fourth independent variable. It should have nothing to do with explaining house prices. However, if you generate \emph{the correct} random variables, then you might get an increase in the \(R^2\) by as much as an entire percentage point. Does this say that the random variable actually helps explain variations in house prices? Of course not. What it does show is that sometimes we can abuse the \(R^2\), so we need an additional measure of goodness of fit.
@@ -6782,9 +6782,9 @@ A Park test is a formal way of testing if the variance of the residual term is i
 ## 
 ## t test of coefficients:
 ## 
-##             Estimate Std. Error t value  Pr(>|t|)    
-## (Intercept) 1.395597   0.244304  5.7125 5.912e-08 ***
-## X           0.028105   0.002529 11.1130 < 2.2e-16 ***
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -0.3008853  0.3176543 -0.9472   0.3451    
+## X            0.0441257  0.0032883 13.4191   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -6812,9 +6812,9 @@ The code below is what is known as a \emph{heteroskedasticity correction}. It di
 ## 
 ## t test of coefficients:
 ## 
-##              Estimate Std. Error t value  Pr(>|t|)    
-## (Intercept) -3.431635   1.129815 -3.0373  0.002822 ** 
-## X            1.065621   0.027304 39.0277 < 2.2e-16 ***
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -0.338665   1.286466 -0.2633   0.7927    
+## X            1.013862   0.031434 32.2540   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}

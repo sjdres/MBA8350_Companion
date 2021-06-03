@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.6 Statistical Inference | MBA 8350: The Course Companion</title>
-  <meta name="description" content="This is a course companion for MBA 8350." />
+  <title>7.6 Statistical Inference | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
+  <meta name="description" content="Course companion for MBA 8350." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.6 Statistical Inference | MBA 8350: The Course Companion" />
+  <meta property="og:title" content="7.6 Statistical Inference | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  <meta property="og:description" content="Course companion for MBA 8350." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.6 Statistical Inference | MBA 8350: The Course Companion" />
+  <meta name="twitter:title" content="7.6 Statistical Inference | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   
-  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  <meta name="twitter:description" content="Course companion for MBA 8350." />
   
 
 <meta name="author" content="Scott Dressler" />
@@ -349,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: The Course Companion</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Course Companion for Analyzing and Leveraging Data</a>
           </h1>
         </div>
 
@@ -375,13 +375,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[\hat{\beta} \pm t_{(\frac{\alpha}{2},df=n-2)} S_b\]</span></p>
 <p>Recall our regression explaining differences in house prices given information on house sizes.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="statistical-inference.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG3))</span></code></pre></div>
-<table style="width:89%;">
+<table style="width:88%;">
 <colgroup>
 <col width="25%" />
 <col width="15%" />
 <col width="18%" />
 <col width="13%" />
-<col width="16%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -397,24 +397,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="center"><strong>(Intercept)</strong></td>
 <td align="center">11.2</td>
 <td align="center">24.74</td>
-<td align="center">0.4528</td>
-<td align="center">0.6518</td>
+<td align="center">0.45</td>
+<td align="center">0.65</td>
 </tr>
 <tr class="even">
 <td align="center"><strong>sqrft</strong></td>
-<td align="center">0.1402</td>
-<td align="center">0.01182</td>
+<td align="center">0.14</td>
+<td align="center">0.01</td>
 <td align="center">11.87</td>
-<td align="center">8.423e-20</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
-<table style="width:88%;">
+<table style="width:86%;">
 <caption>Fitting linear model: price ~ sqrft</caption>
 <colgroup>
 <col width="20%" />
 <col width="30%" />
-<col width="12%" />
+<col width="11%" />
 <col width="23%" />
 </colgroup>
 <thead>
@@ -429,8 +429,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="center">88</td>
 <td align="center">63.62</td>
-<td align="center">0.6208</td>
-<td align="center">0.6164</td>
+<td align="center">0.62</td>
+<td align="center">0.62</td>
 </tr>
 </tbody>
 </table>
@@ -569,7 +569,7 @@ or</p>
 <p><span class="math display">\[ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=X_i} \leq \hat{Y}_{X=X_i} + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}\]</span></p>
 <p>where</p>
 <ul>
-<li><p><span class="math inline">\(\hat{Y}__{X=X_i}\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat{Y}_{X=X_i}\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
 <li><p><span class="math inline">\(S_{YX}\)</span> is the standard error of the estimate (calculated previously)</p></li>
 <li><p><span class="math inline">\(t_{(\frac{\alpha}{2},df=n-2)}\)</span> is the critical t statistic (calculate previously)</p></li>
 <li><p><span class="math inline">\(h_i = \frac{1}{n}+\frac{(X_i - \bar{X})^2}{\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p></li>
@@ -608,9 +608,9 @@ or</p>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
+"github": true,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -635,7 +635,7 @@ gitbook.start({
 "link": "https://github.com/sjdres/MBA8350_Companion/blob/master/07-SLR.Rmd",
 "text": null
 },
-"download": null,
+"download": ["MBA8350book.pdf"],
 "toc": {
 "collapse": "subsection"
 }
