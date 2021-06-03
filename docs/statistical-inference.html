@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.6 Statistical Inference | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.6 Statistical Inference | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.6 Statistical Inference | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="assumptions-of-the-linear-regression-model.html"/>
+<link rel="next" href="up-next.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-book.html"><a href="about-this-book.html"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-big-picture-of-statistics.html"><a href="the-big-picture-of-statistics.html"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="the-vocabulary-of-statistics.html"><a href="the-vocabulary-of-statistics.html"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="descriptive-measures.html"><a href="descriptive-measures.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="descriptive-measures.html"><a href="descriptive-measures.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="descriptive-measures.html"><a href="descriptive-measures.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sampling-methods.html"><a href="sampling-methods.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sampling-methods.html"><a href="sampling-methods.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sampling-methods.html"><a href="sampling-methods.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="sampling-methods.html"><a href="sampling-methods.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sampling-in-practice.html"><a href="sampling-in-practice.html"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-r-project-for-statistical-computing.html"><a href="the-r-project-for-statistical-computing.html"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="coding-basics.html"><a href="coding-basics.html"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="coding-basics.html"><a href="coding-basics.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="coding-basics.html"><a href="coding-basics.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="coding-basics.html"><a href="coding-basics.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="coding-basics.html"><a href="coding-basics.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="coding-basics.html"><a href="coding-basics.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-visualization.html"><a href="data-visualization.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-visualization.html"><a href="data-visualization.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="the-clt-formally.html"><a href="the-clt-formally.html"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="application-1-a-sampling-distribution-with-a-known-population.html"><a href="application-1-a-sampling-distribution-with-a-known-population.html"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="the-punchline-1.html"><a href="the-punchline-1.html"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="determining-sample-size.html"><a href="determining-sample-size.html"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="concluding-applications.html"><a href="concluding-applications.html"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concluding-applications.html"><a href="concluding-applications.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concluding-applications.html"><a href="concluding-applications.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="anatomy-of-a-hypothesis-test.html"><a href="anatomy-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="two-sided-vs-one-sided-test.html"><a href="two-sided-vs-one-sided-test.html"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><a href="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="application-predicting-house-price-based-on-house-size.html"><a href="application-predicting-house-price-based-on-house-size.html"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="up-next.html"><a href="up-next.html"><i class="fa fa-check"></i><b>7.7</b> Up Next…</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="adjusted-r2.html"><a href="adjusted-r2.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="nonlinear-models.html"><a href="nonlinear-models.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="nonlinear-models.html"><a href="nonlinear-models.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="nonlinear-models.html"><a href="nonlinear-models.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="collinearity.html"><a href="collinearity.html"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="collinearity.html"><a href="collinearity.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="collinearity.html"><a href="collinearity.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="collinearity.html"><a href="collinearity.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="collinearity.html"><a href="collinearity.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="collinearity.html"><a href="collinearity.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-inference" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Statistical Inference</h2>
+<p>Once the assumptions of the regression model have been verified, we are able to perform statistical inference. Since we are now dealing with a regression model, not only are we able to calculate confidence intervals and conduct hypothesis tests on the population coefficients, but we are able to perform statistical inference on the forecasts of the model as well.</p>
+<div id="confidence-intervals-around-population-parameters" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Confidence Intervals (around population parameters)</h3>
+<p>Recall our earlier formula for calculating a confidence interval in a single-variable context:</p>
+<p><span class="math display">\[Pr\left(\bar{X}-t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}} \leq \mu \leq \bar{X}+t_{(\frac{\alpha}{2},df=n-1)}\frac{S}{\sqrt{n}}\right)=1-\alpha\]</span></p>
+<p>We used the CLT to ultimately state that <span class="math inline">\(\bar{X}\)</span> was drawn from a normal distribution with a mean of <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span> (but we only have <span class="math inline">\(S\)</span> which makes this a t distribution). This line of reasoning is <em>very</em> similar to what we have with regression analyses.</p>
+<p>First, <span class="math inline">\(\hat{\beta}\)</span> is an estimate of <span class="math inline">\(\beta\)</span> just like <span class="math inline">\(\bar{X}\)</span> is an estimate of <span class="math inline">\(\mu\)</span>. However, the standard error of the sampling distribution of <span class="math inline">\(\hat{\beta}\)</span> is derived from the standard deviation of the residuals.</p>
+<p><span class="math display">\[S_\beta=\frac{S_{YX}}{\sum{(X_i-\bar{X})^2}}\]</span></p>
+<p>This means that we construct a <em>standardized</em> random variable from a t distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</p>
+<p><span class="math display">\[t=\frac{\hat{\beta}-\beta}{S_\beta}\]</span></p>
+<p>We have already derived a confidence interval before, so we can skip to the punchline.</p>
+<p><span class="math display">\[Pr\left(\hat{\beta}-t_{(\frac{\alpha}{2},df=n-2)}S_\beta \leq \beta \leq \hat{\beta}+t_{(\frac{\alpha}{2},df=n-2)}S_\beta\right)=1-\alpha\]</span></p>
+<p>This is the formula for a confidence interval around the <em>population</em> slope coefficient <span class="math inline">\(\beta\)</span> given the estimate <span class="math inline">\(\hat{beta}\)</span> and the regression characteristics. It can also be written compactly as before.</p>
+<p><span class="math display">\[\hat{\beta} \pm t_{(\frac{\alpha}{2},df=n-2)} S_b\]</span></p>
+<p>Recall our regression explaining differences in house prices given information on house sizes.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="statistical-inference.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">summary</span>(REG3))</span></code></pre></div>
+<table style="width:88%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">11.2</td>
+<td align="center">24.74</td>
+<td align="center">0.45</td>
+<td align="center">0.65</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>sqrft</strong></td>
+<td align="center">0.14</td>
+<td align="center">0.01</td>
+<td align="center">11.87</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<table style="width:86%;">
+<caption>Fitting linear model: price ~ sqrft</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="11%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">88</td>
+<td align="center">63.62</td>
+<td align="center">0.62</td>
+<td align="center">0.62</td>
+</tr>
+</tbody>
+</table>
+<p>The information included in the regression summary is all that is needed for us to construct a 95 percent <span class="math inline">\((\alpha=0.05)\)</span> confidence interval around the <em>population</em> slope coefficient <span class="math inline">\(\beta_1\)</span>.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistical-inference.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back out all of the needed information:</span></span>
+<span id="cb193-2"><a href="statistical-inference.html#cb193-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-3"><a href="statistical-inference.html#cb193-3" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb193-4"><a href="statistical-inference.html#cb193-4" aria-hidden="true" tabindex="-1"></a>SBhat1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb193-5"><a href="statistical-inference.html#cb193-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">residuals</span>(REG3))</span>
+<span id="cb193-6"><a href="statistical-inference.html#cb193-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-7"><a href="statistical-inference.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the critical t-distribution values... same as before</span></span>
+<span id="cb193-8"><a href="statistical-inference.html#cb193-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-9"><a href="statistical-inference.html#cb193-9" aria-hidden="true" tabindex="-1"></a>AL <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb193-10"><a href="statistical-inference.html#cb193-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> N<span class="dv">-2</span></span>
+<span id="cb193-11"><a href="statistical-inference.html#cb193-11" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(AL<span class="sc">/</span><span class="dv">2</span>,df,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb193-12"><a href="statistical-inference.html#cb193-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-13"><a href="statistical-inference.html#cb193-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the formula... same as before</span></span>
+<span id="cb193-14"><a href="statistical-inference.html#cb193-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-15"><a href="statistical-inference.html#cb193-15" aria-hidden="true" tabindex="-1"></a>(LEFT <span class="ot">&lt;-</span> Bhat1 <span class="sc">-</span> tcrit <span class="sc">*</span> SBhat1)</span></code></pre></div>
+<pre><code>## [1] 0.1167203</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="statistical-inference.html#cb195-1" aria-hidden="true" tabindex="-1"></a>(RIGHT <span class="ot">&lt;-</span> Bhat1 <span class="sc">+</span> tcrit <span class="sc">*</span> SBhat1)</span></code></pre></div>
+<pre><code>## [1] 0.1637017</code></pre>
+<p><span class="math display">\[Pr(0.1167 \leq \beta_1 \leq 0.1637)=0.95\]</span></p>
+<p>This states that while an increase in house size by one square foot will increase the house price by $140 <span class="math inline">\((\hat{\beta_1})\)</span> on average in the sample, we can also state that an increase in house size by one square foot will increase the house price <em>in the population</em> somewhere between $116.70 and $163.70 with 95% confidence.</p>
+<p>While the code above showed you how to calculate a confidence interval from scratch as we did before, there is an easier (one-line) way in R:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="statistical-inference.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(REG3)</span></code></pre></div>
+<pre><code>##                   2.5 %     97.5 %
+## (Intercept) -37.9825309 60.3908210
+## sqrft         0.1167203  0.1637017</code></pre>
+</div>
+<div id="hypothesis-tests" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Hypothesis Tests</h3>
+<p>We are able to conduct hypothesis tests regarding the values of the population regression coefficients. For example:</p>
+<p><span class="math display">\[H_0:\beta_1 = 0 \quad vs. \quad H_1:\beta_1 \neq 0\]</span></p>
+<p>In the context of our house price application, this null hypothesis states that the population slope between house price and size is zero… meaning that there is <em>no</em> relationship between the two variables.</p>
+<p>Given the null hypothesis above, we follow the remaining steps laid out previously: we calculate a test statistic under the null, calculate a p-value, and conclude.</p>
+<p>The test statistic under the null is given by</p>
+<p><span class="math display">\[t=\frac{\hat{\beta}_1 - \beta_1}{S_{\beta_1}}\]</span></p>
+<p>and this test statistic is drawn from a t distribution with <span class="math inline">\(n-2\)</span> degrees of freedom. Concluding this test is no more difficult that what we’ve done previously.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="statistical-inference.html#cb199-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb199-2"><a href="statistical-inference.html#cb199-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] 11.86555</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="statistical-inference.html#cb201-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 8.423405e-20</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="statistical-inference.html#cb203-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Our results state that we can reject this null hypothesis with approximately 100% confidence, meaning that there is a statistically significant relationship between house prices and house sizes.</p>
+<p>As with the confidence interval exercise above, we actually do not need to conduct hypothesis tests where the null sets the population parameter to zero because R does this automatically. If you look again at columns to the right of the estimated coefficient <span class="math inline">\(\hat{\beta}_1\)</span>, you will see a t value that is exactly what we calculated above and a p value that is essentially zero. This implies that a test with the null hypothesis set to zero is always done for you.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="statistical-inference.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ sqrft, data = hprice1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -117.112  -36.348   -6.503   31.701  235.253 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 11.20415   24.74261   0.453    0.652    
+## sqrft        0.14021    0.01182  11.866   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 63.62 on 86 degrees of freedom
+## Multiple R-squared:  0.6208, Adjusted R-squared:  0.6164 
+## F-statistic: 140.8 on 1 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This isn’t to say that all hypothesis tests are automatically done for you. Suppose a realtor believes that homes sell for $150 per square foot. This delivers the following hypotheses, followed by a test statistic, p-value, and conclusion.</p>
+<p><span class="math display">\[H_0:\beta_1=0.150 \quad vs. \quad H_1:\beta_1\neq0.150\]</span></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="statistical-inference.html#cb207-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="fl">0.150</span></span>
+<span id="cb207-2"><a href="statistical-inference.html#cb207-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] -0.8284098</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="statistical-inference.html#cb209-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>)<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4097316</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="statistical-inference.html#cb211-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 0.5902684</code></pre>
+<p>Our p-value of 0.41 implies that there is a 41% chance of being wrong if we reject the null hypothesis. We therefore do not have evidence that the population slope is different from 0.150… so we do not reject.</p>
+<p>One-sided tests are also like before. Suppose a realtor believes that homes sell <em>more than</em> $160 per square foot. This delivers the following hypotheses, followed by a test statistic, p-value, and conclusion.</p>
+<p><span class="math display">\[H_0:\beta_1\leq0.160 \quad vs. \quad H_1:\beta_1&gt;0.160\]</span></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="statistical-inference.html#cb213-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="fl">0.160</span></span>
+<span id="cb213-2"><a href="statistical-inference.html#cb213-2" aria-hidden="true" tabindex="-1"></a>(tstat <span class="ot">&lt;-</span> (Bhat1 <span class="sc">-</span> B1)<span class="sc">/</span>SBhat1)</span></code></pre></div>
+<pre><code>## [1] -1.674674</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="statistical-inference.html#cb215-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pt</span>(tstat,N<span class="dv">-2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.04881561</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="statistical-inference.html#cb217-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 0.9511844</code></pre>
+<p>Our test concludes that we can reject the null with at most 95.11% confidence.</p>
+</div>
+<div id="confidence-intervals-around-forecasts" class="section level3" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Confidence Intervals (around forecasts)</h3>
+<p>A regression can also build confidence intervals around the conditional expectations (i.e., forecasts) of the dependent variable.</p>
+<p>Suppose you want to use our model to predict the price of a 1000 square foot house. The conditional expectation is calculated by using our regression coefficients, a value of house size of 1000, and setting our forecast error to zero.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="statistical-inference.html#cb219-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb219-2"><a href="statistical-inference.html#cb219-2" aria-hidden="true" tabindex="-1"></a>Bhat0 <span class="ot">=</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb219-3"><a href="statistical-inference.html#cb219-3" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">=</span> <span class="fu">summary</span>(REG3)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb219-4"><a href="statistical-inference.html#cb219-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-5"><a href="statistical-inference.html#cb219-5" aria-hidden="true" tabindex="-1"></a>(<span class="at">Yhat =</span> Bhat0 <span class="sc">+</span> Bhat1 <span class="sc">*</span> X)</span></code></pre></div>
+<pre><code>## [1] 151.4151</code></pre>
+<p>Another way to calculate this forecast is using the predict command in R. This command creates a new data frame that includes only the value for the independent variable you want to make a prediction with. The rest is done for you.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="statistical-inference.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,<span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 151.4151</code></pre>
+<p>Our model predicts that a 1,000 square foot house will sell for $151,415 on average. While this is an expected value based on the sample, what is the prediction in the population? We are able to build a confidence interval around this forecast in a number of ways.</p>
+<ul>
+<li><p>A confidence interval for the mean response</p></li>
+<li><p>A confidence interval for an individual response</p></li>
+</ul>
+<div id="the-mean-response-a-confidence-interval" class="section level4 unnumbered">
+<h4>The mean response: a confidence interval</h4>
+<p>Suppose you want to build a confidence interval around the mean price for a 1000 square foot house in the population. This is a conditional mean. In other words, we want the average house price but <em>only</em> for homes with a particular size. This conditional mean is generally given by <span class="math inline">\(\mu_{Y|X=X_i}\)</span> and in this case by <span class="math inline">\(\mu_{Y|X=1000}\)</span>. Building a confidence interval for the mean response is given by</p>
+<p><span class="math display">\[ \hat{Y}_{X=X_i} \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}\]</span>
+or</p>
+<p><span class="math display">\[ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i} \leq \mu_{Y|X=X_i} \leq \hat{Y}_{X=X_i} + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}\]</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\(\hat{Y}_{X=X_i}\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><span class="math inline">\(S_{YX}\)</span> is the standard error of the estimate (calculated previously)</p></li>
+<li><p><span class="math inline">\(t_{(\frac{\alpha}{2},df=n-2)}\)</span> is the critical t statistic (calculate previously)</p></li>
+<li><p><span class="math inline">\(h_i = \frac{1}{n}+\frac{(X_i - \bar{X})^2}{\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p></li>
+</ul>
+<p>This last variable <span class="math inline">\(h_i\)</span> is what is new to us and increases the size of the confidence interval when the desired value of <span class="math inline">\(X_i\)</span> is farther away from the average value of the observations <span class="math inline">\(\bar{X}\)</span>. This variable can sometimes be difficult to calculate, but R again does it for you. In R, a confidence interval around the population mean is simply called a <em>confidence</em> interval.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="statistical-inference.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,</span>
+<span id="cb223-2"><a href="statistical-inference.html#cb223-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>), </span>
+<span id="cb223-3"><a href="statistical-inference.html#cb223-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>,</span>
+<span id="cb223-4"><a href="statistical-inference.html#cb223-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 151.4151 124.0513 178.7789</code></pre>
+<p><span class="math display">\[Pr(124.05\leq\mu_{Y|X=1000}\leq178.78)=0.95\]</span></p>
+<p>We can now state with 95% confidence that the <em>population mean house price</em> of all 1000 square-foot houses is somewhere between $124,050 and $178,780. Note that the confidence interval around the mean response is centered at our conditional expectation <span class="math inline">\((\hat{Y})\)</span> just like all confidence intervals are centered around its estimate.</p>
+</div>
+<div id="an-individual-response-a-prediction-interval" class="section level4 unnumbered">
+<h4>An individual response: a prediction interval</h4>
+<p>Suppose that instead of building a confidence interval around the conditional average in the population, we want to determine the range within which we are confident to draw a <em>single</em> home value. This calculation is almost identical to the mean response above, but with one slight difference.</p>
+<p><span class="math display">\[ \hat{Y}_{X=X_i} \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}\]</span>
+or</p>
+<p><span class="math display">\[ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=X_i} \leq \hat{Y}_{X=X_i} + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}\]</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\(\hat{Y}__{X=X_i}\)</span> is the expectation of the dependent variable conditional on the desired value of <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><span class="math inline">\(S_{YX}\)</span> is the standard error of the estimate (calculated previously)</p></li>
+<li><p><span class="math inline">\(t_{(\frac{\alpha}{2},df=n-2)}\)</span> is the critical t statistic (calculate previously)</p></li>
+<li><p><span class="math inline">\(h_i = \frac{1}{n}+\frac{(X_i - \bar{X})^2}{\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p></li>
+</ul>
+<p>The only difference is that we replace <span class="math inline">\(\sqrt{h_i}\)</span> with <span class="math inline">\(\sqrt{1+h_i}\)</span>. Conceptually, we inserted the one in the formula because we are selecting a <em>single</em> home with a specified size out of the population. This is very different from building a confidence interval around a population mean, but in R it is simply the change of one word.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="statistical-inference.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(REG3,</span>
+<span id="cb225-2"><a href="statistical-inference.html#cb225-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">data.frame</span>(<span class="at">sqrft =</span> <span class="dv">1000</span>), </span>
+<span id="cb225-3"><a href="statistical-inference.html#cb225-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>,</span>
+<span id="cb225-4"><a href="statistical-inference.html#cb225-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 151.4151 22.02204 280.8082</code></pre>
+<p><span class="math display">\[Pr(22.02\leq Y_{X=1000} \leq 280.81)=0.95\]</span></p>
+<p>We can now state with 95% confidence that <em>a single draw of a house price</em> from the population of all 1000 square-foot houses will be somewhere between $22,020 and $280,810. Note that the prediction interval is also centered at our conditional expectation <span class="math inline">\((\hat{Y})\)</span>, but now the interval is much wider than in the previous calculation. This should make sense, because when you are selecting a single home then you have a positive probability of selecting either very cheap homes or very expensive homes. A mean would wash these extreme values out.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="assumptions-of-the-linear-regression-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="up-next.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/07-SLR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/07-SLR.Rmd",
+"text": null
+},
+"download": ["MBA8350book.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

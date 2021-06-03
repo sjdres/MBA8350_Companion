@@ -27,7 +27,7 @@ include_graphics("images/VU17BLUE3.jpg")
 
 ## About this book... {-}
 
-This course companion is a collection of lecture notes I have compiled over my years of teaching *Analyzing and Leveraging Data* (MBA 8350). I have custom made this material to ensure that all of the relevant topics of the course is included within these pages so we **DO NOT** need an additional textbook.
+This course companion is a collection of lecture notes I have compiled over my years of teaching *Analyzing and Leveraging Data* (MBA 8350). I have custom made this material to ensure that all of the relevant topics of the course are included within these pages so we **DO NOT** need an additional textbook.
 
 The purpose of this course companion is to accomplish three goals.
 

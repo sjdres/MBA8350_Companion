@@ -1,4 +1,4 @@
-book_filename: "bookdownproj"
+book_filename: "MBA8350book"
 output_dir: docs
 delete_merged_file: true
 edit: https://github.com/sjdres/MBA8350_Companion/edit/master/%s

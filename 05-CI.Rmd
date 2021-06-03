@@ -1,17 +1,17 @@
 # Confidence Intervals {#CI}
 
-```{r setup5, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 ```
 
-With the concept of the Central Limit Theorem (CLT) under our belts, we can begin to discuss our first application of statistical inference. The main concept is that when a statistician discusses *confidence*, they are actually saying how likely something is going to happen. In other words, 95% confidence in a statement means that something is going to happen 95 out of 100 replications. We only get one shot (not 100 replications), so it is the likelihood that it's going to happen in this one shot.
+With the concept of the Central Limit Theorem (CLT) under our belts, we can discuss our first application of statistical inference. The main concept is that when a statistician discusses *confidence*, they are actually saying how likely something is going to happen. In other words, 95% confidence in a statement means that something is going to happen 95 out of 100 replications. We only get one shot (not 100 replications), so it is the likelihood that it's going to happen in this one shot.
 
-So in order for us to get into statistical inference, we need to have a refresher on probability. Thanks to the CLT, our probability calculations are going to come from the normal probability distribution.
+In order for us to get into statistical inference, we need to first have a refresher on probability. Thanks to the CLT, our probability calculations are going to come from the normal probability distribution.
 
 
 ## A Refresher on Probability
 
-Suppose I give you a random variable $(X)$ and tell you that this random variable comprises a normal distribution with an *arbitrary*  mean equal to $\mu$ and an *arbitrary* standard deviation equal to $\sigma$. We can denote this generally as $X \sim N(\mu,\sigma)$ and we can draw this generally as
+Suppose I give you a random variable $(X)$ and tell you that this random variable comprises a normal distribution with an *arbitrary* mean equal to $\mu$ and an *arbitrary* standard deviation equal to $\sigma$. We can denote this generally as $X \sim N(\mu,\sigma)$ and we can draw this generally as
 
 ```{r, echo=FALSE}
 X <- seq(-4,4,0.01)
@@ -94,8 +94,7 @@ polygon(c(-2,X[i],2), c(0,Y[i],0), col="purple")
 
 ### Application 1
 
-Suppose there exists a bowl of numbered cards.
-The numbers on these cards comprises a normal distribution where the mean value is 5, and the standard deviation is 3.
+Suppose there exists a bowl of numbered cards. The numbers on these cards comprises a normal distribution where the mean value is 5, and the standard deviation is 3.
 $$X \sim N(5,3)$$
 
 We now have everything we need to calculate the probability of any outcome from this data-generating process. For example, suppose we wanted to determine the probability of reaching into this bowl and picking a number between 2 and 3. In probability terms:
@@ -175,9 +174,9 @@ lines(X, Y)
 polygon(c(-1,X[i],-4), c(0,Y[i],0), col="green")
 ```
 
-Now that we know how R likes to calculate probabilities, we can use it to determine $Pr(-1 \leq z \leq -\frac{2}{3})$ which is the gray slice of the distribution in the previous figure.
+Now that we know how R likes to calculate probabilities, we can use it to determine $Pr(-1 \leq z \leq -\frac{2}{3})$ which is the shaded slice of the distribution in the previous figure.
 
-1. Using the *default* setting: suppose you want to calculate all of the probabilities using the default setting of calculating areas to the left. The gray slice of the distribution is then the difference between the area to the left of $-\frac{2}{3}$ and the area to the left of -1.
+1. Using the *default* setting: suppose you want to calculate all of the probabilities using the default setting of calculating areas to the left. The shaded slice of the distribution is then the difference between the area to the left of $-\frac{2}{3}$ and the area to the left of -1.
 
 $$Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=Pr\left(z \leq -\frac{2}{3}\right) - Pr\left(z \leq -1\right)$$
 
@@ -185,7 +184,7 @@ $$Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=Pr\left(z \leq -\frac{2}{3}\right) 
 pnorm(-2/3)-pnorm(-1)
 ```
 
-2. Removing the *default* setting. If you want to calculate probabilities from the right (which might come in handy), then the same slice of the distribution is then the difference between the area to the right of $-1$ and the area to the right of $-\frac{2}{3}$.
+2. Removing the *default* setting. If you want to calculate probabilities from the right (which might come in handy), then the same slice of the distribution is the difference between the area to the right of $-1$ and the area to the right of $-\frac{2}{3}$.
 
 $$Pr\left(-1 \leq z \leq -\frac{2}{3}\right)=Pr(z \geq -1) - Pr\left(z \geq -\frac{2}{3}\right)$$
 
@@ -236,7 +235,7 @@ polygon(c(-2,X[i],2), c(0,Y[i],0), col="purple")
 
 So if we collected a sample on $n=100$, meaning we rolled two dice 100 times, recorded the total each time, and calculated the mean value, then...
 
-$$Pr(7-1.96 \frac{2.45}{\sqrt{100}} \leq \bar{X} \leq 7-1.96 \frac{2.45}{\sqrt{100}}) = 0.95$$
+$$Pr\left( 7-1.96 \frac{2.45}{\sqrt{100}} \leq \bar{X} \leq 7-1.96 \frac{2.45}{\sqrt{100}} \right) = 0.95$$
 
 ```{r}
 Z = qnorm(0.975,lower.tail = FALSE)
@@ -252,15 +251,14 @@ sigma = 2.45
 
 $$Pr(6.52 \leq \bar{X} \leq 7.48) = 0.95$$
 
-This means that with 95% confidence, your single outcome from your *experiment* will be within 6.52 and 7.48 if the die you are rolling are in fact fair.
+This means that with 95% confidence, the single outcome from your *experiment* will be within 6.52 and 7.48 if the die you are rolling are in fact fair.^[Note that the code used a command called *qnorm*. This gets described further below.]
 
 As stated earlier, this example is rare because we know the population parameters. When we don't, we reverse engineer the probability statement so we can take what we know (the sample statistics) and use them to say something about what we don't. This is known as a confidence interval.
 
-Further note - I used a new R command above called *qnorm*. This gets described further below.
 
 ## Deriving a Confidence Interval
 
-Recall when we randomly draw a sample from a sampling distribution and use it to calculate a sample mean $(\bar{X})$, we essentially state that a sample mean is random variable. Since the CLT states that the sampling distribution is a normal distribution, then this further states that the sample mean is a normally distributed random variable with a mean of $\mu$ and a standard deviation of $\frac{\sigma}{\sqrt{n}}$.
+Recall when we randomly draw a sample from a sampling distribution and use it to calculate a sample mean $(\bar{X})$, we essentially state that a sample mean is a random variable. Since the CLT states that the sampling distribution is a normal distribution, then this further states that the sample mean is a normally distributed random variable with a mean of $\mu$ and a standard deviation of $\frac{\sigma}{\sqrt{n}}$.
 
 $$\bar{X} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)$$
 
@@ -280,7 +278,7 @@ We therefore start with a probabilistic statement using a standard normal distri
 
 $$Pr\left(-Z \leq \frac{\bar{X}-\mu}{(\sigma/\sqrt{n})} \leq Z\right)=1-\alpha$$
 
-This states (in general terms) that the probability of realizing a value of $\frac{\bar{X}-\mu}{(\sigma/\sqrt{n})}$ drawn from a standard normal distributed random variable to be between the values -Z and Z is equal to $1-\alpha$. To put this into context, suppose I set $\alpha=0.05$ so $1-\alpha=0.95$ implies that I am looking for something that will occur with 95% probability. Recall the normal distribution has the nice property that 95% of the probability space is approximately between two standard deviations above and below the mean. By approximately, I mean it is actually 1.96 and not 2. (This explains the 1.96 used in the dice application above.)
+This states (in general terms) that the probability of realizing a value of $\frac{\bar{X}-\mu}{(\sigma/\sqrt{n})}$ drawn from a standard normal distributed random variable to be between the values -Z and Z is equal to $1-\alpha$. To put this into context, suppose I set $\alpha=0.05$ so $1-\alpha=0.95$ implies that I am looking for something that will occur with 95% probability. Recall the normal distribution has the nice property that 95% of the probability space is approximately between two standard deviations above and below the mean. By approximately, I mean it is actually 1.96 and not 2.^[This explains the 1.96 used in the dice application above.]
 
 Finding these numbers requires another R command: qnorm.
 
@@ -330,7 +328,7 @@ $$\bar{X} = 10.998, \quad n = 100, \quad \sigma = 0.02$$
 
 Construct a 95% confidence interval around the average length of a sheet of paper in the population.
 
-1. Since we want 95% confidence, then we know that $\alpha = 0.05$ and we need the critical values from a standard normal distribution such that 95% of the probability distribution is between them. These critical values were calculated previously to `r qnorm(0.025)` and `r -qnorm(0.025)` and are illustrated below. Note that since the shaded region is 95% of the *central* area of the distribution, we are chopping of 5% of the *total* area from both tails combined. That means 2.5% is chopped off of each tail.
+1. Since we want 95% confidence, we know that $\alpha = 0.05$ and we need the critical values from a standard normal distribution such that 95% of the probability distribution is between them. These critical values were calculated previously to `r qnorm(0.025)` and `r -qnorm(0.025)` and are illustrated below. Note that since the shaded region is 95% of the *central* area of the distribution, we are chopping of 5% of the *total* area from both tails combined. That means 2.5% is chopped off of each tail.
 
 ```{r,echo=FALSE}
 plot(X,Y,type="n",xlab="Z values",ylab = "Density",
@@ -358,7 +356,7 @@ Xbar = 10.998
 n = 100
 Sig = 0.02
 alpha = 0.05
-Z = -qnorm(alpha/2) # The '-' sign gives the positive value!
+Z = qnorm(alpha/2,lower.tail = FALSE)
 (left = Xbar - Z * Sig / sqrt(n))
 (right = Xbar + Z * Sig / sqrt(n))
 ```
@@ -375,12 +373,12 @@ If we want to increase the confidence of our statement to 99% or lower it 90%, t
 
 ```{r}
 alpha = 0.01 # increase confidence to 99%
-Z = -qnorm(alpha/2) # The '-' sign gives the positive value!
+Z = qnorm(alpha/2,lower.tail = FALSE)
 (left = Xbar - Z * Sig / sqrt(n))
 (right = Xbar + Z * Sig / sqrt(n))
 
 alpha = 0.10 # decrease confidence to 90%
-Z = -qnorm(alpha/2) # The '-' sign gives the positive value!
+Z = qnorm(alpha/2,lower.tail = FALSE)
 (left = Xbar - Z * Sig / sqrt(n))
 (right = Xbar + Z * Sig / sqrt(n))
 ```
@@ -389,7 +387,7 @@ What happens to the size of the confidence interval when we increase our *confid
 
 ## What to do when we do not know $\sigma$
 
-In most instances, if we don't know anything about the population parameter $\mu$ then we don't know anything about any of the other parameters (like $\sigma$). In this case, we are forced to use our best guess of $\sigma$. Since we are assuming that our sample has the same characteristics of the population, then our best guess for $\sigma$ is the sample standard deviation $S$. 
+In most instances, if we know nothing about the population parameter $\mu$ then we know nothing about any of the other parameters (like $\sigma$). In this case, we are forced to use our best guess of $\sigma$. Since we are assuming that our sample has the same characteristics of the population, then our best guess for $\sigma$ is the sample standard deviation $S$. 
 
 Put plainly, we substitute the statistic ($S$) for the population parameter ($\sigma$). Because $S$ is an estimate of $\sigma$, this will slightly change our probability distribution. In particular, If $\bar{X}$ is normally distributed as per the CLT, then a standardization using $S$ instead of $\sigma$ is said to have a t distribution with $n-1$ degrees of freedom
 
@@ -447,7 +445,7 @@ n = 50
 df = n-1
 S = 2.815
 alpha = 0.05
-t = -qt(alpha/2,df) # The '-' sign gives the positive value!
+t = qt(alpha/2,df,lower.tail = FALSE)
 (left = Xbar - t * S / sqrt(n))
 (right = Xbar + t * S / sqrt(n))
 ```
@@ -458,21 +456,21 @@ As before, if we want to change our level of confidence then we change $\alpha$ 
 
 ```{r}
 alpha = 0.01 # increase confidence to 99%
-t = -qt(alpha/2,df) # The '-' sign gives the positive value!
+t = qt(alpha/2,df,lower.tail = FALSE)
 (left = Xbar - t * S / sqrt(n))
 (right = Xbar + t * S / sqrt(n))
 
 alpha = 0.10 # decrease confidence to 90%
-t = -qt(alpha/2,df) # The '-' sign gives the positive value!
+t = qt(alpha/2,df,lower.tail = FALSE)
 (left = Xbar - t * S / sqrt(n))
 (right = Xbar + t * S / sqrt(n))
 ```
 
 ## Determining Sample Size
 
-It was previously stated that the sample size should always be as big as possible in order to deliver the most *precise* conclusions. This isn't always a satisfactory answer, because collecting observation might be possible (but costly). 
+It was previously stated that the sample size should always be as big as possible in order to deliver the most *precise* conclusions. This isn't always a satisfactory answer, because collecting observations might be possible (but costly). 
 
-How big should n be?
+How big should $n$ be?
 
 Selecting an appropriate sample size could be determined by many constraints
 
@@ -500,19 +498,19 @@ Going back to our call center example, suppose that quality control demanded a 9
 
 ```{r}
 alpha = 0.05
-Z = -qnorm(alpha/2)
+Z = qnorm(alpha/2,lower.tail = FALSE)
 Xbar = 5.8
 Sig = 2.815
 e = 0.25
 
 (n = (Z*Sig/e)^2)
-# Round up since you can have a fraction of an observation
+# Round up since you can't have a fraction of an observation
 ceiling(n)
 ```
 
 Our analysis indicates that if you want this particular a margin of error, then you will need to collect a sample of 488 calls.
 
-You might have noticed that we did something a bit incorrect in the last exercise. What we did was specify a Z distribution and called the sample standard deviation $\sigma$. Note that only in these sort of applications that determine a sample size is this permissible. The reason is because a sample standard deviation obviously depends on the sample in question. We therefore need to assume that the standard deviation is fixed when calculating the sample size (even though this isn't the case). Once you determine a sample size, then you collect a sample, calculate the sample standard deviation, and calculate the appropriate confidence interval. The margin of error should be reasonably close to what was required.
+You might have noticed that we did something a bit incorrect in the last exercise. We specified a Z distribution and called the sample standard deviation $\sigma$. Note that only in these sort of applications that determine a sample size is this permissible. The reason is because a sample standard deviation obviously depends on the sample in question. We therefore need to assume that the standard deviation is fixed when calculating the sample size (even though this isn't the case). Once you determine a sample size, then you collect a sample, calculate the sample standard deviation, and calculate the appropriate confidence interval. The margin of error should be reasonably close to what was required.
 
 ## Concluding Applications
 

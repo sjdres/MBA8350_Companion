@@ -1,6 +1,6 @@
 # Multiple Linear Regression {#MLR}
 
-```{r setup8, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 library(pander)
 library(plot3D)
@@ -22,7 +22,7 @@ The multiple regression model has a lot in common with the simple regression mod
 
 3. This is still a *line* equation - only it is a multi-dimensional line equation (i.e., a plane in the case of two dimensions).
 
-The only significant change we need to make is with respect to interpretation of the slope coefficients. These slope coefficients still deliver the *expected or average change in the dependent variable* given a unit change in an independent variable. However, since we are looking at multiple independent variables simultaneously, we need to be **explicit** that we are examining the relationships *one independent variable at a time*. In other words, when we examine the relationship between the dependent variable and a particular independent variable, we need to explicitly state that we are holding all other independent variables *constant*.
+The only significant change we need to make is with respect to interpretation of the slope coefficients. These slope coefficients still deliver the *expected or average change in the dependent variable* given a unit change in an independent variable. However, since we are looking at multiple independent variables simultaneously, we need to be **explicit** that we are examining these relationships *one independent variable at a time*. In other words, when we examine the relationship between the dependent variable and a particular independent variable, we need to explicitly state that we are holding all other independent variables *constant*.
 
 $$\beta_k=\frac{\Delta Y_i}{\Delta X_{ki}}$$
 
@@ -102,7 +102,7 @@ The slope with respect to house size is now 0.128 (down from 0.14) while the slo
 
 The power of a multiple regression comes through when you look at the second slope interpretation. Multiple regression allows us to consider two houses that have the same house size but one house has an additional bedroom. In other words, imagine building a wall that turns one bedroom into two smaller bedrooms. This will increase the expected house price by \$15,200, but this is much smaller than the simple regression relationship of \$62,000. This is because the simple regression could not differentiate the impact of a bedroom from the impact of an increase in house size. The multiple regression model can.
 
-The final figure shows the 3-dimensional regression line that best fits the sample. You can see that considering multiple dimensions increases the performance of the deterministic component of the model and therefore reduces the amount of information that goes into the garbage can as *unpredictable*. This can be shown in the last picture that only looks at the relationship from the "Size" dimension. In the figure on the left, the blue dots are the observations in the data, the black line is the regression line from the simple regression model (without Bedrooms), while the red dots are the model predictions from the multiple regression model with Bedrooms included as an additional independent variable. Notice how this allows the regression predictions to veer off of a straight line. This results in slightly less prediction errors showing up in your garbage can - as illustrated in the figure on the right.
+The final figure shows the 3-dimensional regression line (i.e., plane) that best fits the sample. You can see that considering multiple dimensions increases the performance of the deterministic component of the model and therefore reduces the amount of information that goes into the garbage can as *unpredictable*. This can be shown in the last picture that only looks at the relationship from the "Size" dimension. In the figure on the left, the blue dots are the observations in the data, the black line is the regression line from the simple regression model (without Bedrooms), while the red dots are the model predictions from the multiple regression model with Bedrooms included as an additional independent variable. Notice how this allows the regression predictions to veer off of a straight line. This results in slightly less prediction errors showing up in your garbage can - as illustrated in the figure on the right.
 
 ```{r, echo = FALSE, fig.width=6.5, fig.height=6.5}
 
@@ -146,11 +146,11 @@ abline(h = 0,col="blue")
 
 One very important item to point out in the last application is exactly why the coefficient on number of bedrooms dropped from \$62,000 to \$15,200 when the size of the house was added to the regression. The reason can be broken up into two categories.
 
-**1. The independent variables are correlated**
+#### 1. The independent variables are correlated {-}
 
 It seems reasonable to believe that bigger houses have more bedrooms. This means that the size of a house and the number of bedrooms are correlated with each other. 
 
-**2. "All Else Equal" in a Multiple Regression is more than just words**
+#### 2. "All Else Equal" in a Multiple Regression is more than just words {-}
 
 A multiple regression can separately identify the impact of each independent variable on the dependent variable. 
 
@@ -219,15 +219,15 @@ The exercise above adds a completely random variable as a fourth independent var
 
 ### An *Adjusted* $R^2$
 
-The problem with an $R^2$ is that is will increase no matter what independent variable you throw into the regression. If you think about it, if a regression with two independent variables explains 63 percent of the variation in the dependent variable, then adding a third variable (no matter how silly) will deliver a regression that will explain *no less* than 63 percent of the variation. We therefore cannot use the $R^2$ as a measure for whether or not we should include an independent variable because we don't know how *big* an increase in $R^2$ needs to be. We therefore need a goodness of fit measure that not only has the potential to increase when the added variable is deemed important, but has the potential to decrease when the variable is unimportant. This is called an *adjusted* $R^2$.
+The problem with an $R^2$ is that it will increase no matter what independent variable you throw into the regression. If you think about it, if a regression with two independent variables explains 63 percent of the variation in the dependent variable, then adding a third variable (no matter how silly) will deliver a regression that will explain *no less* than 63 percent of the variation. We therefore cannot use the $R^2$ as a measure for whether or not we should include an independent variable because we don't know how *big* an increase in $R^2$ needs to be. We therefore need a goodness of fit measure that not only has the potential to increase when the added variable is deemed important, but has the potential to decrease when the variable is unimportant. This is called an *adjusted* $R^2$.
 
 $$\bar{R}^2 = 1 - \frac{RSS/(N-k-1)}{TSS/(N-1)}$$
 
 The main difference between the adjusted $R^2$ and it's unadjusted measure are the degrees of freedom in the numerator. When you add an additional independent variable, $k$ goes up by one but $N$ stays constant. Also, when adding an additional independent variable, the RSS goes down (which is what delivers an increase in the standard $R^2$). What you have in the numerator is a cost / benefit analysis. In other words, if the decrease in RSS is greater - then the $\bar{R}^2$ increases and the independent variable of question *might be somewhat important*. However, if the decrease in $N-k-1$ is greater, then the $\bar{R}^2$ decreases and the independent variable of question is *not important*.
 
-#### Conclusion: for informal use only!
+#### Conclusion: for informal use only! {-}
 
-While the $R^2$ and adjusted $R^2$ are two common measures of goodness of fit, they are informal at best. One can interpret them along the lines of how we did above, but there will more formal measures of whether or not an independent variable improves the forecasts of the regression model. Bottom line: these measures can give some insight to the results of a regression model, but they aren't anything worth hanging you final conclusions on.
+While the $R^2$ and adjusted $R^2$ are two common measures of goodness of fit, they are informal at best. One can interpret them along the lines of how we did above, but there will more formal measures of whether or not an independent variable improves the forecasts of the regression model. Bottom line: these measures can give some insight to the results of a regression model, but they aren't anything worth hanging your final conclusions on.
 
 
 ## Qualitative (Dummy) Variables
@@ -252,23 +252,21 @@ We can consider two different types of dummy variables depending on if we model 
 
 An intercept dummy variable is a qualitative variable that *stands alone* in a regression just like other quantitative variables we have encountered. Let us illustrate this by adding an intercept dummy variable to a wage analysis.
 
-Suppose you are a consultant hired by a firm to help determine the underlying features of the current wage structure for their employees. You want to understand why some wage rates are different from others. Let our dependent variable be *wage* (the hourly wage of an individual employee) and the independent variables be given by...
+Suppose you are a consultant hired by a firm to help determine the underlying features of the current wage structure for their employees. You want to understand why some individuals have wage rates that are different from others. Let our dependent variable be *wage* (the hourly wage of an individual employee) and the independent variables be given by...
 
-* *educ* be the total years of education of an individual employee
+* *educ* is the total years of education of an individual employee
 
-* *exper* be the total years of experience an individual employee had prior to starting with the company
+* *exper* is the total years of experience an individual employee had prior to starting with the company
 
 * *tenure* is the number of years an employee has been working with the firm.
 
-These independent variables are all *quantitative* because they directly translate to numbers, and the model considered previously allowed us to analyze if these independent variables helped us explain why some people earn a higher wage than others. 
-
-We can also add a qualitative variable to this list of independent variables to see if gender can help explain why some people earn a higher wage than others. In particular, consider the qualitative variable *female* which equals 1 if the individual is female and 0 if the individual is not (i.e., male). 
+These independent variables are all *quantitative* because they directly translate to numbers. We can also add a qualitative variable to this list of independent variables to see if gender can help explain why some people earn a higher wage than others. In particular, consider the qualitative variable *female* which equals 1 if the individual is female and 0 if the individual is not (i.e., male). 
 
 The Specified model (the PRF) now becomes
 
 $$wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i+\varepsilon_i$$
 
-Note that the slope of the three quantitative variables considered earlier are completely unchanged. The slope with respect to the dummy variable is similar, but needs to be interpreted in a specific manner. In particular, since we normally interpret slopes with respect to a *unit increase* in the independent variable, and the fact that a dummy variable can only go up one unit (i.e., from a 0 to a 1), we therefore interpret a dummy variable accordingly.
+Note that the slope of the three quantitative variables are completely standard. The slope with respect to the dummy variable is similar, but needs to be interpreted in a specific manner. In particular, since we normally interpret slopes with respect to a *unit increase* in the independent variable, and the fact that a dummy variable can only go up one unit (i.e., from 0 to 1), we therefore interpret a dummy variable accordingly.
 
 $$\beta_4 = \frac{\Delta wage}{\Delta female}$$
 
@@ -311,12 +309,12 @@ Interpretations of the other independent variables are unchanged. However, $\hat
 
 This states that we can compare two individuals with the same education, experience, and tenure levels but differ in gender and conclude that the male earns more.
 
-Let us examine this further to show exactly why this type of qualitative variable is called an *intercept dummy variable*. Since the dummy variable can only take on the values 1 or 0, we can write down the PRF for both cases. In particular, the PRF for a male has female = 0 while the PRF for a female has female = 1.
+Let us examine this further to show exactly why this type of qualitative variable is called an *intercept dummy variable*. Since the dummy variable can only take on the values 1 or 0, we can write down the PRF for both cases. In particular, the PRF for a male has $female_i = 0$ while the PRF for a female has $female_i = 1$.
 
 $$Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 $$Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 
-Notice that $\beta_4$ does not appear in the PRF for males because the female variable equals 0, while it appears *alone* in the PRF for females because the female variable equals 1. After rearranging a bit, you can now see that the intercept term of the PRF for males is $\beta_0$ while the intercept term of the PRF for females is $(\beta_0+\beta_4)$. This illustrates that if you hold the other three independent variables constant, the difference between the wage rates of a male and female is $\beta_4$ on average. In other words, if you plug in the same numbers for education, experience, and tenure in the two PRFs above, then the difference in wages between men and women who share these traits will be $\beta_4$.
+Notice that $\beta_4$ does not appear in the PRF for males because the female variable equals 0, while it appears *alone* in the PRF for females because the female variable equals 1. After rearranging a bit, you can see that the intercept term of the PRF for males is $\beta_0$ while the intercept term of the PRF for females is $(\beta_0+\beta_4)$. This illustrates that if you hold the other three independent variables constant, the difference between the wage rates of a male and female is $\beta_4$ on average. In other words, if you plug in the same numbers for education, experience, and tenure in the two PRFs above, then the difference in wages between men and women who share these traits will be $\beta_4$.
 
 ### Slope dummy variable
 
@@ -336,7 +334,7 @@ $$\begin{aligned}
 wage_i = \;&\beta_0+\beta_1educ_i+\beta_2exper_i+ \beta_3tenure_i+\beta_4female_i+... \\ &\beta_5(tenure_i*female_i)+\varepsilon_i 
 \end{aligned}$$
 
-Like with our illustration of an intercept dummy, we can see what this PRF looks like for males and females.
+Like our illustration of an intercept dummy, we can see what this PRF looks like for males and females.
 
 $$Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 $$Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+(\beta_3+\beta_5)tenure_i+\varepsilon_i$$
@@ -381,9 +379,9 @@ A benchmark category is one of the characteristics that the researcher identifie
 
 Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as *female* and one that identifies individuals as *other*.
 
-$$female_i = 1 \mbox{ if female; } 0 \mbox{ if male or other }$$
+$$female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or other }$$
 
-$$other_i = 1 \mbox{ if other; } 0 \mbox{ if male or female }$$
+$$other_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }$$
 
 Note that each dummy variable is still a switch that signals the presence or absence of a characteristic. However, when **BOTH** dummy variables are zero at the same time... you have your benchmark category. That is how you can identify three categories with only two dummy variables.
 
@@ -405,11 +403,11 @@ One detail about the application above worthy of mention is that the coefficient
 
 $$H_0: \; \beta_4 = 0 \quad H_1: \; \beta_4 \neq 0$$
 
-However, if we show that $\beta_4$ and $\beta_5$ were significantly different than zero, we can only conclude that females and individuals in the *other* category are treated differently than males. We cannot determine if *female* and *other* are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category.
+However, if we show that $\beta_4$ and $\beta_5$ were significantly different than zero, we can only conclude that females and individuals in the *other* category are treated differently than males (because it was the benchmark category). We cannot determine if *female* and *other* are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be femal and end up with a formal test of the difference between female and other. 
 
 ### A Final Application
 
-Let us consider an in-depth application where dummy variables are essential for making time-series variables ready for analysis.
+Let us consider an in-depth application where dummy variables are essential for making time-series variables ready for analysis by removing a *seasonal cycle*.
 
 Consider the following time series data:
 
@@ -430,17 +428,17 @@ text(x=xtick, par("usr")[3],
 
 The figure illustrates retail automobile sales, denoted in billions of dollars, for the US between 1970 and 1998. As with most time series, this data is actually a combination of several components.
 
-* **Trend**: The long-term (i.e. average) increase or decrease in value over time.
+* **Trend**: The long-term (i.e., average) increase or decrease in value over time.
 
-* **Seasonality**: The repeating (i.e. predictable) short-term cycle in the series caused by the seasons or months of the year
+* **Seasonality**: The repeating (i.e., predictable) short-term cycle in the series caused by the seasons or months of the year
 
 * **Random**: The information in the series that is not due to a long-term trend or a short-term cyclical pattern is what we would actually like to explain.
 
 Lets us decompose this series in several steps to not only give us more exposure to dummy variables, but to also learn a bit more about time series data.
 
-#### Make a *Nominal* Series a *Real* Series
+#### Make a *Nominal* Series a *Real* Series {-}
 
-The auto sales series above is known as a *nominal* series because the dollar values for each time period are expressed in the prices of that time period. For example, the data indicates that the US had \$4.79 billion in auto sales in January 1970 and \$47.4 billion in January 1998. We cannot say that auto sales increased by ten times during this time period, because the US also experience *inflation* during this time period. In particular, \$4.79 billion is denoted in 1970 dollars while \$47.4 billion is denoted in 1998 dollars. In order to remove any inflationary distortions from the data, we need to divide these numbers by some measure of how average prices have evolved. There are many ways of doing this, but a direct method is to use the *consumer price index* or CPI. The CPI tells us how average prices have evolved relative to a benchmark year that is set to 100 (or 1). If the CPI differs in a particular year, then we know how prices have changes relative to the benchmark year.
+The auto sales series above is known as a *nominal* series because the dollar values for each time period are expressed in the prices of that time period. For example, the data indicates that the US had \$4.79 billion in auto sales in January 1970 and \$47.4 billion in January 1998. We cannot say that auto sales increased by ten times during this time period, because the US also experienced *inflation* during this time period. In particular, \$4.79 billion is denoted in 1970 dollars while \$47.4 billion is denoted in 1998 dollars. In order to remove any inflationary distortions from the data, we need to divide these numbers by some measure of how average prices have evolved. There are many ways of doing this, but a direct method is to use the *consumer price index* or CPI. The CPI tells us how average prices have evolved relative to a benchmark year that is set to 100 (or 1). If the CPI differs in a particular year, then we know how prices have changes relative to the benchmark year.
 
 ```{r}
 plot(AUTO$INDEX,AUTO$CPI,
@@ -476,7 +474,7 @@ text(x=xtick, par("usr")[3],
 
 This figure now shows the *Real* US Auto Sales denoted in 1990 prices. For example, January 1970 experienced \$16.15 billion in auto sales while January 1998 experienced \$47.05. Now that these two numbers are both stated using the same price level, we can say that car sales increased by three times (not ten) over the time period.
 
-#### Remove a Trend
+#### Remove a Trend {-}
 
 Our real sales data still shows signs of both a trend and a seasonal cycle that need to be removed. Let us start by removing the trend.
 
@@ -525,20 +523,20 @@ text(x=xtick, par("usr")[3],
 
 The above figure illustrates the detrended data, where negative numbers indicate that observations are *below trend* while positive numbers indicate that observations are *above trend*.
 
-#### Remove Seasonality
+#### Remove Seasonality {-}
 
 The figure above still includes a seasonal component which needs to be removed. We will do this using dummy variables. 
 
 Identifying seasonality generally refers to the short-run average pattern observed in the series. Since this is monthly data, we would like to observe the average sales in each month. If this were quarterly series, we would like to observe the average sales in each *season* (summer, fall, winter, spring). We can identify these average amounts by using dummy variables to identify if each observation falls into a particular month.
 
-The first step is to establish a benchmark month. This is essentially an arbitrary decision, so lets just go with December (i.e. the twelfth month of the year). 
+The first step is to establish a benchmark month. This is essentially an arbitrary decision, so lets just go with December (i.e., the twelfth month of the year). 
 
 ```{r}
 head(AUTO)
 ```
 
 
-Note that our dataset already has a variable called month which identifies 1 as January, 2 an February, etc. This will make the creation of dummy variables very easy.
+Note that our dataset already has a variable called month which identifies 1 as January, 2 as February, etc. This will make the creation of dummy variables very easy.
 
 Since we want to break this data into 12 categories, then we will need to construct 11 dummy variables. One dummy variable will deliver a 1 every time the observation is in January (0 elsewhere), one dummy variable will deliver a 1 every time the observation is in February (0 elsewhere), and so on. We can do this by hand (which is tedious), or we can use a new package called *fastDummies*. 
 
@@ -566,7 +564,7 @@ DS <- lm(RAUTO_DT ~ MONTH_1 + MONTH_2 + MONTH_3 + MONTH_4 +
 summary(DS)
 ```
 
-The dummy variable coefficients presented above show how the average auto sales for a particular month differ from the benchmark month of December. For example, June sales (*MONTH_6*) is the largest above trend on average with 6.12 billion, while January sales (*MONTH_1*) is actually lower than December average trend sales by 0.52 billion on average. However, note that the difference between June and December is significantly different from zero, while the difference between January and December is not.
+The dummy variable coefficients presented above show how the average auto sales for a particular month differ from the benchmark month of December. For example, June sales (*MONTH_6*) are the largest above December on average with 6.12 billion, while January sales (*MONTH_1*) are actually lower than December average trend sales by 0.52 billion on average. However, note that the difference between June and December is significantly different from zero, while the difference between January and December is not.
 
 ```{r}
 plot(AUTO$INDEX,AUTO$RAUTO_DT,
@@ -599,7 +597,7 @@ text(x=xtick, par("usr")[3],
      pos = 1, xpd = TRUE)
 ```
 
-This final figure illustrates the random component of US auto retail sales once we removed price distortions, a long-run trend, and a seasonal cycle. What remains is the component that cannot be explained by these predictable (and uninteresting) things - and this is exactly what analysts what to explain with other more interesting variables (e.g. interest rates, exchange rates, bond prices, etc.). Notice how you can make out the two recessions that occurred during the time frame quite easily.
+This final figure illustrates the random component of US auto retail sales once we removed price distortions, a long-run trend, and a seasonal cycle. What remains is the component that cannot be explained by these predictable (and uninteresting) things - and this is exactly what analysts what to explain with other more interesting variables (e.g., interest rates, exchange rates, bond prices, etc.). Notice how you can make out the two recessions that occurred during the time frame quite easily.
 
 ## Joint Hypothesis Tests
 
@@ -611,7 +609,7 @@ With respect to statistical inference, confidence intervals and *simple* hypothe
 
 We have already considered all there is to know about *simple* hypothesis tests.
 
-$$H_0: \beta = 0 \quad \text{versus} \quad H_A: \beta \neq 0$$
+$$H_0: \beta = 0 \quad \text{versus} \quad H_1: \beta \neq 0$$
 
 With the established (one-sided or two-sided) hypotheses, we were able to calculate a p-value and conclude. There is nothing more to it than that.
 
@@ -623,7 +621,7 @@ $$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \beta_3 X_{3i} + \varepsilon
 
 A simple hypothesis test such as 
 
-$$H_0: \beta_1 = 0 \quad \text{versus} \quad H_A: \beta_1 \neq 0$$
+$$H_0: \beta_1 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0$$
 
 is conducted under the assumption that $\beta_2$ and $\beta_3$ are left to be whatever the data says they should be. In other words, a simple hypothesis test can only address a value for one coefficient at a time while being silent on all others.
 
@@ -631,29 +629,29 @@ A joint hypothesis states a null hypothesis that considers multiple PRF coeffici
 
 For example, we can test if *all* population coefficients are equal to zero - which explicitly states that none of the independent variables are important.
 
-$$H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_A: \beta_1 \neq 0,\; \beta_2 \neq 0,\; \text{or} \; \beta_3 \neq 0$$
+$$H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0,\; \beta_2 \neq 0,\; \text{or} \; \beta_3 \neq 0$$
 
 We don't have to be so extreme and test that just two of the three coefficients are simultaneously zero.
 
-$$H_0: \beta_1 = \beta_3 = 0 \quad \text{versus} \quad H_A: \beta_1 \neq 0\; \text{or} \; \beta_3 \neq 0$$
+$$H_0: \beta_1 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0\; \text{or} \; \beta_3 \neq 0$$
 
 If we have a specific theory in mind, we could also test if PRF coefficients are simultaneously equal to specific (nonzero) numbers.
 
-$$H_0: \beta_1 = 1 \; \text{or} \; \beta_3 = 4 \quad \text{versus} \quad H_A: \beta_1 \neq 1\; \text{or} \; \beta_3 \neq 4$$
+$$H_0: \beta_1 = 1 \; \text{or} \; \beta_3 = 4 \quad \text{versus} \quad H_1: \beta_1 \neq 1\; \text{or} \; \beta_3 \neq 4$$
 
 Finally, we can test if PRF coefficients behave according to some relative measures. Instead of stating in the null that coefficients are equal to some specific number, we can state that they are equal (or opposite) to each other or they behave according to some mathematical condition.
 
-$$H_0: \beta_1 = -\beta_3 \quad \text{versus} \quad H_A: \beta_1 \neq -\beta_3$$
+$$H_0: \beta_1 = -\beta_3 \quad \text{versus} \quad H_1: \beta_1 \neq -\beta_3$$
 
-$$H_0: \beta_1 + \beta_3 = 1 \quad \text{versus} \quad H_A: \beta_1 + \beta_3 \neq 1$$
+$$H_0: \beta_1 + \beta_3 = 1 \quad \text{versus} \quad H_1: \beta_1 + \beta_3 \neq 1$$
 
-$$H_0: \beta_1 + 5\beta_3 = 3 \quad \text{versus} \quad H_A: \beta_1 + 5\beta_3 \neq 3$$
+$$H_0: \beta_1 + 5\beta_3 = 3 \quad \text{versus} \quad H_1: \beta_1 + 5\beta_3 \neq 3$$
 
 As long as you can state a hypothesis involving multiple PRF coefficients in a linear expression, then we can test the hypothesis using a joint test. There are an infinite number of possibilities, so it is best to give you a couple of concrete examples to establish just how powerful these tests can be.
 
-#### Application
+#### Application {-}
 
-One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the *Bank-Lending Channel of Monetary Policy Transmission*, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the federal reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).^[Bernanke, B., & Blinder, A. (1992). The Federal Funds Rate and the Channels of Monetary Transmission. *The American Economic Review*, 82(4), 901-921.] A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate as the dependent variable.
+One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the *Bank-Lending Channel of Monetary Policy Transmission*, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).^[Bernanke, B., & Blinder, A. (1992). The Federal Funds Rate and the Channels of Monetary Transmission. *The American Economic Review*, 82(4), 901-921.] A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the dependent variable.
 
 $$L_i = \beta_0 + \beta_1 FFR_i + \varepsilon_i$$
 
@@ -663,7 +661,7 @@ $$\beta_1 = \frac{\Delta L_i}{\Delta FFR_i}$$
 
 Since an increase in the Federal Funds Rate indicates a tightening of monetary policy, the authors proposed a simple hypothesis test to show that an increase in the FFR delivers a decrease in bank lending.
 
-$$H_0:\beta_1 \geq 0 \quad \text{versus} \quad H_A:\beta_1 < 0$$
+$$H_0:\beta_1 \geq 0 \quad \text{versus} \quad H_1:\beta_1 < 0$$
 
 Their 1992 paper rejects the null hypothesis above, which gave them empirical evidence that bank lending responds to monetary policy changes. The bank lending channel was established!
 
@@ -686,11 +684,11 @@ $$\beta_1 = \frac{\Delta L_i}{\Delta FFR_i^+}, \quad \beta_2 = \frac{\Delta L_i}
 
 Notice that both $\beta_1$ and $\beta_2$ are still hypothesized to be negative numbers. However, the first model imposed the assumption that they were the *same* negative number while this model allows them to be different. We can therefore test the hypothesis that they are the same number by performing the following joint hypothesis:
 
-$$H_0: \beta_1=\beta_2 \quad \text{versus} \quad H_A: \beta_1 \neq \beta_2$$
+$$H_0: \beta_1=\beta_2 \quad \text{versus} \quad H_1: \beta_1 \neq \beta_2$$
 
 In case you were curious, the null hypothesis get rejected and this provides evidence that the bank lending channel is indeed *asymmetric*. This implies that banks respond more to monetary tightenings than monetary expansions, which should make sense given all of the low amounts of bank lending in the post-global recession of 2008 despite interest rates being at all time lows.
 
-#### Conducting a Joint Hypothesis Test
+#### Conducting a Joint Hypothesis Test {-}
 
 A joint hypothesis test involves four steps:
 
@@ -777,7 +775,7 @@ This should make sense because the expressions in both the numerator and denomin
 
 If we have $R^2_u = R^2_r$, then this implies that the restricted model and the unrestricted model are explaining the same amount of variation in the dependent variable. Think hard about what this is saying. If both models have the same $R^2$, then they are essentially *the same model*. One model is unrestricted meaning it can choose any values for coefficients it sees fit. The other model is restricted meaning we are forcing it to follow whatever is specified in the null. If these two models are the same, then the *restriction doesn't matter*. In other words, the model is choosing the values under the null whether or not we are imposing the null. If that is the case, then the f-statistic will be equal to or close to zero.
 
-If we have $R^2_u > R^2_r$, then this implies that the restriction imposed by the null hypothesis is hampering the model from explaining as much of the volatility in the dependent variable than it otherwise would have. The more $R^2_u > R^2_r$, the more $F>0$. Once this F-statistic under the null becomes large enough, we reject the null. This means that the difference between the unrestricted and restricted models is so large that we have evidence to state that the null hypothesis is simply not going on in the data. This implies that the rejection region in *always* in the right tail, and the p-value is always calculated from the right as well.
+If we have $R^2_u > R^2_r$, then this implies that the restriction imposed by the null hypothesis is hampering the model from explaining as much of the volatility in the dependent variable than it otherwise would have. The more $R^2_u > R^2_r$, the more $F>0$. Once this F-statistic under the null becomes large enough, we reject the null. This means that the difference between the unrestricted and restricted models is so large that we have evidence to state that the null hypothesis is simply not going on in the data. This implies that the rejection region is *always* in the right tail, and the p-value is always calculated from the right as well.
 
 **4. Determine a P-value and Conclude**
 
@@ -815,9 +813,11 @@ Notice that since the probability is calculated from the left by default (like t
 
 ### Applications
 
-Lets consider two applications. The first application is not terribly interesting, but it will illustrate a joint hypothesis test that is *always* provided you free of charge with any set of regression results. The second application is more involved and delivers the true importance of joint tests.
+Lets consider two applications. The first application is not terribly interesting, but it will illustrate a joint hypothesis test that is *always* provided to you free of charge with any set of regression results. The second application is more involved and delivers the true importance of joint tests.
 
-#### Application 1: A wage application
+#### Application 1: A wage application {-}
+
+This is the same scenario we considered for the dummy variable section, only without gender as a variable.
 
 Suppose you are a consultant hired by a firm to help determine the underlying features of the current wage structure for their employees. You want to understand why some wage rates are different from others. Let our dependent variable be *wage* (the hourly wage of an individual employee) and the independent variables be given by...
 
@@ -833,7 +833,7 @@ $$wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 
 Suppose we wanted to test that none of these independent variables help explain movements in wages, so the resulting joint hypothesis would be
 
-$$H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_A: \beta_1 \neq 0, \; \beta_2 \neq 0, \; \text{or} \; \beta_3 \neq 0$$
+$$H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0, \; \beta_2 \neq 0, \; \text{or} \; \beta_3 \neq 0$$
 
 The unrestricted model is one where each of the coefficients can be whatever number the data wants them to be.
 
@@ -849,13 +849,13 @@ The next step is to estimate the restricted model - the model with the null hypo
 
 $$wage_i=\beta_0+\varepsilon_i$$
 
-This model contains no independent variables. If you were to estimate this model, then the intercept term would return the average wage in the data set and the error term will simply be every deviation from the individual wage observations with it's average value. Since it is impossible for the deterministic component of this model to explain *any* of the variation in wages, then this implies that the restricted $R^2$ is zero by definition. Note that this is only a special case because of what the restricted model looks like. There will be more interesting cases where the restricted $R^2$ will need to be calculated.
+This model contains no independent variables. If you were to estimate this model, then the intercept term would return the average wage in the data and the error term will simply be every deviation from the individual wage observations with it's average value. Since it is impossible for the deterministic component of this model to explain *any* of the variation in wages, then this implies that the restricted $R^2$ is zero by definition. Note that this is only a special case because of what the restricted model looks like. There will be more interesting cases where the restricted $R^2$ will need to be determined by estimating a restricted model.
 
 ```{r}
 R2r <- 0 # By definition
 ```
 
-Now that we have the restricted and unrestricted $R^2$, we need the degrees of freedom to calculate an F-statistic under the null. The numerator degrees of freedom $(m)$ denote how many restrictions we placed on the restricted model. Since the null hypothesis sets all three slope coefficients to zero, we consider this to be 3 restrictions. The denominator degrees of freedom $(n-k-1)$ is taken directly from the unrestricted model. Since $n=526$ and we originally had 3 independent variables ($k=3$), the denominator degrees of freedom is $n-k-1=522$. We can now calculate our F statistic under the null as well as our p-value.
+Now that we have the restricted and unrestricted $R^2$, we need the degrees of freedom to calculate an F-statistic under the null. The numerator degrees of freedom $(m)$ denotes how many restrictions we placed on the restricted model. Since the null hypothesis sets all three slope coefficients to zero, we consider this to be 3 restrictions. The denominator degrees of freedom $(n-k-1)$ is taken directly from the unrestricted model. Since $n=526$ and we originally had 3 independent variables ($k=3$), the denominator degrees of freedom is $n-k-1=522$. We can now calculate our F statistic under the null as well as our p-value.
 
 ```{r}
 m = 3; n = 526; k = 3
@@ -867,7 +867,7 @@ m = 3; n = 526; k = 3
 
 Note that since our F-statistic is far from 0, we can reject the null with approximately 100% confidence (i.e. the p-value is essentially zero).
 
-##### What can we conclude from this?
+##### What can we conclude from this? {-}
 
 Since we rejected the null hypothesis, that means we have statistical evidence that the alternative hypothesis is true. However, take a look at the what the alternative hypothesis actually says. It says that *at least one* of the population coefficients are statistically different from zero. It doesn't say which ones. It doesn't say how many. That's it...
 
@@ -885,9 +885,9 @@ Note that while this uninteresting joint hypothesis test is done by default. Oth
 summary(UREG)
 ```
 
-#### Application 2: Constant Returns to Scale
+#### Application 2: Constant Returns to Scale {-}
 
-Suppose you have data on the Gross Domestic Product (GDP) of a country as well as observations on two aggregate inputs to production: the nation's capital stock (K) and aggregate labor supply (L). One popular regression to run in growth economics is to see if a nation's aggregate production function possesses *constant returns to scale*. If it does, then if you scale up a nation's inputs by a particular percentage, then you will get the exact same percentage increase in output (i.e., double the inputs results in double the outputs). This has implications for what the size an economy should be, but we won't get into those details now.
+Suppose you have data on the Gross Domestic Product (GDP) of a country as well as observations on two aggregate inputs of production: the nation's capital stock (K) and aggregate labor supply (L). One popular regression to run in growth economics is to see if a nation's aggregate production function possesses *constant returns to scale*. If it does, then if you scale up a nation's inputs by a particular percentage, then you will get the exact same percentage increase in output (i.e., double the inputs results in double the outputs). This has implications for what the size an economy should be, but we won't get into those details now.
 
 The PRF is given by
 
@@ -905,7 +905,7 @@ These variables are actually in *logs*, but we will ignore that for now.
 
 If we are testing for constant returns to scale, then we want to show that increasing all of the inputs by a certain amount will result in the same increase in output. Technical issues aside, this results in the following null hypothesis for a joint test:
 
-$$H_0: \beta_K + \beta_L = 1 \quad \text{versus} \quad H_A: \beta_K + \beta_L \neq 1$$
+$$H_0: \beta_K + \beta_L = 1 \quad \text{versus} \quad H_1: \beta_K + \beta_L \neq 1$$
 
 We now have all we need to test for CRS:
 
@@ -932,7 +932,7 @@ $$\tilde{Y}_i = \beta_0 + \beta_L \; \tilde{X}_i + \varepsilon_i$$
 where
 $$\tilde{Y}_i=lnGDP_i - lnK_i \quad \text{and} \quad \tilde{X}_i=lnL_i - lnK_i$$
 
-Notice how these derivations deliver exactly how the variables of the model need to be transformed and what restricted model needs to be estimated.
+Notice how these derivations deliver exactly how the variables of the model need to be transformed and what the restricted model needs to be estimated.
 
 ```{r}
 Y = CDdata$lnGDP - CDdata$lnK

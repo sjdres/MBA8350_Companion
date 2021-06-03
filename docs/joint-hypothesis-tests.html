@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.4 Joint Hypothesis Tests | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.4 Joint Hypothesis Tests | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.4 Joint Hypothesis Tests | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="qualitative-dummy-variables.html"/>
+<link rel="next" href="Advanced.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-book.html"><a href="about-this-book.html"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-big-picture-of-statistics.html"><a href="the-big-picture-of-statistics.html"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="the-vocabulary-of-statistics.html"><a href="the-vocabulary-of-statistics.html"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="descriptive-measures.html"><a href="descriptive-measures.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="descriptive-measures.html"><a href="descriptive-measures.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="descriptive-measures.html"><a href="descriptive-measures.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sampling-methods.html"><a href="sampling-methods.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sampling-methods.html"><a href="sampling-methods.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sampling-methods.html"><a href="sampling-methods.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="sampling-methods.html"><a href="sampling-methods.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sampling-in-practice.html"><a href="sampling-in-practice.html"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-r-project-for-statistical-computing.html"><a href="the-r-project-for-statistical-computing.html"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="coding-basics.html"><a href="coding-basics.html"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="coding-basics.html"><a href="coding-basics.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="coding-basics.html"><a href="coding-basics.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="coding-basics.html"><a href="coding-basics.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="coding-basics.html"><a href="coding-basics.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="coding-basics.html"><a href="coding-basics.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-visualization.html"><a href="data-visualization.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-visualization.html"><a href="data-visualization.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="the-clt-formally.html"><a href="the-clt-formally.html"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="application-1-a-sampling-distribution-with-a-known-population.html"><a href="application-1-a-sampling-distribution-with-a-known-population.html"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="the-punchline-1.html"><a href="the-punchline-1.html"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="determining-sample-size.html"><a href="determining-sample-size.html"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="concluding-applications.html"><a href="concluding-applications.html"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concluding-applications.html"><a href="concluding-applications.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concluding-applications.html"><a href="concluding-applications.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="anatomy-of-a-hypothesis-test.html"><a href="anatomy-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="two-sided-vs-one-sided-test.html"><a href="two-sided-vs-one-sided-test.html"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><a href="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="application-predicting-house-price-based-on-house-size.html"><a href="application-predicting-house-price-based-on-house-size.html"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="up-next.html"><a href="up-next.html"><i class="fa fa-check"></i><b>7.7</b> Up Next…</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="adjusted-r2.html"><a href="adjusted-r2.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="nonlinear-models.html"><a href="nonlinear-models.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="nonlinear-models.html"><a href="nonlinear-models.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="nonlinear-models.html"><a href="nonlinear-models.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="collinearity.html"><a href="collinearity.html"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="collinearity.html"><a href="collinearity.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="collinearity.html"><a href="collinearity.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="collinearity.html"><a href="collinearity.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="collinearity.html"><a href="collinearity.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="collinearity.html"><a href="collinearity.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="joint-hypothesis-tests" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Joint Hypothesis Tests</h2>
+<div id="simple-hypothesis-tests" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Simple Hypothesis Tests</h3>
+<p>With respect to statistical inference, confidence intervals and <em>simple</em> hypothesis tests are performed in multiple regression models exactly the same way as in simple regression models. The <em>only</em> difference is that a simple regression model calculated probabilities using <span class="math inline">\(n-2\)</span> degrees of freedom, while a multiple regression calculates probabilities using <span class="math inline">\(n-k-1\)</span> degrees of freedom, where <span class="math inline">\(k\)</span> is the number of independent variables in the model. Note that the degrees of freedom are consistent across models - it’s just that a simple regression model has <span class="math inline">\(k=1\)</span> by default.</p>
+</div>
+<div id="simple-versus-joint-tests" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Simple versus Joint Tests</h3>
+<p>We have already considered all there is to know about <em>simple</em> hypothesis tests.</p>
+<p><span class="math display">\[H_0: \beta = 0 \quad \text{versus} \quad H_1: \beta \neq 0\]</span></p>
+<p>With the established (one-sided or two-sided) hypotheses, we were able to calculate a p-value and conclude. There is nothing more to it than that.</p>
+<p>A simple hypothesis test follows the same constraints as how we interpret single coefficients: <em>all else equal</em>. In particular, when we conduct a simple hypothesis test, we must calculate a test statistic under the null while assuming that all other coefficients are unchanged. This might be fine under some circumstances, but what if we want to test the population values of multiple regression coefficients at the same time? Doing this requires going from simple hypothesis tests to <strong>joint</strong> hypothesis tests.</p>
+<p>Joint hypothesis tests consider a stated null involving multiple PRF coefficients simultaneously. Consider the following general PRF:</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \beta_3 X_{3i} + \varepsilon_i\]</span></p>
+<p>A simple hypothesis test such as</p>
+<p><span class="math display">\[H_0: \beta_1 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0\]</span></p>
+<p>is conducted under the assumption that <span class="math inline">\(\beta_2\)</span> and <span class="math inline">\(\beta_3\)</span> are left to be whatever the data says they should be. In other words, a simple hypothesis test can only address a value for one coefficient at a time while being silent on all others.</p>
+<p>A joint hypothesis states a null hypothesis that considers multiple PRF coefficients simultaneously. The statement in the null hypothesis can become quite sophisticated and test some very interesting statements.</p>
+<p>For example, we can test if <em>all</em> population coefficients are equal to zero - which explicitly states that none of the independent variables are important.</p>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0,\; \beta_2 \neq 0,\; \text{or} \; \beta_3 \neq 0\]</span></p>
+<p>We don’t have to be so extreme and test that just two of the three coefficients are simultaneously zero.</p>
+<p><span class="math display">\[H_0: \beta_1 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0\; \text{or} \; \beta_3 \neq 0\]</span></p>
+<p>If we have a specific theory in mind, we could also test if PRF coefficients are simultaneously equal to specific (nonzero) numbers.</p>
+<p><span class="math display">\[H_0: \beta_1 = 1 \; \text{or} \; \beta_3 = 4 \quad \text{versus} \quad H_1: \beta_1 \neq 1\; \text{or} \; \beta_3 \neq 4\]</span></p>
+<p>Finally, we can test if PRF coefficients behave according to some relative measures. Instead of stating in the null that coefficients are equal to some specific number, we can state that they are equal (or opposite) to each other or they behave according to some mathematical condition.</p>
+<p><span class="math display">\[H_0: \beta_1 = -\beta_3 \quad \text{versus} \quad H_1: \beta_1 \neq -\beta_3\]</span></p>
+<p><span class="math display">\[H_0: \beta_1 + \beta_3 = 1 \quad \text{versus} \quad H_1: \beta_1 + \beta_3 \neq 1\]</span></p>
+<p><span class="math display">\[H_0: \beta_1 + 5\beta_3 = 3 \quad \text{versus} \quad H_1: \beta_1 + 5\beta_3 \neq 3\]</span></p>
+<p>As long as you can state a hypothesis involving multiple PRF coefficients in a linear expression, then we can test the hypothesis using a joint test. There are an infinite number of possibilities, so it is best to give you a couple of concrete examples to establish just how powerful these tests can be.</p>
+<div id="application" class="section level4 unnumbered">
+<h4>Application</h4>
+<p>One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the <em>Bank-Lending Channel of Monetary Policy Transmission</em>, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the dependent variable.</p>
+<p><span class="math display">\[L_i = \beta_0 + \beta_1 FFR_i + \varepsilon_i\]</span></p>
+<p>While this is a simplification of the model actually estimated, you can see that <span class="math inline">\(\beta_1\)</span> will concisely capture the change in bank lending given an increase in the Fed Funds Rate.</p>
+<p><span class="math display">\[\beta_1 = \frac{\Delta L_i}{\Delta FFR_i}\]</span></p>
+<p>Since an increase in the Federal Funds Rate indicates a tightening of monetary policy, the authors proposed a simple hypothesis test to show that an increase in the FFR delivers a decrease in bank lending.</p>
+<p><span class="math display">\[H_0:\beta_1 \geq 0 \quad \text{versus} \quad H_1:\beta_1 &lt; 0\]</span></p>
+<p>Their 1992 paper rejects the null hypothesis above, which gave them empirical evidence that bank lending responds to monetary policy changes. The bank lending channel was established!</p>
+<p>My dissertation tested an implicit assumption of their model: <em>symmetry</em>.</p>
+<p><span class="math display">\[\beta_1 = \frac{\Delta L_i}{\Delta FFR_i}\]</span></p>
+<p>The interpretation of the slope of this regression works for both increases and decreases in the Fed Funds Rate. Assuming that <span class="math inline">\(\beta_1 &lt;0\)</span>, a one-unit increase in the FFR will deliver an expected decline of <span class="math inline">\(\beta_1\)</span> units of lending on average. However, it also states that a one-unit <em>decrease</em> in the FFR will deliver an expected <em>increase</em> of <span class="math inline">\(\beta_1\)</span> units of lending on average. This symmetry is baked into the model. The only way we can explicitly test this assumption is to extend the model and perform a joint hypothesis test.</p>
+<p>Suppose we separated the FFR variable into increases in the interest rate and decreases in the interest rate.</p>
+<p><span class="math display">\[FFR_i^+ = FFR_i &gt;0 \quad \text{(zero otherwise)}\]</span>
+<span class="math display">\[FFR_i^- = FFR_i &lt;0 \quad \text{(zero otherwise)}\]</span></p>
+<p>If we were to put both of these variables into a similar regression, then we could separate the change in lending from increases and decreases in the interest rate.</p>
+<p><span class="math display">\[L_i = \beta_0 + \beta_1 FFR_i^+ + \beta_2 FFR_i^- + \varepsilon_i\]</span></p>
+<p><span class="math display">\[\beta_1 = \frac{\Delta L_i}{\Delta FFR_i^+}, \quad \beta_2 = \frac{\Delta L_i}{\Delta FFR_i^-}\]</span></p>
+<p>Notice that both <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are still hypothesized to be negative numbers. However, the first model imposed the assumption that they were the <em>same</em> negative number while this model allows them to be different. We can therefore test the hypothesis that they are the same number by performing the following joint hypothesis:</p>
+<p><span class="math display">\[H_0: \beta_1=\beta_2 \quad \text{versus} \quad H_1: \beta_1 \neq \beta_2\]</span></p>
+<p>In case you were curious, the null hypothesis get rejected and this provides evidence that the bank lending channel is indeed <em>asymmetric</em>. This implies that banks respond more to monetary tightenings than monetary expansions, which should make sense given all of the low amounts of bank lending in the post-global recession of 2008 despite interest rates being at all time lows.</p>
+</div>
+<div id="conducting-a-joint-hypothesis-test" class="section level4 unnumbered">
+<h4>Conducting a Joint Hypothesis Test</h4>
+<p>A joint hypothesis test involves four steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Estimate an <em>unrestricted</em> model</p></li>
+<li><p>Impose the null hypothesis and estimate a <em>restricted</em> model</p></li>
+<li><p>Construct a <em>test statistic under the null</em></p></li>
+<li><p>Determine a p-value and conclude</p></li>
+</ol>
+<p><strong>1. Estimate an Unrestricted Model</strong></p>
+<p>An analysis begins with a regression model that can adequately capture what you are setting out to uncover. In general terms, this is a model that doesn’t impose any serious assumptions on the way the world works so you can adequately test these assumptions. Suppose we have a hypothesis that two independent variables impact a dependent variable by the same quantitative degree. In that case, we need a model that does not impose this hypothesis.</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i\]</span></p>
+<p>The model above allows for the two independent variables to impact the dependent variable in whatever way the data sees fit. Since there is no imposition of the hypothesis on the model, or no restriction that the hypothesis be obeyed, then this model is called the <em>unrestricted</em> model.</p>
+<p><strong>2. Estimate a Restricted Model</strong></p>
+<p>A restricted model involves both the unrestricted model and the null hypothesis. If we wanted to test if the two slope hypotheses were the same, then our joint hypothesis is just like the one in the previous example:</p>
+<p><span class="math display">\[H_0:\beta_1=\beta_2 \quad \text{versus} \quad H_1:\beta_1 \neq \beta_2\]</span></p>
+<p>With the null hypothesis established, we now need to construct a <em>restricted</em> model which results from imposing the null hypothesis on the unrestricted model. In particular, staring with the unrestricted model and substituting the null, we get the following:</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i\]</span></p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_2 X_{1i} + \beta_2 X_{2i} + \varepsilon_i\]</span></p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_2 (X_{1i} + X_{2i}) + \varepsilon_i\]</span></p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_2 \tilde{X}_{i} + \varepsilon_i \quad \text{where} \quad \tilde{X}_{i} = X_{1i} + X_{2i}\]</span></p>
+<p>Imposing the null hypothesis restricts the two slope coefficients to be identical. If we construct the new variable <span class="math inline">\(\tilde{X}_i\)</span> according to how the model dictates, then we can use the new variable to estimate the <em>restricted</em> model.</p>
+<p><strong>3. Construct a test statistic under the null</strong></p>
+<p>Now that we have our unrestricted and restricted models estimated, the only two things we need from them are the <span class="math inline">\(R^2\)</span> values from each. We will denote the <span class="math inline">\(R^2\)</span> from the unrestricted model as the <em>unrestricted</em> <span class="math inline">\(R^2\)</span> or <span class="math inline">\(R^2_u\)</span>, and the <span class="math inline">\(R^2\)</span> from the restricted model as the <em>restricted</em> <span class="math inline">\(R^2\)</span> or <span class="math inline">\(R^2_r\)</span>.</p>
+<p>These two pieces of information are used with <em>two</em> degrees of freedom measures to construct a test statistic under the null - which is conceptually similar to how we perform simple hypothesis tests. However, while simple hypothesis tests are performed assuming a Student’s t distribution, joint hypothesis tests are performed assuming an entirely new distribution: An F distribution.</p>
+<p>Roughly speaking, an F distribution arises from taking the square of a t distribution. Since simple hypothesis tests deal with t distributions, and the joint hypothesis deals with <span class="math inline">\(R^2\)</span> values, you get the general idea. An F-statistic under the null is given by</p>
+<p><span class="math display">\[F=\frac{(R^2_u - R^2_r)/m}{(1-R^2_u)/(n-k-1)} \sim F_{m,\;n-k-1}\]</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\(R^2_u\)</span> is the unrestricted <span class="math inline">\(R^2\)</span> - the <span class="math inline">\(R^2\)</span> from the unrestricted model.</p></li>
+<li><p><span class="math inline">\(R^2_r\)</span> is the restricted <span class="math inline">\(R^2\)</span> - the <span class="math inline">\(R^2\)</span> from the restricted model.</p></li>
+<li><p><span class="math inline">\(m\)</span> is the numerator degrees of freedom - the number of restrictions imposed on the restricted model. In other words, count up the number of equal signs in the null hypothesis.</p></li>
+<li><p><span class="math inline">\(n-k-1\)</span> is the denominator degrees of freedom - this is the degrees of freedom for a simple hypothesis test performed on the <em>unrestricted</em> model.</p></li>
+</ul>
+<p>In simple hypothesis tests, we constructed a t-statistic that is presumably drawn from a t-distribution. We are essentially doing the same thing here by constructing a F-statistic that is presumably drawn from a F-distribution.</p>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-152-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The F-distribution has a few conceptual properties we should discuss.</p>
+<p><strong>An F statistic is restricted to be non-negative.</strong></p>
+<p>This should make sense because the expressions in both the numerator and denominator of our F-statistic calculation are both going to be non-negative. The numerator is always going to be non-negative because <span class="math inline">\(R^2_u \geq R^2_r\)</span>. In other words, the unrestricted model will always explain more or at least as much of the variation in the dependent variable as the restricted model does. When the two models explain the same amount of variation, then the <span class="math inline">\(R^2\)</span> values are the same and the numerator is zero. When the two models explain different amounts of variation, then this means that the restriction prevents the model from explaining as much of the variation in the dependent variable it otherwise would when not being restricted.</p>
+<p><strong>The Rejection Region is Always in the Right Tail</strong></p>
+<p>If we have <span class="math inline">\(R^2_u = R^2_r\)</span>, then this implies that the restricted model and the unrestricted model are explaining the same amount of variation in the dependent variable. Think hard about what this is saying. If both models have the same <span class="math inline">\(R^2\)</span>, then they are essentially <em>the same model</em>. One model is unrestricted meaning it can choose any values for coefficients it sees fit. The other model is restricted meaning we are forcing it to follow whatever is specified in the null. If these two models are the same, then the <em>restriction doesn’t matter</em>. In other words, the model is choosing the values under the null whether or not we are imposing the null. If that is the case, then the f-statistic will be equal to or close to zero.</p>
+<p>If we have <span class="math inline">\(R^2_u &gt; R^2_r\)</span>, then this implies that the restriction imposed by the null hypothesis is hampering the model from explaining as much of the volatility in the dependent variable than it otherwise would have. The more <span class="math inline">\(R^2_u &gt; R^2_r\)</span>, the more <span class="math inline">\(F&gt;0\)</span>. Once this F-statistic under the null becomes large enough, we reject the null. This means that the difference between the unrestricted and restricted models is so large that we have evidence to state that the null hypothesis is simply not going on in the data. This implies that the rejection region is <em>always</em> in the right tail, and the p-value is always calculated from the right as well.</p>
+<p><strong>4. Determine a P-value and Conclude</strong></p>
+<p>Again, we establish a confidence level <span class="math inline">\(\alpha\)</span> as we would with any hypothesis test. This delivers an acceptable probability of a type I error and breaks the distribution into a rejection region and a non-rejection region.</p>
+<p>For example, suppose you set <span class="math inline">\(\alpha = 0.05\)</span> and have <span class="math inline">\(m=2\)</span> and <span class="math inline">\(n-k-1 = 100\)</span>. This means that the non-rejection region will take up 95% of the area of the F-distribution with 2 and 100 degrees of freedom.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="joint-hypothesis-tests.html#cb269-1" aria-hidden="true" tabindex="-1"></a>(Fcrit <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>,<span class="dv">100</span>))</span></code></pre></div>
+<pre><code>## [1] 3.087296</code></pre>
+<p>If an F-statistic is greater than 3.09 then we can reject the null of the joint hypothesis with at least 95% confidence.</p>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-154-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As in any hypothesis test, we can also calculate a p-value. This will deliver the maximum confidence level at which we can reject the null.</p>
+<pre><code>pf(q, df1, df2, lower.tail = TRUE)</code></pre>
+<p>Notice that since the probability is calculated from the left by default (like the other commands), we can use the above code to automatically calculate <span class="math inline">\(1-p\)</span>.</p>
+</div>
+</div>
+<div id="applications" class="section level3" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Applications</h3>
+<p>Lets consider two applications. The first application is not terribly interesting, but it will illustrate a joint hypothesis test that is <em>always</em> provided to you free of charge with any set of regression results. The second application is more involved and delivers the true importance of joint tests.</p>
+<div id="application-1-a-wage-application" class="section level4 unnumbered">
+<h4>Application 1: A wage application</h4>
+<p>This is the same scenario we considered for the dummy variable section, only without gender as a variable.</p>
+<p>Suppose you are a consultant hired by a firm to help determine the underlying features of the current wage structure for their employees. You want to understand why some wage rates are different from others. Let our dependent variable be <em>wage</em> (the hourly wage of an individual employee) and the independent variables be given by…</p>
+<ul>
+<li><p><em>educ</em> be the total years of education of an individual employee</p></li>
+<li><p><em>exper</em> be the total years of experience an individual employee had prior to starting with the company</p></li>
+<li><p><em>tenure</em> is the number of years an employee has been working with the firm.</p></li>
+</ul>
+<p>The resulting PRF is given by…</p>
+<p><span class="math display">\[wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span></p>
+<p>Suppose we wanted to test that none of these independent variables help explain movements in wages, so the resulting joint hypothesis would be</p>
+<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0, \; \beta_2 \neq 0, \; \text{or} \; \beta_3 \neq 0\]</span></p>
+<p>The unrestricted model is one where each of the coefficients can be whatever number the data wants them to be.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="joint-hypothesis-tests.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(wage1, <span class="at">package =</span> <span class="st">&quot;wooldridge&quot;</span>)</span>
+<span id="cb272-2"><a href="joint-hypothesis-tests.html#cb272-2" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure,<span class="at">data=</span>wage1)</span>
+<span id="cb272-3"><a href="joint-hypothesis-tests.html#cb272-3" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<pre><code>## [1] 0.3064224</code></pre>
+<p>Our unrestricted model can explain roughly 30% of the variation in wages.</p>
+<p>The next step is to estimate the restricted model - the model with the null hypothesis imposed. In this case you will notice that setting all slope coefficients to zero results in a rather strange looking model:</p>
+<p><span class="math display">\[wage_i=\beta_0+\varepsilon_i\]</span></p>
+<p>This model contains no independent variables. If you were to estimate this model, then the intercept term would return the average wage in the data and the error term will simply be every deviation from the individual wage observations with it’s average value. Since it is impossible for the deterministic component of this model to explain <em>any</em> of the variation in wages, then this implies that the restricted <span class="math inline">\(R^2\)</span> is zero by definition. Note that this is only a special case because of what the restricted model looks like. There will be more interesting cases where the restricted <span class="math inline">\(R^2\)</span> will need to be determined by estimating a restricted model.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="joint-hypothesis-tests.html#cb274-1" aria-hidden="true" tabindex="-1"></a>R2r <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># By definition</span></span></code></pre></div>
+<p>Now that we have the restricted and unrestricted <span class="math inline">\(R^2\)</span>, we need the degrees of freedom to calculate an F-statistic under the null. The numerator degrees of freedom <span class="math inline">\((m)\)</span> denotes how many restrictions we placed on the restricted model. Since the null hypothesis sets all three slope coefficients to zero, we consider this to be 3 restrictions. The denominator degrees of freedom <span class="math inline">\((n-k-1)\)</span> is taken directly from the unrestricted model. Since <span class="math inline">\(n=526\)</span> and we originally had 3 independent variables (<span class="math inline">\(k=3\)</span>), the denominator degrees of freedom is <span class="math inline">\(n-k-1=522\)</span>. We can now calculate our F statistic under the null as well as our p-value.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="joint-hypothesis-tests.html#cb275-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">3</span>; n <span class="ot">=</span> <span class="dv">526</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb275-2"><a href="joint-hypothesis-tests.html#cb275-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-3"><a href="joint-hypothesis-tests.html#cb275-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
+<pre><code>## [1] 76.87317</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="joint-hypothesis-tests.html#cb277-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<pre><code>## [1] 3.405862e-41</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="joint-hypothesis-tests.html#cb279-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Note that since our F-statistic is far from 0, we can reject the null with approximately 100% confidence (i.e. the p-value is essentially zero).</p>
+<div id="what-can-we-conclude-from-this" class="section level5 unnumbered">
+<h5>What can we conclude from this?</h5>
+<p>Since we rejected the null hypothesis, that means we have statistical evidence that the alternative hypothesis is true. However, take a look at the what the alternative hypothesis actually says. It says that <em>at least one</em> of the population coefficients are statistically different from zero. It doesn’t say which ones. It doesn’t say how many. That’s it…</p>
+<p><strong>Is there a short cut?</strong></p>
+<p>Remember that all regression results provide the simple hypothesis that each slope coefficient is equal to zero.</p>
+<p><span class="math display">\[H_0: \beta=0 \quad \text{versus} \quad H_1: \beta \neq 0\]</span></p>
+<p>All regression results also provide the joint hypothesis that all slope coefficients are equal to zero. You can see the result at the bottom of the summary page. The last line delivers the same F-statistic we calculated above as well as a p-value that is essentially zero.</p>
+<p>Note that while this uninteresting joint hypothesis test is done by default. Other joint tests require a bit more work.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="joint-hypothesis-tests.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(UREG)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ educ + exper + tenure, data = wage1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.6068 -1.7747 -0.6279  1.1969 14.6536 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.87273    0.72896  -3.941 9.22e-05 ***
+## educ         0.59897    0.05128  11.679  &lt; 2e-16 ***
+## exper        0.02234    0.01206   1.853   0.0645 .  
+## tenure       0.16927    0.02164   7.820 2.93e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.084 on 522 degrees of freedom
+## Multiple R-squared:  0.3064, Adjusted R-squared:  0.3024 
+## F-statistic: 76.87 on 3 and 522 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div id="application-2-constant-returns-to-scale" class="section level4 unnumbered">
+<h4>Application 2: Constant Returns to Scale</h4>
+<p>Suppose you have data on the Gross Domestic Product (GDP) of a country as well as observations on two aggregate inputs of production: the nation’s capital stock (K) and aggregate labor supply (L). One popular regression to run in growth economics is to see if a nation’s aggregate production function possesses <em>constant returns to scale</em>. If it does, then if you scale up a nation’s inputs by a particular percentage, then you will get the exact same percentage increase in output (i.e., double the inputs results in double the outputs). This has implications for what the size an economy should be, but we won’t get into those details now.</p>
+<p>The PRF is given by</p>
+<p><span class="math display">\[lnGDP_i = \beta_0 + \beta_K \;lnK_i + \beta_L \;lnL_i + \varepsilon_i\]</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\(lnGDP_i\)</span> is an observation of total output</p></li>
+<li><p><span class="math inline">\(lnK_i\)</span> is an observation of total capital stock</p></li>
+<li><p><span class="math inline">\(lnL_i\)</span> is an observation of total labor stock.</p></li>
+</ul>
+<p>These variables are actually in <em>logs</em>, but we will ignore that for now.</p>
+<p>If we are testing for constant returns to scale, then we want to show that increasing all of the inputs by a certain amount will result in the same increase in output. Technical issues aside, this results in the following null hypothesis for a joint test:</p>
+<p><span class="math display">\[H_0: \beta_K + \beta_L = 1 \quad \text{versus} \quad H_1: \beta_K + \beta_L \neq 1\]</span></p>
+<p>We now have all we need to test for CRS:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="joint-hypothesis-tests.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data...</span></span>
+<span id="cb283-2"><a href="joint-hypothesis-tests.html#cb283-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-3"><a href="joint-hypothesis-tests.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb283-4"><a href="joint-hypothesis-tests.html#cb283-4" aria-hidden="true" tabindex="-1"></a>CDdata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/CDdata.xlsx&quot;</span>)</span>
+<span id="cb283-5"><a href="joint-hypothesis-tests.html#cb283-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-6"><a href="joint-hypothesis-tests.html#cb283-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run unrestricted model, get R^2...</span></span>
+<span id="cb283-7"><a href="joint-hypothesis-tests.html#cb283-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-8"><a href="joint-hypothesis-tests.html#cb283-8" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnGDP <span class="sc">~</span> lnK <span class="sc">+</span> lnL, <span class="at">data =</span> CDdata)</span>
+<span id="cb283-9"><a href="joint-hypothesis-tests.html#cb283-9" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<pre><code>## [1] 0.9574247</code></pre>
+<p>The unrestricted model can explain around 96% of the variation in the dependent variable. For us to determine how much the restricted model can explain, we first need to see exactly what the restriction does to our model. Starting from the unrestricted model, imposing the restriction delivers the following:</p>
+<p><span class="math display">\[lnGDP_i = \beta_0 + \beta_K \; lnK_i + \beta_L \; lnL_i + \varepsilon_i\]</span>
+<span class="math display">\[lnGDP_i = \beta_0 + (1 - \beta_L) \; lnK_i + \beta_L \; lnL_i + \varepsilon_i\]</span></p>
+<p><span class="math display">\[(lnGDP_i - lnK_i) = \beta_0 + \beta_L \; (lnL_i - lnK_i) + \varepsilon_i\]</span>
+<span class="math display">\[\tilde{Y}_i = \beta_0 + \beta_L \; \tilde{X}_i + \varepsilon_i\]</span>
+where
+<span class="math display">\[\tilde{Y}_i=lnGDP_i - lnK_i \quad \text{and} \quad \tilde{X}_i=lnL_i - lnK_i\]</span></p>
+<p>Notice how these derivations deliver exactly how the variables of the model need to be transformed and what the restricted model needs to be estimated.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="joint-hypothesis-tests.html#cb285-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> CDdata<span class="sc">$</span>lnGDP <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
+<span id="cb285-2"><a href="joint-hypothesis-tests.html#cb285-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> CDdata<span class="sc">$</span>lnL <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
+<span id="cb285-3"><a href="joint-hypothesis-tests.html#cb285-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-4"><a href="joint-hypothesis-tests.html#cb285-4" aria-hidden="true" tabindex="-1"></a>RREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb285-5"><a href="joint-hypothesis-tests.html#cb285-5" aria-hidden="true" tabindex="-1"></a>(R2r <span class="ot">&lt;-</span> <span class="fu">summary</span>(RREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<pre><code>## [1] 0.9370283</code></pre>
+<p>The restricted model can explain roughly 94% of the variation in the dependent variable. To see if this reduction in <span class="math inline">\(R^2\)</span> is enough to reject the null hypothesis, we need to calculate an F-statistic. The numerator degrees of freedom is <span class="math inline">\(m=1\)</span> because there is technically only one restriction in the null. The denominator degrees of freedom uses <span class="math inline">\(n=24\)</span> and <span class="math inline">\(k=2\)</span>.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="joint-hypothesis-tests.html#cb287-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">1</span>; n <span class="ot">=</span> <span class="dv">24</span>; k <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb287-2"><a href="joint-hypothesis-tests.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="joint-hypothesis-tests.html#cb287-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
+<pre><code>## [1] 10.0604</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="joint-hypothesis-tests.html#cb289-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<pre><code>## [1] 0.004594084</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="joint-hypothesis-tests.html#cb291-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<pre><code>## [1] 0.9954059</code></pre>
+<p>As in the previous application, we received a very high F-statistic and a very low p-value. This means we <em>reject</em> the hypothesis that this country has an aggregate production function that exhibits constant returns to scale with slightly over 99.5% confidence.</p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="14">
+<li id="fn14"><p>Bernanke, B., &amp; Blinder, A. (1992). The Federal Funds Rate and the Channels of Monetary Transmission. <em>The American Economic Review</em>, 82(4), 901-921.<a href="joint-hypothesis-tests.html#fnref14" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="qualitative-dummy-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Advanced.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/08-MLR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/08-MLR.Rmd",
+"text": null
+},
+"download": ["MBA8350book.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

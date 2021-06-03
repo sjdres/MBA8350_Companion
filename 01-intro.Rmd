@@ -1,10 +1,10 @@
 # Introduction {#intro}
 
-```{r setup1, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 ```
 
-This chapter is designed to motivate the use of statistics - basically because we are constantly bombarded with statistics on a daily basis. We will start with some motivating examples and an introduction to some important terminology and equations used to calculate descriptive measures (e.g., mean, standard deviation, etc.). This chapter will start throwing around some data and some R code in the applications, but we formally get into these code details later. You should skim over those details at first and focus on the results and conclusions provided. You can always come back to this chapter and focus on replicating the code once we cover those details in later chapters.
+This chapter is designed to motivate the use of statistics, because we are constantly bombarded with statistics on a daily basis (whether we like it or not). We will start with some motivating examples and an introduction to some important terminology and equations used to calculate descriptive measures (e.g., mean, standard deviation, etc.). We will start throwing around some data and R code in the applications, but we formally get into these details later. You should skim over those details at first and focus more on the results and conclusions provided. You can always come back to this chapter and focus on replicating the code once we cover R in later chapters.
 
 ## The "Big Picture" of Statistics
    
@@ -34,7 +34,7 @@ include_graphics("images/ECONOMIC.png")
 
 **Question 3:**
 
-A meteorologist wants to predict the path of a hurricane. This is a forecasting model - very similar to the economists problem. How confident can we be in her predicted path of the storm?
+A meteorologist wants to predict the path of a hurricane. How confident can we be in her predicted path of the storm?
 
 ```{r, echo = FALSE, fig.align='center', out.width="70%", fig.cap = "The _Cone of Uncertainty_"}
 include_graphics("images/FORECASTCONE.png")
@@ -70,9 +70,9 @@ Statistics is broken into two related branches.
 
 * A **sample** is the portion (i.e., subset) of a population selected for analysis. These are our observations in hand.
 
-* A **statistic** is a characteristic of a sample. Since we can observe the sample (i.e., our dataset), these are our descriptive statistics.
+* A **statistic** is a characteristic of a sample. Since we can observe the sample (i.e., our data), these are our descriptive statistics.
 
-* A **Parameter** is a characteristic of a population. Since we cannot observe the population, the best we can do is draw inferential statistics (or predictions) around them. While the value of a parameter exists, we would have to be omniscient in order to know it. The best we can do is use our sample statistics to construct an *educated guess* of what this value might be.
+* A **Parameter** is a characteristic of a population. Since we cannot observe the population, the best we can do is draw inferential statistics (or predictions) about them. While the value of a parameter exists, we would have to be omniscient in order to know it. The best we can do is use our sample statistics to construct an *educated guess* of what this value might be.
 
 Recall the problem of the wholesaler who has a supply of light bulbs. It would be great if we could state what the *average lifespan* of the light bulbs are, but that would require timing every light bulb until they burn out. This isn't very useful. 
 
@@ -117,7 +117,7 @@ The **Arithmetic** or **sample mean** is the average value of a variable within 
 $$\bar{X}=\frac{\text{Sum of values}}{\text{Number of observations}}=\frac{1}{n} \sum\limits_{i=1}^n X_i$$
 
 ```{r}
-# the mean of our lightbulb sample:
+# the mean of our light bulb sample:
 # First we load the data set and this will give us 60 observations of the lifespan of each of our 60 light bulbs in the sample. The variable is called "Lifetime" - which can be observed by using the "list" command.
 
 load("data/Lightbulb.Rdata")
@@ -136,7 +136,7 @@ The **median** is the middle value of an ordered data set.
 * If there an even number, median is the average of the two middle values
 
 ```{r}
-# the median of our lightbulb sample:
+# the median of our light bulb sample:
 (median(Lifetime))
 ```
 
@@ -166,7 +166,7 @@ The most commonly observed lifetime of our 60 observed light bulbs is 859 hours.
 
 * Deciles split the data into 10 equal parts
 
-* In general, $(p * 100)^{th}=p(n+1)$
+* In general, the pth percentile is given by: $(p * 100)^{th}=p(n+1)$
 
 A percentile delivers an observed value such that a determined proportion of observations are less than or equal to that value. You can choose any percentile value you wish. For example, the code below calculates the 4th, 40th, and 80th percentiles of our light bulb sample.
 
@@ -200,11 +200,11 @@ summary(Lifetime)
 
 ### Variation
 
-The **sample variance** measures the average (squared) amount of dispersion each individual observation has around the sample mean. This is a very important measure in statistics, so take some time to understand exactly what this equation is actually calculating. In particular, $X$ is a variable and $X_i$ is an arbitrary single observation from that group of data. Once the mean $(\bar{X})$ is calculated, $X_i - \bar{X}$ is the difference between a single observation of X and the overall mean of X. Sometimes this difference is negative $(X_i < \bar{X})$ and sometimes this difference is positive $X_i > \bar{X}$ - which is why we need to square these differences before adding them all up. Nonetheless, once we obtain the average value of these differences, we get a sense of the amount of dispersion these individual observations are scattered around the sample average. If this value was zero, then this means that *every* observation of $X$ is equal to $\bar{X}$. The greater the value is from zero, the greater the average dispersion of individual values around the mean.
+The **sample variance** measures the average (squared) amount of dispersion each individual observation has around the sample mean. This is a very important measure in statistics, so take some time to understand exactly what this equation is calculating. In particular, $X$ is a variable and $X_i$ is an arbitrary single observation from that group of data. Once the mean $(\bar{X})$ is calculated, $X_i - \bar{X}$ is the difference between a single observation of X and the overall mean of X. Sometimes this difference is negative $(X_i < \bar{X})$ and sometimes this difference is positive $X_i > \bar{X}$ - which is why we need to square these differences before adding them all up. Nonetheless, once we obtain the average value of these differences, we get a sense of the amount of dispersion these individual observations are scattered around the sample average. If this value was zero, then *every* observation of $X$ is equal to $\bar{X}$. The greater the value is from zero, the greater the average dispersion of individual values around the mean.
 
 $$S^2=\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\bar{X})^2$$
 
-The **sample standard deviation** is the square-root of the variance and measures the average amount of dispersion... this essentially is done to back-out the fact that we had to square the differences of $X_i - \bar{X}$
+The **sample standard deviation** is the square-root of the sample variance and measures the average amount of dispersion in the same units as the mean. This essentially is done to back-out the fact that we had to square the differences of $X_i - \bar{X}$, so the variance is technically denoted in *squared units*.
 
 $$S=\sqrt{S^2}$$
 
@@ -215,11 +215,11 @@ $$S=\sqrt{S^2}$$
 
 The variance of our sample of light bulb lifetimes is 6236 squared-hours. After taking the square root of this number, we can conclude that the standard deviation of our sample is 79 hours. Is this standard deviation big or small? The answer to this comes when we get to statistical inference.
 
-#### Discussion
+#### Discussion {-}
 
-* The term $(X_i-\bar{X})$ is squared because individual observations are either above or below the mean by design. If you don't square the terms (making the negative numbers positive) then they will surely sum to zero.
+* The term $(X_i-\bar{X})$ is squared because individual observations are either above or below the mean by design. If you don't square the terms (making the negative numbers positive) then they will sum to zero by design.
 
-* The term $(n-1)$ appears in the denominator because this is a *sample* variance and not a *population* variance. In a population variance equation, the term gets replaced with $n$ because we know the population mean. Since we had to estimate the population mean (i.e. used the sample mean), we had to deduct one **degree of freedom**. We will talk more about degrees of freedom later, but the rule of thumb is that we deduct a degree of freedom every time we build a sample statistic (like sample variance) using another sample statistic (like sample mean).
+* The term $(n-1)$ appears in the denominator because this is a *sample* variance and not a *population* variance. In a population variance equation, $(n-1)$ gets replaced with $n$ because we know the population mean. Since we had to estimate the population mean (i.e., used the sample mean), we had to deduct one **degree of freedom**. We will talk more about degrees of freedom later, but the rule of thumb is that we deduct a degree of freedom every time we build a sample statistic (like sample variance) using another sample statistic (like sample mean).
 
 ---
 
@@ -246,7 +246,7 @@ DGDP <- DENGSP$DGDP
 (sd(DGDP))
 ```
 
-A quick analysis of the real annual output observations from these two states between the years 1997 and 2020 suggest that the average annual output of California is 2,094,764 million dollars (with a standard deviation of 397,104 million) and that of Delaware is 56,997 million dollars with a standard deviation of 12,396 million). These two states have lots of differences between them, and it is difficult to tell which state has more volatility in their output. 
+A quick analysis of the real annual output observations from these two states between the years 1997 and 2020 suggest that the average annual output of California is 2,094,764 million dollars (with a standard deviation of 397,104 million) and that of Delaware is 56,997 million dollars (with a standard deviation of 12,396 million). These two states have lots of differences between them, and it is difficult to tell which state has more volatility in their output. 
 
 If we construct coefficients of variation:
 
@@ -325,9 +325,9 @@ The correlation transformed the covariance relationship into a measure between -
 
 * $corr(X,Y)<0$: There is a negative relationship between $X$ and $Y$ - meaning that the two variables tend to move in the opposite direction
 
-#### Extended Example:
+#### Extended Example: {-}
 
-These notes are concluded with a summary of all of the descriptive measures we discussed. Consider a dataset that is internal to R (called mtcars) that contains characteristics of 32 different automobiles. We will focus on two variables: the average miles per gallon (mpg) and the weight of the car (in thousands of pounds).
+This chapter concludes with a summary of all of the descriptive measures we discussed. Consider a dataset that is internal to R (called mtcars) that contains characteristics of 32 different automobiles. We will focus on two variables: the average miles per gallon (mpg) and the weight of the car (in thousands of pounds).
 
 ```{r}
 car <- mtcars # This loads the dataset and calls it car
@@ -391,10 +391,10 @@ plot(car$mpg,car$wt,
 
 The negative correlation as well as the obviously negative relationship in the scatter-plot between the weight of a car and its miles per gallon should make intuitive sense - heavy cars are less efficient.
 
-#### The Punchline
+#### The Punchline {-}
 
 Suppose we want to learn about a relationship between a car's weight and its fuel efficiency. Our sample is 32 automobiles, but our population is EVERY automobile (EVER). We would like to say something about the population mean Weight and MPG.
 
-How does the sample variance(s) give us confidence on making statements about the population mean when we're only given the sample? That's where inferential statistics comes in. Before we get into that, we will dig into elements of collecting data (upon which our descriptive statistics are based on) and using R (with which we will calculate our descriptive statistics using our collected data).
+How does the sample variance(s) give us confidence on making statements about the population mean when we're only given the sample? That's where inferential statistics comes in. Before we get into that, we will dig into elements of collecting data (upon which our descriptive statistics are based on) and using R (with which we will use to calculate our descriptive statistics using our collected data).
 
 

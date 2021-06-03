@@ -1,6 +1,6 @@
 # Hypothesis Tests {#HT}
 
-```{r setup6, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 ```
 
@@ -8,13 +8,13 @@ Confidence intervals determine a range where our population mean resides given t
 
 **Hypothesis testing** is a similar inferential method, but it approaches the problem from the opposite direction.
 
-1. You start with an unambiguous claim on the value of the population parameter
+1. You start with an *unambiguous claim* on the value of the population parameter. This claim is nonarbitrary, and dictated from either theory or a past observation.
 
 2. You test to see if the sample statistics are consistent with the claim (or refute it)
 
-The general idea is that you begin with some *nonarbitrary* statement on what value you believe (or do not believe) the population parameter to be. You then test if the characteristics of your sample suggest that it is likely or not that a population with your proposed parameter values generated a sample like the one you currently have.
+The general idea is that you begin with some *nonarbitrary* statement on what value you believe (or do not believe) the population parameter to be. You then test if the characteristics of your sample suggest that it is likely or not that a population with your proposed parameter values generated a sample similar to the one you currently have.
 
-If this seems a bit vague at the moment. It will be more concrete soon. The main thing to keep in mind is that hypothesis tests are quite simple and structured. Once you learn how to perform one hypothesis test - you essentially can perform them all. This chapter guides you through some basic steps that once mastered - you'll have a powerful tool of statistical inference under your belt.
+If this seems a bit vague at the moment, it will hopefully be more concrete soon. The main thing to keep in mind is that hypothesis tests are quite simple and structured. Once you learn how to perform one hypothesis test - you can essentially perform them all. This chapter guides you through some basic steps that once mastered - you'll have a powerful tool of statistical inference under your belt.
 
 ## Anatomy of a Hypothesis Test
 
@@ -29,7 +29,7 @@ $$H_1 : \mu \neq x$$
 
 The null hypothesis $(H_0)$ represents a belief of a population parameter that you would like to *disprove*, while the alternative hypothesis $(H_1)$ is the opposite of the null and represents a claim you would like to show. 
 
-A hypothesis test uses the characteristics of the sample to determine if the statement about the population parameter in the null appears consistent (or inconsistent) with the characteristics of the sample. Recall that we are still under the assumption that the characteristics of the sample are similar to the **true** characteristics of the population. Therefore, if the sample characteristics are inconsistent with the statement in the null hypothesis, then you are likely to **reject the null hypothesis**. This means that the null hypothesis does not capture the **true** characteristics of the population. If the sample characteristics are *similar* to those stated in the null hypothesis, then you do not have evidence to reject the null and you conclude to **not reject the null hypothesis**.
+A hypothesis test uses the characteristics of the sample to determine if the statement about the population parameter in the null appears consistent (or inconsistent) with the characteristics of the sample. Recall that we are still under the assumption that the characteristics of the sample are similar to the **true** characteristics of the population. Therefore, if the sample characteristics are inconsistent with the statement in the null hypothesis, then you are likely to **reject the null hypothesis**. This means that the null hypothesis does not capture the **true** characteristics of the population (because the sample does). If the sample characteristics are *similar* to those stated in the null hypothesis, then you do not have evidence to reject the null and you conclude to **not reject the null hypothesis**.
 
 In other words, if you *reject the null*, you have statistical evidence that $H_1$ is correct (and the null hypothesis cannot be correct). If you *do not reject the null*, you have failed to prove the alternative hypothesis. Note that failure to prove the alternative does NOT mean that you have proven the null. In other words, there IS a difference between *do not reject* and *accept*!
 
@@ -49,13 +49,13 @@ If we were to test that the population average lifespan was 1000 hours,
 
 $$H_0:\mu=1000 \quad versus \quad H_1:\mu\neq 1000$$
 
-then our confidence interval would give us evidence to **reject** the null because there would be less than a 5% chance for the null to be true. The sample characteristics and and the statement in the null hypothesis are therefore inconsistent.
+then our confidence interval would give us evidence to **reject** the null because there would be less than a 5% chance for the null to be true. The sample characteristics and the statement in the null hypothesis are therefore inconsistent.
 
 If we were to test that the population average lifespan was 900 hours, then we will reach a different conclusion.
 
 $$H_0:\mu=900 \quad versus \quad H_1:\mu\neq 900$$
 
-Since 900 is a value *inside* our confidence interval,then we would not have evidence to reject the null and we therefore conclude **do not reject** the null. The reason why we never say accept is that while 900 is within the confidence interval, there are also a *continuum* of other values in there. The true population mean might be 901, 900.0001, 910, etc. If you were to *accept* the null, then you are explicitly stating that the population parameter is exactly 900 - we do not have enough evidence for this.
+Since 900 is a value *inside* our confidence interval, then we would not have evidence to reject the null and we therefore conclude **do not reject** the null. The reason why we never say accept is that while 900 is within the confidence interval, there are also a *continuum* of other values in there. The true population mean might be 901, 900.0001, 910, etc. If you were to *accept* the null, then you are explicitly stating that the population parameter is exactly 900 - we do not have enough evidence for this.
 
 Note that while we are seeing a clear connection between hypothesis tests and confidence intervals, hypothesis tests can get more sophisticated than this. It is therefore worthwhile to consider a formal solution methodology.
 
@@ -73,7 +73,7 @@ Note that we already know values from the sample $(\bar{X},\;n,\;\sigma)$ and we
 
 The rejection region method takes this Z-statistic under the null and sees where it falls in a standard normal sampling distribution. The sampling distribution of a test statistic is first divided into two regions...
 
-1. A region of rejection (a.k.a., critical region) - values of the test statistic that are unlikely to occur if the null hypothesis is true.
+1. A region of rejection (a.k.a., critical region) - values of the test statistic that are unlikely to occur **if the null hypothesis is true**.
 
 2. A region of nonrejection - values of the test statistic that are likely to occur if the null hypothesis is true, so they are *consistent with the null hypothesis*.
 
@@ -81,7 +81,7 @@ The regions of rejection and nonrejection are identified by determining *critica
 
 Once the different regions are established, then you simply see where the calculated test statistic under the null falls. If it falls inside the rejection region, then you  **reject the null** because the characteristics of the sample are *too inconsistent* with the population parameter stated inside the null hypothesis. If it falls inside the nonrejection region, then you **do not reject the null** because the characteristics of the sample are such that the population parameter stated inside the null is *possible* (but we can't say if it's necessarily true).
 
-#### The Steps of a Hypothesis Test (Rejection Region Method)
+#### The Steps of a Hypothesis Test (Rejection Region Method) {-}
 
 1. State the null and alternative hypotheses
 
@@ -91,7 +91,7 @@ Once the different regions are established, then you simply see where the calcul
 
 4. Conclude (reject or do not reject)
 
-#### Application 1
+#### Application 1 {-}
 
 Suppose a fast-food manager wants to determine whether the waiting time to place an order has changed from the previous mean of 4.5 minutes. We want to see if our sample characteristics are consistent with an average of 4.5 minutes or not. We start with a statement of the two hypotheses.
 
@@ -110,7 +110,7 @@ n = 25
 
 $$ Z = \frac{\bar{X}-\mu}{\left(\sigma / \sqrt{n} \right)} = \frac{5.1-4.5}{\left(1.2 / \sqrt{25} \right)} = 2.5$$
 
-The next step involves taking a standard normal sampling distribution and breaking it up into regions of rejection and nonrejection. Before we do this, lets take a step back and think about what it means for a sample to be consistent or inconsistent with the null hypothesis. If you had a sample average $(\bar{X})$ that was the same value as the parameter value stated in the null hypothesis $(\mu)$ then you could state that the value of $\mu$ in the null hypothesis is *very consistent* with the characteristics of the sample. In fact, you can't be more consistent than having $\bar{X}$ and $\mu$ being the exact same number. Furthermore, a test statistic under the null would be equal to zero because $(\bar{X}-\mu)$ is in the numerator. This implies that a test statistic under the null equal to zero is very consistent with the null hypothesis, and you will therefore *not reject* the null hypothesis. However, the farther away the test statistic under the null gets from zero, the farther away it gets from the center of the *do not reject region* and the closer it gets to the *rejection regions*.  
+The next step involves taking a standard normal sampling distribution and breaking it up into regions of rejection and nonrejection. Before we do this, lets take a step back and think about what it means for a sample to be consistent or inconsistent with the null hypothesis. If you had a sample average $(\bar{X})$ that was the same value as the parameter value stated in the null hypothesis $(\mu)$ then you could state that the value of $\mu$ in the null hypothesis is *very consistent* with the characteristics of the sample. In fact, you can't be more consistent than having $\bar{X}$ and $\mu$ being the exact same number. Furthermore, a test statistic under the null would be equal to zero because $(\bar{X}-\mu)$ is in the numerator. This implies that a test statistic under the null equal to zero is very consistent with the null hypothesis, and you will therefore *not reject* the null hypothesis. However, the farther away the test statistic under the null gets from zero, the farther away it gets from the center of the *do not reject region* and the closer it gets to one of the *rejection regions*.  
 
 Lets illustrate this supposing that we want to test the hypothesis at the 95% confidence level $(\alpha=0.05)$. The central 95% of a standard normal distribution is given by
 
@@ -137,17 +137,17 @@ polygon(c(-4,X[i1],-1.96), c(0,Y[i1],0), col="green")
 polygon(c(1.96,X[i2],4), c(0,Y[i2],0), col="green")
 ```
 
-The yellow-shaded region is centered on zero and represents the *nonrejection region*. It tells you that if you calculate a test statistic under the null to be between -1.96 and 1.96, then you do not have enough evidence to reject the null. However, the green-shaded regions are the *rejection regions*. It tells you that if you calculate a test statistic under the null that is greater than 1.96 or less than -1.96, then you have enough evidence to reject the null (with 95% confidence). In other words, it is so unlikely to have the null be correct while simultaneously randomly selecting a sample with the observed sample characteristics, then we conclude that the statement in the null cannot be true. In the fast food example above, the test statistic under the null of 2.5 falls in the rejection region. This means that we can *reject* the null hypothesis of $\mu=4.5$ minutes with 95% confidence. In other words, we are 95% confident that the population mean is some number other than 4.5 minutes.
+The yellow-shaded region is centered on zero and represents the *nonrejection region*. It tells you that if you calculate a test statistic under the null to be between -1.96 and 1.96, then you do not have enough evidence to reject the null. However, the green-shaded regions are the *rejection regions*. It tells you that if you calculate a test statistic under the null that is greater than 1.96 or less than -1.96, then you have enough evidence to reject the null (with 95% confidence). In other words, it is so unlikely to have the null be correct while simultaneously randomly selecting a sample with the observed sample characteristics, so we conclude that the statement in the null cannot be true. In the fast food example above, the test statistic under the null of 2.5 falls in the rejection region. This means that we can *reject* the null hypothesis of $\mu=4.5$ minutes with 95% confidence. In other words, we are 95% confident that the population mean is some number other than 4.5 minutes.
 
 **Changing the level of confidence $(\alpha)$**
 
 The hypothesis test above was concluded under a specified 95% confidence level $(\alpha=0.05)$. This level of confidence effectively delivered our rejection and nonrejection regions. So... what happens when we change $\alpha$?
 
-The first thing to understand is that the level of confidence does not impact the hypotheses or the test statistic under the null. The **only** thing the level of confidence impacts is the shaded regions in the sampling distribution. The figure below illustrates rejection and nonrejection regions for $\alpha$ values of 0.10, 0.05, and 0.01. Note that as $\alpha$ gets smaller, the size of the nonrejection region gets larger. This means that *do not reject* is becoming a more likely conclusion. This should make sense because *do not reject* is a wishy-washy conclusion, while *reject* is definitive. Do not reject states that the null may or may not be true - it's a punt! Therefore, if you are placing more confidence on your conclusion, the more likely you are to make the wishy washy conclusion.
+The first thing to understand is that the level of confidence does not impact the hypotheses or the test statistic under the null. The **only** thing the level of confidence impacts is the shaded regions in the sampling distribution. The figure below illustrates rejection and nonrejection regions for $\alpha$ values of 0.10, 0.05, and 0.01. Note that as $\alpha$ gets smaller, the size of the nonrejection region gets larger. This means that *do not reject* is becoming a more likely conclusion. This should make sense because *do not reject* is a wishy-washy conclusion, while *reject* is definitive. Do not reject states that the null may or may not be true - it's a punt! Therefore, if you are placing more confidence on your conclusion, the more likely you are to make the wishy-washy conclusion.
 
 The fast food example had a test statistic under the null of 2.5. This test statistic falls in the rejection region for both 90% and 95% levels of confidence. This suggests that if you can reject a null hypothesis with a certain level of confidence, then you can automatically reject at all lower levels of confidence. However, the do not reject region under 99% confidence is given by
 $$Pr(-2.58 \leq Z \leq 2.58)=0.99$$
-and our test statistic of 2.5 falls inside it. We therefore conclude that we *do NOT reject* the null with 99% confidence. In other words, we do not have enough evidence to say that the null hypothesis is incorrect at 99% confidence, so we conclude that it may or may not be true (i.e., we punt).
+and our test statistic of 2.5 falls inside it. We therefore conclude that we *do NOT reject* the null with 99% confidence. In other words, we do not have enough evidence to say that the null hypothesis is incorrect at 99% confidence, so we conclude that it *may or may not* be true (i.e., we punt).
 
 ```{r, echo=FALSE,fig.height=9}
 par(mfrow = c(3,1))
@@ -211,9 +211,9 @@ When making a conclusion about a hypothesis test, one can either reject a null h
 
 1. A **Type I error** occurs when a researcher incorrectly rejects a true hypothesis. (*You rejected something that shouldn't have been rejected.*)
 
-2. A **Type II error** occurs when a researcher incorrectly fails to reject a false hypothesis. (*You did not reject something that you should have.*)
+2. A **Type II error** occurs when a researcher incorrectly fails to reject a false hypothesis. (*You did not reject something that should have been rejected.*)
 
-The **acceptable** probability of committing either one of these errors depends upon an arbitrary confidence level $\alpha$. To be precise, when you reject a hypothesis with 95% confidence, then you are implicitly stating that you are accepting a 5% chance of being wrong. That is where $\alpha=0.05$ (or 5% comes from). If you decrease $\alpha$ to 0.01 (or 1%), then you can reject a hypothesis with 99% confidence and implicitly accept a 1% chance of being wrong. The kicker is that the more you decrease the probability of committing a type I error, the more you increase the chance of not rejecting a hypothesis that you should be rejecting (a type II error). For example, if you want a conclusion with 100% confidence, then you will *never* reject a hypothesis no matter how wrong it actually is.
+The **acceptable** probability of committing either one of these errors depends upon an arbitrary confidence level $\alpha$. To be precise, when you reject a hypothesis with 95% confidence, then you are implicitly stating that you are accepting a 5% chance of being wrong. That is where $\alpha=0.05$ (or 5% comes from). If you decrease $\alpha$ to 0.01 (or 1%), then you can reject a hypothesis with 99% confidence and implicitly accept a 1% chance of being wrong. The kicker is that the more you decrease the probability of committing a type I error, the more you increase the chance of not rejecting a hypothesis that you should be rejecting (a type II error). For example, if you want a conclusion with 100% confidence, then you will *never* reject a hypothesis no matter how wrong it actually is.^[This point touches on the idea of confidence in statistics. If you want me to make a statement with 100% confidence, then I'll simply say *anything can happen* because it is a statement that has zero chance of being wrong.]
 
 The main take away from the previous statement is that $\alpha$ states the *acceptable* probability of committing a type one error. Recall in our fast food example that we rejected the null hypothesis with 95% confidence (i.e., a 5% acceptable probability of being wrong ), but we did not reject the null hypothesis with 99% confidence (i.e., a 1% acceptable probability of being wrong ). This means that the *actual* probability of committing a type one error is somewhere in between 0.05 and 0.01 (i.e., 5% and 1%). This actual probability of committing a type I error is called the **p-value**.
 
@@ -228,11 +228,11 @@ n = 25
 
 # 95% confidence:
 alpha = 0.05
-(Zcrit = -qnorm(alpha/2))
+(Zcrit = qnorm(alpha/2,lower.tail = FALSE))
 
 # 99% confidence:
 alpha = 0.01
-(Zcrit = -qnorm(alpha/2))
+(Zcrit = qnorm(alpha/2,lower.tail = FALSE))
 
 # p-value:
 (Pval = pnorm(Zstat,lower.tail = FALSE)*2)
@@ -243,7 +243,7 @@ alpha = 0.01
 
 The calculations regarding the fast food example were repeated and continued to include a p-value. Recall that the null hypothesis stated that the population mean was equal to 4.5, and the test statistic under the null is equal to 2.5. The critical values marking the boundaries between the do not reject region and the reject regions was $\pm 1.96$ for $\alpha=0.05$ and $\pm 2.58$ for $\alpha=0.01$. Our test statistic falls inside the rejection region for $\alpha=0.05$ and inside the nonrejection region for $\alpha=0.01$. Our test statistic falls *right on the boundary* of a rejection and nonrejection region when $p=0.0124$. This is the p-value of the problem. It states that you can reject the null hypothesis with *at most* 98.76% confidence and you will incur a 1.24% chance of being wrong. As expected, it is between 5% and 1% and gives you a tailor-made confidence interval for the hypothesis test at hand.
 
-#### The definitions of a P-value
+#### The definitions of a P-value {-}
 
 > The p-value is the probability of getting a test statistic equal to or more extreme than the sample result, given that the null hypothesis $(H_0)$ is true. 
 
@@ -251,7 +251,7 @@ While this is the technical definition of a p-value, it is a bit vague. There ar
 
 1. The p-value is the probability of committing a Type I error. If the p-value is greater than some arbitrarily given $\alpha$, then you cannot reject the null.
 
-2. The p-value is the probability that your null hypothesis is *correct*. The HIGHEST level of confidence at which you can reject the null is $1-p$.
+2. The p-value is the probability that your null hypothesis is *correct*. The HIGHEST level of confidence at which you can reject the null is therefore $1-p$.
 
 ---
 
@@ -283,7 +283,7 @@ $$ Z = \frac{\bar{X}-4.5}{\left(\sigma / \sqrt{n} \right)}$$
 
 For any of the hypothetical values considered above (4, 2, or 1), the test statistic would be a negative number. Since we said that all of these sample averages are consistent with the null being true, then we would never reject the null in any of these instances. Therefore, the rejection region cannot be in the left tail because that is where the negative values of the distribution reside. The rejection region must therefore be in the right tail. Only when a sample average is sufficiently greater than 4.5 is when we can consider rejecting the null.
 
-Now that we already have the null and alternative hypotheses down as well as the test statistic under the null, the next step is to determine the critical value that divides the distribution into rejection and nonregection regions.
+Now that we already have the null and alternative hypotheses down as well as the test statistic under the null, the next step is to determine the critical value that divides the distribution into rejection and nonrejection regions.
 
 ```{r}
 # Fast Food Example Revisited
@@ -295,7 +295,7 @@ n = 25
 (Zstat = (Xbar - mu)/(Sig/sqrt(n)))
 # 95% confidence:
 alpha = 0.05
-(Zcrit = -qnorm(alpha))
+(Zcrit = qnorm(alpha,lower.tail=FALSE))
 # P-value:
 (Pval = pnorm(Zstat,lower.tail=FALSE))
 # highest Confidence Level for rejection:
@@ -327,9 +327,9 @@ When the population standard deviation $(\sigma)$ is unknown, it must be estimat
 
 Let's go through some applications when $\sigma$ is unknown. You will see that the only difference is that we use a t distribution with $n-1$ degrees of freedom to calculate rejection / nonrejection regions and p-values.
 
-#### Application 2
+#### Application 2 {-}
 
-The Saxon Home Improvement Co. has had a mean per sales invoice of \$120 over the last 5 years and would like to know if the mean amount per sales invoice has significantly changed. This is enough information to state our hypotheses for a two-sided test.^[Note the language - significantly changed means that the value could have either gone up or down. This is why it is a two-sided test.]
+The Saxon Home Improvement Co. has had a mean per sales invoice of \$120 over the last 5 years and would like to know if the mean amount per sales invoice has significantly changed. This is enough information to state our hypotheses for a two-sided test.^[Note the language - *significantly changed* means that the value could have either gone up or down. This is why it is a two-sided test.]
 
 $$H_0:\mu=120 \quad versus \quad H_0:\mu \neq 120$$
 
@@ -354,7 +354,7 @@ Now that we have our test statistic, we need to determine if it falls into our n
 
 ```{r}
 alpha = 0.05
-(tcrit = -qt(alpha/2,n-1))
+(tcrit = qt(alpha/2,n-1,lower.tail=FALSE))
 ```
 
 The calculations suggest that the nonrejection region is between $\pm 2.2$. Since our test statistic falls within this region, we do not reject the null. This implies that we do not have evidence that the population average sales invoice has significantly changed from \$120 with 95% confidence. The conclusion is therefore *do not reject*.
@@ -377,7 +377,7 @@ Note that the calculations uses a new R command: ```pt(q,df)```. This command ca
 
 ### The Problem
 
-Suppose you were performing a right-tailed hypothesis test (using a t distribution) and you arrived at a test statistics under the null of $1.57$. This means that the rejection region is in the right tail, and if you wished to calculate the p-value, then it would be the area of the curve to the right of $1.57$. 
+Suppose you were performing a right-tailed hypothesis test (using a t distribution) and you arrived at a test statistic under the null of $1.57$. This means that the rejection region is in the right tail, and if you wished to calculate the p-value, then it would be the area of the curve to the right of $1.57$. 
 
 If you have a sample of $n = 50$, then you would use a t-distribution with $49$ or $(n-1)$ degrees of freedom.
 

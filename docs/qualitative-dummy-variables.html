@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.3 Qualitative (Dummy) Variables | MBA 8350: Analyzing and Leveraging Data   The Course Companion</title>
+  <meta name="description" content="This is a course companion for MBA 8350." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.3 Qualitative (Dummy) Variables | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course companion for MBA 8350." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.3 Qualitative (Dummy) Variables | MBA 8350: Analyzing and Leveraging Data   The Course Companion" />
+  
+  <meta name="twitter:description" content="This is a course companion for MBA 8350." />
+  
+
+<meta name="author" content="Scott Dressler" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="adjusted-r2.html"/>
+<link rel="next" href="joint-hypothesis-tests.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBA 8350 Course Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-book.html"><a href="about-this-book.html"><i class="fa fa-check"></i>About this book…</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-big-picture-of-statistics.html"><a href="the-big-picture-of-statistics.html"><i class="fa fa-check"></i><b>1.1</b> The “Big Picture” of Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="the-vocabulary-of-statistics.html"><a href="the-vocabulary-of-statistics.html"><i class="fa fa-check"></i><b>1.2</b> The Vocabulary of Statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html"><i class="fa fa-check"></i><b>1.3</b> Descriptive Measures</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="descriptive-measures.html"><a href="descriptive-measures.html#central-tendency"><i class="fa fa-check"></i><b>1.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="1.3.2" data-path="descriptive-measures.html"><a href="descriptive-measures.html#variation"><i class="fa fa-check"></i><b>1.3.2</b> Variation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="descriptive-measures.html"><a href="descriptive-measures.html#measures-of-shape"><i class="fa fa-check"></i><b>1.3.3</b> Measures of shape</a></li>
+<li class="chapter" data-level="1.3.4" data-path="descriptive-measures.html"><a href="descriptive-measures.html#covariance-and-correlation"><i class="fa fa-check"></i><b>1.3.4</b> Covariance and Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="sampling-methods.html"><a href="sampling-methods.html#simple-random-sampling"><i class="fa fa-check"></i><b>2.3.1</b> Simple random sampling</a></li>
+<li class="chapter" data-level="2.3.2" data-path="sampling-methods.html"><a href="sampling-methods.html#systematic-sampling"><i class="fa fa-check"></i><b>2.3.2</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="2.3.3" data-path="sampling-methods.html"><a href="sampling-methods.html#stratified-sampling"><i class="fa fa-check"></i><b>2.3.3</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="2.3.4" data-path="sampling-methods.html"><a href="sampling-methods.html#cluster-sampling"><i class="fa fa-check"></i><b>2.3.4</b> Cluster Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sampling-in-practice.html"><a href="sampling-in-practice.html"><i class="fa fa-check"></i><b>2.4</b> Sampling in Practice</a></li>
+<li class="chapter" data-level="2.5" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html"><i class="fa fa-check"></i><b>2.5</b> Sampling and Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="sampling-and-sampling-distributions.html"><a href="sampling-and-sampling-distributions.html#an-application"><i class="fa fa-check"></i><b>2.5.1</b> An Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-r-project-for-statistical-computing.html"><a href="the-r-project-for-statistical-computing.html"><i class="fa fa-check"></i><b>3.1</b> The R Project for Statistical Computing</a></li>
+<li class="chapter" data-level="3.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html"><i class="fa fa-check"></i><b>3.2</b> Downloading and installing R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#choosing-a-mirror"><i class="fa fa-check"></i><b>3.2.1</b> Choosing a <em>Mirror</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#download-and-install-the-correct-version"><i class="fa fa-check"></i><b>3.2.2</b> Download and install the correct version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>3.2.3</b> Downloading and installing RStudio</a></li>
+<li class="chapter" data-level="3.2.4" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#taking-stock"><i class="fa fa-check"></i><b>3.2.4</b> Taking Stock</a></li>
+<li class="chapter" data-level="3.2.5" data-path="downloading-and-installing-r.html"><a href="downloading-and-installing-r.html#installing-packages"><i class="fa fa-check"></i><b>3.2.5</b> Installing <em>Packages</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="coding-basics.html"><a href="coding-basics.html"><i class="fa fa-check"></i><b>3.3</b> Coding Basics</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="coding-basics.html"><a href="coding-basics.html#assigning-objects"><i class="fa fa-check"></i><b>3.3.1</b> Assigning Objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="coding-basics.html"><a href="coding-basics.html#listing-adding-and-removing"><i class="fa fa-check"></i><b>3.3.2</b> Listing, Adding, and Removing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="coding-basics.html"><a href="coding-basics.html#loading-data"><i class="fa fa-check"></i><b>3.3.3</b> Loading Data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="coding-basics.html"><a href="coding-basics.html#manipulating-data"><i class="fa fa-check"></i><b>3.3.4</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.3.5" data-path="coding-basics.html"><a href="coding-basics.html#subsetting-data"><i class="fa fa-check"></i><b>3.3.5</b> Subsetting Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3.4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.4.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-visualization.html"><a href="data-visualization.html#line-bar-and-scatter-plots"><i class="fa fa-check"></i><b>3.4.2</b> Line, bar, and Scatter Plots</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>3.4.3</b> Boxplots</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-visualization.html"><a href="data-visualization.html#much-more-out-there"><i class="fa fa-check"></i><b>3.4.4</b> Much more out there</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CLT.html"><a href="CLT.html"><i class="fa fa-check"></i><b>4</b> The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="the-clt-formally.html"><a href="the-clt-formally.html"><i class="fa fa-check"></i><b>4.1</b> The CLT (Formally)</a></li>
+<li class="chapter" data-level="4.2" data-path="application-1-a-sampling-distribution-with-a-known-population.html"><a href="application-1-a-sampling-distribution-with-a-known-population.html"><i class="fa fa-check"></i><b>4.2</b> Application 1: A Sampling Distribution with a Known Population</a></li>
+<li class="chapter" data-level="4.3" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html"><i class="fa fa-check"></i><b>4.3</b> Application 2: A Sampling Distribution with an Unknown Population</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="application-2-a-sampling-distribution-with-an-unknown-population.html"><a href="application-2-a-sampling-distribution-with-an-unknown-population.html#the-sample"><i class="fa fa-check"></i><b>4.3.1</b> The Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="the-punchline-1.html"><a href="the-punchline-1.html"><i class="fa fa-check"></i><b>4.4</b> The Punchline</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html"><i class="fa fa-check"></i><b>5.1</b> A Refresher on Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-1"><i class="fa fa-check"></i><b>5.1.1</b> Application 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="a-refresher-on-probability.html"><a href="a-refresher-on-probability.html#application-2"><i class="fa fa-check"></i><b>5.1.2</b> Application 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html"><i class="fa fa-check"></i><b>5.2</b> Deriving a Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#application-3"><i class="fa fa-check"></i><b>5.2.1</b> Application 3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="deriving-a-confidence-interval.html"><a href="deriving-a-confidence-interval.html#what-if-we-want-to-change-confidence"><i class="fa fa-check"></i><b>5.2.2</b> What if we want to change confidence?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html"><i class="fa fa-check"></i><b>5.3</b> What to do when we do not know <span class="math inline">\(\sigma\)</span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#t-distribution-versus-z-distribution"><i class="fa fa-check"></i><b>5.3.1</b> t distribution versus Z distribution…</a></li>
+<li class="chapter" data-level="5.3.2" data-path="what-to-do-when-we-do-not-know-sigma.html"><a href="what-to-do-when-we-do-not-know-sigma.html#application-4"><i class="fa fa-check"></i><b>5.3.2</b> Application 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="determining-sample-size.html"><a href="determining-sample-size.html"><i class="fa fa-check"></i><b>5.4</b> Determining Sample Size</a></li>
+<li class="chapter" data-level="5.5" data-path="concluding-applications.html"><a href="concluding-applications.html"><i class="fa fa-check"></i><b>5.5</b> Concluding Applications</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concluding-applications.html"><a href="concluding-applications.html#light-bulbs-last-time"><i class="fa fa-check"></i><b>5.5.1</b> Light Bulbs (Last Time)</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concluding-applications.html"><a href="concluding-applications.html#returning-to-the-philadelphia-school-policy-application"><i class="fa fa-check"></i><b>5.5.2</b> Returning to the Philadelphia School Policy Application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HT.html"><a href="HT.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="anatomy-of-a-hypothesis-test.html"><a href="anatomy-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.1</b> Anatomy of a Hypothesis Test</a></li>
+<li class="chapter" data-level="6.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><i class="fa fa-check"></i><b>6.2</b> Two methods for conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is known)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#rejection-region-method"><i class="fa fa-check"></i><b>6.2.1</b> Rejection Region Method</a></li>
+<li class="chapter" data-level="6.2.2" data-path="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html"><a href="two-methods-for-conducting-a-hypothesis-test-when-sigma-is-known.html#p-value-approach"><i class="fa fa-check"></i><b>6.2.2</b> P-value Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="two-sided-vs-one-sided-test.html"><a href="two-sided-vs-one-sided-test.html"><i class="fa fa-check"></i><b>6.3</b> Two-sided vs One-sided Test</a></li>
+<li class="chapter" data-level="6.4" data-path="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><a href="conducting-a-hypothesis-test-when-sigma-is-unknown.html"><i class="fa fa-check"></i><b>6.4</b> Conducting a hypothesis test (when <span class="math inline">\(\sigma\)</span> is unknown)</a></li>
+<li class="chapter" data-level="6.5" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html"><i class="fa fa-check"></i><b>6.5</b> Appendix: A note on calculating P-values</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#the-problem"><i class="fa fa-check"></i><b>6.5.1</b> The Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="appendix-a-note-on-calculating-p-values.html"><a href="appendix-a-note-on-calculating-p-values.html#how-to-calculate-p-values"><i class="fa fa-check"></i><b>6.5.2</b> How to calculate p-values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html"><i class="fa fa-check"></i><b>7.1</b> A Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#what-does-a-regression-model-imply"><i class="fa fa-check"></i><b>7.1.1</b> What does a regression model imply?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="a-simple-linear-regression-model.html"><a href="a-simple-linear-regression-model.html#the-real-simple-linear-regression-model"><i class="fa fa-check"></i><b>7.1.2</b> The <em>REAL</em> Simple Linear Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="application-predicting-house-price-based-on-house-size.html"><a href="application-predicting-house-price-based-on-house-size.html"><i class="fa fa-check"></i><b>7.2</b> Application: Predicting House Price Based on House Size</a></li>
+<li class="chapter" data-level="7.3" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>7.3</b> Ordinary Least Squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ordinary-least-squares-ols.html"><a href="ordinary-least-squares-ols.html#b.l.u.e."><i class="fa fa-check"></i><b>7.3.1</b> B.L.U.E.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html"><i class="fa fa-check"></i><b>7.4</b> Decomposition of Variance</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#the-r2"><i class="fa fa-check"></i><b>7.4.1</b> The <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#what-is-a-good-r2"><i class="fa fa-check"></i><b>7.4.2</b> What is a <em>good</em> <span class="math inline">\(R^2\)</span>?</a></li>
+<li class="chapter" data-level="7.4.3" data-path="decomposition-of-variance.html"><a href="decomposition-of-variance.html#standard-error-of-the-estimate"><i class="fa fa-check"></i><b>7.4.3</b> Standard Error of the Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html"><i class="fa fa-check"></i><b>7.5</b> Assumptions of the Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#linearity"><i class="fa fa-check"></i><b>7.5.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.5.2" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#independence-of-errors"><i class="fa fa-check"></i><b>7.5.2</b> Independence of Errors</a></li>
+<li class="chapter" data-level="7.5.3" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#equal-variance"><i class="fa fa-check"></i><b>7.5.3</b> Equal Variance</a></li>
+<li class="chapter" data-level="7.5.4" data-path="assumptions-of-the-linear-regression-model.html"><a href="assumptions-of-the-linear-regression-model.html#normality-of-errors"><i class="fa fa-check"></i><b>7.5.4</b> Normality of Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7.6</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-population-parameters"><i class="fa fa-check"></i><b>7.6.1</b> Confidence Intervals (around population parameters)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#hypothesis-tests"><i class="fa fa-check"></i><b>7.6.2</b> Hypothesis Tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-around-forecasts"><i class="fa fa-check"></i><b>7.6.3</b> Confidence Intervals (around forecasts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="up-next.html"><a href="up-next.html"><i class="fa fa-check"></i><b>7.7</b> Up Next…</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="MLR.html"><a href="MLR.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html"><i class="fa fa-check"></i><b>8.1</b> Application: Explaining house price in a multiple regression</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="application-explaining-house-price-in-a-multiple-regression.html"><a href="application-explaining-house-price-in-a-multiple-regression.html#the-importance-of-controls"><i class="fa fa-check"></i><b>8.1.1</b> The Importance of “Controls”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html"><i class="fa fa-check"></i><b>8.2</b> Adjusted <span class="math inline">\(R^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="adjusted-r2.html"><a href="adjusted-r2.html#abusing-an-r2"><i class="fa fa-check"></i><b>8.2.1</b> Abusing an <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="adjusted-r2.html"><a href="adjusted-r2.html#an-adjusted-r2"><i class="fa fa-check"></i><b>8.2.2</b> An <em>Adjusted</em> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html"><i class="fa fa-check"></i><b>8.3</b> Qualitative (Dummy) Variables</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#intercept-dummy-variable"><i class="fa fa-check"></i><b>8.3.1</b> Intercept dummy variable</a></li>
+<li class="chapter" data-level="8.3.2" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#slope-dummy-variable"><i class="fa fa-check"></i><b>8.3.2</b> Slope dummy variable</a></li>
+<li class="chapter" data-level="8.3.3" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#what-if-there-are-more-than-two-categories"><i class="fa fa-check"></i><b>8.3.3</b> What if there are more than two categories?</a></li>
+<li class="chapter" data-level="8.3.4" data-path="qualitative-dummy-variables.html"><a href="qualitative-dummy-variables.html#a-final-application"><i class="fa fa-check"></i><b>8.3.4</b> A Final Application</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html"><i class="fa fa-check"></i><b>8.4</b> Joint Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-hypothesis-tests"><i class="fa fa-check"></i><b>8.4.1</b> Simple Hypothesis Tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#simple-versus-joint-tests"><i class="fa fa-check"></i><b>8.4.2</b> Simple versus Joint Tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="joint-hypothesis-tests.html"><a href="joint-hypothesis-tests.html#applications"><i class="fa fa-check"></i><b>8.4.3</b> Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Advanced.html"><a href="Advanced.html"><i class="fa fa-check"></i><b>9</b> Advanced Regression Topics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html"><i class="fa fa-check"></i><b>9.1</b> Nonlinear Models</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="nonlinear-models.html"><a href="nonlinear-models.html#derivatives"><i class="fa fa-check"></i><b>9.1.1</b> Derivatives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="nonlinear-models.html"><a href="nonlinear-models.html#why-consider-non-linear-relationships"><i class="fa fa-check"></i><b>9.1.2</b> Why consider non-linear relationships?</a></li>
+<li class="chapter" data-level="9.1.3" data-path="nonlinear-models.html"><a href="nonlinear-models.html#functional-forms"><i class="fa fa-check"></i><b>9.1.3</b> Functional Forms</a></li>
+<li class="chapter" data-level="9.1.4" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-log-transformation"><i class="fa fa-check"></i><b>9.1.4</b> The Log transformation</a></li>
+<li class="chapter" data-level="9.1.5" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-quadratic-transformation"><i class="fa fa-check"></i><b>9.1.5</b> The Quadratic transformation</a></li>
+<li class="chapter" data-level="9.1.6" data-path="nonlinear-models.html"><a href="nonlinear-models.html#the-reciprocal-transformation"><i class="fa fa-check"></i><b>9.1.6</b> The Reciprocal transformation</a></li>
+<li class="chapter" data-level="9.1.7" data-path="nonlinear-models.html"><a href="nonlinear-models.html#conclusion"><i class="fa fa-check"></i><b>9.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="collinearity.html"><a href="collinearity.html"><i class="fa fa-check"></i><b>9.2</b> Collinearity</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="collinearity.html"><a href="collinearity.html#an-application-1"><i class="fa fa-check"></i><b>9.2.1</b> An Application</a></li>
+<li class="chapter" data-level="9.2.2" data-path="collinearity.html"><a href="collinearity.html#what-does-collinearity-do-to-our-regression"><i class="fa fa-check"></i><b>9.2.2</b> What does Collinearity do to our regression?</a></li>
+<li class="chapter" data-level="9.2.3" data-path="collinearity.html"><a href="collinearity.html#how-to-test-for-collinearity"><i class="fa fa-check"></i><b>9.2.3</b> How to test for Collinearity?</a></li>
+<li class="chapter" data-level="9.2.4" data-path="collinearity.html"><a href="collinearity.html#an-application-2"><i class="fa fa-check"></i><b>9.2.4</b> An Application:</a></li>
+<li class="chapter" data-level="9.2.5" data-path="collinearity.html"><a href="collinearity.html#how-do-we-remove-collinearity"><i class="fa fa-check"></i><b>9.2.5</b> How do we remove Collinearity?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html"><i class="fa fa-check"></i><b>9.3</b> Heteroskedasticity</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#pure-versus-impure-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.1</b> Pure versus Impure Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.2" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#consequences-of-heteroskedasticity"><i class="fa fa-check"></i><b>9.3.2</b> Consequences of Heteroskedasticity</a></li>
+<li class="chapter" data-level="9.3.3" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#detection"><i class="fa fa-check"></i><b>9.3.3</b> Detection</a></li>
+<li class="chapter" data-level="9.3.4" data-path="heteroskedasticity.html"><a href="heteroskedasticity.html#remedies"><i class="fa fa-check"></i><b>9.3.4</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MBA 8350: Analyzing and Leveraging Data <br> The Course Companion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="qualitative-dummy-variables" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Qualitative (Dummy) Variables</h2>
+<p>Quantitative variables are easy to model and interpret because they take on numerical values and are readily dealt with by computers. Qualitative variables, however, are variables that do not naturally deliver numerical values. Examples of qualitative variables are:</p>
+<ul>
+<li><p>Gender (male, female)</p></li>
+<li><p>Marital status (yes, no)</p></li>
+<li><p>Ethnicity (white, Hispanic, Asian, etc.)</p></li>
+</ul>
+<p>Qualitative variables are made operational for regression analysis by creating <strong>dummy variables</strong>. A dummy variable can only take on two values (i.e., 0 or 1) and should be thought of as a <em>switch</em>.</p>
+<ul>
+<li><p>1 implies the switch is <em>on</em>, meaning that the designated trait is present for an individual observation.</p></li>
+<li><p>0 implies the switch is <em>off</em>, meaning that the trait is absent for an individual observation.</p></li>
+</ul>
+<p>We can consider two different types of dummy variables depending on if we model the presence or absence of a trait to impact the intercept of the model or the relationship (or slope) between the dependent variable and other independent variables. We will cover these in turn.</p>
+<div id="intercept-dummy-variable" class="section level3" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Intercept dummy variable</h3>
+<p>An intercept dummy variable is a qualitative variable that <em>stands alone</em> in a regression just like other quantitative variables we have encountered. Let us illustrate this by adding an intercept dummy variable to a wage analysis.</p>
+<p>Suppose you are a consultant hired by a firm to help determine the underlying features of the current wage structure for their employees. You want to understand why some individuals have wage rates that are different from others. Let our dependent variable be <em>wage</em> (the hourly wage of an individual employee) and the independent variables be given by…</p>
+<ul>
+<li><p><em>educ</em> is the total years of education of an individual employee</p></li>
+<li><p><em>exper</em> is the total years of experience an individual employee had prior to starting with the company</p></li>
+<li><p><em>tenure</em> is the number of years an employee has been working with the firm.</p></li>
+</ul>
+<p>These independent variables are all <em>quantitative</em> because they directly translate to numbers. We can also add a qualitative variable to this list of independent variables to see if gender can help explain why some people earn a higher wage than others. In particular, consider the qualitative variable <em>female</em> which equals 1 if the individual is female and 0 if the individual is not (i.e., male).</p>
+<p>The Specified model (the PRF) now becomes</p>
+<p><span class="math display">\[wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i+\varepsilon_i\]</span></p>
+<p>Note that the slope of the three quantitative variables are completely standard. The slope with respect to the dummy variable is similar, but needs to be interpreted in a specific manner. In particular, since we normally interpret slopes with respect to a <em>unit increase</em> in the independent variable, and the fact that a dummy variable can only go up one unit (i.e., from 0 to 1), we therefore interpret a dummy variable accordingly.</p>
+<p><span class="math display">\[\beta_4 = \frac{\Delta wage}{\Delta female}\]</span></p>
+<blockquote>
+<p>Holding education, tenure, and experience constant, a female earns a <span class="math inline">\(\beta_4\)</span> difference in wage relative to a male, on average</p>
+</blockquote>
+<p>Note that the dummy variable is constructed such that males receive a 0 while females receive a 1. This implies that <span class="math inline">\(\beta_4\)</span> will denote the average change in a female’s wage <em>relative</em> to a male’s wage. If <span class="math inline">\(\beta_4 &lt; 0\)</span>, then this would imply that a female’s average wage is less than a male’s.</p>
+<p>The four independent variables are illustrated in the scatter plots below. Notice that even though the dummy variable takes on only two numbers by design, we can still see how it effectively <em>splits</em> the observations into the two groups.</p>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-139-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p>There is no difference between estimating quantitative and qualitative variables as far as R in concerned.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="qualitative-dummy-variables.html#cb247-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure,<span class="at">data=</span>wage1)</span>
+<span id="cb247-2"><a href="qualitative-dummy-variables.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
+<pre><code>## (Intercept)        educ       exper      tenure 
+## -2.87273482  0.59896507  0.02233952  0.16926865</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="qualitative-dummy-variables.html#cb249-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure<span class="sc">+</span>female,<span class="at">data=</span>wage1)</span>
+<span id="cb249-2"><a href="qualitative-dummy-variables.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
+<pre><code>## (Intercept)        educ       exper      tenure      female 
+## -1.56793870  0.57150477  0.02539587  0.14100506 -1.81085218</code></pre>
+<p>Interpretations of the other independent variables are unchanged. However, <span class="math inline">\(\hat{\beta}_4 = -1.81\)</span> suggests the following:</p>
+<blockquote>
+<p>Holding education, tenure, and experience constant, a female earns $1.81 less in wages relative to a male, on average</p>
+</blockquote>
+<p>This states that we can compare two individuals with the same education, experience, and tenure levels but differ in gender and conclude that the male earns more.</p>
+<p>Let us examine this further to show exactly why this type of qualitative variable is called an <em>intercept dummy variable</em>. Since the dummy variable can only take on the values 1 or 0, we can write down the PRF for both cases. In particular, the PRF for a male has <span class="math inline">\(female_i = 0\)</span> while the PRF for a female has <span class="math inline">\(female_i = 1\)</span>.</p>
+<p><span class="math display">\[Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span>
+<span class="math display">\[Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span></p>
+<p>Notice that <span class="math inline">\(\beta_4\)</span> does not appear in the PRF for males because the female variable equals 0, while it appears <em>alone</em> in the PRF for females because the female variable equals 1. After rearranging a bit, you can see that the intercept term of the PRF for males is <span class="math inline">\(\beta_0\)</span> while the intercept term of the PRF for females is <span class="math inline">\((\beta_0+\beta_4)\)</span>. This illustrates that if you hold the other three independent variables constant, the difference between the wage rates of a male and female is <span class="math inline">\(\beta_4\)</span> on average. In other words, if you plug in the same numbers for education, experience, and tenure in the two PRFs above, then the difference in wages between men and women who share these traits will be <span class="math inline">\(\beta_4\)</span>.</p>
+</div>
+<div id="slope-dummy-variable" class="section level3" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Slope dummy variable</h3>
+<p>While an intercept dummy variable is a very powerful modeling tool, it makes one glaring assumption. Consider the regression results above, namely the estimated slope coefficient with respect to tenure</p>
+<p><span class="math display">\[\hat{\beta}_3 = 0.14\]</span></p>
+<p>The interpretation of this slope coefficient is as follows:</p>
+<blockquote>
+<p>Holding education, experience, and gender constant, an individual will receive $0.14 more in wages for every additional year of tenure, on average.</p>
+</blockquote>
+<p>In particular, this states that a female receives the same annual raise than a male. This is an <em>assumption</em> of the model, because the model is incapable of differentiating the annual wage with respect to gender. We can extend the model to explicitly test this assumption with the use of a <em>slope dummy variable</em>.</p>
+<p>A slope dummy variable is an example of an <em>interaction term</em>. In other words, it is a new variable that arises from taking the product of two variables. In this case, in order for us to examine the gender difference of tenure, we consider the product between female and tenure.</p>
+<p><span class="math display">\[\begin{aligned}
+wage_i = \;&amp;\beta_0+\beta_1educ_i+\beta_2exper_i+ \beta_3tenure_i+\beta_4female_i+... \\ &amp;\beta_5(tenure_i*female_i)+\varepsilon_i 
+\end{aligned}\]</span></p>
+<p>Like our illustration of an intercept dummy, we can see what this PRF looks like for males and females.</p>
+<p><span class="math display">\[Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span>
+<span class="math display">\[Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+(\beta_3+\beta_5)tenure_i+\varepsilon_i\]</span></p>
+<p>For males, the PRF looks <em>exactly</em> as it does when we only considered an intercept dummy because both <span class="math inline">\(\beta_4\)</span> and <span class="math inline">\(\beta_5\)</span> drop out when <span class="math inline">\(female_i = 0\)</span>. For females, we can see the potential change in the intercept (as before), but we can now see a potential change in the slope with respect to tenure.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="qualitative-dummy-variables.html#cb251-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure<span class="sc">+</span></span>
+<span id="cb251-2"><a href="qualitative-dummy-variables.html#cb251-2" aria-hidden="true" tabindex="-1"></a>            female<span class="sc">+</span>female<span class="sc">*</span>tenure,<span class="at">data=</span>wage1)</span>
+<span id="cb251-3"><a href="qualitative-dummy-variables.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
+<pre><code>##   (Intercept)          educ         exper        tenure        female tenure:female 
+##   -2.00229568    0.58279061    0.02834532    0.17780235   -1.17787884   -0.14359567</code></pre>
+<p>Our extended model now gives a better picture of the gender impact on wages.
+<span class="math display">\[\hat{\beta}_4 = -1.18\]</span></p>
+<blockquote>
+<p>Holding all else constant, a female earns $1.18 less than a male on average.</p>
+</blockquote>
+<p>When considering the impact of tenure on wages, we could show the difference explicitly:</p>
+<p><span class="math display">\[Males: \frac{\Delta wage}{\Delta tenure} = \hat{\beta}_3=0.18\]</span>
+<span class="math display">\[Females: \frac{\Delta wage}{\Delta tenure} = \hat{\beta}_3+\hat{\beta}_5=0.18-0.14=0.04\]</span></p>
+<p>The regression states that males receive an $0.18 increase in wages on average for every additional year in tenure (holding all else constant), while females receive only a $0.04 increase in wages on average.</p>
+<p>Note that we could also consider slope dummy variables with respect to education as well as experience. You should do those on your own.</p>
+</div>
+<div id="what-if-there-are-more-than-two-categories" class="section level3" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> What if there are more than two categories?</h3>
+<p>Since a dummy variable can take on either a zero or a one, it is perfectly designed to identify two categories. This might be fine for some variables like yes / no or win / lose, but what if a variable has more than two categories? Examples would be direct extensions of the above variables: yes / no / maybe or win / lose / draw.</p>
+<p>The rule of thumb (to be explained in detail soon) is:</p>
+<p><strong>A variable containing <span class="math inline">\(N\)</span> categories requires <span class="math inline">\(N-1\)</span> dummy variables.</strong></p>
+<p>This rule actually applies to our standard case, because we can model <span class="math inline">\(N=2\)</span> categories with <span class="math inline">\(N-1=1\)</span> dummy variables. In our example above, we wanted to identify 2 categories of gender (male or female) so we needed 1 dummy variable. However, we need to take a little more care and follow additional steps when dealing with more than one category. Suppose we extended our gender characteristics to identify a third gender category (<em>other</em>) in order to account for individuals who do not subscribe to one of the two traditional categories. We will use this scenario to illustrate how our model gets extended.</p>
+<ol style="list-style-type: decimal">
+<li>Identify a <em>benchmark</em> category</li>
+</ol>
+<p>A benchmark category is one of the characteristics that the researcher identifies as the category that all other categories get compared against. In our gender example, suppose we choose <em>male</em> as our benchmark characteristic. You will find that this choice is arbitrary, but it may have implications.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Construct appropriate dummy variables</li>
+</ol>
+<p>Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as <em>female</em> and one that identifies individuals as <em>other</em>.</p>
+<p><span class="math display">\[female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or other }\]</span></p>
+<p><span class="math display">\[other_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }\]</span></p>
+<p>Note that each dummy variable is still a switch that signals the presence or absence of a characteristic. However, when <strong>BOTH</strong> dummy variables are zero at the same time… you have your benchmark category. That is how you can identify three categories with only two dummy variables.</p>
+<p>To illustrate, consider the original model restricting attention to intercept dummies.</p>
+<p><span class="math display">\[wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i +\beta_5other_i +\varepsilon_i\]</span></p>
+<p>We can write down what the model looks like for each of our three categories:</p>
+<p><span class="math display">\[Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span></p>
+<p><span class="math display">\[Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span></p>
+<p><span class="math display">\[Other: wage_i=(\beta_0+\beta_5)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]</span></p>
+<p>When comparing these three equations, you can hopefully see how the benchmark category comes into play. The first equation is essentially the benchmark equation, indicating that <span class="math inline">\(\beta_0\)</span> is the intercept term for males. The second equation is for females, and shows how the intercept for females differs from males (given by <span class="math inline">\(\beta_4\)</span>). The third equation is for those identifying as other, and shows how the intercept for these individuals differs from males (given by <span class="math inline">\(\beta_5\)</span>). Note that all of the other slopes are <em>assumed</em> to be identical here (but we could consider slope dummies like above).</p>
+<p>One detail about the application above worthy of mention is that the coefficients <span class="math inline">\(\beta_4\)</span> and <span class="math inline">\(\beta_5\)</span> show how each category compares to the benchmark category. We can test if these coefficients are significantly different from zero with standard hypothesis tests. For example:</p>
+<p><span class="math display">\[H_0: \; \beta_4 = 0 \quad H_1: \; \beta_4 \neq 0\]</span></p>
+<p>However, if we show that <span class="math inline">\(\beta_4\)</span> and <span class="math inline">\(\beta_5\)</span> were significantly different than zero, we can only conclude that females and individuals in the <em>other</em> category are treated differently than males (because it was the benchmark category). We cannot determine if <em>female</em> and <em>other</em> are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be femal and end up with a formal test of the difference between female and other.</p>
+</div>
+<div id="a-final-application" class="section level3" number="8.3.4">
+<h3><span class="header-section-number">8.3.4</span> A Final Application</h3>
+<p>Let us consider an in-depth application where dummy variables are essential for making time-series variables ready for analysis by removing a <em>seasonal cycle</em>.</p>
+<p>Consider the following time series data:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="qualitative-dummy-variables.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb253-2"><a href="qualitative-dummy-variables.html#cb253-2" aria-hidden="true" tabindex="-1"></a>AUTO <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/AUTO_SA.xlsx&quot;</span>)</span>
+<span id="cb253-3"><a href="qualitative-dummy-variables.html#cb253-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-4"><a href="qualitative-dummy-variables.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>AUTOSALE,</span>
+<span id="cb253-5"><a href="qualitative-dummy-variables.html#cb253-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales ($bn)&quot;</span>,</span>
+<span id="cb253-6"><a href="qualitative-dummy-variables.html#cb253-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb253-7"><a href="qualitative-dummy-variables.html#cb253-7" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb253-8"><a href="qualitative-dummy-variables.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb253-9"><a href="qualitative-dummy-variables.html#cb253-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb253-10"><a href="qualitative-dummy-variables.html#cb253-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb253-11"><a href="qualitative-dummy-variables.html#cb253-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb253-12"><a href="qualitative-dummy-variables.html#cb253-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-142-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The figure illustrates retail automobile sales, denoted in billions of dollars, for the US between 1970 and 1998. As with most time series, this data is actually a combination of several components.</p>
+<ul>
+<li><p><strong>Trend</strong>: The long-term (i.e., average) increase or decrease in value over time.</p></li>
+<li><p><strong>Seasonality</strong>: The repeating (i.e., predictable) short-term cycle in the series caused by the seasons or months of the year</p></li>
+<li><p><strong>Random</strong>: The information in the series that is not due to a long-term trend or a short-term cyclical pattern is what we would actually like to explain.</p></li>
+</ul>
+<p>Lets us decompose this series in several steps to not only give us more exposure to dummy variables, but to also learn a bit more about time series data.</p>
+<div id="make-a-nominal-series-a-real-series" class="section level4 unnumbered">
+<h4>Make a <em>Nominal</em> Series a <em>Real</em> Series</h4>
+<p>The auto sales series above is known as a <em>nominal</em> series because the dollar values for each time period are expressed in the prices of that time period. For example, the data indicates that the US had $4.79 billion in auto sales in January 1970 and $47.4 billion in January 1998. We cannot say that auto sales increased by ten times during this time period, because the US also experienced <em>inflation</em> during this time period. In particular, $4.79 billion is denoted in 1970 dollars while $47.4 billion is denoted in 1998 dollars. In order to remove any inflationary distortions from the data, we need to divide these numbers by some measure of how average prices have evolved. There are many ways of doing this, but a direct method is to use the <em>consumer price index</em> or CPI. The CPI tells us how average prices have evolved relative to a benchmark year that is set to 100 (or 1). If the CPI differs in a particular year, then we know how prices have changes relative to the benchmark year.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="qualitative-dummy-variables.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>CPI,</span>
+<span id="cb254-2"><a href="qualitative-dummy-variables.html#cb254-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Consumer Price Index (1990 = 100)&quot;</span>,</span>
+<span id="cb254-3"><a href="qualitative-dummy-variables.html#cb254-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Index&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb254-4"><a href="qualitative-dummy-variables.html#cb254-4" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb254-5"><a href="qualitative-dummy-variables.html#cb254-5" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb254-6"><a href="qualitative-dummy-variables.html#cb254-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb254-7"><a href="qualitative-dummy-variables.html#cb254-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb254-8"><a href="qualitative-dummy-variables.html#cb254-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb254-9"><a href="qualitative-dummy-variables.html#cb254-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-143-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The figure above illustrates the CPI where 1990 is denoted as the benchmark year (because it is set to 1). All other time periods now have prices calculated relative to the benchmark. For example, the CPI in January 1970 is <span class="math inline">\(0.30\)</span> which means that average prices were 70 percent lower than what they were in 1990.</p>
+<p>We use the CPI to transform a nominal series into a real series. For example:</p>
+<p><span class="math display">\[\mbox{Real Auto Sales} = \frac{\mbox{Nominal Auto Sales}}{\mbox{CPI}}\]</span></p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="qualitative-dummy-variables.html#cb255-1" aria-hidden="true" tabindex="-1"></a>AUTO<span class="sc">$</span>RAUTO <span class="ot">=</span> AUTO<span class="sc">$</span>AUTOSALE <span class="sc">/</span> AUTO<span class="sc">$</span>CPI</span>
+<span id="cb255-2"><a href="qualitative-dummy-variables.html#cb255-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-3"><a href="qualitative-dummy-variables.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>RAUTO,</span>
+<span id="cb255-4"><a href="qualitative-dummy-variables.html#cb255-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales (1990 $bn)&quot;</span>,</span>
+<span id="cb255-5"><a href="qualitative-dummy-variables.html#cb255-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Real Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb255-6"><a href="qualitative-dummy-variables.html#cb255-6" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb255-7"><a href="qualitative-dummy-variables.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb255-8"><a href="qualitative-dummy-variables.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb255-9"><a href="qualitative-dummy-variables.html#cb255-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb255-10"><a href="qualitative-dummy-variables.html#cb255-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb255-11"><a href="qualitative-dummy-variables.html#cb255-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-144-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This figure now shows the <em>Real</em> US Auto Sales denoted in 1990 prices. For example, January 1970 experienced $16.15 billion in auto sales while January 1998 experienced $47.05. Now that these two numbers are both stated using the same price level, we can say that car sales increased by three times (not ten) over the time period.</p>
+</div>
+<div id="remove-a-trend" class="section level4 unnumbered">
+<h4>Remove a Trend</h4>
+<p>Our real sales data still shows signs of both a trend and a seasonal cycle that need to be removed. Let us start by removing the trend.</p>
+<p>Given that a trend is defined as the average change in a time series, we are technically attempting to identify (and remove) the average change in the series given a one-unit increase in time. Since this data is monthly, we are attempting to identify the average monthly change in the series. We can identify the trend with a regression equation.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="qualitative-dummy-variables.html#cb256-1" aria-hidden="true" tabindex="-1"></a>AUTO<span class="sc">$</span>TREND <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb256-2"><a href="qualitative-dummy-variables.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="qualitative-dummy-variables.html#cb256-3" aria-hidden="true" tabindex="-1"></a>DTRND <span class="ot">&lt;-</span> <span class="fu">lm</span>(AUTO<span class="sc">$</span>RAUTO <span class="sc">~</span> AUTO<span class="sc">$</span>TREND)</span>
+<span id="cb256-4"><a href="qualitative-dummy-variables.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(DTRND)</span></code></pre></div>
+<pre><code>## (Intercept)  AUTO$TREND 
+## 18.37195789  0.05942082</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="qualitative-dummy-variables.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>RAUTO,</span>
+<span id="cb258-2"><a href="qualitative-dummy-variables.html#cb258-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales (1990 $bn)&quot;</span>,</span>
+<span id="cb258-3"><a href="qualitative-dummy-variables.html#cb258-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Real Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb258-4"><a href="qualitative-dummy-variables.html#cb258-4" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb258-5"><a href="qualitative-dummy-variables.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb258-6"><a href="qualitative-dummy-variables.html#cb258-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb258-7"><a href="qualitative-dummy-variables.html#cb258-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb258-8"><a href="qualitative-dummy-variables.html#cb258-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb258-9"><a href="qualitative-dummy-variables.html#cb258-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb258-10"><a href="qualitative-dummy-variables.html#cb258-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AUTO<span class="sc">$</span>INDEX,<span class="fu">fitted</span>(DTRND), <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-145-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The code above does three things. First, it creates a variable called <em>TREND</em> which is simply an increasing list of numbers from 1 (the first observation) to 341 (the last observation). Each increase is an additional month. Second, it runs a regression where real auto sales is the dependent variable while trend is the only independent variable.</p>
+<p><span class="math display">\[Real\;Sales_t = \beta_0 + \beta_1 \; Trend_t + \varepsilon_t\]</span></p>
+<p>The slope coefficient with respect to the trend is <span class="math inline">\(0.059\)</span> which means that average auto sales increase by roughly <span class="math inline">\(0.06\)</span> billion 1990 dollars each month on average. Finally, it plots the real series as well as our calculated trend together. Notice how the <em>predicted</em> sales coming from the trend line is straight - indicating how this is only the expected sales for a particular month given information only on the evolution of time.</p>
+<p>Comparing these two lines in the figure should give you an idea how the trend gets removed from a time series. If we want to remove the predictable change in a series over time, then we can subtract these numbers from the original series once we estimate the trend. Note however that this is already done for you, because the residual of the above regression is actually the information in auto sales that cannot be explained by the predictable evolution of time.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="qualitative-dummy-variables.html#cb259-1" aria-hidden="true" tabindex="-1"></a>AUTO<span class="sc">$</span>RAUTO_DT <span class="ot">=</span> <span class="fu">residuals</span>(DTRND)</span>
+<span id="cb259-2"><a href="qualitative-dummy-variables.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>RAUTO_DT,</span>
+<span id="cb259-3"><a href="qualitative-dummy-variables.html#cb259-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb259-4"><a href="qualitative-dummy-variables.html#cb259-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales (1990 $bn, Dentrended)&quot;</span>,</span>
+<span id="cb259-5"><a href="qualitative-dummy-variables.html#cb259-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;cyan&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, </span>
+<span id="cb259-6"><a href="qualitative-dummy-variables.html#cb259-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Real, Detrended Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb259-7"><a href="qualitative-dummy-variables.html#cb259-7" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb259-8"><a href="qualitative-dummy-variables.html#cb259-8" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb259-9"><a href="qualitative-dummy-variables.html#cb259-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb259-10"><a href="qualitative-dummy-variables.html#cb259-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb259-11"><a href="qualitative-dummy-variables.html#cb259-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb259-12"><a href="qualitative-dummy-variables.html#cb259-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-146-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above figure illustrates the detrended data, where negative numbers indicate that observations are <em>below trend</em> while positive numbers indicate that observations are <em>above trend</em>.</p>
+</div>
+<div id="remove-seasonality" class="section level4 unnumbered">
+<h4>Remove Seasonality</h4>
+<p>The figure above still includes a seasonal component which needs to be removed. We will do this using dummy variables.</p>
+<p>Identifying seasonality generally refers to the short-run average pattern observed in the series. Since this is monthly data, we would like to observe the average sales in each month. If this were quarterly series, we would like to observe the average sales in each <em>season</em> (summer, fall, winter, spring). We can identify these average amounts by using dummy variables to identify if each observation falls into a particular month.</p>
+<p>The first step is to establish a benchmark month. This is essentially an arbitrary decision, so lets just go with December (i.e., the twelfth month of the year).</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="qualitative-dummy-variables.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(AUTO)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##   INDEX  YEAR MONTH  DATE AUTOSALE   CPI RAUTO TREND RAUTO_DT
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1     1  1970     1 1970      4.79 0.297  16.2     1   -2.28 
+## 2     2  1970     2 1970.     4.96 0.298  16.6     2   -1.88 
+## 3     3  1970     3 1970.     5.64 0.300  18.8     3    0.256
+## 4     4  1970     4 1970.     5.98 0.302  19.8     4    1.16 
+## 5     5  1970     5 1970.     6.08 0.303  20.1     5    1.38 
+## 6     6  1970     6 1970.     6.55 0.305  21.5     6    2.77</code></pre>
+<p>Note that our dataset already has a variable called month which identifies 1 as January, 2 as February, etc. This will make the creation of dummy variables very easy.</p>
+<p>Since we want to break this data into 12 categories, then we will need to construct 11 dummy variables. One dummy variable will deliver a 1 every time the observation is in January (0 elsewhere), one dummy variable will deliver a 1 every time the observation is in February (0 elsewhere), and so on. We can do this by hand (which is tedious), or we can use a new package called <em>fastDummies</em>.</p>
+<p>If you are using <em>fastDummies</em> for the first time, you will want to install it:</p>
+<pre><code>install.packages(&quot;fastDummies&quot;)</code></pre>
+<p>This package is designed to accept a variable and construct dummy variables for however many categories it can identify. For example:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="qualitative-dummy-variables.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb263-2"><a href="qualitative-dummy-variables.html#cb263-2" aria-hidden="true" tabindex="-1"></a>AUTO <span class="ot">&lt;-</span> <span class="fu">dummy_cols</span>(AUTO, <span class="at">select_columns =</span> <span class="st">&#39;MONTH&#39;</span>)</span>
+<span id="cb263-3"><a href="qualitative-dummy-variables.html#cb263-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AUTO)</span></code></pre></div>
+<pre><code>##  [1] &quot;INDEX&quot;    &quot;YEAR&quot;     &quot;MONTH&quot;    &quot;DATE&quot;     &quot;AUTOSALE&quot; &quot;CPI&quot;      &quot;RAUTO&quot;    &quot;TREND&quot;    &quot;RAUTO_DT&quot;
+## [10] &quot;MONTH_1&quot;  &quot;MONTH_2&quot;  &quot;MONTH_3&quot;  &quot;MONTH_4&quot;  &quot;MONTH_5&quot;  &quot;MONTH_6&quot;  &quot;MONTH_7&quot;  &quot;MONTH_8&quot;  &quot;MONTH_9&quot; 
+## [19] &quot;MONTH_10&quot; &quot;MONTH_11&quot; &quot;MONTH_12&quot;</code></pre>
+<p>Note how the dataset <em>AUTO</em> now contains 21 variables when it previously contained 9. This is because the above lines of code created 12 new variables - a dummy variable for each month of the year (1-12). Since we are considering the 12th month as our benchmark, we simply do not include it in our regression.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="qualitative-dummy-variables.html#cb265-1" aria-hidden="true" tabindex="-1"></a>DS <span class="ot">&lt;-</span> <span class="fu">lm</span>(RAUTO_DT <span class="sc">~</span> MONTH_1 <span class="sc">+</span> MONTH_2 <span class="sc">+</span> MONTH_3 <span class="sc">+</span> MONTH_4 <span class="sc">+</span></span>
+<span id="cb265-2"><a href="qualitative-dummy-variables.html#cb265-2" aria-hidden="true" tabindex="-1"></a>           MONTH_5 <span class="sc">+</span> MONTH_6 <span class="sc">+</span> MONTH_7 <span class="sc">+</span> MONTH_8 <span class="sc">+</span> MONTH_9 <span class="sc">+</span></span>
+<span id="cb265-3"><a href="qualitative-dummy-variables.html#cb265-3" aria-hidden="true" tabindex="-1"></a>           MONTH_10 <span class="sc">+</span> MONTH_11, <span class="at">data =</span> AUTO)</span>
+<span id="cb265-4"><a href="qualitative-dummy-variables.html#cb265-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-5"><a href="qualitative-dummy-variables.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DS)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = RAUTO_DT ~ MONTH_1 + MONTH_2 + MONTH_3 + MONTH_4 + 
+##     MONTH_5 + MONTH_6 + MONTH_7 + MONTH_8 + MONTH_9 + MONTH_10 + 
+##     MONTH_11, data = AUTO)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.3877 -1.8444  0.4071  2.3868  9.4046 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -3.2222     0.6231  -5.172 4.04e-07 ***
+## MONTH_1      -0.5227     0.8735  -0.598 0.550014    
+## MONTH_2       0.5072     0.8735   0.581 0.561902    
+## MONTH_3       5.2955     0.8735   6.062 3.68e-09 ***
+## MONTH_4       4.9933     0.8735   5.716 2.44e-08 ***
+## MONTH_5       6.1152     0.8735   7.001 1.44e-11 ***
+## MONTH_6       6.1181     0.8811   6.943 2.05e-11 ***
+## MONTH_7       4.8101     0.8811   5.459 9.45e-08 ***
+## MONTH_8       4.6222     0.8811   5.246 2.79e-07 ***
+## MONTH_9       2.8030     0.8811   3.181 0.001607 ** 
+## MONTH_10      3.1100     0.8811   3.530 0.000476 ***
+## MONTH_11      0.8048     0.8811   0.913 0.361724    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.297 on 329 degrees of freedom
+## Multiple R-squared:  0.3468, Adjusted R-squared:  0.325 
+## F-statistic: 15.88 on 11 and 329 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The dummy variable coefficients presented above show how the average auto sales for a particular month differ from the benchmark month of December. For example, June sales (<em>MONTH_6</em>) are the largest above December on average with 6.12 billion, while January sales (<em>MONTH_1</em>) are actually lower than December average trend sales by 0.52 billion on average. However, note that the difference between June and December is significantly different from zero, while the difference between January and December is not.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="qualitative-dummy-variables.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,AUTO<span class="sc">$</span>RAUTO_DT,</span>
+<span id="cb267-2"><a href="qualitative-dummy-variables.html#cb267-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb267-3"><a href="qualitative-dummy-variables.html#cb267-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales (1990 $bn, Dentrended)&quot;</span>,</span>
+<span id="cb267-4"><a href="qualitative-dummy-variables.html#cb267-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;cyan&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, </span>
+<span id="cb267-5"><a href="qualitative-dummy-variables.html#cb267-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Real, Detrended Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb267-6"><a href="qualitative-dummy-variables.html#cb267-6" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb267-7"><a href="qualitative-dummy-variables.html#cb267-7" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb267-8"><a href="qualitative-dummy-variables.html#cb267-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb267-9"><a href="qualitative-dummy-variables.html#cb267-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb267-10"><a href="qualitative-dummy-variables.html#cb267-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb267-11"><a href="qualitative-dummy-variables.html#cb267-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb267-12"><a href="qualitative-dummy-variables.html#cb267-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AUTO<span class="sc">$</span>INDEX,<span class="fu">fitted</span>(DS),<span class="at">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-150-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The figure above compares the actual detrended series (composed of seasonal and random components) and the seasonal component estimated from our use of dummy variables. As with removing the trend, we can now remove the seasonal component by taking the difference between these two series or simply using the residuals of the regression (since this is the part of the series that cannot be explained by the repeating of months).</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="qualitative-dummy-variables.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AUTO<span class="sc">$</span>INDEX,<span class="fu">residuals</span>(DS),</span>
+<span id="cb268-2"><a href="qualitative-dummy-variables.html#cb268-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb268-3"><a href="qualitative-dummy-variables.html#cb268-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;U.S. Retail Auto Sales (1990 $bn, Detrended and SA)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>,</span>
+<span id="cb268-4"><a href="qualitative-dummy-variables.html#cb268-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date&quot;</span>, </span>
+<span id="cb268-5"><a href="qualitative-dummy-variables.html#cb268-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Real, Detrended, and SA Sales&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb268-6"><a href="qualitative-dummy-variables.html#cb268-6" aria-hidden="true" tabindex="-1"></a>xtick <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(AUTO<span class="sc">$</span>INDEX), <span class="at">by =</span> <span class="dv">36</span>)</span>
+<span id="cb268-7"><a href="qualitative-dummy-variables.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span>xtick, <span class="at">labels =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb268-8"><a href="qualitative-dummy-variables.html#cb268-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span>xtick, <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],  </span>
+<span id="cb268-9"><a href="qualitative-dummy-variables.html#cb268-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1970&quot;</span>,<span class="st">&quot;1973&quot;</span>,<span class="st">&quot;1976&quot;</span>,<span class="st">&quot;1979&quot;</span>,<span class="st">&quot;1982&quot;</span>,<span class="st">&quot;1985&quot;</span>,</span>
+<span id="cb268-10"><a href="qualitative-dummy-variables.html#cb268-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;1988&quot;</span>,<span class="st">&quot;1991&quot;</span>,<span class="st">&quot;1994&quot;</span>,<span class="st">&quot;1997&quot;</span>), </span>
+<span id="cb268-11"><a href="qualitative-dummy-variables.html#cb268-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="MBA8350book_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This final figure illustrates the random component of US auto retail sales once we removed price distortions, a long-run trend, and a seasonal cycle. What remains is the component that cannot be explained by these predictable (and uninteresting) things - and this is exactly what analysts what to explain with other more interesting variables (e.g., interest rates, exchange rates, bond prices, etc.). Notice how you can make out the two recessions that occurred during the time frame quite easily.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="adjusted-r2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="joint-hypothesis-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjdres/MBA8350_Companion/edit/master/08-MLR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjdres/MBA8350_Companion/blob/master/08-MLR.Rmd",
+"text": null
+},
+"download": ["MBA8350book.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

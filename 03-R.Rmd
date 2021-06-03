@@ -1,6 +1,6 @@
 # Getting Started with R {#R}
 
-```{r setup3, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 ```
 
@@ -10,7 +10,9 @@ library(png)
 include_graphics("images/Rlogo.png")
 ```
 
-This chapter is designed to get R on your machine (Section 1), introduce you to some basic commands for data and variable manipulation (Section 2), and introduce you to some introductory data visualization (Section 3). We will also be using a companion software called Rstudio which will make our interaction with R much more pleasant. After the basics are covered in this chapter, we will be learning R commands as they become needed in the subsequent chapters. By the end of the course, you should have a pretty solid understanding of working your way around R.
+This chapter is designed to get R on your machine (Section 1), introduce you to some basic commands for data and variable manipulation (Section 2), and introduce you to some introductory data visualization (Section 3). We will also be using a companion software called Rstudio which will make our interaction with R much more pleasant.
+
+After the basics are covered in this chapter, you should be able to go back to Chapter 2 and have a better understanding of some of the code there. We will be learning additional R commands as they become needed in the subsequent chapters. By the end of the course, you should have a pretty solid understanding of working your way around R.
 
 Let's get started!
 
@@ -22,7 +24,7 @@ In addition to using R, we will also be using RStudio. RStudio is an integrated 
 
 This section will walk you through downloading, installing, and preparing R and RStudio for our purposes.
 
-**Note:** this section is intended for installing R and Rstudio on either a PC or a Mac. For those of you using Chromebooks (which uses a Linux operating system), you will not be able to install these programs unless you partition your hard drive to run purely in Linux. If you don't know what that means, then I don't suggest you go down that route. However, you are still in luck because Rstudio also offers a free cloud-based version of R that will serve the purpose of this course. You can sign up here: https://www.rstudio.com/products/cloud/. 
+**Note:** this section is intended for installation on either a PC or a Mac. For those of you using Chromebooks (which uses a Linux operating system), you will not be able to install these programs unless you partition your hard drive to run purely in Linux. If you don't know what that means, then I don't suggest you go down that route. However, you are still in luck because Rstudio also offers a free cloud-based version of R that will serve the purpose of this course. You can sign up here: https://www.rstudio.com/products/cloud/. 
 
 **Another Note:** For those of you that have PCs or Macs and simply *do not* wish to download and install R and Rstudio, you are welcome to sign up to the Rstudio cloud as well. This will also be handy if you have a pesky work computer with a rigid fire wall. However, you should note that the cloud version of R and Rstudio can only be accessed if you have an internet connection. 
 
@@ -92,7 +94,7 @@ library(jpeg)
 include_graphics("images/Screenshot1.png")
 ```
 
-The window on the left is your *Console* which is exactly what you would see if you opened up R instead of Rstudio.^[Note that we will never open R by itself, because it is easier to communicate with R through Rstudio.] The window on the upper-right is your *Global Environment*. It will show you all of the data sets, variables, and result objects that are in R and available to you. Note that it is currently empty because we haven't done anything yet. The window on your bottom-right has several useful tabs that let us look at our folder directory (as shown) as well as any figures we generate and R packages at our disposal. 
+The window on the left is your *Console* which is exactly what you would see if you opened up R instead of Rstudio.^[Note that we will never open R by itself, because it is easier to communicate with R through Rstudio.] The window on the upper-right is your *Global Environment*. It will show you all of the data sets, variables, and result objects that are currently in R and available to you. Note that it is currently empty because we haven't done anything yet. The window on your bottom-right has several useful tabs that let us look at our folder directory (as shown) as well as any figures we generate and R packages at our disposal. 
 
 This is the default mode of Rstudio. You can input commands into the console right at the ">" and R will execute them line by line. This is fine if you wish to execute one single command, but it becomes tedious if we have a series of commands we need to execute before we arrive at our desired result. We can therefore alter this default mode by adding R-scripts.
 
@@ -100,7 +102,7 @@ This is the default mode of Rstudio. You can input commands into the console rig
 include_graphics("images/Screenshot2.png")
 ```
 
-Clicking on the green plus in the upper left of the screen will give you the option of opening an R-script. An R-script window will now appear and take up half of what was once our console space. An R-script is really nothing more than a text file. We can type several commands in sequence without running them line by line (which would need to do if we typed them into the console). Once the commands are typed out, we can highlight them all and hit that run button on top. The commands get sent to the console and your off...
+Clicking on the green plus in the upper left of the screen will give you the option of opening an R-script. An R-script window will now appear and take up half of what was once our console space. An R-script is really nothing more than a text file. We can type several commands in sequence without running them line by line (which we would need to do if we typed them into the console). Once the commands are typed out, we can highlight them all and hit that run button on top. The commands get sent to the console and you're off...
 
 ```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "Running Commands from R-scripts!"}
 include_graphics("images/Screenshot3.png")
@@ -131,9 +133,9 @@ This is a simple command that asks R to download 11 packages and install them. D
 
 ## Coding Basics
 
-Now that your software is ready to go, this section introduces you to how R likes to be talked to. Note that the chapters are full of commands that you will need to learn when the time comes. In the meantime, here are just a few general pointers.
+Now that your software is ready to go, this section introduces you to how R likes to be talked to. Note that the subsequent chapters are full of commands that you will need to learn when the time comes. In the meantime, here are just a few general pointers.
 
-R is what is known as a line command computing language - meaning that it doesn't need to compile code prior to execution. That being said, try the following command at the prompt (>):
+R is what is known as a line command computing language - meaning that it doesn't need to compile code prior to execution. That being said, try the following command at the prompt in your console (>):
 
 ```{r}
 12 + 4
@@ -152,7 +154,7 @@ SMALL <- 4
 ```
 Notice that all of these variable names should now be in your global environment (upper-right window). The reason why 16 was returned on the console is because we put the last command in parentheses. That is the *print to screen* command.
 
-You might be asking why R simply doesn't use an equal sign in stead of the assign sign. Well, the answer is that we will later on be assigning names to output objects that contain much more than a single number. Things like regression output is technically *assigned* a name, so we are simple being consistent.
+You might be asking why R simply doesn't use an equal sign in stead of the assign sign. The answer is that we will be assigning names to output objects that contain much more than a single number. Things like regression output is technically *assigned* a name, so we are simple being consistent.
 
 ### Listing, Adding, and Removing
 
@@ -175,7 +177,7 @@ rm(TOTAL.SQUARED)
 
 ### Loading Data
 
-R can handle data that is in almost any format imaginable. The main data format we will consider in this class is a trusty old MS Excel file. There are two ways to load data...
+R can handle data in almost any format imaginable. The main data format we will consider in this class is a trusty old MS Excel file. There are two ways to load data...
 
 **1. The Direct Way**
 
@@ -210,11 +212,11 @@ You should now have a dataset named *CARDATA* imported into your global environm
 ls(CARDATA)
 ```
 
-When referencing a variable within a dataset, you must reference both so R knows where to get it. The syntax is:
+When referencing a variable within a dataset, you must reference both the names of the dataset and variable so R knows where to get it. The syntax is:
 
 Dataset$Variable
 
-For example, if we want to reference the variable *AUTOSALE* we need to state that it is in the CARDATA dataset.
+For example, if we reference the variable *AUTOSALE* by stating that it is in the CARDATA dataset.
 
 CARDATA$AUTOSALE
 
@@ -227,7 +229,7 @@ ls(CARDATA)
 
 ### Subsetting Data
 
-Sometimes our dataset will contain more information than we need. You should see a little Excel looking icon to the left of the name CARDATA up in the global environment window. If you click on it, you should see the following:
+Sometimes our dataset will contain more information than we need. Let us narrow down our dataset to see how we can get rid of unwanted data. You should see a little Excel looking icon to the left of the name CARDATA up in the global environment window. If you click on it, you should see the following:
 
 ```{r, echo = FALSE, fig.align='center', out.width="75%", fig.cap = "A Dataset in R"}
 include_graphics("images/Screenshot4.png")
@@ -249,9 +251,9 @@ R is absolutely brilliant when it comes to data visualization, and this section 
 
 ### Histograms
 
-A histogram breaks the data into bins (or breaks) and shows the frequency distribution of these bins. We will use this to consider probability distributions, but it also helps us get an idea of the distributional properties of any variable.
+A histogram breaks data observations into bins (or breaks) and shows the frequency distribution of these bins. We will use this to consider probability distributions, but it also helps us get an idea of the distributional properties of any data sample.
 
-Let us continue to analyze the real sales data we created above:
+Let us continue to analyze the car dataset we created above:
 
 ```{r}
 hist(CARDATA$RSALES)
@@ -295,7 +297,7 @@ You will see plenty of these plots throughout these notes, and they will get inc
 
 ### Boxplots
 
-Box Plot illustrate - the minimum, the 25th, 50th (median), 75th percentiles and the maximum. It is useful for visualizing the spread of the data.
+Box Plot illustrate the minimum, the 25th, 50th (median), 75th percentiles and the maximum. It is useful for visualizing the spread of the data.
 
 ```{r}
 boxplot(CARDATA$AUTOSALE)

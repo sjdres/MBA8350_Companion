@@ -1,21 +1,21 @@
 # Simple Linear Regression {#SLR}
 
-```{r setup7, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(fig.align='center')
 library(pander)
 ```
 
-Suppose you have two homes that are the same in *every single way* except for house size. Our intuition would suggest that bigger homes should cost more (*all else equal*) so we would expect that there is a positive relationship between house size and house price. In plain words: *bigger homes cost more*.
+Suppose you have two homes that are the same in *every way* except for size. Our intuition would suggest that bigger homes cost more (*all else equal*) so we would expect that there is a positive relationship between house size and house price.
 
 Saying *bigger homes cost more* is a **qualitative** statement because all we are saying is that the relationship between house size and house price is positive. What if we want to make a **quantitative** statement? In other words, while we are fairly confident that the actual house price (say, in dollars) will increase for every unit increase in house size (say, an additional square foot) - we want to know exactly what this *average-price-per-square-foot* is.
 
 A **Regression** can measure the relationship between the mean value of one variable and corresponding values of other variables. In other words, it is a statistical technique used to explain average movements of one (dependent) variable, as a function of movements in a set of other (independent) variables.
 
-This chapter will discuss the estimation, interpretation, and statistical inference of a *simple* linear regression model, which means that we will attempt to explain the movements in a dependent variable by considering **one** independent variable. This is the simplest regression model we can consider in order to understand what is going on under the hood of a regression. The next chapter will extend this analysis to *multiple* regression models where the only real different is that the number of independent variables exceeds one.
+This chapter will discuss the estimation, interpretation, and statistical inference of a *simple* linear regression model, which means that we will attempt to explain the movements in a dependent variable by considering **one** independent variable. This is the simplest regression model we can consider in order to understand what is going on under the hood of a regression. The next chapter will extend this analysis to *multiple* regression models where the only real difference is that the number of independent variables are greater than one.
 
 ## A Simple Linear Regression Model
 
-A Linear Regression model is simply a line equation.
+A Linear Regression model is a line equation.
 
 The simplest example of a line equation is:
 
@@ -24,6 +24,7 @@ $$Y_i=\beta_0+\beta_1X_i$$
 The *betas*, $\beta_0$ and $\beta_1$ are called line coefficients.
 
 * $\beta_0$ is the *constant* or *intercept term*
+
 * $\beta_1$ is the *slope* term - it determines the change in Y given a change in X
 
 $$\beta_1=\frac{Rise}{Run}=\frac{\Delta Y_i}{\Delta X_i}$$
@@ -38,7 +39,7 @@ First, there is the **Direction of causality**. A regression implicitly assumes 
 
 Second, The equation assumes that information on the independent variable (X) is all the information you need to explain the dependent variable (Y). In other words, if we were to look at pairs of observations of X and Y on a plot, then the above equation assumes that all observations (data points) line up exactly on the regression line.
 
-This would be great if the observations look like the figure on the left, but not if they look like ones on the right. 
+This would be great if the observations look like the figure on the left, but not if they look like the figure on the right. 
 
 ```{r, echo=FALSE}
 X <- runif(50,0,10)
@@ -77,7 +78,7 @@ The Linear Regression Model now explicitly states that the explanation of the de
 
 Lets address these two components in turn.
 
-**The Deterministic Component:**
+#### The Deterministic Component {-}
 
 $$\hat{Y}_i=\beta_0+\beta_1X_i$$
 
@@ -91,13 +92,13 @@ Technically speaking, the deterministic component delivers the *expected value o
 
 $$\hat{Y}_i=\beta_0+\beta_1X_i=E[Y_i|X_i]$$
 
-**The Unexpected (*Garbage Can*) Component**
+#### The Unexpected (*Garbage Can*) Component {-}
 
 $$\varepsilon_i=Y_i-\hat{Y}_i$$
 
 Once we obtain the coefficients, we can compare the observed values of $Y_i$ with the expected value of $Y_i$ conditional on the values of $X_i$.
 
-The difference between the true value and the expected value is by definition... *unexpected!*
+The difference between the true value $(Y_i)$ and the expected value $(\hat{Y}_i)$ is by definition... *unexpected!*
 
 This unexpected discrepancy is your **prediction error** - and everything your deterministic component cannot explain is deemed *random* and *unexplainable*.
 
@@ -137,7 +138,7 @@ $$Price_i = \beta_0 + \beta_i Size_i + \varepsilon_i$$
 
 **The Sample**
 
-In order to obtain *sample estimates* of our regression model above, we must obtain a sample of observations. We collect a (random) sample of size N. This is where the subscript i comes in - indicating that in general, each individual observation can be identified as $i=1,...,N$. The sample estimates are based on the sample. 
+In order to obtain *sample estimates* of our regression model above, we must obtain a sample of observations. We collect a (random) sample of size $n$. This is where the subscript i comes in - indicating that in general, each individual observation can be identified as $i=1,...,n$. The sample estimates are based on the sample. 
 
 Hypothetically, we can obtain different estimated coefficients for every different sample... but we will address that later.
 
@@ -145,7 +146,7 @@ To facilitate this application, we will use a data set internal to R, called *hp
 
 ```{r}
 data(hprice1,package='wooldridge')
-names(hprice1)
+ls(hprice1)
 ```
 
 This data set contains 88 observations of homes where each home has 10 pieces of information called *variables*. We are only concerned with two variables at the moment - the house price (*price*) and the house size (*sqrft*).
@@ -274,11 +275,10 @@ We can sum across all observations to get the *total error*
 
 $$\sum_{i}e_i = \sum_{i}(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)$$
 
-The problem we face now is that error terms can be both positive and negative. That means they will start to wash each other out when we sum them up and we therefore get an incomplete measure of the total error. To prevent the positive and negative error terms from washing each other out, we square each of the terms. This makes the negative errors positive, while the positive errors stay positive.
+The problem we face now is that error terms can be both positive and negative. That means they will start to wash each other out when we sum them up and we therefore get an incomplete measure of the total error. To prevent the positive and negative error terms from washing each other out, we square each of the terms. This makes the negative errors positive, while the positive errors stay positive.^[Note: this is where the *sum of squared errors* comes in.]
 
 $$\sum_{i}e^2_i = \sum_{i}(Y_i - \hat{\beta}_0 - \hat{\beta}_1X_i)^2$$
 
-Note: this is where the *sum of squared errors* comes in.
 
 Notice that this function now states that we can calculate the sum of squared errors for any given values of $\hat{\beta}_0$ and $\hat{\beta}_1$. We can therefore find the *best* values of $\hat{\beta}_0$ and $\hat{\beta}_1$ that deliver the *lowest* sum of squared errors. The line that delivers the lowest squared errors is what we mean by the best line.
 
@@ -306,7 +306,7 @@ plot(X,Y,
 lines(X,fitted(REG),col='blue')
 ```
 
-Now you probably imagined a line that looked kinda like this, but we know that this line (with these coefficients) is the absolute best line that minimizes the total difference between the observations (the *dots*) and the predictions (the *line*). We can see what this difference looks like by looking at the residuals.
+Now you probably imagined a line that looked kinda like this, but we know that this line (with these coefficients) is the absolute best line that minimizes the total difference between the observations (the *dots*) and the predictions (the *line*). Any other line we could draw would have a larger sum of squared errors. We can see what this difference looks like by looking at the residuals.
 
 ```{r}
 plot(X,residuals(REG),
@@ -323,7 +323,7 @@ This mathematical outcome is actually important. First, if the residuals or *for
 
 $$E[e_i]=0$$
 
-If the expected value of the forecast error is zero, then this means that our regression line is correct *on average*. If we think about it, this is the best we can ask for our of a regression function.
+If the expected value of the forecast error is zero, then this means that our regression line is correct *on average*. If we think about it, this is the best we can ask for out of a regression function.
 
 ### B.L.U.E.
 
@@ -339,13 +339,13 @@ Therefore, **BEST**, **LINEAR**, **UNBIASED**, **ESTIMATES** is why the output o
 
 ## Decomposition of Variance
 
-Using our regression estimates and sample information, we can construct one of the most popular measures of *goodness of fit* for a regression. We will construct this measure in pieces.
+Using our regression estimates and sample information, we can construct one of the most popular (and most abused) measures of *goodness of fit* for a regression. We will construct this measure in pieces.
 
 First, the **total sum of squares** (or TSS) can be calculated to measure the total variation in the dependent variable:
 
 $$TSS = \sum^{N}_{i=1}(Y_i - \bar{Y})^2$$
 
-This expression is similar to a variance equation (without averaging), and since the movements in the dependent variable is ultimately what we are after, this measure delivers *the total variation in the dependent variable that we would like our model to explain*.
+This expression is similar to a variance equation (without averaging), and since the movements in the dependent variable are ultimately what we are after, this measure delivers *the total variation in the dependent variable that we would like our model to explain*.
 
 Next, we can use our regression estimates to calculate an **estimated sum or squares** (or ESS) which measures the total variation in the dependent variable that our model *actually* explained:
 
@@ -363,7 +363,7 @@ Note that this is a measure of the variation in the garbage can, and the garage 
 
 ### The $R^2$
 
-Our a regression breaks the variation in $Y_i$ (the TSS) into what can be explained (the ESS) and what cannot be explained (the RSS). This essentially means $TSS=ESS+RSS$. Furthermore, our OLS estimates attempt to maximize the ESS and minimize the RSS. This delivers our first measure of how well our model explains the movements in the dependent variable or *goodness of fit*
+Our regression breaks the variation in $Y_i$ (the TSS) into what can be explained (the ESS) and what cannot be explained (the RSS). This essentially means $TSS=ESS+RSS$. Furthermore, our OLS estimates attempt to maximize the ESS and minimize the RSS. This delivers our first measure of how well our model explains the movements in the dependent variable or *goodness of fit*
 
 $$R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}$$
 
@@ -380,7 +380,7 @@ Returning to our house price application above, you can see that our coefficient
 
 ### What is a *good* $R^2$?
 
-Is explaining 62 percent of the variation in house prices *good*? The answer depends on what you want the model to explain. We know that these house size explains a majority of the variation in house prices while *all other* potential independent variables will explain at most the remaining 38 percent. If you want to explain everything there is to know about house prices, then an $R^2$ of 0.62 leaves something to be desired. If you only care to understand the impact of size, then the $R^2$ tells you how much of the variation in house prices it explains. There really isn't much more to it than that.
+Is explaining 62 percent of the variation in house prices *good*? The answer depends on what you want the model to explain. We know that the house size explains a majority of the variation in house prices while *all other* potential independent variables will explain at most the remaining 38 percent. If you want to explain everything there is to know about house prices, then an $R^2$ of 0.62 leaves something to be desired. If you only care to understand the impact of size, then the $R^2$ tells you how much of the variation in house prices it explains. There really isn't much more to it than that.
 
 ### Standard Error of the Estimate
 
@@ -400,7 +400,7 @@ An empirical regression analysis always begins with a statement of the populatio
 
 Verifying the assumptions of a linear regression model is a majority of the work involved with an empirical analysis, and we will be doing this for the rest of the course. Before getting into the details of *how* to verify the assumptions, we first need to know what they are.
 
-One should note that these are not assumption of our model, because these assumption are actually imposed on our model. These assumptions are made on the world - at least on the relationship between the dependent and independent variables.
+One should note that these are not assumption of our model, because these assumption are actually imposed on our model. These assumptions are made on reality - at least on the relationship between the dependent and independent variables that actually occurs in the world.
 
 The main assumptions of a linear regression model that we will focus on are as follows. 
 
@@ -420,7 +420,7 @@ $$Y_i = \beta_0 + \beta_1X_{1i}+\varepsilon_i$$
 
 we are explicitly assuming that this accurately captures the real world. In particular,
 
-* The relationship between $Y_i$ and $X_1i$ are in fact linear. This means that the a straight-line (i.e., a constant slope) fits the relationships between the dependent variable and independent variables better than a nonlinear relationship.
+* The relationship between $Y_i$ and $X_1i$ is in fact linear. This means that the a straight-line (i.e., a constant slope) fits the relationships between the dependent variable and independent variables better than a nonlinear relationship.
 
 * The error term (i.e., the garbage can) is additive, meaning that the forecast errors are separable from the forecasts.
 
@@ -447,11 +447,11 @@ Serial correlation exists when an observation of the error term is correlated wi
 
 $$\varepsilon_t=\rho \varepsilon_{t-1}+\nu_t$$
 
-If this is the case, the model violates the idea that the errors are completely unpredictable. If we would be able to view our past mistakes and improve upon our predictions - why wouldn't we?
+If this is the case, the model violates the idea that the errors are completely unpredictable. If we would be able to view our past mistakes and improve upon our predictions - why wouldn't we?^[Note that serial correlation is potentially a problem in time-series data (i.e., data that must be in chronological order).]
 
 ### Equal Variance
 
-The error term must have a constant variance throughout the range of each independent variable because we will soon see that the confidence we place in our estimates are partially determined by this variance. We are unable to change our confidence in the estimates throughout the analysis - it is one size fits all. Therefore, the size of the errors (i.e., the dispersion in the garbage can) must be constant throughout.
+The error term must have a constant variance throughout the range of each independent variable because we will soon see that the confidence we place in our estimates are partially determined by this variance. We are unable to change our confidence in the estimates throughout the observed range of independent values - it is one size fits all. Therefore, the size of the errors (i.e., the dispersion in the garbage can) must be constant throughout.
 
 ```{r, echo = FALSE}
 Y1 <- rnorm(50,9,1)
@@ -476,7 +476,7 @@ plot(X,Y,
 lines(X,fitted(REG))
 ```
 
-Suppose you wanted to estimate how much of an additional dollar of income the population would spend on consumption.^[In economics this is called the *Marginal Propensity to Consume* and is an important measure for considering who should and should not get hit with a tax.] Your data set has 50 household observations from each of three annual income levels: \$10,000, \$75,000, and \$150,000 as well as their annual consumption expenditures. As the figure illustrates, households earning around $10,000 a year all have roughly the same consumption level (because they all save very little). As income levels increase, you see more *dispersion* in consumption expenditures because more income is paired with more options. Households earning \$150,000 annually could choose to save a majority of it or even go into debt (i.e. spend more than \$150,000). This data could be used to estimate a regression line (illustrated in black), but you can see that the model looks like it does a poorer and poorer job of predicting consumption expenditures as the income levels increase. This means that the forecast errors are increasing as income levels increase, and this is *heteroskedasticity*. We will briefly come back to potential solutions to this later in the advanced topics section.
+Suppose you wanted to estimate how much of an additional dollar of income the population would spend on consumption.^[In economics this is called the *Marginal Propensity to Consume* and is an important measure for considering who should and should not get hit with a tax.] Your data set has 50 household observations from each of three annual income levels: \$10,000, \$75,000, and \$150,000 as well as their annual consumption expenditures. As the figure illustrates, households earning around $10,000 a year all have roughly the same consumption level (because they all save very little). As income levels increase, you see more *dispersion* in consumption expenditures because more income is paired with more options. Households earning \$150,000 annually could choose to save a majority of it or even go into debt (i.e., spend more than \$150,000). This data could be used to estimate a regression line (illustrated in black), but you can see that the model looks like it does a poorer and poorer job of predicting consumption expenditures as the income levels increase. This means that the forecast errors are increasing as income levels increase, and this is *heteroskedasticity*. We will briefly come back to potential solutions to this later in the advanced topics section.
 
 ### Normality of Errors
 
@@ -511,7 +511,7 @@ This is the formula for a confidence interval around the *population* slope coef
 
 $$\hat{\beta} \pm t_{(\frac{\alpha}{2},df=n-2)} S_b$$
 
-Recall our regression explaining differences in house prices give information on house sizes.
+Recall our regression explaining differences in house prices given information on house sizes.
 
 ```{r}
 pander(summary(REG3))
@@ -530,7 +530,7 @@ N <- length(residuals(REG3))
 
 AL <- 0.05
 df <- N-2
-tcrit <- -qt(AL/2,df)
+tcrit <- qt(AL/2,df,lower.tail = FALSE)
 
 # Use the formula... same as before
 
@@ -620,7 +620,7 @@ Bhat1 = summary(REG3)$coef[2,1]
 (Yhat = Bhat0 + Bhat1 * X)
 ```
 
-Another way calculate this forecast is using the predict command in R. This command creates a new data frame that includes only the value for the independent variable you want to use to make a prediction. The rest is done for you.
+Another way to calculate this forecast is using the predict command in R. This command creates a new data frame that includes only the value for the independent variable you want to make a prediction with. The rest is done for you.
 
 ```{r}
 predict(REG3,data.frame(sqrft = 1000))
@@ -632,17 +632,18 @@ Our model predicts that a 1,000 square foot house will sell for \$151,415 on ave
 
 * A confidence interval for an individual response
 
-#### The mean response: a confidence interval
+#### The mean response: a confidence interval {-}
 
-Suppose you want to build a confidence interval around the mean price for a 1000 square foot house in the population. This is a conditional mean. In other words, we only want the average house price but *only* for homes with a particular size. This conditional mean is generally given by $\mu_{Y|X=X_i}$ and in this case by $\mu_{Y|X=1000}$. Building a confidence interval for the mean response is given by
+Suppose you want to build a confidence interval around the mean price for a 1000 square foot house in the population. This is a conditional mean. In other words, we want the average house price but *only* for homes with a particular size. This conditional mean is generally given by $\mu_{Y|X=X_i}$ and in this case by $\mu_{Y|X=1000}$. Building a confidence interval for the mean response is given by
 
-$$ \hat{Y}_i \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}$$
+$$ \hat{Y}_{X=X_i} \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}$$
 or
 
-$$ \hat{Y}_i - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i} \leq \mu_{Y|X=X_i} \leq \hat{Y}_i + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}$$ 
+$$ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i} \leq \mu_{Y|X=X_i} \leq \hat{Y}_{X=X_i} + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{h_i}$$ 
+
 where
 
-* $\hat{Y}_i$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
+* $\hat{Y}_{X=X_i}$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
 
 * $S_{YX}$ is the standard error of the estimate (calculated previously)
 
@@ -663,17 +664,18 @@ $$Pr(124.05\leq\mu_{Y|X=1000}\leq178.78)=0.95$$
 
 We can now state with 95% confidence that the *population mean house price* of all 1000 square-foot houses is somewhere between \$124,050 and \$178,780. Note that the confidence interval around the mean response is centered at our conditional expectation $(\hat{Y})$ just like all confidence intervals are centered around its estimate.
 
-#### An individual response: a prediction interval
+#### An individual response: a prediction interval {-}
 
 Suppose that instead of building a confidence interval around the conditional average in the population, we want to determine the range within which we are confident to draw a *single* home value. This calculation is almost identical to the mean response above, but with one slight difference.
 
-$$ \hat{Y}_i \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}$$
+$$ \hat{Y}_{X=X_i} \pm t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}$$
 or
 
-$$ \hat{Y}_i - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=X_i} \leq \hat{Y}_i + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}$$ 
+$$ \hat{Y}_{X=X_i} - t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i} \leq Y_{X=X_i} \leq \hat{Y}_{X=X_i} + t_{(\frac{\alpha}{2},df=n-2)}S_{YX} \sqrt{1+h_i}$$ 
+
 where
 
-* $\hat{Y}_i$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
+* $\hat{Y}__{X=X_i}$ is the expectation of the dependent variable conditional on the desired value of $X_i$.
 
 * $S_{YX}$ is the standard error of the estimate (calculated previously)
 
@@ -692,4 +694,8 @@ predict(REG3,
 
 $$Pr(22.02\leq Y_{X=1000} \leq 280.81)=0.95$$
 
-We can now state with 95% confidence that the *a single draw of a house price* from the population of all 1000 square-foot houses will be somewhere between \$22,020 and \$280,810. Note that the prediction interval is also centered at our conditional expectation $(\hat{Y})$, but now the interval is much wider than in the previous calculation. This should make sense, because when you are selecting a single home then you have a positive probability of selecting either very cheap homes or very expensive homes. A mean would wash these extreme values out.
+We can now state with 95% confidence that *a single draw of a house price* from the population of all 1000 square-foot houses will be somewhere between \$22,020 and \$280,810. Note that the prediction interval is also centered at our conditional expectation $(\hat{Y})$, but now the interval is much wider than in the previous calculation. This should make sense, because when you are selecting a single home then you have a positive probability of selecting either very cheap homes or very expensive homes. A mean would wash these extreme values out.
+
+## Up Next...
+
+This chapter covered the basics of a simple linear regression model. The next step is to turn to **multiple** linear regression models where we get to explain the dependent variable by using more than one independent variable. This will allow us to make more sophisticated models that have a better chance of capturing the relationships that are actually going on in the real world. The thing to keep in mind is that **ALL** of the information laid out in this chapter will still apply.
