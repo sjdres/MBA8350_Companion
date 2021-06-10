@@ -108,13 +108,16 @@ the-importance-of-controls
 adjusted-r2
 abusing-an-r2
 an-adjusted-r2
+statistical-inference-1
+hypothesis-tests-1
+confidence-intervals-around-population-parameters-1
+confidence-intervals-around-forecasts-1
 qualitative-dummy-variables
 intercept-dummy-variable
 slope-dummy-variable
 what-if-there-are-more-than-two-categories
 a-final-application
 joint-hypothesis-tests
-simple-hypothesis-tests
 simple-versus-joint-tests
 applications
 Advanced

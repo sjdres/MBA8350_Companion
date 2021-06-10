@@ -229,6 +229,107 @@ The main difference between the adjusted $R^2$ and it's unadjusted measure are t
 
 While the $R^2$ and adjusted $R^2$ are two common measures of goodness of fit, they are informal at best. One can interpret them along the lines of how we did above, but there will more formal measures of whether or not an independent variable improves the forecasts of the regression model. Bottom line: these measures can give some insight to the results of a regression model, but they aren't anything worth hanging your final conclusions on.
 
+## Statistical Inference
+
+With respect to statistical inference, confidence intervals and *simple* hypothesis tests are performed in multiple regression models exactly the same way as in simple regression models. The *only* difference is that a simple regression model calculated probabilities using $n-2$ degrees of freedom, while a multiple regression calculates probabilities using $n-k-1$ degrees of freedom, where $k$ is the number of independent variables in the model. Note that the degrees of freedom are consistent across models - it's just that a simple regression model has $k=1$ by default.
+
+### Hypothesis Tests
+
+Let us show this by continuing our analysis into explaining the price of a house using it's house size (*sqrft*), number of bedrooms (*bdrms*), and lot size (*lotsize*).
+
+$$Price_i=\beta_0+\beta_1\;sqrft_i+\beta_2\;bdrms_i+ \beta_3 \; lotsize_i + \varepsilon_i$$
+Our estimated results are as follows:
+
+```{r, echo = FALSE}
+REG2 <- lm(price ~ sqrft + bdrms + lotsize, data = hprice1)
+pander(summary(REG2))
+```
+
+The first thing we can do by way of statistical inference is test if each population coefficient is statistically different from zero. For example,
+
+$$H_0: \beta_1 = 0 \quad versus \quad \beta_1 \neq 0$$
+
+We can conduct this test the same way we did before (only minding the degrees of freedom).
+
+```{r}
+B1 = 0
+Bhat1 = summary(REG2)$coef[2,1]
+SBhat1 = summary(REG2)$coef[2,2]
+N = length(hprice1$price)
+
+(tstat <- (Bhat1 - B1)/SBhat1)
+(Pval <- pt(tstat,N-4,lower.tail=FALSE)*2)
+(1-Pval)
+```
+
+You can see that the p-value of this test is essentially zero, meaning you can reject the null with almost 100 percent confidence. Note that the only real difference between this test and the one we did in the previous chapter is that we have $N-4=84$ degrees of freedom in our t distribution. This is because we had to estimate an intercept and 3 slope coefficients. 
+
+Note that also like our simple linear regression case, this test is already done for you in the summary results. You can see that the test statistic under the null and the p-value for this test are already there.^[If you are noticing that the p-values slightly differ at the 15th decimal place, it is due to rounding error and shouldn't be taken too seriously.] 
+
+As in our simple linear regression case, all hypothesis tests where the null sets a PRF coefficient to some number other than 0 (and all two-sided hypothesis tests) need to be done by hand. It is again the same steps, but we need to mind the degrees of freedom. 
+
+Suppose we want to show that an additional square foot of house size (all else equal) will result in less than a $125 dollar increase in house price on average.
+$$H_0: \beta_1 \geq 0.125 \quad versus \quad \beta_1 < 0.125$$
+
+This left-tail test is as follows:
+
+```{r}
+B1 = 0.125
+
+(tstat <- (Bhat1 - B1)/SBhat1)
+(Pval <- pt(tstat,N-4,lower.tail=TRUE))
+(1-Pval)
+```
+
+Note that we DO NOT REJECT the null because we can only reject with about 56% confidence. This means that $\hat{\beta}_1 < 0.125$ in the sample is not enough to show $\beta_1 < 0.125$ in the population.
+
+One final item to point out in the results above is that the p-value on the SRF coefficient for number of bedrooms is about 0.13. This implies that we can only reject the hypothesis that this coefficient is significantly different from zero at the 87 percent confidence level! You can confirm this by performing the test by hand, but it is essentially telling you that number of bedrooms is not important for determining house price once we are already accounting for house and lot size.
+
+### Confidence Intervals (around population parameters)
+
+Fortunately for us, our confidence interval trick in R works for multiple regression models as well so we won't spend any more time on it. Note that these results confirms our earlier result that the PRF coefficient with respect to number of bedrooms has a confidence interval that contains zero.
+
+```{r}
+confint(REG2)
+```
+
+### Confidence Intervals (around forecasts)
+
+We can again easily extend the R commands learned for simple regression models to the case where we want to make forecasts of the dependent variable conditional on specific values of the independent variables. Only now there are more than one of them to build a conditional forecast on.
+
+Let us remove the insignificant independent variable from our house price regression to make things cleaner:
+
+```{r}
+REG3 <- lm(price ~ sqrft + lotsize, data = hprice1)
+summary(REG3)
+```
+
+Recall that an expected value of Y conditional on values of X is simply using the SRF and plugging in the relevant numbers. Suppose for example that you want to know the expected price of a home with 2000 sqrft of house size and 5000 sqrft of lot size:
+
+$$\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 \; 2000 + \hat{\beta}_2 \; 5000$$
+
+In order to do this in R, we need to construct a data set with $sqrft = 2000$ and $lotsize = 5000$ and then use the predict command:
+
+```{r}
+predict(REG3,
+        data.frame(sqrft = 2000, lotsize = 5000))
+```
+
+This result tells us the average house price *in the sample* of a house with 2000 sqrft of house size and 5000 sqrft of lot size will be $283,224.
+
+We can also construct mean and individual responses just like before. The formulas get a bit more complex, but the concept and the R code stays the same! You can refer to the discussion in the previous chapter on how to interpret these confidence intervals.
+
+```{r}
+predict(REG3,
+        data.frame(sqrft = 2000, lotsize = 5000),
+        interval = "confidence",
+        level = 0.95)
+
+predict(REG3,
+        data.frame(sqrft = 2000, lotsize = 5000),
+        interval = "prediction",
+        level = 0.95)
+```
 
 ## Qualitative (Dummy) Variables
 
@@ -369,7 +470,7 @@ The rule of thumb (to be explained in detail soon) is:
 
 **A variable containing $N$ categories requires $N-1$ dummy variables.**
 
-This rule actually applies to our standard case, because we can model $N=2$ categories with $N-1=1$ dummy variables. In our example above, we wanted to identify 2 categories of gender (male or female) so we needed 1 dummy variable. However, we need to take a little more care and follow additional steps when dealing with more than one category. Suppose we extended our gender characteristics to identify a third gender category (*other*) in order to account for individuals who do not subscribe to one of the two traditional categories. We will use this scenario to illustrate how our model gets extended. 
+This rule actually applies to our standard case, because we can model $N=2$ categories with $N-1=1$ dummy variables. In our example above, we wanted to identify 2 categories of gender (male or female) so we needed 1 dummy variable. However, we need to take a little more care and follow additional steps when dealing with more than one category. Suppose we extended our gender characteristics to identify a third gender category (*non-binary*) in order to account for individuals who do not subscribe to one of the two traditional categories. We will use this scenario to illustrate how our model gets extended. 
 
 1. Identify a *benchmark* category
 
@@ -377,17 +478,17 @@ A benchmark category is one of the characteristics that the researcher identifie
 
 2. Construct appropriate dummy variables
 
-Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as *female* and one that identifies individuals as *other*.
+Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as *female* and one that identifies individuals as *non-binary*.
 
-$$female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or other }$$
+$$female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or non-binary }$$
 
-$$other_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }$$
+$$\mbox{non-binary}_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }$$
 
 Note that each dummy variable is still a switch that signals the presence or absence of a characteristic. However, when **BOTH** dummy variables are zero at the same time... you have your benchmark category. That is how you can identify three categories with only two dummy variables.
 
 To illustrate, consider the original model restricting attention to intercept dummies.
 
-$$wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i +\beta_5other_i +\varepsilon_i$$
+$$wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i +\beta_5(\mbox{non-binary}_i) +\varepsilon_i$$
 
 We can write down what the model looks like for each of our three categories:
 
@@ -395,15 +496,15 @@ $$Male: wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_
 
 $$Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 
-$$Other: wage_i=(\beta_0+\beta_5)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
+$$\mbox{Non-binary}: wage_i=(\beta_0+\beta_5)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i$$
 
-When comparing these three equations, you can hopefully see how the benchmark category comes into play. The first equation is essentially the benchmark equation, indicating that $\beta_0$ is the intercept term for males. The second equation is for females, and shows how the intercept for females differs from males (given by $\beta_4$). The third equation is for those identifying as other, and shows how the intercept for these individuals differs from males (given by $\beta_5$). Note that all of the other slopes are *assumed* to be identical here (but we could consider slope dummies like above).
+When comparing these three equations, you can hopefully see how the benchmark category comes into play. The first equation is essentially the benchmark equation, indicating that $\beta_0$ is the intercept term for males. The second equation is for females, and shows how the intercept for females differs from males (given by $\beta_4$). The third equation is for those identifying as non-binary, and shows how the intercept for these individuals differs from males (given by $\beta_5$). Note that all of the other slopes are *assumed* to be identical here (but we could consider slope dummies like above).
 
 One detail about the application above worthy of mention is that the coefficients $\beta_4$ and $\beta_5$ show how each category compares to the benchmark category. We can test if these coefficients are significantly different from zero with standard hypothesis tests. For example:
 
 $$H_0: \; \beta_4 = 0 \quad H_1: \; \beta_4 \neq 0$$
 
-However, if we show that $\beta_4$ and $\beta_5$ were significantly different than zero, we can only conclude that females and individuals in the *other* category are treated differently than males (because it was the benchmark category). We cannot determine if *female* and *other* are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be femal and end up with a formal test of the difference between female and other. 
+However, if we show that $\beta_4$ and $\beta_5$ were significantly different than zero, we can only conclude that females and individuals in the non-binary category are treated differently than males (because it was the benchmark category). We cannot determine if *female* and *non-binary* are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be female and end up with a formal test of the difference between female and non-binary. 
 
 ### A Final Application
 
@@ -600,10 +701,6 @@ text(x=xtick, par("usr")[3],
 This final figure illustrates the random component of US auto retail sales once we removed price distortions, a long-run trend, and a seasonal cycle. What remains is the component that cannot be explained by these predictable (and uninteresting) things - and this is exactly what analysts what to explain with other more interesting variables (e.g., interest rates, exchange rates, bond prices, etc.). Notice how you can make out the two recessions that occurred during the time frame quite easily.
 
 ## Joint Hypothesis Tests
-
-### Simple Hypothesis Tests
-
-With respect to statistical inference, confidence intervals and *simple* hypothesis tests are performed in multiple regression models exactly the same way as in simple regression models. The *only* difference is that a simple regression model calculated probabilities using $n-2$ degrees of freedom, while a multiple regression calculates probabilities using $n-k-1$ degrees of freedom, where $k$ is the number of independent variables in the model. Note that the degrees of freedom are consistent across models - it's just that a simple regression model has $k=1$ by default.
 
 ### Simple versus Joint Tests
 
