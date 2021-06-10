@@ -383,14 +383,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.3.2</span> Listing, Adding, and Removing</h3>
 <p>We can list all objects in our global environment using the list command: ls()</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="coding-basics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<pre><code>##  [1] &quot;AUTO&quot;       &quot;B1&quot;         &quot;Bhat1&quot;      &quot;BIG&quot;        &quot;car&quot;        &quot;CARGSP&quot;     &quot;CDdata&quot;    
-##  [8] &quot;CGDP&quot;       &quot;DENGSP&quot;     &quot;DGDP&quot;       &quot;DS&quot;         &quot;DTRND&quot;      &quot;Fcrit&quot;      &quot;fit&quot;       
-## [15] &quot;fitpoints&quot;  &quot;Fstat&quot;      &quot;grid.lines&quot; &quot;hprice1&quot;    &quot;i&quot;          &quot;i2&quot;         &quot;k&quot;         
-## [22] &quot;Lifetime&quot;   &quot;Lifetime1&quot;  &quot;Lifetime2&quot;  &quot;m&quot;          &quot;Mode&quot;       &quot;n&quot;          &quot;N&quot;         
-## [29] &quot;Pval&quot;       &quot;R2r&quot;        &quot;R2u&quot;        &quot;REG&quot;        &quot;REG1&quot;       &quot;REG2&quot;       &quot;REG3&quot;      
-## [36] &quot;REG4&quot;       &quot;RREG&quot;       &quot;SBhat1&quot;     &quot;SMALL&quot;      &quot;TOTAL&quot;      &quot;tstat&quot;      &quot;UREG&quot;      
-## [43] &quot;wage1&quot;      &quot;x&quot;          &quot;X&quot;          &quot;x.pred&quot;     &quot;X1&quot;         &quot;X2&quot;         &quot;Xcrap&quot;     
-## [50] &quot;xtick&quot;      &quot;xy&quot;         &quot;Y&quot;          &quot;y.pred&quot;     &quot;z.pred&quot;</code></pre>
+<pre><code>##  [1] &quot;BIG&quot;       &quot;car&quot;       &quot;CARGSP&quot;    &quot;CGDP&quot;      &quot;DENGSP&quot;    &quot;DGDP&quot;      &quot;Lifetime&quot;  &quot;Lifetime1&quot;
+##  [9] &quot;Lifetime2&quot; &quot;Mode&quot;      &quot;N&quot;         &quot;SMALL&quot;     &quot;TOTAL&quot;     &quot;x&quot;</code></pre>
 <p>As we already showed, we can add new variables by simply assigning names to our calculations.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="coding-basics.html#cb58-1" aria-hidden="true" tabindex="-1"></a>TOTAL.SQUARED <span class="ot">&lt;-</span> TOTAL<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>If you ever wanted to remove some variables from your global environment, you can use the remove command: rm(<em>name of variable</em>)</p>

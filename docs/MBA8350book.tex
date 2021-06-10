@@ -118,7 +118,7 @@
 
 \title{MBA 8350: Course Companion for Analyzing and Leveraging Data}
 \author{Scott Dressler}
-\date{2021-06-03}
+\date{2021-06-10}
 
 \begin{document}
 \maketitle
@@ -4521,7 +4521,7 @@ What we are seeing is that the more variables you add the higher the \(R^2\) is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6730072
+## [1] 0.6727403
 \end{verbatim}
 
 The exercise above adds a completely random variable as a fourth independent variable. It should have nothing to do with explaining house prices. However, if you generate \emph{the correct} random variables, then you might get an increase in the \(R^2\) by as much as an entire percentage point. Does this say that the random variable actually helps explain variations in house prices? Of course not. What it does show is that sometimes we can abuse the \(R^2\), so we need an additional measure of goodness of fit.
@@ -4540,6 +4540,312 @@ The main difference between the adjusted \(R^2\) and it's unadjusted measure are
 \addcontentsline{toc}{subsubsection}{Conclusion: for informal use only!}
 
 While the \(R^2\) and adjusted \(R^2\) are two common measures of goodness of fit, they are informal at best. One can interpret them along the lines of how we did above, but there will more formal measures of whether or not an independent variable improves the forecasts of the regression model. Bottom line: these measures can give some insight to the results of a regression model, but they aren't anything worth hanging your final conclusions on.
+
+\hypertarget{statistical-inference-1}{%
+\section{Statistical Inference}\label{statistical-inference-1}}
+
+With respect to statistical inference, confidence intervals and \emph{simple} hypothesis tests are performed in multiple regression models exactly the same way as in simple regression models. The \emph{only} difference is that a simple regression model calculated probabilities using \(n-2\) degrees of freedom, while a multiple regression calculates probabilities using \(n-k-1\) degrees of freedom, where \(k\) is the number of independent variables in the model. Note that the degrees of freedom are consistent across models - it's just that a simple regression model has \(k=1\) by default.
+
+\hypertarget{hypothesis-tests-1}{%
+\subsection{Hypothesis Tests}\label{hypothesis-tests-1}}
+
+Let us show this by continuing our analysis into explaining the price of a house using it's house size (\emph{sqrft}), number of bedrooms (\emph{bdrms}), and lot size (\emph{lotsize}).
+
+\[Price_i=\beta_0+\beta_1\;sqrft_i+\beta_2\;bdrms_i+ \beta_3 \; lotsize_i + \varepsilon_i\]
+Our estimated results are as follows:
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.25}}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.18}}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.25}}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+-21.77\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.18}}\centering
+29.48\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\centering
+-0.74\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0.46\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.25}}\centering
+\textbf{sqrft}\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0.12\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.18}}\centering
+0.01\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\centering
+9.28\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.25}}\centering
+\textbf{bdrms}\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+13.85\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.18}}\centering
+9.01\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\centering
+1.54\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0.13\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.25}}\centering
+\textbf{lotsize}\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.18}}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\centering
+3.22\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.15}}\centering
+0\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{Fitting linear model: price \textasciitilde{} sqrft + bdrms + lotsize}\tabularnewline
+\toprule
+\begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.21}}\centering
+Observations\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.31}}\centering
+Residual Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.11}}\centering
+\(R^2\)\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.24}}\centering
+Adjusted \(R^2\)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.21}}\centering
+Observations\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.31}}\centering
+Residual Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.11}}\centering
+\(R^2\)\strut
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.24}}\centering
+Adjusted \(R^2\)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.21}}\centering
+88\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.31}}\centering
+59.83\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.11}}\centering
+0.67\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.24}}\centering
+0.66\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+The first thing we can do by way of statistical inference is test if each population coefficient is statistically different from zero. For example,
+
+\[H_0: \beta_1 = 0 \quad versus \quad H_1:\beta_1 \neq 0\]
+
+We can conduct this test the same way we did before (only minding the degrees of freedom).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B1 }\OtherTok{=} \DecValTok{0}
+\NormalTok{Bhat1 }\OtherTok{=} \FunctionTok{summary}\NormalTok{(REG2)}\SpecialCharTok{$}\NormalTok{coef[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{SBhat1 }\OtherTok{=} \FunctionTok{summary}\NormalTok{(REG2)}\SpecialCharTok{$}\NormalTok{coef[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{N }\OtherTok{=} \FunctionTok{length}\NormalTok{(hprice1}\SpecialCharTok{$}\NormalTok{price)}
+
+\NormalTok{(tstat }\OtherTok{\textless{}{-}}\NormalTok{ (Bhat1 }\SpecialCharTok{{-}}\NormalTok{ B1)}\SpecialCharTok{/}\NormalTok{SBhat1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.275093
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(Pval }\OtherTok{\textless{}{-}} \FunctionTok{pt}\NormalTok{(tstat,N}\DecValTok{{-}4}\NormalTok{,}\AttributeTok{lower.tail=}\ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{*}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.658015e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{Pval)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+You can see that the p-value of this test is essentially zero, meaning you can reject the null with almost 100 percent confidence. Note that the only real difference between this test and the one we did in the previous chapter is that we have \(N-4=84\) degrees of freedom in our t distribution. This is because we had to estimate an intercept and 3 slope coefficients.
+
+Note that also like our simple linear regression case, this test is already done for you in the summary results. You can see that the test statistic under the null and the p-value for this test are already there.\footnote{If you are noticing that the p-values slightly differ at the 15th decimal place, it is due to rounding error and shouldn't be taken too seriously.}
+
+As in our simple linear regression case, all hypothesis tests where the null sets a PRF coefficient to some number other than 0 (and all two-sided hypothesis tests) need to be done by hand. It is again the same steps, but we need to mind the degrees of freedom.
+
+Suppose we want to show that an additional square foot of house size (all else equal) will result in less than a \$125 dollar increase in house price on average.
+\[H_0: \beta_1 \geq 0.125 \quad versus \quad H_1:\beta_1 < 0.125\]
+
+This left-tail test is as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B1 }\OtherTok{=} \FloatTok{0.125}
+
+\NormalTok{(tstat }\OtherTok{\textless{}{-}}\NormalTok{ (Bhat1 }\SpecialCharTok{{-}}\NormalTok{ B1)}\SpecialCharTok{/}\NormalTok{SBhat1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.1678437
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(Pval }\OtherTok{\textless{}{-}} \FunctionTok{pt}\NormalTok{(tstat,N}\DecValTok{{-}4}\NormalTok{,}\AttributeTok{lower.tail=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4335549
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{Pval)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5664451
+\end{verbatim}
+
+Note that we DO NOT REJECT the null because we can only reject with about 56\% confidence. This means that \(\hat{\beta}_1 < 0.125\) in the sample is not enough to show \(\beta_1 < 0.125\) in the population.
+
+One final item to point out in the results above is that the p-value on the SRF coefficient for number of bedrooms is about 0.13. This implies that we can only reject the hypothesis that this coefficient is significantly different from zero at the 87 percent confidence level! You can confirm this by performing the test by hand, but it is essentially telling you that number of bedrooms is not important for determining house price once we are already accounting for house and lot size.
+
+\hypertarget{confidence-intervals-around-population-parameters-1}{%
+\subsection{Confidence Intervals (around population parameters)}\label{confidence-intervals-around-population-parameters-1}}
+
+Fortunately for us, our confidence interval trick in R works for multiple regression models as well so we won't spend any more time on it. Note that these results confirms our earlier result that the PRF coefficient with respect to number of bedrooms has a confidence interval that contains zero.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint}\NormalTok{(REG2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     2.5 %       97.5 %
+## (Intercept) -80.384661400 36.844045104
+## sqrft         0.096454149  0.149102222
+## bdrms        -4.065140551 31.770184040
+## lotsize       0.000790769  0.003344644
+\end{verbatim}
+
+\hypertarget{confidence-intervals-around-forecasts-1}{%
+\subsection{Confidence Intervals (around forecasts)}\label{confidence-intervals-around-forecasts-1}}
+
+We can again easily extend the R commands learned for simple regression models to the case where we want to make forecasts of the dependent variable conditional on specific values of the independent variables. Only now there are more than one of them to build a conditional forecast on.
+
+Let us remove the insignificant independent variable from our house price regression to make things cleaner:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{REG3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sqrft }\SpecialCharTok{+}\NormalTok{ lotsize, }\AttributeTok{data =}\NormalTok{ hprice1)}
+\FunctionTok{summary}\NormalTok{(REG3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = price ~ sqrft + lotsize, data = hprice1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -109.995  -36.210   -5.553   27.848  207.081 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 5.932e+00  2.351e+01   0.252  0.80141    
+## sqrft       1.334e-01  1.140e-02  11.702  < 2e-16 ***
+## lotsize     2.113e-03  6.466e-04   3.269  0.00156 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 60.31 on 85 degrees of freedom
+## Multiple R-squared:  0.6631, Adjusted R-squared:  0.6552 
+## F-statistic: 83.67 on 2 and 85 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Recall that an expected value of Y conditional on values of X is simply using the SRF and plugging in the relevant numbers. Suppose for example that you want to know the expected price of a home with 2000 sqrft of house size and 5000 sqrft of lot size:
+
+\[\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 \; 2000 + \hat{\beta}_2 \; 5000\]
+
+In order to do this in R, we need to construct a data set with \(sqrft = 2000\) and \(lotsize = 5000\) and then use the predict command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{predict}\NormalTok{(REG3,}
+        \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{sqrft =} \DecValTok{2000}\NormalTok{, }\AttributeTok{lotsize =} \DecValTok{5000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1 
+## 283.2239
+\end{verbatim}
+
+This result tells us the average house price \emph{in the sample} of a house with 2000 sqrft of house size and 5000 sqrft of lot size will be \$283,224.
+
+We can also construct mean and individual responses just like before. The formulas get a bit more complex, but the concept and the R code stays the same! You can refer to the discussion in the previous chapter on how to interpret these confidence intervals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{predict}\NormalTok{(REG3,}
+        \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{sqrft =} \DecValTok{2000}\NormalTok{, }\AttributeTok{lotsize =} \DecValTok{5000}\NormalTok{),}
+        \AttributeTok{interval =} \StringTok{"confidence"}\NormalTok{,}
+        \AttributeTok{level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit      lwr      upr
+## 1 283.2239 269.4538 296.9941
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{predict}\NormalTok{(REG3,}
+        \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{sqrft =} \DecValTok{2000}\NormalTok{, }\AttributeTok{lotsize =} \DecValTok{5000}\NormalTok{),}
+        \AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{,}
+        \AttributeTok{level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit      lwr      upr
+## 1 283.2239 162.5204 403.9275
+\end{verbatim}
 
 \hypertarget{qualitative-dummy-variables}{%
 \section{Qualitative (Dummy) Variables}\label{qualitative-dummy-variables}}
@@ -4600,7 +4906,7 @@ Note that the dummy variable is constructed such that males receive a 0 while fe
 
 The four independent variables are illustrated in the scatter plots below. Notice that even though the dummy variable takes on only two numbers by design, we can still see how it effectively \emph{splits} the observations into the two groups.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-139-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-146-1} \end{center}
 
 There is no difference between estimating quantitative and qualitative variables as far as R in concerned.
 
@@ -4709,7 +5015,7 @@ The rule of thumb (to be explained in detail soon) is:
 
 \textbf{A variable containing \(N\) categories requires \(N-1\) dummy variables.}
 
-This rule actually applies to our standard case, because we can model \(N=2\) categories with \(N-1=1\) dummy variables. In our example above, we wanted to identify 2 categories of gender (male or female) so we needed 1 dummy variable. However, we need to take a little more care and follow additional steps when dealing with more than one category. Suppose we extended our gender characteristics to identify a third gender category (\emph{other}) in order to account for individuals who do not subscribe to one of the two traditional categories. We will use this scenario to illustrate how our model gets extended.
+This rule actually applies to our standard case, because we can model \(N=2\) categories with \(N-1=1\) dummy variables. In our example above, we wanted to identify 2 categories of gender (male or female) so we needed 1 dummy variable. However, we need to take a little more care and follow additional steps when dealing with more than one category. Suppose we extended our gender characteristics to identify a third gender category (\emph{non-binary}) in order to account for individuals who do not subscribe to one of the two traditional categories. We will use this scenario to illustrate how our model gets extended.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4728,17 +5034,17 @@ A benchmark category is one of the characteristics that the researcher identifie
   Construct appropriate dummy variables
 \end{enumerate}
 
-Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as \emph{female} and one that identifies individuals as \emph{other}.
+Once the benchmark category has been established as male, we need two dummy variables: one that identifies individuals as \emph{female} and one that identifies individuals as \emph{non-binary}.
 
-\[female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or other }\]
+\[female_i = 1 \mbox{ if female; }\; 0 \mbox{ if male or non-binary }\]
 
-\[other_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }\]
+\[\mbox{non-binary}_i = 1 \mbox{ if other; }\;  0 \mbox{ if male or female }\]
 
 Note that each dummy variable is still a switch that signals the presence or absence of a characteristic. However, when \textbf{BOTH} dummy variables are zero at the same time\ldots{} you have your benchmark category. That is how you can identify three categories with only two dummy variables.
 
 To illustrate, consider the original model restricting attention to intercept dummies.
 
-\[wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i +\beta_5other_i +\varepsilon_i\]
+\[wage_i=\beta_0+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\beta_4female_i +\beta_5(\mbox{non-binary}_i) +\varepsilon_i\]
 
 We can write down what the model looks like for each of our three categories:
 
@@ -4746,15 +5052,15 @@ We can write down what the model looks like for each of our three categories:
 
 \[Female: wage_i=(\beta_0+\beta_4)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]
 
-\[Other: wage_i=(\beta_0+\beta_5)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]
+\[\mbox{Non-binary}: wage_i=(\beta_0+\beta_5)+\beta_1educ_i+\beta_2exper_i+\beta_3tenure_i+\varepsilon_i\]
 
-When comparing these three equations, you can hopefully see how the benchmark category comes into play. The first equation is essentially the benchmark equation, indicating that \(\beta_0\) is the intercept term for males. The second equation is for females, and shows how the intercept for females differs from males (given by \(\beta_4\)). The third equation is for those identifying as other, and shows how the intercept for these individuals differs from males (given by \(\beta_5\)). Note that all of the other slopes are \emph{assumed} to be identical here (but we could consider slope dummies like above).
+When comparing these three equations, you can hopefully see how the benchmark category comes into play. The first equation is essentially the benchmark equation, indicating that \(\beta_0\) is the intercept term for males. The second equation is for females, and shows how the intercept for females differs from males (given by \(\beta_4\)). The third equation is for those identifying as non-binary, and shows how the intercept for these individuals differs from males (given by \(\beta_5\)). Note that all of the other slopes are \emph{assumed} to be identical here (but we could consider slope dummies like above).
 
 One detail about the application above worthy of mention is that the coefficients \(\beta_4\) and \(\beta_5\) show how each category compares to the benchmark category. We can test if these coefficients are significantly different from zero with standard hypothesis tests. For example:
 
 \[H_0: \; \beta_4 = 0 \quad H_1: \; \beta_4 \neq 0\]
 
-However, if we show that \(\beta_4\) and \(\beta_5\) were significantly different than zero, we can only conclude that females and individuals in the \emph{other} category are treated differently than males (because it was the benchmark category). We cannot determine if \emph{female} and \emph{other} are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be femal and end up with a formal test of the difference between female and other.
+However, if we show that \(\beta_4\) and \(\beta_5\) were significantly different than zero, we can only conclude that females and individuals in the non-binary category are treated differently than males (because it was the benchmark category). We cannot determine if \emph{female} and \emph{non-binary} are significantly different from each other without a joint hypothesis test (examined below) or a choice of a new benchmark category. For example, you can easily change the benchmark category to be female and end up with a formal test of the difference between female and non-binary.
 
 \hypertarget{a-final-application}{%
 \subsection{A Final Application}\label{a-final-application}}
@@ -4780,7 +5086,7 @@ Consider the following time series data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-142-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-149-1} \end{center}
 
 The figure illustrates retail automobile sales, denoted in billions of dollars, for the US between 1970 and 1998. As with most time series, this data is actually a combination of several components.
 
@@ -4815,7 +5121,7 @@ The auto sales series above is known as a \emph{nominal} series because the doll
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-143-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-150-1} \end{center}
 
 The figure above illustrates the CPI where 1990 is denoted as the benchmark year (because it is set to 1). All other time periods now have prices calculated relative to the benchmark. For example, the CPI in January 1970 is \(0.30\) which means that average prices were 70 percent lower than what they were in 1990.
 
@@ -4839,7 +5145,7 @@ We use the CPI to transform a nominal series into a real series. For example:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-144-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-151-1} \end{center}
 
 This figure now shows the \emph{Real} US Auto Sales denoted in 1990 prices. For example, January 1970 experienced \$16.15 billion in auto sales while January 1998 experienced \$47.05. Now that these two numbers are both stated using the same price level, we can say that car sales increased by three times (not ten) over the time period.
 
@@ -4880,7 +5186,7 @@ Given that a trend is defined as the average change in a time series, we are tec
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-145-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-152-1} \end{center}
 
 The code above does three things. First, it creates a variable called \emph{TREND} which is simply an increasing list of numbers from 1 (the first observation) to 341 (the last observation). Each increase is an additional month. Second, it runs a regression where real auto sales is the dependent variable while trend is the only independent variable.
 
@@ -4907,7 +5213,7 @@ Comparing these two lines in the figure should give you an idea how the trend ge
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-146-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-153-1} \end{center}
 
 The above figure illustrates the detrended data, where negative numbers indicate that observations are \emph{below trend} while positive numbers indicate that observations are \emph{above trend}.
 
@@ -5029,7 +5335,7 @@ The dummy variable coefficients presented above show how the average auto sales 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-150-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-157-1} \end{center}
 
 The figure above compares the actual detrended series (composed of seasonal and random components) and the seasonal component estimated from our use of dummy variables. As with removing the trend, we can now remove the seasonal component by taking the difference between these two series or simply using the residuals of the regression (since this is the part of the series that cannot be explained by the repeating of months).
 
@@ -5049,17 +5355,12 @@ The figure above compares the actual detrended series (composed of seasonal and 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-151-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-158-1} \end{center}
 
 This final figure illustrates the random component of US auto retail sales once we removed price distortions, a long-run trend, and a seasonal cycle. What remains is the component that cannot be explained by these predictable (and uninteresting) things - and this is exactly what analysts what to explain with other more interesting variables (e.g., interest rates, exchange rates, bond prices, etc.). Notice how you can make out the two recessions that occurred during the time frame quite easily.
 
 \hypertarget{joint-hypothesis-tests}{%
 \section{Joint Hypothesis Tests}\label{joint-hypothesis-tests}}
-
-\hypertarget{simple-hypothesis-tests}{%
-\subsection{Simple Hypothesis Tests}\label{simple-hypothesis-tests}}
-
-With respect to statistical inference, confidence intervals and \emph{simple} hypothesis tests are performed in multiple regression models exactly the same way as in simple regression models. The \emph{only} difference is that a simple regression model calculated probabilities using \(n-2\) degrees of freedom, while a multiple regression calculates probabilities using \(n-k-1\) degrees of freedom, where \(k\) is the number of independent variables in the model. Note that the degrees of freedom are consistent across models - it's just that a simple regression model has \(k=1\) by default.
 
 \hypertarget{simple-versus-joint-tests}{%
 \subsection{Simple versus Joint Tests}\label{simple-versus-joint-tests}}
@@ -5216,7 +5517,7 @@ where
 
 In simple hypothesis tests, we constructed a t-statistic that is presumably drawn from a t-distribution. We are essentially doing the same thing here by constructing a F-statistic that is presumably drawn from a F-distribution.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-152-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-159-1} \end{center}
 
 The F-distribution has a few conceptual properties we should discuss.
 
@@ -5248,7 +5549,7 @@ For example, suppose you set \(\alpha = 0.05\) and have \(m=2\) and \(n-k-1 = 10
 
 If an F-statistic is greater than 3.09 then we can reject the null of the joint hypothesis with at least 95\% confidence.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-154-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-161-1} \end{center}
 
 As in any hypothesis test, we can also calculate a p-value. This will deliver the maximum confidence level at which we can reject the null.
 
@@ -5579,7 +5880,7 @@ The natural log transformation is used when the relationship between a dependent
 
 If we kept our \$100 dollars in the bank for a very long time, the balance would evolve according to the figure below on the left. The figure illustrates a non-linear relationship between account balance and time - and the slope is getting steeper as time goes on. While we know that the account balance is increasing by larger and larger dollar increments, we also know that it is growing at a constant five percent. We can uncover this constant percentage change by applying the natural log to the balance - as we did to the right figure. You can see that the natural log function \emph{straightens} the exponential relationship - so the transformed relationship is linear and ready for our regression model.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-163-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-170-1} \end{center}
 
 \hypertarget{the-derivative-of-the-log-function}{%
 \subsubsection*{The derivative of the log function}\label{the-derivative-of-the-log-function}}
@@ -5784,7 +6085,7 @@ The slope estimate gets multiplied by \(100\%\) so we can state that wages incre
 
 A quadratic transformation is used when the relationship between a dependent and independent variable \emph{changes direction}. The slope can start off positive and become negative (the blue line in the figure), or begin negative and become positive (the red line).
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-166-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-173-1} \end{center}
 
 Quadratic models are designed to handle functions featuring slopes that change qualitatively.
 
@@ -5814,7 +6115,7 @@ Note: just as in the log transformation, this quadratic transformation does not 
 
 Consider some simulated data illustrating the relationship between tax rates and the amount of tax revenue collected by the government. One can intuitively imagine that the government will collect zero revenue if they tax income at zero percent. However, they will also collect zero revenue if they tax at 100 percent because nobody will work if their entire income is taxed away. Therefore, there should be a relationship between tax rate and tax revenue that looks something like the figure below.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-167-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-174-1} \end{center}
 
 This figure illustrates the infamous Laffer Curve of supply-side economics.\footnote{We are using this as an example of a quadratic relationship only - I will spare you my tirade on the detrimental use of this (admittedly intuitive) idea by supply-siders.}
 
@@ -5915,7 +6216,7 @@ Adjusted \(R^2\)\strut
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-168-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-175-1} \end{center}
 
 The figure shows that the best fitting straight line is \emph{horizontal} - meaning that the slope is zero. This linear model would suggest that there is no relationship between tax revenue and tax rate. It is partly true - there is just no \emph{linear relationship}.
 
@@ -6025,7 +6326,7 @@ Adjusted \(R^2\)\strut
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-169-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-176-1} \end{center}
 
 \hypertarget{the-reciprocal-transformation}{%
 \subsection{The Reciprocal transformation}\label{the-reciprocal-transformation}}
@@ -6034,7 +6335,7 @@ Suppose a relationship doesn't change directions as much as it \emph{dies out}.
 
 \[Y_i = \beta_0 + \beta_1 \frac{1}{X_i} + \varepsilon_i\]
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-170-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-177-1} \end{center}
 
 As in the quadratic transformation, this model is easily estimated by redefining variables (i.e., \(X_{2i}=1/X_i\)). The slope of this function can be obtained using our standard derivative function and noting that \(1/X_i = X_i^{-1}\)
 
@@ -6149,7 +6450,7 @@ Adjusted \(R^2\)\strut
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-171-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-178-1} \end{center}
 
 The estimated coefficient is large and positive. However, this isn't the entire slope, because you need to consider the derivative formula above.
 
@@ -6193,7 +6494,7 @@ Take the figure below for example. We do not have enough data to see if the rela
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-172-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-179-1} \end{center}
 
 The bottom line is that choosing the wrong non-linear transformation will still lead to some amount of specification bias, but it might not be as much as a linear specification.
 
@@ -6694,7 +6995,7 @@ With heteroskedasticity, this error term variance is not constant. In other word
 
 An example of heteroskedasticity would be one where you could break the forecast errors into two discrete groups. Suppose you have the results of a statistics test and you considered the forecast errors for males and females separately.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-179-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-186-1} \end{center}
 
 One gender has forecasts errors that comprise the green distribution while the other gender has forecast errors that comprise the blue distribution. Both distributions have zero mean, but the differences in distributions suggest that there is more volatile forecast errors for the green distribution than the blue. This is a problem because the standard deviation of the \emph{entire} garbage can is used to deliver statistical inference on the precision of the model. If we were to say that females and males comprised the blue and green distributions respectively, then this is saying that the model does a much better job at predicting female test scores than male test scores. Since our precision is an average of these two results, it actually indicates that we do worse on females and better on males than what is truly going on.
 
@@ -6737,11 +7038,11 @@ A clear example of how the forecast error variance can be proportional to an ind
 
 Your data set has 50 household observations from each of three annual income levels: \$10,000, \$75,000, and \$150,000 as well as their annual consumption expenditures. As the figure illustrates, households earning around \$10,000 a year in income all have roughly the same consumption level (because they all save very little). As income levels increase, you see more \emph{dispersion} in consumption expenditures because more income is paired with more options. Households earning \$150,000 annually could choose to save a majority of it or even go into debt (i.e.~spend more than \$150,000). This data could be used to estimate a regression line (illustrated in black), but you can see that the model looks like it does a poorer and poorer job of predicting consumption expenditures as the income levels increase.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-180-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-187-1} \end{center}
 
 If we were to examine the forecast errors of this regression and plot them with income, you will see that the dispersion in indeed proportional to income.
 
-\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-181-1} \end{center}
+\begin{center}\includegraphics{MBA8350book_files/figure-latex/unnamed-chunk-188-1} \end{center}
 
 A formal test for heteroskedasticity that we will focus on is the Park test. The Park test is simple but less general than another test called the White test, but the concepts are similar.
 
@@ -6783,8 +7084,8 @@ A Park test is a formal way of testing if the variance of the residual term is i
 ## t test of coefficients:
 ## 
 ##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -0.3008853  0.3176543 -0.9472   0.3451    
-## X            0.0441257  0.0032883 13.4191   <2e-16 ***
+## (Intercept) -0.9781349  0.3920715 -2.4948   0.0137 *  
+## X            0.0457541  0.0040586 11.2733   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -6813,8 +7114,8 @@ The code below is what is known as a \emph{heteroskedasticity correction}. It di
 ## t test of coefficients:
 ## 
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -0.338665   1.286466 -0.2633   0.7927    
-## X            1.013862   0.031434 32.2540   <2e-16 ***
+## (Intercept) -1.227489   1.396620 -0.8789   0.3809    
+## X            1.033566   0.034726 29.7638   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
