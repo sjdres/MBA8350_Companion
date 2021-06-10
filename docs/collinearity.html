@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -478,8 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="collinearity.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb340-2"><a href="collinearity.html#cb340-2" aria-hidden="true" tabindex="-1"></a>MULTI2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/MULTI2.xlsx&quot;</span>)</span>
 <span id="cb340-3"><a href="collinearity.html#cb340-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(MULTI2)</span></code></pre></div>
-<pre><code>## [1] &quot;Team&quot;          &quot;League&quot;        &quot;Wins&quot;          &quot;ERA&quot;           &quot;Runs&quot;          &quot;Hits_Allowed&quot; 
-## [7] &quot;Walks_Allowed&quot; &quot;Saves&quot;         &quot;Errors&quot;</code></pre>
+<pre><code>## [1] &quot;Team&quot;          &quot;League&quot;        &quot;Wins&quot;          &quot;ERA&quot;           &quot;Runs&quot;         
+## [6] &quot;Hits_Allowed&quot;  &quot;Walks_Allowed&quot; &quot;Saves&quot;         &quot;Errors&quot;</code></pre>
 <p>Suppose that you want to explain why some baseball teams recorded more wins than others by looking at the season statistics listed above. Before we run a full regression with <em>Wins</em> as the dependent variable and the other right variables as independent variables, we need to test for collinearity.</p>
 <p>If we were to follow the steps above for each independent variable, we will need to calculate seven VIF values (Team isn’t a variable… it’s a name). This is a lot easier done than said in R:</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="collinearity.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the &#39;intended&#39; model:</span></span>
@@ -495,8 +495,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ##     logit</code></pre>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="collinearity.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(REG)</span></code></pre></div>
-<pre><code>##        League           ERA          Runs  Hits_Allowed Walks_Allowed         Saves        Errors 
-##      1.221101     11.026091      1.279997      6.342662      3.342659      1.762577      1.548678</code></pre>
+<pre><code>##        League           ERA          Runs  Hits_Allowed Walks_Allowed         Saves 
+##      1.221101     11.026091      1.279997      6.342662      3.342659      1.762577 
+##        Errors 
+##      1.548678</code></pre>
 <p>The output above shows a VIF for each of the independent variables. The largest are for ERA and Hits Allowed, and these are problematic given that they are above our threshold of 5.
 So now that we detected collinearity… what do we do about it?</p>
 </div>

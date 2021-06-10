@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -444,7 +444,7 @@ Our estimated results are as follows:</p>
 </tbody>
 </table>
 <p>The first thing we can do by way of statistical inference is test if each population coefficient is statistically different from zero. For example,</p>
-<p><span class="math display">\[H_0: \beta_1 = 0 \quad versus \quad \beta_1 \neq 0\]</span></p>
+<p><span class="math display">\[H_0: \beta_1 = 0 \quad versus \quad H_1:\beta_1 \neq 0\]</span></p>
 <p>We can conduct this test the same way we did before (only minding the degrees of freedom).</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="statistical-inference-1.html#cb247-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="dv">0</span></span>
 <span id="cb247-2"><a href="statistical-inference-1.html#cb247-2" aria-hidden="true" tabindex="-1"></a>Bhat1 <span class="ot">=</span> <span class="fu">summary</span>(REG2)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>]</span>
@@ -461,7 +461,7 @@ Our estimated results are as follows:</p>
 <p>Note that also like our simple linear regression case, this test is already done for you in the summary results. You can see that the test statistic under the null and the p-value for this test are already there.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 <p>As in our simple linear regression case, all hypothesis tests where the null sets a PRF coefficient to some number other than 0 (and all two-sided hypothesis tests) need to be done by hand. It is again the same steps, but we need to mind the degrees of freedom.</p>
 <p>Suppose we want to show that an additional square foot of house size (all else equal) will result in less than a $125 dollar increase in house price on average.
-<span class="math display">\[H_0: \beta_1 \geq 0.125 \quad versus \quad \beta_1 &lt; 0.125\]</span></p>
+<span class="math display">\[H_0: \beta_1 \geq 0.125 \quad versus \quad H_1:\beta_1 &lt; 0.125\]</span></p>
 <p>This left-tail test is as follows:</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="statistical-inference-1.html#cb253-1" aria-hidden="true" tabindex="-1"></a>B1 <span class="ot">=</span> <span class="fl">0.125</span></span>
 <span id="cb253-2"><a href="statistical-inference-1.html#cb253-2" aria-hidden="true" tabindex="-1"></a></span>

@@ -226,7 +226,7 @@ lines(X, Y)
 polygon(c(-2,X[i],2), c(0,Y[i],0), col="purple")
 ```
 
-So what does this really buy us? Consider the application above about the Philadelphia policy where we would have in reality have no idea what the population parameters $(\mu,\;\sigma)$ are, or what the population distribution even looks like. However, the CLT says that if we decide on a sample size $n$, then we will draw from a sampling distribution that is a normal distribution with mean $mu$ and standard deviation $\sigma / \sqrt{n}$.
+So what does this really buy us? Consider the application above about the Philadelphia policy where we would have in reality have no idea what the population parameters $(\mu,\;\sigma)$ are, or what the population distribution even looks like. However, the CLT says that if we decide on a sample size $n$, then we will draw from a sampling distribution that is a normal distribution with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
 
 ```{r, echo=FALSE}
 library(latex2exp)
@@ -246,4 +246,4 @@ lines(X, Y)
 polygon(c(-2,X[i],2), c(0,Y[i],0), col="purple")
 ```
 
-So what we know is that once we draw a random sample and construct a sample mean, we can say with 95% confidence that that sample mean was drawn from the shaded region of the above distribution. We know what the sample mean value is because we just calculated it. What we don't know is what $/mu$ is. However, we can construct a probabilistic range (a *confidence interval*) around where we think this population parameter lies. This is where we are going next.
+So what we know is that once we draw a random sample and construct a sample mean, we can say with 95% confidence that that sample mean was drawn from the shaded region of the above distribution. We know what the sample mean value is because we just calculated it. What we don't know is what $\mu$ is. However, we can construct a probabilistic range (a *confidence interval*) around where we think this population parameter lies. This is where we are going next.

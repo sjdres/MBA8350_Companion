@@ -23,7 +23,7 @@ We are forced to analyze a sample rather than a population because:
 
 3. the resulting analysis is less cumbersome and more practical
 
-4. sometimes obtaining the sample is *impossible*! So the sample is the best we can do.
+4. sometimes obtaining the population is *impossible*! So the sample is the best we can do.
 
 When making statements on the population parameters using the sample statistics, we are drawing **statistical inference**. In order for this inference to be reasonable, we must assume that the characteristics of the sample (i.e., the sample statistics) are reasonably close to the characteristics of the population (i.e., the population parameters). The problem with this assumption is that since we will never see the population, we will never be able to verify if the statistics are reasonably close to the parameters. This chapter discusses several different methods of drawing a sample from a population, as well as their pros and cons. The bottom line is that all of these methods attempt to get a sample to be the best possible subset of the population.
 

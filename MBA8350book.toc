@@ -116,51 +116,54 @@
 \contentsline {subsection}{\numberline {8.2.1}Abusing an \(R^2\)}{138}{subsection.8.2.1}%
 \contentsline {subsection}{\numberline {8.2.2}An \emph {Adjusted} \(R^2\)}{140}{subsection.8.2.2}%
 \contentsline {subsubsection}{Conclusion: for informal use only!}{140}{section*.23}%
-\contentsline {section}{\numberline {8.3}Qualitative (Dummy) Variables}{140}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Intercept dummy variable}{141}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Slope dummy variable}{144}{subsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.3.3}What if there are more than two categories?}{146}{subsection.8.3.3}%
-\contentsline {subsection}{\numberline {8.3.4}A Final Application}{148}{subsection.8.3.4}%
-\contentsline {subsubsection}{Make a \emph {Nominal} Series a \emph {Real} Series}{149}{section*.24}%
-\contentsline {subsubsection}{Remove a Trend}{151}{section*.25}%
-\contentsline {subsubsection}{Remove Seasonality}{154}{section*.26}%
-\contentsline {section}{\numberline {8.4}Joint Hypothesis Tests}{157}{section.8.4}%
-\contentsline {subsection}{\numberline {8.4.1}Simple Hypothesis Tests}{157}{subsection.8.4.1}%
-\contentsline {subsection}{\numberline {8.4.2}Simple versus Joint Tests}{158}{subsection.8.4.2}%
-\contentsline {subsubsection}{Application}{159}{section*.27}%
-\contentsline {subsubsection}{Conducting a Joint Hypothesis Test}{161}{section*.28}%
-\contentsline {subsection}{\numberline {8.4.3}Applications}{165}{subsection.8.4.3}%
-\contentsline {subsubsection}{Application 1: A wage application}{165}{section*.29}%
-\contentsline {paragraph}{What can we conclude from this?}{167}{section*.30}%
-\contentsline {subsubsection}{Application 2: Constant Returns to Scale}{168}{section*.31}%
-\contentsline {chapter}{\numberline {9}Advanced Regression Topics}{171}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Nonlinear Models}{171}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Derivatives}{172}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Why consider non-linear relationships?}{172}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}Functional Forms}{173}{subsection.9.1.3}%
-\contentsline {subsection}{\numberline {9.1.4}The Log transformation}{173}{subsection.9.1.4}%
-\contentsline {subsubsection}{The derivative of the log function}{174}{section*.32}%
-\contentsline {subsubsection}{Log-log and Semi-log models}{175}{section*.33}%
-\contentsline {paragraph}{Log-log model}{175}{section*.34}%
-\contentsline {paragraph}{Semi-log models}{176}{section*.35}%
-\contentsline {paragraph}{It isn't ALL OR NOTHING!!!}{177}{section*.36}%
-\contentsline {subsubsection}{Application}{177}{section*.37}%
-\contentsline {subsection}{\numberline {9.1.5}The Quadratic transformation}{178}{subsection.9.1.5}%
-\contentsline {subsubsection}{Application}{179}{section*.38}%
-\contentsline {subsection}{\numberline {9.1.6}The Reciprocal transformation}{182}{subsection.9.1.6}%
-\contentsline {subsubsection}{Application}{183}{section*.39}%
-\contentsline {subsection}{\numberline {9.1.7}Conclusion}{185}{subsection.9.1.7}%
-\contentsline {section}{\numberline {9.2}Collinearity}{186}{section.9.2}%
-\contentsline {subsection}{\numberline {9.2.1}An Application}{187}{subsection.9.2.1}%
-\contentsline {subsection}{\numberline {9.2.2}What does Collinearity do to our regression?}{189}{subsection.9.2.2}%
-\contentsline {subsection}{\numberline {9.2.3}How to test for Collinearity?}{189}{subsection.9.2.3}%
-\contentsline {subsubsection}{Correlation Coefficients}{189}{section*.40}%
-\contentsline {subsubsection}{Variance Inflation Factors (VIFs)}{190}{section*.41}%
-\contentsline {subsection}{\numberline {9.2.4}An Application:}{191}{subsection.9.2.4}%
-\contentsline {subsection}{\numberline {9.2.5}How do we remove Collinearity?}{192}{subsection.9.2.5}%
-\contentsline {subsubsection}{Sometimes removing collinearity might involve multiple rounds}{194}{section*.42}%
-\contentsline {section}{\numberline {9.3}Heteroskedasticity}{195}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}Pure versus Impure Heteroskedasticity}{196}{subsection.9.3.1}%
-\contentsline {subsection}{\numberline {9.3.2}Consequences of Heteroskedasticity}{196}{subsection.9.3.2}%
-\contentsline {subsection}{\numberline {9.3.3}Detection}{196}{subsection.9.3.3}%
-\contentsline {subsection}{\numberline {9.3.4}Remedies}{199}{subsection.9.3.4}%
+\contentsline {section}{\numberline {8.3}Statistical Inference}{140}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Hypothesis Tests}{141}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Confidence Intervals (around population parameters)}{143}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Confidence Intervals (around forecasts)}{143}{subsection.8.3.3}%
+\contentsline {section}{\numberline {8.4}Qualitative (Dummy) Variables}{144}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Intercept dummy variable}{145}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Slope dummy variable}{148}{subsection.8.4.2}%
+\contentsline {subsection}{\numberline {8.4.3}What if there are more than two categories?}{150}{subsection.8.4.3}%
+\contentsline {subsection}{\numberline {8.4.4}A Final Application}{152}{subsection.8.4.4}%
+\contentsline {subsubsection}{Make a \emph {Nominal} Series a \emph {Real} Series}{153}{section*.24}%
+\contentsline {subsubsection}{Remove a Trend}{155}{section*.25}%
+\contentsline {subsubsection}{Remove Seasonality}{158}{section*.26}%
+\contentsline {section}{\numberline {8.5}Joint Hypothesis Tests}{161}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Simple versus Joint Tests}{161}{subsection.8.5.1}%
+\contentsline {subsubsection}{Application}{163}{section*.27}%
+\contentsline {subsubsection}{Conducting a Joint Hypothesis Test}{165}{section*.28}%
+\contentsline {subsection}{\numberline {8.5.2}Applications}{169}{subsection.8.5.2}%
+\contentsline {subsubsection}{Application 1: A wage application}{169}{section*.29}%
+\contentsline {paragraph}{What can we conclude from this?}{170}{section*.30}%
+\contentsline {subsubsection}{Application 2: Constant Returns to Scale}{171}{section*.31}%
+\contentsline {chapter}{\numberline {9}Advanced Regression Topics}{175}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Nonlinear Models}{175}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Derivatives}{176}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Why consider non-linear relationships?}{176}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Functional Forms}{177}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.4}The Log transformation}{177}{subsection.9.1.4}%
+\contentsline {subsubsection}{The derivative of the log function}{178}{section*.32}%
+\contentsline {subsubsection}{Log-log and Semi-log models}{179}{section*.33}%
+\contentsline {paragraph}{Log-log model}{179}{section*.34}%
+\contentsline {paragraph}{Semi-log models}{180}{section*.35}%
+\contentsline {paragraph}{It isn't ALL OR NOTHING!!!}{181}{section*.36}%
+\contentsline {subsubsection}{Application}{181}{section*.37}%
+\contentsline {subsection}{\numberline {9.1.5}The Quadratic transformation}{182}{subsection.9.1.5}%
+\contentsline {subsubsection}{Application}{183}{section*.38}%
+\contentsline {subsection}{\numberline {9.1.6}The Reciprocal transformation}{186}{subsection.9.1.6}%
+\contentsline {subsubsection}{Application}{187}{section*.39}%
+\contentsline {subsection}{\numberline {9.1.7}Conclusion}{189}{subsection.9.1.7}%
+\contentsline {section}{\numberline {9.2}Collinearity}{190}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}An Application}{191}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}What does Collinearity do to our regression?}{193}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}How to test for Collinearity?}{193}{subsection.9.2.3}%
+\contentsline {subsubsection}{Correlation Coefficients}{193}{section*.40}%
+\contentsline {subsubsection}{Variance Inflation Factors (VIFs)}{194}{section*.41}%
+\contentsline {subsection}{\numberline {9.2.4}An Application:}{195}{subsection.9.2.4}%
+\contentsline {subsection}{\numberline {9.2.5}How do we remove Collinearity?}{196}{subsection.9.2.5}%
+\contentsline {subsubsection}{Sometimes removing collinearity might involve multiple rounds}{198}{section*.42}%
+\contentsline {section}{\numberline {9.3}Heteroskedasticity}{199}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Pure versus Impure Heteroskedasticity}{200}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Consequences of Heteroskedasticity}{200}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Detection}{200}{subsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.3.4}Remedies}{203}{subsection.9.3.4}%

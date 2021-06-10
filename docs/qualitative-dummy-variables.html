@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -593,9 +593,9 @@ wage_i = \;&amp;\beta_0+\beta_1educ_i+\beta_2exper_i+ \beta_3tenure_i+\beta_4fem
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="qualitative-dummy-variables.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
 <span id="cb285-2"><a href="qualitative-dummy-variables.html#cb285-2" aria-hidden="true" tabindex="-1"></a>AUTO <span class="ot">&lt;-</span> <span class="fu">dummy_cols</span>(AUTO, <span class="at">select_columns =</span> <span class="st">&#39;MONTH&#39;</span>)</span>
 <span id="cb285-3"><a href="qualitative-dummy-variables.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AUTO)</span></code></pre></div>
-<pre><code>##  [1] &quot;INDEX&quot;    &quot;YEAR&quot;     &quot;MONTH&quot;    &quot;DATE&quot;     &quot;AUTOSALE&quot; &quot;CPI&quot;      &quot;RAUTO&quot;    &quot;TREND&quot;    &quot;RAUTO_DT&quot;
-## [10] &quot;MONTH_1&quot;  &quot;MONTH_2&quot;  &quot;MONTH_3&quot;  &quot;MONTH_4&quot;  &quot;MONTH_5&quot;  &quot;MONTH_6&quot;  &quot;MONTH_7&quot;  &quot;MONTH_8&quot;  &quot;MONTH_9&quot; 
-## [19] &quot;MONTH_10&quot; &quot;MONTH_11&quot; &quot;MONTH_12&quot;</code></pre>
+<pre><code>##  [1] &quot;INDEX&quot;    &quot;YEAR&quot;     &quot;MONTH&quot;    &quot;DATE&quot;     &quot;AUTOSALE&quot; &quot;CPI&quot;      &quot;RAUTO&quot;    &quot;TREND&quot;   
+##  [9] &quot;RAUTO_DT&quot; &quot;MONTH_1&quot;  &quot;MONTH_2&quot;  &quot;MONTH_3&quot;  &quot;MONTH_4&quot;  &quot;MONTH_5&quot;  &quot;MONTH_6&quot;  &quot;MONTH_7&quot; 
+## [17] &quot;MONTH_8&quot;  &quot;MONTH_9&quot;  &quot;MONTH_10&quot; &quot;MONTH_11&quot; &quot;MONTH_12&quot;</code></pre>
 <p>Note how the dataset <em>AUTO</em> now contains 21 variables when it previously contained 9. This is because the above lines of code created 12 new variables - a dummy variable for each month of the year (1-12). Since we are considering the 12th month as our benchmark, we simply do not include it in our regression.</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="qualitative-dummy-variables.html#cb287-1" aria-hidden="true" tabindex="-1"></a>DS <span class="ot">&lt;-</span> <span class="fu">lm</span>(RAUTO_DT <span class="sc">~</span> MONTH_1 <span class="sc">+</span> MONTH_2 <span class="sc">+</span> MONTH_3 <span class="sc">+</span> MONTH_4 <span class="sc">+</span></span>
 <span id="cb287-2"><a href="qualitative-dummy-variables.html#cb287-2" aria-hidden="true" tabindex="-1"></a>           MONTH_5 <span class="sc">+</span> MONTH_6 <span class="sc">+</span> MONTH_7 <span class="sc">+</span> MONTH_8 <span class="sc">+</span> MONTH_9 <span class="sc">+</span></span>

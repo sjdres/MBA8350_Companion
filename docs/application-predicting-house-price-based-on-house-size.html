@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -384,8 +384,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To facilitate this application, we will use a data set internal to R, called <em>hprice1</em>.</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="application-predicting-house-price-based-on-house-size.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(hprice1,<span class="at">package=</span><span class="st">&#39;wooldridge&#39;</span>)</span>
 <span id="cb174-2"><a href="application-predicting-house-price-based-on-house-size.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(hprice1)</span></code></pre></div>
-<pre><code>##  [1] &quot;assess&quot;   &quot;bdrms&quot;    &quot;colonial&quot; &quot;lassess&quot;  &quot;llotsize&quot; &quot;lotsize&quot;  &quot;lprice&quot;   &quot;lsqrft&quot;   &quot;price&quot;   
-## [10] &quot;sqrft&quot;</code></pre>
+<pre><code>##  [1] &quot;assess&quot;   &quot;bdrms&quot;    &quot;colonial&quot; &quot;lassess&quot;  &quot;llotsize&quot; &quot;lotsize&quot;  &quot;lprice&quot;   &quot;lsqrft&quot;  
+##  [9] &quot;price&quot;    &quot;sqrft&quot;</code></pre>
 <p>This data set contains 88 observations of homes where each home has 10 pieces of information called <em>variables</em>. We are only concerned with two variables at the moment - the house price (<em>price</em>) and the house size (<em>sqrft</em>).</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="application-predicting-house-price-based-on-house-size.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hprice1<span class="sc">$</span>price)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 

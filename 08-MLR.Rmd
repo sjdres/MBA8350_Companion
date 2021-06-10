@@ -247,7 +247,7 @@ pander(summary(REG2))
 
 The first thing we can do by way of statistical inference is test if each population coefficient is statistically different from zero. For example,
 
-$$H_0: \beta_1 = 0 \quad versus \quad \beta_1 \neq 0$$
+$$H_0: \beta_1 = 0 \quad versus \quad H_1:\beta_1 \neq 0$$
 
 We can conduct this test the same way we did before (only minding the degrees of freedom).
 
@@ -269,7 +269,7 @@ Note that also like our simple linear regression case, this test is already done
 As in our simple linear regression case, all hypothesis tests where the null sets a PRF coefficient to some number other than 0 (and all two-sided hypothesis tests) need to be done by hand. It is again the same steps, but we need to mind the degrees of freedom. 
 
 Suppose we want to show that an additional square foot of house size (all else equal) will result in less than a $125 dollar increase in house price on average.
-$$H_0: \beta_1 \geq 0.125 \quad versus \quad \beta_1 < 0.125$$
+$$H_0: \beta_1 \geq 0.125 \quad versus \quad H_1:\beta_1 < 0.125$$
 
 This left-tail test is as follows:
 
