@@ -393,7 +393,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb243-2"><a href="adjusted-r2.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG3)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.6723622</code></pre>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="adjusted-r2.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(REG4)<span class="sc">$</span>r.squared</span></code></pre></div>
+<<<<<<< HEAD
 <pre><code>## [1] 0.680083</code></pre>
+=======
+<pre><code>## [1] 0.6731468</code></pre>
+>>>>>>> e07779b67e9584137bfd23f0eff4cead921511d9
 <p>The exercise above adds a completely random variable as a fourth independent variable. It should have nothing to do with explaining house prices. However, if you generate <em>the correct</em> random variables, then you might get an increase in the <span class="math inline">\(R^2\)</span> by as much as an entire percentage point. Does this say that the random variable actually helps explain variations in house prices? Of course not. What it does show is that sometimes we can abuse the <span class="math inline">\(R^2\)</span>, so we need an additional measure of goodness of fit.</p>
 </div>
 <div id="an-adjusted-r2" class="section level3" number="8.2.2">
