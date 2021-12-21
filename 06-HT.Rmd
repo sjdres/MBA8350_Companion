@@ -1,7 +1,7 @@
 # Hypothesis Tests {#HT}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 ```
 
 Confidence intervals determine a range where our population mean resides given the characteristics of a sample and a desired level of confidence. Recall that the population parameter can be *anywhere* within the range dictated by a confidence interval.

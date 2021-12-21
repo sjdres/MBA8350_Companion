@@ -1,7 +1,7 @@
 # Introduction {#intro}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 ```
 
 This chapter is designed to motivate the use of statistics, because we are constantly bombarded with statistics on a daily basis (whether we like it or not). We will start with some motivating examples and an introduction to some important terminology and equations used to calculate descriptive measures (e.g., mean, standard deviation, etc.). We will start throwing around some data and R code in the applications, but we formally get into these details later. You should skim over those details at first and focus more on the results and conclusions provided. You can always come back to this chapter and focus on replicating the code once we cover R in later chapters.

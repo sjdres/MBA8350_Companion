@@ -1,7 +1,7 @@
 # Confidence Intervals {#CI}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 ```
 
 With the concept of the Central Limit Theorem (CLT) under our belts, we can discuss our first application of statistical inference. The main concept is that when a statistician discusses *confidence*, they are actually saying how likely something is going to happen. In other words, 95% confidence in a statement means that something is going to happen 95 out of 100 replications. We only get one shot (not 100 replications), so it is the likelihood that it's going to happen in this one shot.
@@ -235,7 +235,7 @@ polygon(c(-2,X[i],2), c(0,Y[i],0), col="purple")
 
 So if we collected a sample on $n=100$, meaning we rolled two dice 100 times, recorded the total each time, and calculated the mean value, then...
 
-$$Pr\left( 7-1.96 \frac{2.45}{\sqrt{100}} \leq \bar{X} \leq 7-1.96 \frac{2.45}{\sqrt{100}} \right) = 0.95$$
+$$Pr\left( 7-1.96 \frac{2.45}{\sqrt{100}} \leq \bar{X} \leq 7+1.96 \frac{2.45}{\sqrt{100}} \right) = 0.95$$
 
 ```{r}
 Z = qnorm(0.975,lower.tail = FALSE)

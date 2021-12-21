@@ -1,7 +1,7 @@
 # Simple Linear Regression {#SLR}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 library(pander)
 ```
 
@@ -181,10 +181,7 @@ The difference between the SRF and the PRF are very important.
 We will get into the details about how these regression estimates can be obtained later. Right now, lets just arrive at our estimates and shed light on the big picture.
 
 ```{r}
-Y <- hprice1$price
-X <- hprice1$sqrft
-
-REG <- lm(Y~X)
+REG <- lm(price~sqrft,data = hprice1)
 coef(REG)
 ```
 
@@ -198,11 +195,11 @@ We can illustrate the results of the regression as follows:
 
 ```{r}
 par(mfrow = c(1,2))
-plot(X, Y, 
+plot(hprice1$sqrft, hprice1$price, 
      xlab = "Size (Sq. Ft.)",
      ylab = "Price (1000$)")
-lines(X,fitted(REG),col = 'blue')
-plot(X,residuals(REG),
+lines(hprice1$sqrft,fitted(REG),col = 'blue')
+plot(hprice1$sqrft,residuals(REG),
      xlab = "Size (Sq. Ft.)",
      ylab = "Residuals")
 abline(h = 0)
@@ -258,9 +255,7 @@ $$Y_i=\beta_0+\beta_1X_i+\varepsilon_i$$
 
 ```{r, echo=FALSE}
 data(mtcars)
-Y <- mtcars$mpg
-X <- mtcars$wt
-plot(X,Y,
+plot(mtcars$wt,mtcars$mpg,
      xlab = "Weight (Tons)",
      ylab = "Fuel Efficiency (MPG)")
 ```
@@ -297,19 +292,19 @@ These two equations are important. The first equation states that the slope of t
 Lets see what these estimates and the resulting regression line look like.
 
 ```{r}
-REG <- lm(Y~X)
+REG <- lm(mpg~wt,data = mtcars)
 coef(REG)
 
-plot(X,Y,
+plot(mtcars$wt,mtcars$mpg,
      xlab = "Weight (Tons)",
      ylab = "Fuel Efficiency (MPG)")
-lines(X,fitted(REG),col='blue')
+lines(mtcars$wt,fitted(REG),col='blue')
 ```
 
 Now you probably imagined a line that looked kinda like this, but we know that this line (with these coefficients) is the absolute best line that minimizes the total difference between the observations (the *dots*) and the predictions (the *line*). Any other line we could draw would have a larger sum of squared errors. We can see what this difference looks like by looking at the residuals.
 
 ```{r}
-plot(X,residuals(REG),
+plot(mtcars$wt,residuals(REG),
      xlab = "Weight (Tons)",
      ylab = "Residuals")
 abline(h = 0,col="blue")
@@ -347,7 +342,7 @@ $$TSS = \sum^{N}_{i=1}(Y_i - \bar{Y})^2$$
 
 This expression is similar to a variance equation (without averaging), and since the movements in the dependent variable are ultimately what we are after, this measure delivers *the total variation in the dependent variable that we would like our model to explain*.
 
-Next, we can use our regression estimates to calculate an **estimated sum or squares** (or ESS) which measures the total variation in the dependent variable that our model *actually* explained:
+Next, we can use our regression estimates to calculate an **estimated sum of squares** (or ESS) which measures the total variation in the dependent variable that our model *actually* explained:
 
 $$ESS = \sum^{N}_{i=1}(\hat{Y}_i - \bar{Y})^2$$
 
@@ -355,7 +350,7 @@ Note that this measure uses our conditional forecasts from our regression model 
 
 $$\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i$$
 
-Finally, we can use our regression estimates to also calculate a **residual sum or squares** (or RSS) which measures the total variation in the dependent variable that our model *cannot* explain:
+Finally, we can use our regression estimates to also calculate a **residual sum of squares** (or RSS) which measures the total variation in the dependent variable that our model *cannot* explain:
 
 $$RSS = \sum^{N}_{i=1}(Y_i - \hat{Y}_i)^2 = \sum^{N}_{i=1}e_i^2$$
 

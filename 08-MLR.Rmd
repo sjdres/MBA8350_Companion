@@ -1,7 +1,7 @@
 # Multiple Linear Regression {#MLR}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 library(pander)
 library(plot3D)
 ```
@@ -89,8 +89,7 @@ While the results from these two simple regressions make sense, we need to reali
 To illustrate this, let us run a multiple regression model where both house size and number of bedrooms are considered.
 
 ```{r}
-REG3 <- lm(hprice1$price ~ 
-             hprice1$sqrft + hprice1$bdrms)
+REG3 <- lm(price ~ sqrft + bdrms, data = hprice1)
 coef(REG3)
 ```
 
@@ -375,9 +374,9 @@ $$\beta_4 = \frac{\Delta wage}{\Delta female}$$
 
 Note that the dummy variable is constructed such that males receive a 0 while females receive a 1. This implies that $\beta_4$ will denote the average change in a female's wage *relative* to a male's wage. If $\beta_4 < 0$, then this would imply that a female's average wage is less than a male's.
 
-The four independent variables are illustrated in the scatter plots below. Notice that even though the dummy variable takes on only two numbers by design, we can still see how it effectively *splits* the observations into the two groups.
+After loading the *wage1* data directly from the *wooldridge* package (see code below), the four independent variables are illustrated in the scatter plots below. Notice that even though the dummy variable takes on only two numbers by design, we can still see how it effectively *splits* the observations into the two groups.
 
-```{r, fig.width=6.5, fig.height=9, echo=FALSE}
+```{r, fig.width=6.5, fig.height=9, echo=TRUE}
 data(wage1, package = "wooldridge")
 
 par(mfrow = c(4,1))
@@ -748,7 +747,7 @@ As long as you can state a hypothesis involving multiple PRF coefficients in a l
 
 #### Application {-}
 
-One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the *Bank-Lending Channel of Monetary Policy Transmission*, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).^[Bernanke, B., & Blinder, A. (1992). The Federal Funds Rate and the Channels of Monetary Transmission. *The American Economic Review*, 82(4), 901-921.] A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the dependent variable.
+One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the *Bank-Lending Channel of Monetary Policy Transmission*, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).^[Bernanke, B., & Blinder, A. (1992). The Federal Funds Rate and the Channels of Monetary Transmission. *The American Economic Review*, 82(4), 901-921.] A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the independent variable.
 
 $$L_i = \beta_0 + \beta_1 FFR_i + \varepsilon_i$$
 
@@ -811,7 +810,7 @@ A restricted model involves both the unrestricted model and the null hypothesis.
 
 $$H_0:\beta_1=\beta_2 \quad \text{versus} \quad H_1:\beta_1 \neq \beta_2$$
 
-With the null hypothesis established, we now need to construct a *restricted* model which results from imposing the null hypothesis on the unrestricted model. In particular, staring with the unrestricted model and substituting the null, we get the following:
+With the null hypothesis established, we now need to construct a *restricted* model which results from imposing the null hypothesis on the unrestricted model. In particular, starting with the unrestricted model and substituting the null, we get the following:
 
 $$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i$$
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.1 Application: Explaining house price in a multiple regression | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
   <meta name="description" content="Course companion for MBA 8350." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.1 Application: Explaining house price in a multiple regression | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="MLR.html"/>
 <link rel="next" href="adjusted-r2.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<li class="chapter" data-level="2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
-<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
 <ul>
@@ -402,11 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The regression that only considers number of bedrooms has a slope coefficient of 62. This slope coefficient states that an additional bedroom will increase the average house price by $62,000.</p>
 <p>While the results from these two simple regressions make sense, we need to realize that a simple regression model only considers a single independent variable to be important (and throws all of the other information into the garbage can). This means that the first regression takes no notice of the number of rooms a house has, while the second regression takes no notice of the size of the home. Since it is reasonable to assume that bigger homes have more bedrooms, then a regression model that is only given one of these pieces of information might be overstating the quantitative impact of the single independent variable.</p>
 <p>To illustrate this, let us run a multiple regression model where both house size and number of bedrooms are considered.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="application-explaining-house-price-in-a-multiple-regression.html#cb233-1" aria-hidden="true" tabindex="-1"></a>REG3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hprice1<span class="sc">$</span>price <span class="sc">~</span> </span>
-<span id="cb233-2"><a href="application-explaining-house-price-in-a-multiple-regression.html#cb233-2" aria-hidden="true" tabindex="-1"></a>             hprice1<span class="sc">$</span>sqrft <span class="sc">+</span> hprice1<span class="sc">$</span>bdrms)</span>
-<span id="cb233-3"><a href="application-explaining-house-price-in-a-multiple-regression.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG3)</span></code></pre></div>
-<pre><code>##   (Intercept) hprice1$sqrft hprice1$bdrms 
-##   -19.3149958     0.1284362    15.1981910</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="application-explaining-house-price-in-a-multiple-regression.html#cb233-1" aria-hidden="true" tabindex="-1"></a>REG3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> bdrms, <span class="at">data =</span> hprice1)</span>
+<span id="cb233-2"><a href="application-explaining-house-price-in-a-multiple-regression.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG3)</span></code></pre></div>
+<pre><code>## (Intercept)       sqrft       bdrms 
+## -19.3149958   0.1284362  15.1981910</code></pre>
 <p>The slope with respect to house size is now 0.128 (down from 0.14) while the slope with respect to number of bedrooms is now 15.2 (down from 62). In order to make sense of these changes, let us explicitly interpret these slope coefficients within the context of a multiple regression model (where we can hold all other independent variables constant).</p>
 <blockquote>
 <p>Holding number of bedrooms constant, an additional square foot of house size will increase a house price by $128, on average.</p>
@@ -455,7 +454,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -495,6 +493,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MBA8350book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

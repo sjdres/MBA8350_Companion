@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.3 Ordinary Least Squares (OLS) | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
   <meta name="description" content="Course companion for MBA 8350." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.3 Ordinary Least Squares (OLS) | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="application-predicting-house-price-based-on-house-size.html"/>
 <link rel="next" href="decomposition-of-variance.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<li class="chapter" data-level="2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
-<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
 <ul>
@@ -383,17 +383,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Where a ‘bar’ term over a variable represents the mean of that variable (i.e., <span class="math inline">\(\bar{X}=\frac{1}{n}\sum_iX_i\)</span>)</p>
 <p>These two equations are important. The first equation states that the slope of the line equation <span class="math inline">\((\hat{\beta}_1)\)</span> is equal to the ratio between the covariance of Y and X and the variance of X. Remember that a covariance measures how two variables systematically move together. If they tend to go up at the same time, then they have a positive covariance. If they tend to go down - a negative covariance. If they do not tend to move together in any systematic way, then they have zero covariance. This systematic movement is precisely what helps determine the slope term. The second equation states that with <span class="math inline">\(\hat{\beta}_1\)</span> determined, we can determine <span class="math inline">\(\hat{\beta}_0\)</span> such that the regression line goes through the means of the dependent and independent variables.</p>
 <p>Lets see what these estimates and the resulting regression line look like.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="ordinary-least-squares-ols.html#cb185-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="ordinary-least-squares-ols.html#cb185-1" aria-hidden="true" tabindex="-1"></a>REG <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>wt,<span class="at">data =</span> mtcars)</span>
 <span id="cb185-2"><a href="ordinary-least-squares-ols.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(REG)</span></code></pre></div>
-<pre><code>## (Intercept)           X 
+<pre><code>## (Intercept)          wt 
 ##   37.285126   -5.344472</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="ordinary-least-squares-ols.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,</span>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="ordinary-least-squares-ols.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt,mtcars<span class="sc">$</span>mpg,</span>
 <span id="cb187-2"><a href="ordinary-least-squares-ols.html#cb187-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight (Tons)&quot;</span>,</span>
 <span id="cb187-3"><a href="ordinary-least-squares-ols.html#cb187-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Fuel Efficiency (MPG)&quot;</span>)</span>
-<span id="cb187-4"><a href="ordinary-least-squares-ols.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(X,<span class="fu">fitted</span>(REG),<span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<span id="cb187-4"><a href="ordinary-least-squares-ols.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(mtcars<span class="sc">$</span>wt,<span class="fu">fitted</span>(REG),<span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="MBA8350book_files/figure-html/unnamed-chunk-111-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now you probably imagined a line that looked kinda like this, but we know that this line (with these coefficients) is the absolute best line that minimizes the total difference between the observations (the <em>dots</em>) and the predictions (the <em>line</em>). Any other line we could draw would have a larger sum of squared errors. We can see what this difference looks like by looking at the residuals.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ordinary-least-squares-ols.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,<span class="fu">residuals</span>(REG),</span>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ordinary-least-squares-ols.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt,<span class="fu">residuals</span>(REG),</span>
 <span id="cb188-2"><a href="ordinary-least-squares-ols.html#cb188-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight (Tons)&quot;</span>,</span>
 <span id="cb188-3"><a href="ordinary-least-squares-ols.html#cb188-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</span>
 <span id="cb188-4"><a href="ordinary-least-squares-ols.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
@@ -430,7 +430,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -470,6 +469,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MBA8350book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Coding Basics | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
   <meta name="description" content="Course companion for MBA 8350." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Coding Basics | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="downloading-and-installing-r.html"/>
 <link rel="next" href="data-visualization.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<li class="chapter" data-level="2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
-<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
 <ul>
@@ -383,13 +383,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.3.2</span> Listing, Adding, and Removing</h3>
 <p>We can list all objects in our global environment using the list command: ls()</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="coding-basics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<<<<<<< HEAD
-<pre><code>##  [1] &quot;BIG&quot;       &quot;car&quot;       &quot;CARGSP&quot;    &quot;CGDP&quot;      &quot;DENGSP&quot;    &quot;DGDP&quot;      &quot;Lifetime&quot; 
-##  [8] &quot;Lifetime1&quot; &quot;Lifetime2&quot; &quot;Mode&quot;      &quot;N&quot;         &quot;SMALL&quot;     &quot;TOTAL&quot;     &quot;x&quot;</code></pre>
-=======
-<pre><code>##  [1] &quot;BIG&quot;       &quot;car&quot;       &quot;CARGSP&quot;    &quot;CGDP&quot;      &quot;DENGSP&quot;    &quot;DGDP&quot;      &quot;Lifetime&quot;  &quot;Lifetime1&quot;
-##  [9] &quot;Lifetime2&quot; &quot;Mode&quot;      &quot;N&quot;         &quot;SMALL&quot;     &quot;TOTAL&quot;     &quot;x&quot;</code></pre>
->>>>>>> e07779b67e9584137bfd23f0eff4cead921511d9
+<pre><code>##   [1] &quot;AL&quot;          &quot;alpha&quot;       &quot;AUTO&quot;        &quot;B1&quot;          &quot;Bhat0&quot;       &quot;Bhat1&quot;       &quot;BIG&quot;        
+##   [8] &quot;car&quot;         &quot;CARDATA&quot;     &quot;CARDATA2&quot;    &quot;CARGSP&quot;      &quot;CDdata&quot;      &quot;CGDP&quot;        &quot;CM&quot;         
+##  [15] &quot;CREG&quot;        &quot;D&quot;           &quot;DENGSP&quot;      &quot;df&quot;          &quot;DGDP&quot;        &quot;DS&quot;          &quot;DTRND&quot;      
+##  [22] &quot;e&quot;           &quot;eps&quot;         &quot;EPS&quot;         &quot;Fcrit&quot;       &quot;fit&quot;         &quot;fitpoints&quot;   &quot;Fstat&quot;      
+##  [29] &quot;grid.lines&quot;  &quot;h&quot;           &quot;hprice1&quot;     &quot;i&quot;           &quot;i1&quot;          &quot;i2&quot;          &quot;j&quot;          
+##  [36] &quot;k&quot;           &quot;left&quot;        &quot;LEFT&quot;        &quot;LFT&quot;         &quot;Lifetime&quot;    &quot;Lifetime1&quot;   &quot;Lifetime2&quot;  
+##  [43] &quot;m&quot;           &quot;M&quot;           &quot;MDAT&quot;        &quot;Mode&quot;        &quot;mtcars&quot;      &quot;mu&quot;          &quot;MULTI2&quot;     
+##  [50] &quot;n&quot;           &quot;N&quot;           &quot;P&quot;           &quot;PARK&quot;        &quot;probability&quot; &quot;Pval&quot;        &quot;R&quot;          
+##  [57] &quot;R2r&quot;         &quot;R2u&quot;         &quot;Rate&quot;        &quot;REG&quot;         &quot;REG1&quot;        &quot;REG2&quot;        &quot;REG3&quot;       
+##  [64] &quot;REG4&quot;        &quot;RES&quot;         &quot;Revenue&quot;     &quot;RHT&quot;         &quot;right&quot;       &quot;RIGHT&quot;       &quot;RREG&quot;       
+##  [71] &quot;S&quot;           &quot;SBhat1&quot;      &quot;Sig&quot;         &quot;sigma&quot;       &quot;SMALL&quot;       &quot;t&quot;           &quot;t_values&quot;   
+##  [78] &quot;tcrit&quot;       &quot;TOTAL&quot;       &quot;tstat&quot;       &quot;UREG&quot;        &quot;wage1&quot;       &quot;x&quot;           &quot;X&quot;          
+##  [85] &quot;x.pred&quot;      &quot;X1&quot;          &quot;X2&quot;          &quot;X3&quot;          &quot;Xbar&quot;        &quot;Xcrap&quot;       &quot;xfit&quot;       
+##  [92] &quot;xtick&quot;       &quot;xy&quot;          &quot;Y&quot;           &quot;y.pred&quot;      &quot;Y1&quot;          &quot;Y2&quot;          &quot;Y3&quot;         
+##  [99] &quot;yfit&quot;        &quot;Yhat&quot;        &quot;Yz&quot;          &quot;Z&quot;           &quot;z.pred&quot;      &quot;Zcrit&quot;       &quot;Zstat&quot;</code></pre>
 <p>As we already showed, we can add new variables by simply assigning names to our calculations.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="coding-basics.html#cb58-1" aria-hidden="true" tabindex="-1"></a>TOTAL.SQUARED <span class="ot">&lt;-</span> TOTAL<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>If you ever wanted to remove some variables from your global environment, you can use the remove command: rm(<em>name of variable</em>)</p>
@@ -430,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="subsetting-data" class="section level3" number="3.3.5">
 <h3><span class="header-section-number">3.3.5</span> Subsetting Data</h3>
 <p>Sometimes our dataset will contain more information than we need. Let us narrow down our dataset to see how we can get rid of unwanted data. You should see a little Excel looking icon to the left of the name CARDATA up in the global environment window. If you click on it, you should see the following:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-40"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-40"></span>
 <img src="images/Screenshot4.png" alt="A Dataset in R" width="75%" />
 <p class="caption">
 Figure 3.4: A Dataset in R
@@ -452,7 +460,6 @@ Figure 3.4: A Dataset in R
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -492,6 +499,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MBA8350book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

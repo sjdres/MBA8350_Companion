@@ -1,7 +1,7 @@
 # Data Collection and Sampling {#Data}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 ```
 
 Always remember the ultimate goal of inferential statistics: We want to say something important about the characteristics (parameters) of a population without ever observing the entire population. Therefore, the best thing we can do is to draw a sample (i.e., subset) from the population and use it to calculate characteristics (statistics) of a sample and draw inference on the population parameters. 

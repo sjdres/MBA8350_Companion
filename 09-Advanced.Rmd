@@ -1,7 +1,7 @@
 # Advanced Regression Topics {#Advanced}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 library(pander)
 library(plot3D)
 library(latex2exp)
@@ -52,7 +52,7 @@ The models we will consider below will generally use this extension (and a few o
 
 ### Functional Forms
 
-The sole purpose of introducing a sophisticated functional form into an otherwise straight-forward regression model is because the relationship between a dependent an independent variable is not linear *in the data*. Recall that a linear relationship is one where the slope is constant. If the slope is constant (say, $\beta$), then a one-unit increase in $X$ will deliver a $\beta$ unit increase in $Y$ on average *no matter where in the range of X you are*. There are a lot of instances in the real world where this doesn't make sense. Take for example the impact of apartment rental price on its size. One can imagine that if an apartment is small (e.g. 50 sq ft), then one might be willing to be a lot more for a slight increase in size. If an apartment is ridiculously huge (e.g. 5000 sq ft), then one might not be willing to pay anything for an increase in size. This means that the relationship between apartment rental price and size is conceptually non-linear - the slope is dependent upon the actual size of the apartment. However, if your data has a small range (e.g., between 300 and 400 sq ft), then you might never need to consider a non-linear relationship because a linear one does a good job of approximating the relationship that you observe. This chapter deals with situations where you observe a non-linear relationship in your actual data, so it needs to be modeled.
+The sole purpose of introducing a sophisticated functional form into an otherwise straight-forward regression model is because the relationship between a dependent an independent variable is not linear *in the data*. Recall that a linear relationship is one where the slope is constant. If the slope is constant (say, $\beta$), then a one-unit increase in $X$ will deliver a $\beta$ unit increase in $Y$ on average *no matter where in the range of X you are*. There are a lot of instances in the real world where this doesn't make sense. Take for example the impact of apartment rental price on its size. One can imagine that if an apartment is small (e.g. 50 sq ft), then one might be willing to pay a lot more for a slight increase in size. If an apartment is ridiculously huge (e.g. 5000 sq ft), then one might not be willing to pay anything for an increase in size. This means that the relationship between apartment rental price and size is conceptually non-linear - the slope is dependent upon the actual size of the apartment. However, if your data has a small range (e.g., between 300 and 400 sq ft), then you might never need to consider a non-linear relationship because a linear one does a good job of approximating the relationship that you observe. This chapter deals with situations where you observe a non-linear relationship in your actual data, so it needs to be modeled.
 
 Once we have established that a relationship is non-linear, we next need to take a stand on what *type* of non-linear relationship we are attempting to uncover. Answering this question depends upon how you think the slope is going to behave.
 
@@ -107,12 +107,14 @@ For example, suppose that you didn't know the *average* percentage change (or av
 
 ```{r}
 R <- lm(log(Y)~X)
+```
+```{r,echo = FALSE}
 pander(coef(R))
 ```
 
 #### Log-log and Semi-log models {-}
 
-Recall that a standard slope is the *change* in Y over a *change* in X. Combine this fact with the log of a variable delivers a percentage change in the derivative (provided you multiply by $100\%$), and you have several options for which variables you want to consider the logs of. The question you ask yourself is if you want to consider the change of a variable in units of the percentage change of a variable.
+Recall that a standard slope is the *change* in Y over a *change* in X. Combine this fact with the log of a variable delivers a percentage change in the derivative (provided you multiply by $100\%$), and you have several options for which variables you want to consider the logs of. The question you ask yourself is if you want to consider the change of a variable in units **or** the percentage change of a variable.
 
 ##### Log-log model {-}
 
@@ -173,6 +175,8 @@ If we ran a regression with hourly wage as the dependent variable and tenure (i.
 data(wage1,package="wooldridge")
 
 REG <- lm(log(wage) ~ tenure, data = wage1)
+```
+```{r,echo = FALSE}
 pander(summary(REG))
 ```
 
@@ -237,6 +241,8 @@ Suppose you had the data illustrated in the figure. If you assumed a linear rela
 
 ```{r}
 REG <- lm(Revenue ~ Rate)
+```
+```{r,echo = FALSE}
 pander(summary(REG))
 
 plot(X,Y,
@@ -250,6 +256,8 @@ The figure shows that the best fitting straight line is *horizontal* - meaning t
 
 ```{r}
 REG <- lm(Revenue ~ Rate + I(Rate^2))
+```
+```{r,echo = FALSE}
 pander(summary(REG))
 
 plot(X,Y,
@@ -285,7 +293,7 @@ $$Y_i = \beta_0 + \beta_1 \frac{1}{X_i} + \varepsilon_i$$
 $$Y_i = \beta_0 + \beta_1 X_i^{-1} + \varepsilon_i$$
 $$\frac{\Delta Y}{\Delta X} = -\beta_1 X_i^{-2}=\frac{-\beta_1} {X_i^{2}}$$
 
-Notice again that a value of the independent variable in needed to calculate the slope of the function at a specific point. However, as X gets larger, the slope approaches zero. A slope of zero is a horizontal line - and that is when the relationship between Y and X dies out. If $\beta_1>0$ then the slope begins negative and approaches zero from above (the blue line). If $\beta_1<0$ then the slope begins positive and approaches zero from below (the red line).
+Notice again that a value of the independent variable is needed to calculate the slope of the function at a specific point. However, as X gets larger, the slope approaches zero. A slope of zero is a horizontal line - and that is when the relationship between Y and X dies out. If $\beta_1>0$ then the slope begins negative and approaches zero from above (the blue line). If $\beta_1<0$ then the slope begins positive and approaches zero from below (the red line).
 
 #### Application {-}
 
@@ -296,6 +304,8 @@ library(readxl)
 CM <- read_excel("data/CM.xlsx")
 
 REG <- lm(CM$CM ~ I(1/CM$PGNP))
+```
+```{r,echo = FALSE}
 pander(summary(REG))
 
 plot(CM$PGNP,CM$CM,
@@ -487,11 +497,11 @@ Second, one could always **ignore** collinearity and proceed with the analysis. 
 
 For example, lets try the ignorance approach with the baseball application above:
 
-```{r}
+```{r,echo = FALSE}
 pander(summary(REG))
 ```
 
-The results suggest that the population coefficients for the variables League, ERA, Hits Allowed, and Errors are all insignificantly different from zero with 95% confidence. Now if they were all significant, then we could possibly ignore any potential collinearity issues because the bias would not be *enough* for us to see if there was a problem. However, since two of these insignificant variables are ones we already identified as having a collinearity problem, then we a unable to go this route.
+The results suggest that the population coefficients for the variables League, ERA, Hits Allowed, and Errors are all insignificantly different from zero with 95% confidence. Now if they were all significant, then we could possibly ignore any potential collinearity issues because the bias would not be *enough* for us to see if there was a problem. However, since two of these insignificant variables are ones we already identified as having a collinearity problem, then we are unable to go this route.
 
 The third option to remove collinearity is to remove independent variables until the correlation structure is removed. The way to proceed down this route is to remove the variables (one-at-a-time) with the highest VIF values until all remaining values have VIF values below 5. The good side of this analysis is that you can now proceed with the main regression knowing that collinearity is not a problem. The bad side is that you might have had to remove variables that you really wanted to have in the regression.
 

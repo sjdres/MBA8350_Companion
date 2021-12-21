@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.5 Joint Hypothesis Tests | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
   <meta name="description" content="Course companion for MBA 8350." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.5 Joint Hypothesis Tests | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="qualitative-dummy-variables.html"/>
 <link rel="next" href="Advanced.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<li class="chapter" data-level="2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
-<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
 <ul>
@@ -389,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As long as you can state a hypothesis involving multiple PRF coefficients in a linear expression, then we can test the hypothesis using a joint test. There are an infinite number of possibilities, so it is best to give you a couple of concrete examples to establish just how powerful these tests can be.</p>
 <div id="application" class="section level4 unnumbered">
 <h4>Application</h4>
-<p>One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the <em>Bank-Lending Channel of Monetary Policy Transmission</em>, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the dependent variable.</p>
+<p>One chapter of my PhD dissertation concluded with a single joint hypothesis test. The topic I was researching was the <em>Bank-Lending Channel of Monetary Policy Transmission</em>, which is a bunch of jargon dealing with how banks respond to changes in monetary policy established by the Federal Reserve. A paper from 1992 written by Ben Bernanke and Alan Blinder established that aggregate bank lending volume responded to changes in monetary policy (identified as movements in the Federal Funds Rate).<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> A simplified version of their model (below) considers the movement in bank lending as the dependent variable and the movement in the Fed Funds Rate (FFR) as the independent variable.</p>
 <p><span class="math display">\[L_i = \beta_0 + \beta_1 FFR_i + \varepsilon_i\]</span></p>
 <p>While this is a simplification of the model actually estimated, you can see that <span class="math inline">\(\beta_1\)</span> will concisely capture the change in bank lending given an increase in the Fed Funds Rate.</p>
 <p><span class="math display">\[\beta_1 = \frac{\Delta L_i}{\Delta FFR_i}\]</span></p>
@@ -425,7 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>2. Estimate a Restricted Model</strong></p>
 <p>A restricted model involves both the unrestricted model and the null hypothesis. If we wanted to test if the two slope hypotheses were the same, then our joint hypothesis is just like the one in the previous example:</p>
 <p><span class="math display">\[H_0:\beta_1=\beta_2 \quad \text{versus} \quad H_1:\beta_1 \neq \beta_2\]</span></p>
-<p>With the null hypothesis established, we now need to construct a <em>restricted</em> model which results from imposing the null hypothesis on the unrestricted model. In particular, staring with the unrestricted model and substituting the null, we get the following:</p>
+<p>With the null hypothesis established, we now need to construct a <em>restricted</em> model which results from imposing the null hypothesis on the unrestricted model. In particular, starting with the unrestricted model and substituting the null, we get the following:</p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i\]</span></p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_2 X_{1i} + \beta_2 X_{2i} + \varepsilon_i\]</span></p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_2 (X_{1i} + X_{2i}) + \varepsilon_i\]</span></p>
@@ -454,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>4. Determine a P-value and Conclude</strong></p>
 <p>Again, we establish a confidence level <span class="math inline">\(\alpha\)</span> as we would with any hypothesis test. This delivers an acceptable probability of a type I error and breaks the distribution into a rejection region and a non-rejection region.</p>
 <p>For example, suppose you set <span class="math inline">\(\alpha = 0.05\)</span> and have <span class="math inline">\(m=2\)</span> and <span class="math inline">\(n-k-1 = 100\)</span>. This means that the non-rejection region will take up 95% of the area of the F-distribution with 2 and 100 degrees of freedom.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="joint-hypothesis-tests.html#cb291-1" aria-hidden="true" tabindex="-1"></a>(Fcrit <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>,<span class="dv">100</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="joint-hypothesis-tests.html#cb292-1" aria-hidden="true" tabindex="-1"></a>(Fcrit <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>,<span class="dv">100</span>))</span></code></pre></div>
 <pre><code>## [1] 3.087296</code></pre>
 <p>If an F-statistic is greater than 3.09 then we can reject the null of the joint hypothesis with at least 95% confidence.</p>
 <p><img src="MBA8350book_files/figure-html/unnamed-chunk-161-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -480,23 +480,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Suppose we wanted to test that none of these independent variables help explain movements in wages, so the resulting joint hypothesis would be</p>
 <p><span class="math display">\[H_0: \beta_1 = \beta_2 = \beta_3 = 0 \quad \text{versus} \quad H_1: \beta_1 \neq 0, \; \beta_2 \neq 0, \; \text{or} \; \beta_3 \neq 0\]</span></p>
 <p>The unrestricted model is one where each of the coefficients can be whatever number the data wants them to be.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="joint-hypothesis-tests.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(wage1, <span class="at">package =</span> <span class="st">&quot;wooldridge&quot;</span>)</span>
-<span id="cb294-2"><a href="joint-hypothesis-tests.html#cb294-2" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure,<span class="at">data=</span>wage1)</span>
-<span id="cb294-3"><a href="joint-hypothesis-tests.html#cb294-3" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="joint-hypothesis-tests.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(wage1, <span class="at">package =</span> <span class="st">&quot;wooldridge&quot;</span>)</span>
+<span id="cb295-2"><a href="joint-hypothesis-tests.html#cb295-2" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage<span class="sc">~</span>educ<span class="sc">+</span>exper<span class="sc">+</span>tenure,<span class="at">data=</span>wage1)</span>
+<span id="cb295-3"><a href="joint-hypothesis-tests.html#cb295-3" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
 <pre><code>## [1] 0.3064224</code></pre>
 <p>Our unrestricted model can explain roughly 30% of the variation in wages.</p>
 <p>The next step is to estimate the restricted model - the model with the null hypothesis imposed. In this case you will notice that setting all slope coefficients to zero results in a rather strange looking model:</p>
 <p><span class="math display">\[wage_i=\beta_0+\varepsilon_i\]</span></p>
 <p>This model contains no independent variables. If you were to estimate this model, then the intercept term would return the average wage in the data and the error term will simply be every deviation from the individual wage observations with it’s average value. Since it is impossible for the deterministic component of this model to explain <em>any</em> of the variation in wages, then this implies that the restricted <span class="math inline">\(R^2\)</span> is zero by definition. Note that this is only a special case because of what the restricted model looks like. There will be more interesting cases where the restricted <span class="math inline">\(R^2\)</span> will need to be determined by estimating a restricted model.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="joint-hypothesis-tests.html#cb296-1" aria-hidden="true" tabindex="-1"></a>R2r <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># By definition</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="joint-hypothesis-tests.html#cb297-1" aria-hidden="true" tabindex="-1"></a>R2r <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># By definition</span></span></code></pre></div>
 <p>Now that we have the restricted and unrestricted <span class="math inline">\(R^2\)</span>, we need the degrees of freedom to calculate an F-statistic under the null. The numerator degrees of freedom <span class="math inline">\((m)\)</span> denotes how many restrictions we placed on the restricted model. Since the null hypothesis sets all three slope coefficients to zero, we consider this to be 3 restrictions. The denominator degrees of freedom <span class="math inline">\((n-k-1)\)</span> is taken directly from the unrestricted model. Since <span class="math inline">\(n=526\)</span> and we originally had 3 independent variables (<span class="math inline">\(k=3\)</span>), the denominator degrees of freedom is <span class="math inline">\(n-k-1=522\)</span>. We can now calculate our F statistic under the null as well as our p-value.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="joint-hypothesis-tests.html#cb297-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">3</span>; n <span class="ot">=</span> <span class="dv">526</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb297-2"><a href="joint-hypothesis-tests.html#cb297-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb297-3"><a href="joint-hypothesis-tests.html#cb297-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="joint-hypothesis-tests.html#cb298-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">3</span>; n <span class="ot">=</span> <span class="dv">526</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb298-2"><a href="joint-hypothesis-tests.html#cb298-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-3"><a href="joint-hypothesis-tests.html#cb298-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
 <pre><code>## [1] 76.87317</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="joint-hypothesis-tests.html#cb299-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="joint-hypothesis-tests.html#cb300-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## [1] 3.405862e-41</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="joint-hypothesis-tests.html#cb301-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="joint-hypothesis-tests.html#cb302-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Note that since our F-statistic is far from 0, we can reject the null with approximately 100% confidence (i.e. the p-value is essentially zero).</p>
 <div id="what-can-we-conclude-from-this" class="section level5 unnumbered">
@@ -507,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[H_0: \beta=0 \quad \text{versus} \quad H_1: \beta \neq 0\]</span></p>
 <p>All regression results also provide the joint hypothesis that all slope coefficients are equal to zero. You can see the result at the bottom of the summary page. The last line delivers the same F-statistic we calculated above as well as a p-value that is essentially zero.</p>
 <p>Note that while this uninteresting joint hypothesis test is done by default. Other joint tests require a bit more work.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="joint-hypothesis-tests.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(UREG)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="joint-hypothesis-tests.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(UREG)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = wage ~ educ + exper + tenure, data = wage1)
@@ -545,15 +545,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we are testing for constant returns to scale, then we want to show that increasing all of the inputs by a certain amount will result in the same increase in output. Technical issues aside, this results in the following null hypothesis for a joint test:</p>
 <p><span class="math display">\[H_0: \beta_K + \beta_L = 1 \quad \text{versus} \quad H_1: \beta_K + \beta_L \neq 1\]</span></p>
 <p>We now have all we need to test for CRS:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="joint-hypothesis-tests.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data...</span></span>
-<span id="cb305-2"><a href="joint-hypothesis-tests.html#cb305-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-3"><a href="joint-hypothesis-tests.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb305-4"><a href="joint-hypothesis-tests.html#cb305-4" aria-hidden="true" tabindex="-1"></a>CDdata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/CDdata.xlsx&quot;</span>)</span>
-<span id="cb305-5"><a href="joint-hypothesis-tests.html#cb305-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-6"><a href="joint-hypothesis-tests.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run unrestricted model, get R^2...</span></span>
-<span id="cb305-7"><a href="joint-hypothesis-tests.html#cb305-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-8"><a href="joint-hypothesis-tests.html#cb305-8" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnGDP <span class="sc">~</span> lnK <span class="sc">+</span> lnL, <span class="at">data =</span> CDdata)</span>
-<span id="cb305-9"><a href="joint-hypothesis-tests.html#cb305-9" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="joint-hypothesis-tests.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data...</span></span>
+<span id="cb306-2"><a href="joint-hypothesis-tests.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="joint-hypothesis-tests.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb306-4"><a href="joint-hypothesis-tests.html#cb306-4" aria-hidden="true" tabindex="-1"></a>CDdata <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/CDdata.xlsx&quot;</span>)</span>
+<span id="cb306-5"><a href="joint-hypothesis-tests.html#cb306-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-6"><a href="joint-hypothesis-tests.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run unrestricted model, get R^2...</span></span>
+<span id="cb306-7"><a href="joint-hypothesis-tests.html#cb306-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-8"><a href="joint-hypothesis-tests.html#cb306-8" aria-hidden="true" tabindex="-1"></a>UREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnGDP <span class="sc">~</span> lnK <span class="sc">+</span> lnL, <span class="at">data =</span> CDdata)</span>
+<span id="cb306-9"><a href="joint-hypothesis-tests.html#cb306-9" aria-hidden="true" tabindex="-1"></a>(R2u <span class="ot">&lt;-</span> <span class="fu">summary</span>(UREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
 <pre><code>## [1] 0.9574247</code></pre>
 <p>The unrestricted model can explain around 96% of the variation in the dependent variable. For us to determine how much the restricted model can explain, we first need to see exactly what the restriction does to our model. Starting from the unrestricted model, imposing the restriction delivers the following:</p>
 <p><span class="math display">\[lnGDP_i = \beta_0 + \beta_K \; lnK_i + \beta_L \; lnL_i + \varepsilon_i\]</span>
@@ -563,20 +563,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 where
 <span class="math display">\[\tilde{Y}_i=lnGDP_i - lnK_i \quad \text{and} \quad \tilde{X}_i=lnL_i - lnK_i\]</span></p>
 <p>Notice how these derivations deliver exactly how the variables of the model need to be transformed and what the restricted model needs to be estimated.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="joint-hypothesis-tests.html#cb307-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> CDdata<span class="sc">$</span>lnGDP <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
-<span id="cb307-2"><a href="joint-hypothesis-tests.html#cb307-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> CDdata<span class="sc">$</span>lnL <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
-<span id="cb307-3"><a href="joint-hypothesis-tests.html#cb307-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-4"><a href="joint-hypothesis-tests.html#cb307-4" aria-hidden="true" tabindex="-1"></a>RREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
-<span id="cb307-5"><a href="joint-hypothesis-tests.html#cb307-5" aria-hidden="true" tabindex="-1"></a>(R2r <span class="ot">&lt;-</span> <span class="fu">summary</span>(RREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="joint-hypothesis-tests.html#cb308-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> CDdata<span class="sc">$</span>lnGDP <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
+<span id="cb308-2"><a href="joint-hypothesis-tests.html#cb308-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> CDdata<span class="sc">$</span>lnL <span class="sc">-</span> CDdata<span class="sc">$</span>lnK</span>
+<span id="cb308-3"><a href="joint-hypothesis-tests.html#cb308-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb308-4"><a href="joint-hypothesis-tests.html#cb308-4" aria-hidden="true" tabindex="-1"></a>RREG <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>X)</span>
+<span id="cb308-5"><a href="joint-hypothesis-tests.html#cb308-5" aria-hidden="true" tabindex="-1"></a>(R2r <span class="ot">&lt;-</span> <span class="fu">summary</span>(RREG)<span class="sc">$</span>r.squared)</span></code></pre></div>
 <pre><code>## [1] 0.9370283</code></pre>
 <p>The restricted model can explain roughly 94% of the variation in the dependent variable. To see if this reduction in <span class="math inline">\(R^2\)</span> is enough to reject the null hypothesis, we need to calculate an F-statistic. The numerator degrees of freedom is <span class="math inline">\(m=1\)</span> because there is technically only one restriction in the null. The denominator degrees of freedom uses <span class="math inline">\(n=24\)</span> and <span class="math inline">\(k=2\)</span>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="joint-hypothesis-tests.html#cb309-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">1</span>; n <span class="ot">=</span> <span class="dv">24</span>; k <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb309-2"><a href="joint-hypothesis-tests.html#cb309-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb309-3"><a href="joint-hypothesis-tests.html#cb309-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="joint-hypothesis-tests.html#cb310-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">1</span>; n <span class="ot">=</span> <span class="dv">24</span>; k <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb310-2"><a href="joint-hypothesis-tests.html#cb310-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="joint-hypothesis-tests.html#cb310-3" aria-hidden="true" tabindex="-1"></a>(Fstat <span class="ot">&lt;-</span> ((R2u <span class="sc">-</span> R2r)<span class="sc">/</span>m)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2u)<span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>)))</span></code></pre></div>
 <pre><code>## [1] 10.0604</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="joint-hypothesis-tests.html#cb311-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="joint-hypothesis-tests.html#cb312-1" aria-hidden="true" tabindex="-1"></a>(Pval <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat,m,n<span class="sc">-</span>k<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## [1] 0.004594084</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="joint-hypothesis-tests.html#cb313-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="joint-hypothesis-tests.html#cb314-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">-</span>Pval)</span></code></pre></div>
 <pre><code>## [1] 0.9954059</code></pre>
 <p>As in the previous application, we received a very high F-statistic and a very low p-value. This means we <em>reject</em> the hypothesis that this country has an aggregate production function that exhibits constant returns to scale with slightly over 99.5% confidence.</p>
 
@@ -600,7 +600,6 @@ where
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -640,6 +639,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MBA8350book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

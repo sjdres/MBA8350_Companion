@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.3 Descriptive Measures | MBA 8350: Course Companion for Analyzing and Leveraging Data</title>
   <meta name="description" content="Course companion for MBA 8350." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.3 Descriptive Measures | MBA 8350: Course Companion for Analyzing and Leveraging Data" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Scott Dressler" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="the-vocabulary-of-statistics.html"/>
 <link rel="next" href="Data.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="Data.html"><a href="Data.html"><i class="fa fa-check"></i><b>2</b> Data Collection and Sampling</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
+<li class="chapter" data-level="2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html"><i class="fa fa-check"></i><b>2.2</b> Sampling Bias - two examples</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
-<li class="chapter" data-level="2.2.2" data-path="sampling-bias-two-examples.html"><a href="sampling-bias-two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
+<li class="chapter" data-level="2.2.1" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#dewey-defeats-truman"><i class="fa fa-check"></i><b>2.2.1</b> Dewey Defeats Truman?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="sampling-bias---two-examples.html"><a href="sampling-bias---two-examples.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 98.6?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="sampling-methods.html"><a href="sampling-methods.html"><i class="fa fa-check"></i><b>2.3</b> Sampling Methods</a>
 <ul>
@@ -383,13 +383,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="descriptive-measures.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/Lightbulb.Rdata&quot;</span>)</span>
 <span id="cb1-5"><a href="descriptive-measures.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(Lifetime)</span></code></pre></div>
 <pre><code>## [[1]]
-##  [1]  858.9164  797.2652 1013.5366 1064.8195  874.2275  825.1137  897.0879  924.0998  870.0674
-## [10]  966.2095  955.1281  977.2073  888.1690  826.6483  776.7479  877.5691  998.7101  892.8178
-## [19]  886.0261  831.7615 1082.9650 1034.9549  784.5026  919.2082 1049.1824  923.5767  907.7295
-## [28]  890.3758  856.4240  808.8035 1009.7146  890.3709  930.9597  809.9274  919.9381  793.7455
-## [37]  919.9824  948.8593  810.6887  846.9573  955.3873  833.2762  892.4969  973.1861  913.7650
-## [46]  928.6057  940.7637  964.4341  914.2733  880.3329  831.5395  967.2442 1030.7598  857.5421
-## [55]  889.3689 1094.1440  927.7684  730.9976  918.8359  867.5931</code></pre>
+##  [1]  858.9164  797.2652 1013.5366 1064.8195  874.2275  825.1137  897.0879  924.0998  870.0674  966.2095
+## [11]  955.1281  977.2073  888.1690  826.6483  776.7479  877.5691  998.7101  892.8178  886.0261  831.7615
+## [21] 1082.9650 1034.9549  784.5026  919.2082 1049.1824  923.5767  907.7295  890.3758  856.4240  808.8035
+## [31] 1009.7146  890.3709  930.9597  809.9274  919.9381  793.7455  919.9824  948.8593  810.6887  846.9573
+## [41]  955.3873  833.2762  892.4969  973.1861  913.7650  928.6057  940.7637  964.4341  914.2733  880.3329
+## [51]  831.5395  967.2442 1030.7598  857.5421  889.3689 1094.1440  927.7684  730.9976  918.8359  867.5931</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-measures.html#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">mean</span>(Lifetime))</span></code></pre></div>
 <pre><code>## [1] 907.5552</code></pre>
 <p>The average lifetime of our 60 <span class="math inline">\((n=60)\)</span> observed light bulbs is 908 hours.</p>
@@ -604,7 +603,6 @@ The correlation transformed the covariance relationship into a measure between -
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -644,6 +642,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MBA8350book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

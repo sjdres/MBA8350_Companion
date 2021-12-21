@@ -1,7 +1,7 @@
 # Getting Started with R {#R}
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(fig.align='center', message = FALSE)
 ```
 
 ```{r, echo = FALSE, fig.align='center', out.width="40%"}
